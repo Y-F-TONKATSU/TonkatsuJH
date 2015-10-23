@@ -363,7 +363,7 @@ module.exports = function(grunt) {
 				expand:true,
 				cwd: '../../_dev/assets/images/',
 				src: ['**'],
-				dest: '../../_dev/assets/images_processed/'
+				dest: '../../_processing/assets/'
 			},
 			image_m: {
 				expand:true,
@@ -401,7 +401,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: '../../_dev/assets/images_processed/',
+					cwd: '../../_processing/assets/images/',
 					src: ['**/*.{jpg,gif,png}'],
 					dest: '../../public/assets/images/'
 				}]
