@@ -464,7 +464,7 @@ module.exports = function(grunt) {
 			},
 			xml2json: {
 				src: ['../../_dev/contents.xml'],
-				dest: '../../_dev/trans/contents.json'
+				dest: '../../_processing/contents.json'
 			}
 		}
 		
