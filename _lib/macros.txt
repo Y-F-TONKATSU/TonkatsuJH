@@ -1,0 +1,4 @@
+th=cd /d D:\Arts\TonkatsuHiroba\ $*
+tjh=cd /d D:\Arts\TonkatsuJH\ $*
+tjhg=cd /d D:\Arts\TonkatsuJH\_lib\grunt $*
+pegriot=cd /d D:\Arts\Tsurumau Projects\Pegrio\Pegrio_v1\Pegriot510\Release $*
