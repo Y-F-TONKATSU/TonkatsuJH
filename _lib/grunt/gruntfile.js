@@ -334,9 +334,9 @@ module.exports = function(grunt) {
 			options:{
 				force:true
 			},
-			image: ['../../public/assets/images/*', '../../_dev/assets/images_processed/*'],
-			main: ['../../_dev/_trans/*'],
-			contents: ['../../_dev/_trans_contents/*', '../../public/contents/*']
+			image: ['../../public/assets/images/*', '../../_processing/assets/images/*'],
+			main: ['../../_processing/assets/script/*', '../../_processing/docs/*'],
+			contents: ['../../_processing/contents/*', '../../public/contents/*']
 		},
 		
 		htmlmin: {
@@ -346,7 +346,7 @@ module.exports = function(grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'../../_dev/_trans/index_widgets_min.html': '../../_dev/_trans/index_widgets.html'
+					'../../_processing/docs/index_widgets_min.html': '../../_processing/docs/index_widgets.html'
 				}
 			},
 			contents: {
@@ -357,7 +357,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand:true,
 					overwrite:true,
-					cwd: '../../_dev/_trans_contents/',
+					cwd: '../../_processing/contents/',
 					src: ['**/*.html'],
 					dest: '../../public/contents/'
 				}]
@@ -380,18 +380,18 @@ module.exports = function(grunt) {
 				dest: '../../public/assets/images'
 			},
 			main: {
-				src: '../../_dev/_trans/index_widgets_min.html',
+				src: '../../_processing/docs/index_widgets_min.html',
 				dest: '../../public/index.html'
 			},
 			contents: {
 				expand:true,
 				cwd: '../../_dev/contents/',
 				src: ['**'],
-				dest: '../../_dev/_trans_contents'
+				dest: '../../_processing/contents'
 			},
 			contents_2: {
 				expand:true,
-				cwd: '../../_dev/_trans_contents',
+				cwd: '../../_processing/contents',
 				src: ['**'],
 				dest: '../../public/contents'
 			},
@@ -426,7 +426,7 @@ module.exports = function(grunt) {
 		replace: {
 			main: {
 				src: ['../../_dev/index.html'],
-				dest: '../../_dev/_trans/index_widgets.html',
+				dest: '../../_processing/docs/index_widgets.html',
 				replacements: [{
 					from: '<!--Widgets-->', 
 					to: function(matchword){
@@ -435,7 +435,7 @@ module.exports = function(grunt) {
 				}]
 			},
 			contents: {
-				src: ['../../_dev/_trans_contents/**/*.html'],
+				src: ['../../_processing/contents/**/*.html'],
 				overwrite: true,
 				replacements: [{
 					from: META_REGEXP, 
@@ -445,7 +445,7 @@ module.exports = function(grunt) {
 				}]
 			},
 			contents_header: {
-				src: ['../../_dev/_trans_contents/**/*.html'],
+				src: ['../../_processing/contents/**/*.html'],
 				overwrite: true,
 				replacements: [{
 					from: HEADER_REGEXP, 
@@ -455,7 +455,7 @@ module.exports = function(grunt) {
 				}]
 			},
 			contents_footer: {
-				src: ['../../_dev/_trans_contents/**/*.html'],
+				src: ['../../_processing/contents/**/*.html'],
 				overwrite: true,
 				replacements: [{
 					from: FOOTER_REGEXP, 
