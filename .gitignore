@@ -1,1 +1,10 @@
 _processing
+_experimental
+public
+_lib/.bin/
+_lib/chai/
+_lib/grunt/jquery-tiny-pubsub-master/
+_lib/grunt/node_modules/
+_lib/less/
+_lib/macros.txt
+_lib/mocha/
