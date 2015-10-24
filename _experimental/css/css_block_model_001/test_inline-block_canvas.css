@@ -1,0 +1,42 @@
+body {
+	background-color: purple;
+	padding:0px;
+	margin:0px;
+	color:white;
+}
+
+canvas{
+	display:inline;
+	width:300px;
+	background-color:red;
+}
+
+.parent{
+	display:block;
+	width:250px;
+	height:250px;
+	background-color: orange;
+}
+
+
+.a{
+	display:inline-block;
+	width:auto;
+	hegiht:auto;
+	margin:0px;
+	background-color: green;
+}
+
+.b{
+	display:inline-block;
+	width:100px;
+	height:100px;
+	margin:0px;
+	background-color: blue;
+}
+
+.c{
+	display:inline;
+	margin:0px;
+	background-color: black;
+}

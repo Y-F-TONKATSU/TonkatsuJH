@@ -1,0 +1,29 @@
+.orange{
+	width:auto;
+	padding:0px;
+	margin-left:200px;
+	margin-right:200px;
+	background-color:orange;
+	float:right;
+}
+
+.yellow{
+	width:auto;
+	margin-left:0px;
+	margin-right:0px;
+	padding:0px;
+	background-color:yellow;
+}
+
+.parent{
+	padding:0px;
+	margin:0px;
+	width:600px;
+	height:600px;
+	background-color:green;
+}
+
+body{
+	padding:0px;
+	margin:0px;
+}

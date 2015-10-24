@@ -1,0 +1,26 @@
+body {
+	background-color: purple;
+	color:white;
+	margin:0;
+	padding:0;
+}
+
+.parent{
+	display:block;
+	width:200px;
+	height:200px;
+	padding:0;
+	background-color: orange;
+	font-size:90%;
+}
+
+.a{
+	display:block;
+					width: auto;
+					margin-left: 0px;
+					margin-right: 0px;
+	height:90%;
+	margin-top:0px;
+	padding:0px;
+	background-color: green;
+}

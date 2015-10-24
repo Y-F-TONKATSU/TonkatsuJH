@@ -1,0 +1,39 @@
+body {
+	background-color: purple;
+	padding:0px;
+	margin:0px;
+	color:white;
+}
+
+.parent{
+	display:block;
+	margin:0px;
+	width:200px;
+	height:250px;
+	background-color: orange;
+}
+
+.a{
+	display:block;
+	width:auto;
+	height:auto;
+	margin:0px;
+	background-color: green;
+}
+
+.b{
+	display:block;
+	width:auto;
+	height:auto;
+	margin-right:50px;
+	margin-left:50px;
+	background-color: blue;
+}
+
+.c{
+	display:block;
+	width:100px;
+	height:100px;
+	margin:auto;
+	background-color: black;
+}

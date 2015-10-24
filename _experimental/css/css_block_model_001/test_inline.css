@@ -1,0 +1,30 @@
+body {
+	background-color: purple;
+	padding:0px;
+	margin:0px;
+	color:white;
+}
+
+.parent{
+	display:block;
+	width:200px;
+	height:200px;
+	margin:0px;
+	background-color: orange;
+}
+
+.a{
+	display:inline;
+	width:auto;
+	height:auto;
+	margin:0px;
+	background-color: green;
+}
+
+.b{
+	display:inline;
+	width:100px;
+	height:100px;
+	margin:0px;
+	background-color: blue;
+}
