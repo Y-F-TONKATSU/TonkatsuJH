@@ -1,0 +1,242 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000017-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000017-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					Processing で<br>
+                    処理が重くなって、<br>
+                    リアルタイム再生が<br>
+                    厳しいとき、<br>
+                    苦肉の策として、<br>
+                    フレーム毎に<br>
+                    saveFrame() して、<br>
+                   	出来た画像の連番を<br>
+                    エンコーダーなどで<br>
+                    ビデオにする、<br>
+                    ということを<br>
+                    やっていました。
+				</div>
+				
+				<div class="inner">
+					Canvas + JavaScript でも<br>
+                    同じことが出来ないかと<br>
+                    試行錯誤してみました。<br>
+                    もっといいやり方も<br>
+                    ありそうですが、<br>
+                    一応出来るようになったので、<br>
+                    公開しておきます。<br>
+                    (jQuery を使用。<br>
+                    また動作確認は<br>
+                    chrome のみ。<br>
+                    どうせローカルでしか<br>
+                    動かさないので。)
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>toDataURL()</h2>
+                    とりあえず、<br>
+                    Canvas 内のビットマップを<br>
+                    画像ファイルにするために<br>
+                    Canvas オブジェクトの<br>
+                    toDataURL() メソッドを<br>
+                    使います。
+				</div>
+				
+				<div class="inner">
+                	toDataURL() の<br>
+                    使用例はこんな感じです。
+				</div>
+				
+				<div class="code">
+<pre> HTML:
+&lt;canvas class='canvas0' width='400' height='300'&gt;&lt;/canvas&gt;
+&lt;img class='img0'&gt;
+
+JavaScript:
+//Canvas 要素とコンテキストの取得
+var canvas = $('.canvas0').get(0);
+var context = $(canvas).getContext('2d');
+
+
+//円を描画
+context.beginPath();
+context.arc(200, 150, 100, 0, Math.PI * 2, true);
+context.fill();
+
+//画像URLを取得
+var url = canvas.toDataURL();
+
+//取得したURLを img 要素の src 属性に設定
+$('.img0').attr('src', url);</pre>
+				</div>
+				
+				<div class="inner">
+                	この例では<br>
+                    Canvas に円を描画して、<br>
+					そのビットマップデータへの<br>
+                    アドレスを<br>
+                    toDataURL() で取得し、<br>
+                    img 要素の src 属性に<br>
+                    渡しています。<br>
+                	(toDataURL() は<br>
+					Canvas オブジェクトの<br>
+                    プロパティなので、<br>
+                    context.toDataURL() と<br>
+                    やらないように<br>
+                    気をつけましょう。)
+				</div>
+				
+				<div class="inner">
+                	これで img 要素を<br>
+                    右クリックして、<br>
+                    画像を保存すれば<br>
+                    フレームを保存できます。<br>
+                    しかしもちろん、<br>
+                    1フレーム毎に<br>
+                    そんなことをするのは<br>
+                    現実的ではありません。
+				</div>
+				
+			</div>
+												
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>a 要素の download 属性</h2>
+                    html5 では<br>
+                    a 要素に<br>
+                    download 属性が<br>
+                    追加されています。<br>
+                    この download 属性が<br>
+                    指定されている<br>
+                    ハイパーリンクを<br>
+                    クリックすると、<br>
+                    href で指定されている<br>
+                    ファイルが<br>
+                    ダウンロードされます。
+				</div>
+				
+				<div class="inner">
+					ちょっと強引ですが、<br>
+                    この download 属性付きの<br>
+                    a 要素を<br>
+                    フレーム毎に<br>
+                    動的に生成して、<br>
+                    jQuery の trigger() で<br>
+                    クリックイベントを<br>
+                    トリガーしてやれば<br>
+                    自動保存できそうです。
+				</div>
+				
+				<div class="inner">
+					具合のいいことに<br>
+                    download 属性に<br>
+                    値を指定してやると、<br>
+                    保存時のデフォルトの<br>
+                    ファイル名になりますので、<br>
+                    連番ファイルにすることも<br>
+                    可能です。
+				</div>
+				
+				<div class="code">
+<pre> HTML:
+&lt;canvas class='canvas0' width='400' height='300'&gt;&lt;/canvas&gt;
+
+JavaScript:
+//Canvas 要素とコンテキストの取得
+var _canvas = $('.canvas0').get(0);
+var _context = _canvas.getContext('2d');
+
+//フレーム数を保持する変数
+var _currentFrame = 0;
+var _totalFrame = 12;
+
+//現在のフレームを保存する関数
+var saveFrame = function(){
+		
+    //画像データにリンクした a 要素を作り
+    //クリックするための適当な p 要素を中に入れる
+    var downloader = $('&lt;a download="frame' + _currentFrame + '"&gt;&lt;p class="anchor"&gt;x&lt;/p&gt;&lt;/a&gt;')
+    .attr('href', _canvas.toDataURL())
+    .appendTo('body');
+    
+    //クリックイベントをトリガー
+    $('.anchor').trigger('click');
+    
+    //作った要素を消しておく
+    $(downloader).remove();
+		
+}
+
+//円が大きくなるアニメーションを描画する
+var draw = function(){
+    
+    //円を描画
+    _context.beginPath();
+    _context.arc(200, 150, 10 * _currentFrame + 10, 0, Math.PI * 2, true);
+    _context.fill();
+    
+    //フレームを保存
+    saveFrame();
+    
+    //次のフレームへ
+    _currentFrame++;
+    if(_currentFrame &lt; _totalFrame){setTimeout(draw, 1000);}
+    
+};
+
+draw();</pre>
+				</div>
+				
+				<div class="inner">
+                	注意点:<br>
+					ダウンロード時にいちいち<br>
+                    保存ダイアログを開く<br>
+                    ブラウザ設定だと、<br>
+                    大量にダイアログが開いて<br>
+                    ブラウザクラッシャーと<br>
+                    化します。<br>
+                    ダイアログを開かずに<br>
+                    保存する設定にしましょう。
+				</div>
+				
+				<div class="inner">
+                	これで<br>
+                    setTimeout() により<br>
+                    フレームが<br>
+                    描画されるたびに、<br>
+                    連番画像が<br>
+                    ダウンロードされます。
+				</div>
+				
+				<div class="inner ads">
+                	Canvas 関連のおすすめ書籍:<br>
+                	<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873115272%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51qPr3jjE3L._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873115272%2F%3Ftag%3Da8-affi-233326-22" target="_blank">HTML5 Canvas</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥3,456<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/6/19 09:25時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www12.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+                
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000017-->
+
+	</body>
+	
+</html>

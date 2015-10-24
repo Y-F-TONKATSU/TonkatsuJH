@@ -1,0 +1,3701 @@
+<!DOCTYPE HTML> 
+
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+	<head>
+	
+		<meta charset="utf-8">
+		<meta name="keywords" content="TONKATSU とんかつ アート Web制作 映像制作 プログラミング CINEMA 4D Adobe AfterEffects PhotoShop Illustrator JavaScript HTML5 CSS ハタモト君 4コマ コミック  とんかつ広場 個人サイト ドリンクバーの回し飲み ガスト北村 キャプテン・ダザイ キャプテン・マサイ">
+		<meta name="description" content="TONKATSU はビデオアーティスト/身体表現パフォーマーの山田.F.とんかつをはじめ、アーティストくずれの失業者たちが寄り集まって創業した Android アプリメーカーです。斬新なビジュアルを打ち出したアプリやゲームでスマートフォンの世界に新しい地平を開くことをミッションとしています。Web サイト 'とんかつひろば' はアプリの制作やそのための勉強から派生する実験作品や思考の表現の場として生まれました。「建築は、なにかを永遠なものにし、なにかを讃美するものである。だから、なにも讃美しないような建築など、存在しない。」というウィトゲンシュタインの言葉に「言葉の真意はよくわからないがすごくその通りだ！」と思った山田.F.とんかつがどういうわけか、「JavaScript で無駄に動くサイトを作ろう!」という想いに囚われて作り上げました。">
+		
+		<meta property="og:title" content="とんかつひろば" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://ton-katsu.net/" />
+		<meta property="og:image" content="http://ton-katsu.net/assets/images/common/og.jpg" />
+		<meta property="og:site_name" content="とんかつひろば" />
+		<meta property="og:description" content="TONKATSU はビデオアーティスト/身体表現パフォーマーの山田.F.とんかつをはじめ、アーティストくずれの失業者たちが寄り集まって創業した Android アプリメーカーです。斬新なビジュアルを打ち出したアプリやゲームでスマートフォンの世界に新しい地平を開くことをミッションとしています。Web サイト 'とんかつひろば' はアプリの制作やそのための勉強から派生する実験作品や思考の表現の場として生まれました。「建築は、なにかを永遠なものにし、なにかを讃美するものである。だから、なにも讃美しないような建築など、存在しない。」というウィトゲンシュタインの言葉に「言葉の真意はよくわからないがすごくその通りだ！」と思った山田.F.とんかつがどういうわけか、「JavaScript で無駄に動くサイトを作ろう!」という想いに囚われて作り上げました。" />
+		
+		<meta property="fb:admins" content="100001501165698" />
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">	
+			
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="tonkatsu.xml" />
+		
+		<link rel="stylesheet" href="assets/css/min.css">
+		
+		<!--jQuery-->
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="assets/script/lib/jcanvas.js"></script>
+		<script src="assets/script/lib/jquery.easing.1.3.js"></script>
+		
+		<!--jQueryMoible
+		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css">
+		-->
+		
+		<!--CreateJS-->
+		<script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+		<script src="http://code.createjs.com/tweenjs-0.5.0.min.js"></script>
+		<script src="http://code.createjs.com/movieclip-0.7.0.min.js"></script>
+		<script src="http://code.createjs.com/preloadjs-0.4.0.min.js"></script>
+		
+		<!--Mocha
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
+		<link rel="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.css">
+		-->
+        
+		<!--TONKATSU-->
+		<script src="assets/script/lib/trace.js"></script>
+		<script src="assets/script/lib/test.js"></script>
+		
+		<script src="assets/cjs/cjs_lib.js"></script>
+		
+		<script src="assets/script/tonkatsu/common/tonkatsu.js"></script>
+		
+		<script src="assets/script/tonkatsu/common/tonkatsu-agent.js"></script>
+		
+		<script src="assets/script/tonkatsu/common/grid-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/back-ground-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/main-doc-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/time-line-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/loading-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/sns-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/shadow-manager.js"></script>
+		<script src="assets/script/tonkatsu/common/ad-manager.js"></script>
+		
+		<script src="assets/script/tonkatsu/panels/main-menu.js"></script>
+		<script src="assets/script/tonkatsu/panels/sub-menu.js"></script>
+		<script src="assets/script/tonkatsu/panels/footer.js"></script>
+		<script src="assets/script/tonkatsu/panels/share-panel.js"></script>
+		<script src="assets/script/tonkatsu/panels/mobile-footer.js"></script>
+				
+		<script src="assets/script/tonkatsu/main.js"></script>
+				
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-39278209-1', 'auto');
+		  ga('send', 'pageview');
+		
+		</script>
+		
+		<title>とんかつひろば</title>
+		
+
+	</head>
+	
+	<body class="full">
+		
+		<div id="fb-root"></div>
+		
+		<div id="mobileFooter">
+			<div id="mobileFooterContainer">
+				<a class="backButton" href="#">TOP</a>
+				<a class="prevButton" href="#">NEXT</a>
+				<a class="nextButton" href="#">PREV</a>
+				<a class="shareButton" href="#">SHARE</a>
+				<a class="menuButton" href="#">MENU</a>
+			</div>
+			<img id="mobileFooterImage">
+		</div>
+			
+			
+		<div id="tonkatsuMain" class="full">
+		
+			<div id="indexContainer">
+			
+				<div class="indexCategory" data-index-category="apps">
+					<a href="#apps000000">
+						<h1 class="listTitle">とんかつアプリ</h1>
+						<p class="listDescription">TONKATSU 制作の Android アプリを紹介します。</p>
+					</a>
+				</div>
+				
+				<div class="indexCategory" data-index-category="writing">
+					<a href="#writing000000">
+						<h1 class="listTitle">TONKATSU now Writing</h1>
+						<p class="listDescription">ブログです。制作と研究の過程などをまとめています。</p>
+					</a>
+				</div>
+				
+				<div class="indexCategory" data-index-category="experimental">
+					<a href="#experimental000000">
+						<h1 class="listTitle">TONKATSU Experimental</h1>
+						<p class="listDescription">ブラウザ上で動く実験作品です。(主に JavaScript)</p>
+					</a>
+				</div>
+				
+				<div class="indexCategory" data-index-category="kinema">
+					<a href="#kinema000000">
+						<h1 class="listTitle">A l'image de la TONKATSU</h1>
+						<p class="listDescription">映像とイメージと Web コミックです。</p>
+					</a>
+				</div>
+				
+			</div>
+			
+		
+			<div id="shadowContainer" class="full">
+				<div id="topShadow"><img class="topShadowImage"></div>
+				<div id="bottomShadow"><img class="bottomShadowImage"></div>
+				<div id="rightShadow"><img class="rightShadowImage"></div>
+				<div id="leftShadow"><img class="leftShadowImage"></div>
+				
+				<div id="rightPadding"></div>
+				<div id="leftPadding"></div>
+				
+			</div>
+			
+			
+			<div id="bgScreen">
+			
+				<img class="bgImage">
+				
+				<div id="bgBase" class="bgContents">
+					<img>
+				</div>
+				
+				<div id="bgOuter" class="bgContents">
+					<img data-url="bg/forest.jpg">
+					<img data-url="bg/scenary_001.jpg">
+				</div>
+				
+				<canvas id="frCanvas" class="fullCanvas"></canvas>
+				<canvas id="bgCanvas" class="fullCanvas"></canvas>
+				
+			</div>
+			
+			
+			<div id="mainDoc" class="full">
+			
+				<div id="mainDocTitleContainer">
+					<h1 id="mainDocTitle"></h1>
+				</div>
+				
+				<div id="mainDocHeader">
+					<img id="headerImage">
+				</div>
+				
+				<div id="mainDocArticle" class="scroller">
+					
+				</div>
+								
+				<div id="mainDocBack">
+					
+				</div>
+				
+				<div id="mainDocShare" class="independent">
+					<div id="mainDocFbLike" class="shareContainer"></div>
+					<div id="mainDocTweet" class="shareContainer"></div>
+					<div id="mainDocGooglePlus" class="shareContainer"></div>
+					<div id="mainDocMixi" class="shareContainer"></div>
+					<div id="mainDocHatena" class="shareContainer"></div>
+				</div>
+		
+				<div id="mainDocComment" class="outer">
+				</div>
+		
+			</div>
+			
+			<div id="timeLine" class="full">
+		
+				<div id="arrowUp"><img></div>
+				<div id="arrowDown"><img></div>
+					
+				<div id="widgetList" class="widgetList">
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="css" data-layout-mode="doc">
+						<a href="contents/experimental/1507/e000018_css_003.html" class="widgetSource">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #003: float の詳細</a>
+						<a href="#experimental000018" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1507/css03_05.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #003: float の詳細</h2>
+								<p data-role-header="description">今回は float の話。margin と width の 関係を理解しているなら、margin:auto を、伸縮する突っ張り棒のようなものとしてイメージできると思う。この突っ張り棒が外れてスコスコ動くようなのが、フローティングボックスのイメージだ。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000015">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+										
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1507/w000030_semeology.html" class="widgetSource">『映画記号学の諸問題』:ものづくりのための面白い本の話 #001</a>
+						<a href="#writing000030" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1507/semeology01.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">『映画記号学の諸問題』:ものづくりのための面白い本の話 #001</h2>
+								<p data-role-header="description">自分が何かを作る上で、影響を受けているであろう本の話その2。今回は、クリスチャン・メッツ『映画記号学の諸問題 』(叢書 記号学的実践)です。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000023">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1506/w000029_reading05.html" class="widgetSource">後藤 明『カメハメハ大王 ハワイの神話と歴史』 - 読書記録 #005</a>
+						<a href="#writing000029" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1506/hawaii.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">後藤 明『カメハメハ大王 ハワイの神話と歴史』 - 読書記録 #005</h2>
+								<p data-role-header="description">読書記録。今回は後藤 明『カメハメハ大王 ハワイの神話と歴史』。カリスマ的な首長が列島を征服した物語なのかと思ってたら、むしろ「西欧の衝撃」の話である。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000027">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="Canvas" data-layout-mode="doc">
+					
+						<a href="contents/experimental/1506/e000017_canvas_002.html" class="widgetSource">Canvas からビデオ出力する方法:TONKATSU on Canvas #002</a>
+						<a href="#experimental000017" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1506/fractal.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">Canvas からビデオ出力する方法:TONKATSU on Canvas #002</h2>
+								<p data-role-header="description">Canvas + JavaScript で、アニメーションを Processing の saveFrame() みたいに連番出力する方法を考えた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000011">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="映画" data-layout-mode="doc">
+						<a href="contents/writing/1506/w000028_purio.html" class="widgetSource">レオナルド・ディカプリオの陰毛を個人輸入してみた - あるいは最近『インセプション』を再見しての感想</a>
+						<a href="#writing000028" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1506/inception006.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">レオナルド・ディカプリオの陰毛を個人輸入してみた - あるいは最近『インセプション』を再見しての感想</h2>
+								<p data-role-header="description">最近、俳優のレオナルド・ディカプリオの陰毛の個人輸入にチャレンジしたので、その話をする。(なお、本記事には重大なネタバレが含まれますので、『インセプション』を未見の方はご注意ください。)</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="C4D" data-layout-mode="kinema_doc">
+					
+						<a href="contents/experimental/1506/e000016_c4d_etudes_003.html" class="widgetSource">CINEMA4D で色々作ってみた:C4D Études #003</a>
+						
+						<a href="#experimental000016" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1506/glass.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CINEMA4D で色々作ってみた:C4D Études #003</h2>
+								<p data-role-header="description">らせんスプラインの説明がうんこ作ってくださいと言わんばかりだったので作った。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#kinema000003">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/experimental/1506/_thumb/glass.jpg">
+								<img class="thumb" data-src="contents/experimental/1506/_thumb/room.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="てきとう漫画" data-layout-mode="image_doc">
+						<a href="contents/image/_000053_pan_003/main.html" class="widgetSource">パン吉先パイ #003 石原の○てるじむしょのなぞ</a>
+						<a href="#image000053" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000053_pan_003/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">パン吉先パイ #003 石原の○てるじむしょのなぞ</h2>
+								<p data-role-header="description">そろそろいしはらの○てるをＸＯ醤か何かに昇進させようと考えている。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#image000051">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000053_pan_003/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000053_pan_003/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="css" data-layout-mode="doc">
+						<a href="contents/experimental/1505/e000015_css_002.html" class="widgetSource">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #002: width と margin の関係</a>
+						<a href="#experimental000015" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1505/css_001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #002: width と margin の関係</h2>
+								<p data-role-header="description">CSS のボックスモデルの解説第2回。今回は width と margin の関係とレイアウトへの応用(センタリングや右寄せなど)。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000013">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000018">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+										
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="C4D" data-layout-mode="kinema_doc">
+					
+						<a href="contents/kinema/1505/k000003_c4d_unko_002.html" class="widgetSource">CINEMA4D でうんこ作ってみた:C4D Études #002</a>
+						
+						<a href="#kinema000003" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1505/unko.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CINEMA4D でうんこ作ってみた:C4D Études #002</h2>
+								<p data-role-header="description">らせんスプラインの説明がうんこ作ってくださいと言わんばかりだったので作った。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#kinema000002">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000017">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/kinema/1505/_thumb/u01.jpg">
+								<img class="thumb" data-src="contents/kinema/1505/_thumb/u02.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="C4D" data-layout-mode="kinema_doc">
+					
+						<a href="contents/kinema/1505/k000002_c4d_etudes_001.html" class="widgetSource">CINEMA4D でモーショングラフィックを作ってみた:C4D Études #001</a>
+						
+						<a href="#kinema000002" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/kinema/1505/_thumb/t01.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CINEMA4D でモーショングラフィックを作ってみた:C4D Études #001</h2>
+								<p data-role-header="description">初めて CINEMA 4D でモーショングラフィックを作ってみた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#kinema000003">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/kinema/1505/_thumb/t01.jpg">
+								<img class="thumb" data-src="contents/kinema/1505/_thumb/t02.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="女子力高いうんこ" data-layout-mode="image_doc">
+						<a href="contents/image/_000052_unko_005/main.html" class="widgetSource">女子力高いうんこ #005 女子会への道 その2</a>
+						<a href="#image000052" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000052_unko_005/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">女子力高いうんこ #005 女子会への道 その2</h2>
+								<p data-role-header="description">うんこ系女子の日常を描いたパステル風カラー4コマ漫画。うんこちゃんは初めての女子会に参加する。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000050">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000052_unko_005/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000052_unko_005/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="C4D" data-layout-mode="doc">
+						<a href="contents/experimental/1505/e000014_c4d_tips_002.html" class="widgetSource">CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #002</a>
+						<a href="#experimental000014" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1505/c4d_004.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #002</h2>
+								<p data-role-header="description">CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめのつづき。今回は背面のポリゴンを選択する方法、選択範囲の復元、ライトからの視点のビューの作り方など。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000012">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="てきとう漫画" data-layout-mode="image_doc">
+						<a href="contents/image/_000051_pan_002/main.html" class="widgetSource">パン吉先パイ #002</a>
+						<a href="#image000051" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000051_pan_002/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">パン吉先パイ #002</h2>
+								<p data-role-header="description">まさか2話も続くとは思わなかったが、今回はパン吉先輩が普通の不良だった頃の話だ。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000041">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000053">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000051_pan_002/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000051_pan_002/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="css" data-layout-mode="doc">
+						<a href="contents/experimental/1504/e000013_css_001.html" class="widgetSource">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #001: ボックスモデルの基本とブロックボックス、インラインボックス、インラインブロックボックス</a>
+						<a href="#experimental000013" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1504/css_006.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #001: ボックスモデルの基本とブロックボックス、インラインボックス、インラインブロックボックス</h2>
+								<p data-role-header="description">CSS のブロックボックス、インラインボックス、インラインブロックボックスの違いについてできるだけ明確に書いてみた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#experimental000015">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+										
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="女子力高いうんこ" data-layout-mode="image_doc">
+						<a href="contents/image/_000050_unko_004/main.html" class="widgetSource">女子力高いうんこ #004 女子会への道 その1</a>
+						<a href="#image000050" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000050_unko_004/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">女子力高いうんこ #004 女子会への道 その1</h2>
+								<p data-role-header="description">うんこ系女子の日常を描いたパステル風カラー4コマ漫画。うんこちゃんは初めての女子会に参加する。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000049">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000052">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000050_unko_004/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000050_unko_004/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="C4D" data-layout-mode="doc">
+						<a href="contents/experimental/1504/e000012_c4d_tips_001.html" class="widgetSource">カメラとビューポートの基本:CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #001</a>
+						<a href="#experimental000012" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1504/c4d_tips_009.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">カメラとビューポートの基本:CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #001</h2>
+								<p data-role-header="description">CINEMA 4D に移行するときに、最初はカメラとビューポートの関係がよく分からなかったので、その後調べて分かったことをまとめておきます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000010">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000014">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="Canvas" data-layout-mode="js_doc">
+					
+						<a href="contents/experimental/1504/e000011_canvas_001_clock/main.html" class="widgetSource"></a>
+						<a href="contents/experimental/1504/e000011_canvas_001_clock/script.js" class="widgetScript"></a>
+						
+						<a href="#experimental000011" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/experimental/1504/e000011_canvas_001_clock/_thumb/thumb.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">HTML5 の Canvas で時計を描いてみた その1:TONKATSU on Canvas #001</h2>
+								<p data-role-header="description">HTML5 の新機能の Canvas を使ってガリガリ描画するようなアプリを少しずつ書いていく。初回は小手調べに時計を描いてみた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#experimental000017">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="女子力高いうんこ" data-layout-mode="image_doc">
+						<a href="contents/image/_000049_unko_003/main.html" class="widgetSource">女子力高いうんこ #003 SANUKI vs INANIWA その2</a>
+						<a href="#image000049" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000049_unko_003/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">女子力高いうんこ #003 SANUKI vs INANIWA その2</h2>
+								<p data-role-header="description">うんこ系女子の日常を描いたパステル風カラー4コマ漫画。讃岐うどんと稲庭うどん、うんこちゃんが本当に好きなのはどっちだ！？</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000048">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000050">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000049_unko_003/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000049_unko_003/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1503/w000027_reading04.html" class="widgetSource">近代都市とアソシエイション (世界史リブレット 119) - TONKATSU now Reading #004</a>
+						<a href="#writing000027" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/common/og.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">近代都市とアソシエイション (世界史リブレット 119) - TONKATSU now Reading #004</h2>
+								<p data-role-header="description">読書メモ。小関隆 『近代都市とアソシエイション (世界史リブレット 119)』</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000025">前の記事</div>
+									<div data-link-roll="prevArticle" data-hash="#writing000029">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="女子力高いうんこ" data-layout-mode="image_doc">
+						<a href="contents/image/_000048_unko_002/main.html" class="widgetSource">女子力高いうんこ #002 SANUKI vs INANIWA その1</a>
+						<a href="#image000048" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000048_unko_002/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">女子力高いうんこ #002 SANUKI vs INANIWA その1</h2>
+								<p data-role-header="description">うんこ系女子の日常を描いたパステル風カラー4コマ漫画。思春期真っ只中のうんこちゃんの乙女心は2つのうどんの間で揺り動く。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000037">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000049">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000048_unko_002/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000048_unko_002/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="writing" data-layout-mode="doc">
+						<a href="contents/writing/1503/w000026_yuba.html" class="widgetSource">世界にいくらでもあるどうでもいいもの</a>
+						<a href="#writing000026" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1503/unko.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">世界にいくらでもあるどうでもいいもの</h2>
+								<p data-role-header="description">生ゆば君はこれまで一度だけ作詞をしたことがあるのだそうだ。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000018">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="抽象写真" data-layout-mode="image_doc">
+						<a href="contents/image/_000047_abstract_005/main.html" class="widgetSource">抽象写真</a>
+						<a href="#image000047" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000047_abstract_005/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">木陰と水面の抽象写真 - A l'image de la TONKATSU #006</h2>
+								<p data-role-header="description">水面や影を見るのが楽しい季節になりました。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000043">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000047_abstract_005/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000047_abstract_005/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="C4D" data-layout-mode="doc">
+						<a href="contents/experimental/1503/e000010_c4d_tips_000.html" class="widgetSource">CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #000</a>
+						<a href="#experimental000010" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1503/c4d_tips_007.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #000</h2>
+								<p data-role-header="description">前に書いた C4D クイックツアーの続きを書かないと、とは思ってるんだけど、まだ触っていると毎日新しく覚えることが出てくる段階で、まとまった記事が書けないので、とりあえず断片的なメモ。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#experimental000012">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1503/b000025_reading03.html" class="widgetSource">イラク戦争と変貌する中東世界 (世界史リブレット 126) - TONKATSU now Reading #003</a>
+						<a href="#writing000025" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1503/iraq.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">イラク戦争と変貌する中東世界 (世界史リブレット 126) - TONKATSU now Reading #003</h2>
+								<p data-role-header="description">読んだ本についてまとめていってます。イラク戦争のニュースをリアルタイムで見ていた時に、疑問だったのが、「大量破壊兵器、結局無いのかよ。じゃあなんで国連の査察を邪魔したりしたん？」本書ではこの疑問に対する回答が断片的ながら示されている。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000024">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000027">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1503/b000024_reading02.html" class="widgetSource">今日の丸善:CSS, Node.js, 系統樹、ミュシャ - TONKATSU now Reading #002</a>
+						<a href="#writing000024" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1503/node.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">今日の丸善:CSS, Node.js, 系統樹、ミュシャ - TONKATSU now Reading #002</h2>
+								<p data-role-header="description">最近読んだ本とか丸善でチェックした本とかの日記的な覚書。今回は主に CSS とか Node.js とか技術とデザイン関係。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000022">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000025">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					 
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000046_sengoku_029/main.html" class="widgetSource">戦国4コマ ハタモト君 #029 C言語の最初の難関でござるの巻</a>
+						<a href="#image000046" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000046_sengoku_029/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #029 C言語の最初の難関でござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:戦国時代が終わってしまったので、ハタモト君はサムライを辞めて C言語の勉強を始めた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000045">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000046_sengoku_029/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000046_sengoku_029/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/experimental/1503/e000009_ps_auto_005.html" class="widgetSource">画像サイズの変更などアクション関連のその他いろいろ - PhotoShop のアクションとバッチ処理のトラブルを解決する #005</a>
+						<a href="#experimental000009" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1503/psa_042.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">画像サイズの変更などアクション関連のその他いろいろ - PhotoShop のアクションとバッチ処理のトラブルを解決する #005</h2>
+								<p data-role-header="description">画像サイズの変更など、前回までで触れなかった知っておくと役に立つかもしれない、PhotoShop のアクションの細かいこといろいろを書きます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000008">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000045_sengoku_028/main.html" class="widgetSource">戦国4コマ ハタモト君 #028 サムライにオブジェクト指向言語など不要でござるの巻</a>
+						<a href="#image000045" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000045_sengoku_028/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #028 サムライにオブジェクト指向言語など不要でござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:ハタモト君は自我がなくなることで宇宙が自我になった。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000044">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000046">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000045_sengoku_028/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000045_sengoku_028/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/experimental/1503/e000008_ps_auto_004.html" class="widgetSource">相対位置指定で画像サイズに依存しないアクションを作る - PhotoShop のアクションとバッチ処理のトラブルを解決する #004</a>
+						<a href="#experimental000008" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1503/psa_038.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">相対位置指定で画像サイズに依存しないアクションを作る - PhotoShop のアクションとバッチ処理のトラブルを解決する #004</h2>
+								<p data-role-header="description">PhotoShop で画像を配置するなどのアクションを作る時、相対位置指定を使えば画像サイズにかかわらず使える汎用性の高いアクションになります。しかし、実際やってみると色々トリッキーな技が必要になってきます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000007">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000009">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000044_sengoku_027/main.html" class="widgetSource">戦国4コマ ハタモト君 #027 日常を脱構築するなどというとなにやら懐かしい響きでござるの巻</a>
+						<a href="#image000044" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000044_sengoku_027/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #027 日常を脱構築するなどというとなにやら懐かしい響きでござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:ハタモト君は海賊系ベンチャー企業に就職したがあっさり倒産した。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000040">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000045">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000044_sengoku_027/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000044_sengoku_027/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/experimental/1503/e000007_ps_auto_003.html" class="widgetSource">アクションの中止による手動作業の挿入 - PhotoShop のアクションとバッチ処理のトラブルを解決する #003</a>
+						<a href="#experimental000007" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1503/psa_022.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">アクションの中止による手動作業の挿入 - PhotoShop のアクションとバッチ処理のトラブルを解決する #003</h2>
+								<p data-role-header="description">PhotoShop のアクションで、手動作業を合間に挿入するために中止コマンドを挿入する方法について書きました。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000005">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000008">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="抽象写真" data-layout-mode="image_doc">
+						<a href="contents/image/_000043_abstract_004/main.html" class="widgetSource">抽象写真</a>
+						<a href="#image000043" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000043_abstract_004/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">クイーンズスクエア横浜 - A l'image de la TONKATSU #005</h2>
+								<p data-role-header="description">ホイッスラー展の帰りに撮影。いずれもクイーンズスクエア横浜。横浜は写真を撮りたくなるものが多い。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000038">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000047">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000043_abstract_004/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000043_abstract_004/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="C4D" data-layout-mode="doc">
+						<a href="contents/experimental/1503/e06_c4d_000.html" class="widgetSource">C4D の基本的なインターフェイスとオブジェクトの操作: CINEMA 4D クイックツアー #000</a>
+						<a href="#experimental000006" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1503/c4d_000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">C4D の基本的なインターフェイスとオブジェクトの操作: CINEMA 4D クイックツアー #000</h2>
+								<p data-role-header="description">CINEMA 4D で一通りのことを理解するための最短ルートを初心者目線で書いてみます。初回はオブジェクトの作成・操作と、基本的なインターフェイスについて。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/experimental/1502/e05_ps_auto_002.html" class="widgetSource">条件付きでアクションを実行 - PhotoShop のアクションとバッチ処理のトラブルを解決する #002</a>
+						<a href="#experimental000005" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1502/psa_008.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">条件付きでアクションを実行 - PhotoShop のアクションとバッチ処理のトラブルを解決する #002</h2>
+								<p data-role-header="description">PhotoShop のアクションで、カラーモードや画像の方向、背景レイヤーと通常レイヤーなど、条件付きでアクションを実行する方法について書きました。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000004">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000007">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/experimental/1502/e04_ps_auto_001.html" class="widgetSource">アクションでのレイヤーの相対位置指定 - PhotoShop のアクションとバッチ処理のトラブルを解決する #001</a>
+						<a href="#experimental000004" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1502/psa_004.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">アクションでのレイヤーの相対位置指定 - PhotoShop のアクションとバッチ処理のトラブルを解決する #001</h2>
+								<p data-role-header="description">PhotoShop アクションの若干応用的なテクニックについて書いていきます。今回は主にレイヤーの相対位置指定です。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000003">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000005">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/experimental/1502/e03_ps_auto_000.html" class="widgetSource">PhotoShop のアクションとバッチ処理のトラブルを解決する #000</a>
+						<a href="#experimental000003" class="widgetHash">
+							
+							<img class="mainThumb" src="assets/images/article_image/1502/photoshop_auto.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">PhotoShop のアクションとバッチ処理のトラブルを解決する #000</h2>
+								<p data-role-header="description">PhotoShop でバッチ処理する時に、「開く」と「別名で保存」の扱いがややこしいので解説記事を書きました。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000020">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#experimental000004">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="金言" data-layout-mode="image_doc">
+						<a href="contents/image/_000042_maxims/main.html" class="widgetSource">今まで頭を通り過ぎていくだけだった知識をしっかり積み上げていくための「基盤」を作る、人生の大原則のまとめ</a>
+						<a href="#image000042" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000042_maxims/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">今まで頭を通り過ぎていくだけだった知識をしっかり積み上げていくための「基盤」を作る、人生の大原則のまとめ</h2>
+								<p data-role-header="description">人間は生きるために多くの知識を学ぶ必要があります。しかし、多くの人にとって、知識はただ頭をスルスルと通り抜けていくだけで、すぐに忘れてしまうものです。知識を確実に積み上げることが出来る人は、すべてに知識の「基盤」となる重要な知恵を持っています。そしてそうした重要な知恵はわずかな言葉で語ることが出来、だれでも理解することが出来るものです。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000042_maxims/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000042_maxims/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="てきとう漫画" data-layout-mode="image_doc">
+						<a href="contents/image/_000041_kamaboko_001/main.html" class="widgetSource">ちくわ 対 かまぼこ</a>
+						<a href="#image000041" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000041_kamaboko_001/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">ちくわ 対 かまぼこ</h2>
+								<p data-role-header="description">漢字で書いた時のかっこよさの差から、かまぼこは自分を見下している、とちくわは憤慨して語ったが、当のかまぼこは無駄な漢字の難しさを、むしろ重荷に感じているようであった。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000039">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000051">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000041_kamaboko_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000041_kamaboko_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000040_sengoku_026/main.html" class="widgetSource">戦国4コマ ハタモト君 #026 海賊系ベンチャーの現実は過酷でござるの巻</a>
+						<a href="#image000040" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000040_sengoku_026/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #026 海賊系ベンチャーの現実は過酷でござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:ハタモト君はイスパニアにいくために、ニンジャから友達を紹介してもらい、船に乗せてもらったが、実はその友達は海賊系ベンチャー企業の人だった。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000035">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000044">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000040_sengoku_026/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000040_sengoku_026/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="てきとう漫画" data-layout-mode="image_doc">
+						<a href="contents/image/_000039_pan/main.html" class="widgetSource">パン吉先パイ</a>
+						<a href="#image000039" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000039_pan/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">パン吉先パイ</h2>
+								<p data-role-header="description">てきとう漫画</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#image000041">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000039_pan/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000039_pan/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1502/b00_emotional_design.html" class="widgetSource">『エモーショナル・デザイン―微笑を誘うモノたちのために』:ものづくりのための面白い本の話 #000</a>
+						<a href="#writing000023" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1502/ed.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">『エモーショナル・デザイン―微笑を誘うモノたちのために』:ものづくりのための面白い本の話 #000</h2>
+								<p data-role-header="description">自分が何かを作る上で、大きな影響を受けている本について、少しずつ書いていく。初回はドナルド・A・ノーマンの『エモーショナル・デザイン―微笑を誘うモノたちのために』</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#writing000030">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					 
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="抽象写真" data-layout-mode="image_doc">
+						<a href="contents/image/_000038_abstract_004/main.html" class="widgetSource">格子状の構造と身近なものの組み合わせの抽象写真 - A l'image de la TONKATSU #004</a>
+						<a href="#image000038" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000038_abstract_004/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">格子状の構造と身近なものの組み合わせの抽象写真 - A l'image de la TONKATSU #004</h2>
+								<p data-role-header="description">『さらば愛の言葉よ』が公開されたってことで、最近のゴダールの映画のフライヤーみたいなやつを、とくに元の絵を参照せずに、真似しようと試みたら、案の定全然違う感じになった。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000036">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000043">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000038_abstract_004/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000038_abstract_004/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000038_abstract_004/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="女子力高いうんこ" data-layout-mode="image_doc">
+						<a href="contents/image/_000037_unko_001/main.html" class="widgetSource">女子力高いうんこ</a>
+						<a href="#image000037" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000037_unko_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">女子力高いうんこ</h2>
+								<p data-role-header="description">カラー4コマ第2弾です。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#image000048">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000037_unko_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000037_unko_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="JavaScript 学習テスト" data-layout-mode="doc">
+					
+						<a href="contents/experimental/e02_js_test/main.html" class="widgetSource"></a>
+						
+						<a href="#experimental000002" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/experimental/e02_js_test/_thumb/thumb.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">JavaScript のしばらく触ってないと忘れそうなポイントまとめ</h2>
+								<p data-role-header="description">JavaScript 文法の、少しブランクがあったりしたら忘れそうなところを、すぐに復習できるように Mocha と Chai で学習テストを書いた。ブログでもポイントをまとめておく。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#experimental000001">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1501/b05_macunaima.html" class="widgetSource">どこが英雄なのかさっぱり分からない英雄のおはなし - 『マクナイーマ つかみどころのない英雄』(創造するラテンアメリカ) - TONKATSU now Reading #001</a>
+						<a href="#writing000022" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1501/macunaima.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">どこが英雄なのかさっぱり分からない英雄のおはなし - 『マクナイーマ つかみどころのない英雄』(創造するラテンアメリカ) - TONKATSU now Reading #001</h2>
+								<p data-role-header="description">勇敢さ、先見のなさ、無責任、不安定、放浪癖を特徴とするブラジル人のような「冒険者（アヴェントゥレイロ）」の理想とは、「木を植えることなく果実を得ること」である。(訳者あとがきから)</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000021">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000024">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					 
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1501/b04_iesu.html" class="widgetSource">『イエズス会と中国知識人』(世界史リブレット 109) - TONKATSU now Reading #000</a>
+						<a href="#writing000021" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1501/iesu.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">『イエズス会と中国知識人』(世界史リブレット 109) - TONKATSU now Reading #000</h2>
+								<p data-role-header="description">キリスト教世界が中国文明のオリジナリティに触れることで、比較文化的な視点を得て、後の科学革命や啓蒙主義にも影響を与えるという、ヨーロッパ文明史の大きな流れの一端を垣間見ることもできます。世界史リブレットの中でもかなり面白い本でした。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000016">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000022">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					 
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="抽象写真" data-layout-mode="image_doc">
+						<a href="contents/image/_000036_abstract_003/main.html" class="widgetSource">都市の抽象写真 その2 - A l'image de la TONKATSU #003</a>
+						<a href="#image000036" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000036_abstract_003/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">都市の抽象写真 その2 - A l'image de la TONKATSU #003</h2>
+								<p data-role-header="description">都市の抽象写真 その2。六本木、丸の内、銀座、横浜。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000027">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000038">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000036_abstract_003/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000036_abstract_003/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000036_abstract_003/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="PhotoShop" data-layout-mode="doc">
+						<a href="contents/writing/1501/b03_cintiq.html" class="widgetSource">液晶ペンタブレット Cintiq 13HD レビュー</a>
+						<a href="#writing000020" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1501/cintiq.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">液晶ペンタブレット Cintiq 13HD レビュー</h2>
+								<p data-role-header="description">Wacom の液晶ペンタブレット Cintiq 13HD を導入して2ヶ月くらいになる。使ってみた感じと導入の際の注意点などを記録しておく。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#experimental000003">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					 
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000035_sengoku_025/main.html" class="widgetSource">戦国4コマ ハタモト君 #025 いよいよイスパニアへの旅立ちでござるの巻</a>
+						<a href="#image000035" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000035_sengoku_025/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #025 いよいよイスパニアへの旅立ちでござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:ハタモト君はイスパニアに行くために貯めた金をスペイン料理屋で一晩で使い果たしたが、十分イスパニアを満喫したのでもう行かなくてもいいかなと思い始めた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000034">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000040">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000035_sengoku_025/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000035_sengoku_025/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000034_sengoku_024/main.html" class="widgetSource">戦国4コマ ハタモト君 #024 アヒージョというのがなんだか分からなかったけどとりあえずたのんでみたでござるの巻</a>
+						<a href="#image000034" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000034_sengoku_024/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #024 アヒージョというのがなんだか分からなかったけどとりあえずたのんでみたでござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:サムライをクビになったハタモト君はついにイスパニアに移住することになった。とりあえずサグラダファミリアだけは見ると心に誓った。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000033">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000035">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000034_sengoku_024/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000034_sengoku_024/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000033_sengoku_023/main.html" class="widgetSource">戦国4コマ ハタモト君 #023 イダルゴだって聖家族贖罪教会が見たいでござるの巻</a>
+						<a href="#image000033" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000033_sengoku_023/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #023 イダルゴだって聖家族贖罪教会が見たいでござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:イスパニアへに渡航してイダルゴになる決心をし、耶蘇教にも入信したハタモト君だったが、サムライをクビになっていたため渡航費用がなかった。しかしついに、プロテスタントの勤労と倹約の教えに目覚めることで、落ち武者狩りにより大金を手に入れることができた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000032">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000034">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000033_sengoku_023/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000033_sengoku_023/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="language" data-layout-mode="doc">
+						<a href="contents/writing/1501/b02_english_pp.html" class="widgetSource">英語の完了形と過去形の使用感覚の違いはカメラのフォーカスで喩えると理解しやすいかもしれないという思いつき</a>
+						<a href="#writing000019" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1501/mowa.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">英語の完了形と過去形の使用感覚の違いはカメラのフォーカスで喩えると理解しやすいかもしれないという思いつき</h2>
+								<p data-role-header="description">英語の完了形と過去形の使い分けの感覚は日本人には分かり難いポイントなのだが、カメラのフォーカスをメタファーとして使うと分かりやすいんではなかろうか。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="writing" data-layout-mode="doc">
+						<a href="contents/writing/1501/b01_maasai.html" class="widgetSource">キャプテン・マサイの伝説まとめ</a>
+						<a href="#writing000018" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1501/maasai.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">キャプテン・マサイの伝説まとめ</h2>
+								<p data-role-header="description">連休最終日の今日は、新キャプテン・マサイのサイン会が荻窪で開催され、会場を通って駅に行く人や西友に行く人などで賑わった。「何してますか？ 許可とってますか？」と話しかけるファンに「すいません、許可いるって知らなくて…」と答えるなど、新キャプテン・マサイはファンとの交流を楽しんだ。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000017">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000026">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000032_sengoku_022/main.html" class="widgetSource">戦国4コマ ハタモト君 #022 サムライは予定説を信じるでござるの巻</a>
+						<a href="#image000032" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000032_sengoku_022/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #022 サムライは予定説を信じるでござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:サムライをクビになり、イスパニアへの移住を決意したハタモト君は、耶蘇教徒となり、神学を学びながら心穏やかに日々を過ごしていた。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000030">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000033">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000032_sengoku_022/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000032_sengoku_022/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="writing" data-layout-mode="doc">
+						<a href="contents/writing/1412/b04_news.html" class="widgetSource">とんかつ的今年の10大ニュース:ニュースで振り返る2014年</a>
+						<a href="#writing000017" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1412/s.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">とんかつ的今年の10大ニュース:ニュースで振り返る2014年</h2>
+								<p data-role-header="description">佐村河内守や STAP 細胞の件など、多くの虚偽が世間を騒がせたが、その最大のものは言うまでもなく、アレであろう…。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000015">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000018">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="ショコラちゃん" data-layout-mode="image_doc">
+						<a href="contents/image/_000031_chocolat_001/main.html" class="widgetSource">ショコラちゃん #001 ショコラちゃんデパートに行く</a>
+						<a href="#image000031" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000031_chocolat_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">ショコラちゃん #001 ショコラちゃんデパートに行く</h2>
+								<p data-role-header="description">カラー4コマ始めました。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000031_chocolat_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000031_chocolat_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000030_sengoku_021/main.html" class="widgetSource">戦国4コマ ハタモト君 #021 亜細亜人の標準的な感想でござるの巻</a>
+						<a href="#image000030" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000030_sengoku_021/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #021 亜細亜人の標準的な感想でござるの巻</h2>
+								<p data-role-header="description">前回までのあらすじ:サムライとして数々の殺生に手を染めてきた半生を悔いて、ハタモト君は父と子と聖霊のお心に従って生きる決意をした。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000029">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000032">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000030_sengoku_021/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000030_sengoku_021/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1412/b03_books_001.html" class="widgetSource">2014年に読んだ本の簡単な感想メモ:『無限と連続』『オウム真理教秘録』『オスマン帝国の近代と海軍』『ピアノの誕生』『ヨーロッパとは何か』</a>
+						<a href="#writing000016" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1412/note.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">2014年に読んだ本の簡単な感想メモ:『無限と連続』『オウム真理教秘録』『オスマン帝国の近代と海軍』『ピアノの誕生』『ヨーロッパとは何か』</h2>
+								<p data-role-header="description">2014 年に読んだ本の感想を簡単にまとめておきます。今回は『無限と連続』『オウム真理教秘録』『オスマン帝国の近代と海軍』『ピアノの誕生』『ヨーロッパとは何か』。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000013">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000021">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000029_sengoku_020/main.html" class="widgetSource">戦国4コマ ハタモト君 #020 サムライは容易に信仰を捨てないでござるの巻</a>
+						<a href="#image000029" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000029_sengoku_020/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #020 サムライは容易に信仰を捨てないでござるの巻</h2>
+								<p data-role-header="description">やり手宣教師があの手この手で勧誘してくるでござる。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000028">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000030">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000029_sengoku_020/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000029_sengoku_020/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000028_sengoku_019/main.html" class="widgetSource">戦国4コマ ハタモト君 #019 故郷を捨ててイスパニアを目指すでござるの巻</a>
+						<a href="#image000028" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000028_sengoku_019/_thumb/i002.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #019 故郷を捨ててイスパニアを目指すでござるの巻</h2>
+								<p data-role-header="description">ついに、故郷を捨ててイスパニアに旅立つ決意をしたでござる。しかし、文化の壁が立ちはだかるでござる。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000025">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000029">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000028_sengoku_019/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000028_sengoku_019/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000028_sengoku_019/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="writing" data-layout-mode="doc">
+						<a href="contents/writing/1412/b02_yuba.html" class="widgetSource">キツくなったら会社を辞めればいいと思っている人たちにこれだけは言っておきたい:TONKATSU now Writing #003</a>
+						<a href="#writing000015" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1412/dog.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">キツくなったら会社を辞めればいいと思っている人たちにこれだけは言っておきたい:TONKATSU now Writing #003</h2>
+								<p data-role-header="description">近頃の若い人の中には仕事がキツかったら、辞めてしまえばいいと安易に考えている人も多いらしい。そういう人にはこの話は教訓的なので、生ゆば君の許可を得て、とんかつひろばに掲載させてもらうことにした。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000014">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000017">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="whats" data-layout-mode="image_doc">
+						<a href="contents/whats/w05_image/main.html" class="widgetSource">とんかつひろばのイメージ - WHAT Is TONKATSU? 05</a>
+						<a href="#whats000005" class="widgetHash">
+						
+							<img class="mainThumb" src="contents/whats/w05_image/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">とんかつひろばのイメージ - WHAT Is TONKATSU? 05</h2>
+								<p data-role-header="description">「とんかつひろば」のインターフェースを構成する CG イメージとその制作の経緯を記録する。新しい試みとして、現実の物の質感と CG の非現実性の共存をコンセプトに据えた。現実的な要求に沿う範囲内で、主流とは別の方向への進化の可能性を探るような気持ちで、Web サイトを作っている。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#whats000004">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/whats/w05_image/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/whats/w05_image/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/whats/w05_image/_thumb/i002.jpg">
+								<img class="thumb" data-src="contents/whats/w05_image/_thumb/i003.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="抽象写真" data-layout-mode="image_doc">
+						<a href="contents/image/_000027_abstract_002/main.html" class="widgetSource">紅葉の抽象写真 - A l'image de la TONKATSU #002</a>
+						<a href="#image000027" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000027_abstract_002/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">紅葉の抽象写真 - A l'image de la TONKATSU #002</h2>
+								<p data-role-header="description">紅葉を撮りました。主に善福寺川の辺り。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000026">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000036">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000027_abstract_002/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000027_abstract_002/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000027_abstract_002/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="writing" data-layout-mode="doc">
+						<a href="contents/writing/1412/b01_taxi.html" class="widgetSource">タクシー山田の衆院選マニフェストとみんなが真剣に考えるべき問題:TONKATSU now Writing #002</a>
+						<a href="#writing000014" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1412/grid_yellow.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">タクシー山田の衆院選マニフェストとみんなが真剣に考えるべき問題:TONKATSU now Writing #002</h2>
+								<p data-role-header="description">これは衆院選にまつわる本当にあった話です。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000003">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000015">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1411/b05_books_002.html" class="widgetSource">光、色彩、視覚の役に立って面白い本まとめ その2 『視覚の文法』他</a>
+						<a href="#writing000013" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1411/books_002_01.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">光、色彩、視覚の役に立って面白い本まとめ その2 『視覚の文法』他</h2>
+								<p data-role-header="description">筆者が今年読んだ視覚、特に光と色彩の本の中から実際に絵を描く観点から役立ち、かつ日常でも物を見る目を変えてしまうような面白い本を紹介します。第二回は『視覚の文法―脳が物を見る法則』、『色彩心理学入門―ニュートンとゲーテの流れを追って』、『Photoshop 合成の秘訣 -選択ツールを極め 驚異のエフェクトで実現する合成』の3冊。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000011">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000016">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="抽象写真" data-layout-mode="image_doc">
+						<a href="contents/image/_000026_abstract_001/main.html" class="widgetSource">都市の抽象写真 - A l'image de la TONKATSU #001</a>
+						<a href="#image000026" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000026_abstract_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">都市の抽象写真 - A l'image de la TONKATSU #001</h2>
+								<p data-role-header="description">丸の内・新宿・横浜・六本木あたりのギラギラしたものを撮りました。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#image000027">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000026_abstract_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000026_abstract_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="AfterEffects" data-layout-mode="doc">
+						<a href="contents/writing/1411/b04_ae6.html" class="widgetSource">AfterEffects の基本機能で押さえておきたいポイント覚書 #006 Expression 初歩の初歩</a>
+						<a href="#writing000012" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1411/shelf6.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">AfterEffects の基本機能で押さえておきたいポイント覚書 #006 Expression 初歩の初歩</h2>
+								<p data-role-header="description">今回は AfterEffects 上で使えるスクリプト言語 Expression を、ある程度便利に使える最低限のレベルまで、簡単にさらってみます。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000010">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+						
+					</div>
+					 
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1411/b03_books_001.html" class="widgetSource">光、色彩、視覚の役に立って面白い本まとめ その1 『カラー ＆ ライト ～リアリズムのための色彩と光の描き方～』他</a>
+						<a href="#writing000011" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1411/books_001_01.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">光、色彩、視覚の役に立って面白い本まとめ その1 『カラー ＆ ライト ～リアリズムのための色彩と光の描き方～』他</h2>
+								<p data-role-header="description">筆者が今年読んだ視覚、特に光と色彩の本の中から実際に絵を描く観点から役立ち、かつ日常でも物を見る目を変えてしまうような面白い本を紹介します。第一回は『カラー ＆ ライト ～リアリズムのための色彩と光の描き方～』、『ライティング ＆ レンダリング 』、『脳の右側で描け』の3冊。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#writing000013">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000025_sengoku_018/main.html" class="widgetSource">戦国4コマ ハタモト君 #018 失業保険が続いているうちは野武士も村をおそったりはしないでござるの巻</a>
+						<a href="#image000025" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000025_sengoku_018/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #018 失業保険が続いているうちは野武士も村をおそったりはしないでござるの巻</h2>
+								<p data-role-header="description">この時代にはまだ Mixi のコミュニティが活発だったでござる。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000024">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000028">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000025_sengoku_018/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000025_sengoku_018/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000025_sengoku_018/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000024_sengoku_017/main.html" class="widgetSource">戦国4コマ ハタモト君 #017 戦国の世はキビしいでござるの巻</a>
+						<a href="#image000024" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000024_sengoku_017/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #017 戦国の世はキビしいでござるの巻</h2>
+								<p data-role-header="description">この時代には室町幕府は滅亡していたので、労働基準監督署は機能していなかったでござる。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000023">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000025">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000024_sengoku_017/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000024_sengoku_017/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000024_sengoku_017/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="AfterEffects" data-layout-mode="doc">
+						<a href="contents/writing/1411/b02_ae5.html" class="widgetSource">AfterEffects の基本機能で押さえておきたいポイント覚書 #005 オーディオとのリンクとか Illustrator のパスのインポートとかレイヤーサイズの範囲外への描画の問題とか</a>
+						<a href="#writing000010" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1411/shelf5.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">AfterEffects の基本機能で押さえておきたいポイント覚書 #005 オーディオとのリンクとか Illustrator のパスのインポートとかレイヤーサイズの範囲外への描画の問題とか</h2>
+								<p data-role-header="description">AE の基本機能 Tips 覚書の続きです。今回はアレってどうやるんだっけ？ 的なやつで、1. エフェクトを音にリンク 2. Illustrator からのパスのインポート 3. レイヤーのサイズの範囲外にもエフェクトが描画されるようにするの 3 つです。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000008">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000012">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000023_sengoku_016/main.html" class="widgetSource">戦国4コマ ハタモト君 #016 サムライとはニーチェの神話の中の存在でござるの巻</a>
+						<a href="#image000023" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000023_sengoku_016/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #016 サムライとはニーチェの神話の中の存在でござるの巻</h2>
+								<p data-role-header="description">サムライとはニーチェの神話の中の存在でござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000022">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000024">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000023_sengoku_016/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000023_sengoku_016/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000023_sengoku_016/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="Illustrator" data-layout-mode="doc">
+						<a href="contents/writing/1411/b01_ai_001.html" class="widgetSource">Adobe Illustrator 覚書 #001 スウォッチの初期設定の変更と新規ドキュメントプロファイル</a>
+						<a href="#writing000009" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1411/city.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">Adobe Illustrator 覚書 #001 スウォッチの初期設定の変更と新規ドキュメントプロファイル</h2>
+								<p data-role-header="description">Adobe Illustrator の新しく覚えたことメモ。今回は、ドキュメントを作る度にスウォッチが初期設定にリセットされるのを防ぐ方法。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000021">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000022_sengoku_015/main.html" class="widgetSource">戦国4コマ ハタモト君 #015 サムライも次第に自己を認知するでござるの巻</a>
+						<a href="#image000022" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000022_sengoku_015/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #015 サムライも次第に自己を認知するでござるの巻</h2>
+								<p data-role-header="description">サムライも次第に自己を認知するでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000020">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000023">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000022_sengoku_015/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000022_sengoku_015/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000022_sengoku_015/_thumb/i002.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="Illustrator" data-layout-mode="image_doc">
+						<a href="contents/image/_000021_ai_001/main.html" class="widgetSource">Illustrator による手描き風ウォッフォンモッフォン</a>
+						<a href="#image000021" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000021_ai_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">Illustrator による手描き風ウォッフォンモッフォン</h2>
+								<p data-role-header="description">細い線を大量に重ね描きするとできる、敢えて不正確であり正確でもあるような手描き風の塗りは Processing での遊びの中でも、とりわけ私の興味を引きます。このあたりに潜んでいそうな何かをウォッフォンモッフォンしてみたい！ と思って、Illustrator などをいじってみますと、これがなかなか楽しい。というわけで、今回はその遊び方を紹介します。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#writing000008">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000021_ai_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000021_ai_001/_thumb/i002.jpg">
+								<img class="thumb" data-src="contents/image/_000021_ai_001/_thumb/i003.jpg">
+								<img class="thumb" data-src="contents/image/_000021_ai_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000020_sengoku_014/main.html" class="widgetSource">戦国4コマ ハタモト君 #014 由緒正しき断末魔でござるの巻</a>
+						<a href="#image000020" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000020_sengoku_014/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #014 由緒正しき断末魔でござるの巻</h2>
+								<p data-role-header="description">由緒正しき断末魔でござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000019">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000022">前の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000020_sengoku_014/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000020_sengoku_014/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="AfterEffects" data-layout-mode="doc">
+						<a href="contents/writing/1411/b00_ae4.html" class="widgetSource">AfterEffects の基本機能で押さえておきたいポイント覚書 #004 コラップストランスフォーム/連続ラスタライズスイッチ</a>
+						<a href="#writing000008" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1411/shelf4.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">AfterEffects の基本機能で押さえておきたいポイント覚書 #004 コラップストランスフォーム/連続ラスタライズスイッチ</h2>
+								<p data-role-header="description">AfterEffects の基本機能 Tips 覚書の続きです。今回は AE の基本機能の中でもトップクラスのややこしさであるコラップストランスフォーム/連続ラスタライズスイッチについて。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000007">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000010">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000019_sengoku_013/main.html" class="widgetSource">戦国4コマ ハタモト君 #013 戦国時代なのでまだイオンではないでござるの巻</a>
+						<a href="#image000019" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000019_sengoku_013/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #013 戦国時代なのでまだイオンではないでござるの巻</h2>
+								<p data-role-header="description">戦国時代なのでまだイオンではないでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000018">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000020">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000019_sengoku_013/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000019_sengoku_013/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="AfterEffects" data-layout-mode="doc">
+						<a href="contents/writing/1410/b05_ae3.html" class="widgetSource">AfterEffects の基本機能で押さえておきたいポイント覚書 #003 レンダリングオーダーとTスイッチの謎</a>
+						<a href="#writing000007" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1410/shelf3.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">AfterEffects の基本機能で押さえておきたいポイント覚書 #003 レンダリングオーダーとTスイッチの謎</h2>
+								<p data-role-header="description">AE の基本機能 Tips 覚書の続きです。今回はレイヤーのレンダリングの順番と 'T' のマークの謎に迫ります。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000006">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000008">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000018_sengoku_012/main.html" class="widgetSource">戦国4コマ ハタモト君 #012 サムライの言語感覚はざつでござるの巻</a>
+						<a href="#image000018" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000018_sengoku_012/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #012 サムライの言語感覚はざつでござるの巻</h2>
+								<p data-role-header="description">サムライの言語感覚はざつでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000017">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000019">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000018_sengoku_012/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000018_sengoku_012/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="AfterEffects" data-layout-mode="doc">
+						<a href="contents/writing/1410/b04_ae2.html" class="widgetSource">AfterEffects の基本機能で押さえておきたいポイント覚書 #002 豆知識とよく使うキーボード・ショートカットその2</a>
+						<a href="#writing000006" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1410/shelf2.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">AfterEffects の基本機能で押さえておきたいポイント覚書 #002</h2>
+								<p data-role-header="description">AfterEffects の基本機能 Tips 覚書の続きです。今回も豆知識とよく使うキーボード・ショートカット。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000005">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000007">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000017_sengoku_011/main.html" class="widgetSource">戦国4コマ ハタモト君 #011 すごいカタナを手に入れたでござるの巻</a>
+						<a href="#image000017" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000017_sengoku_011/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #011 すごいカタナを手に入れたでござるの巻</h2>
+								<p data-role-header="description">すごいカタナを手に入れたでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000016">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000018">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000017_sengoku_011/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000017_sengoku_011/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="AfterEffects" data-layout-mode="doc">
+						<a href="contents/writing/1410/b03_ae.html" class="widgetSource">AfterEffects の基本機能で押さえておきたいポイント覚書 #001 豆知識とよく使うキーボード・ショートカットその1</a>
+						<a href="#writing000005" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1410/shelf.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">AfterEffects の基本機能で押さえておきたいポイント覚書 #001 豆知識とよく使うキーボード・ショートカットその1</h2>
+								<p data-role-header="description">主に自分用の覚書のためにAE の基本機能で、覚えといたほうがいいけど、忘れられがちだったり意外と知られていないものを筆者(とんかつ)の独断と偏見によるセレクションで数回に渡って書き留めていきます。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000004">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000006">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アート" data-layout-mode="doc">
+						<a href="contents/writing/1410/b02_yokohama.html" class="widgetSource">横浜トリエンナーレという名の森村泰昌・ザ・ワールドに行ってきた</a>
+						<a href="#writing000004" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1410/pool.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">横浜トリエンナーレ 2014 という名の森村泰昌・ザ・ワールドに行ってきた</h2>
+								<p data-role-header="description">今回の横浜トリエンナーレは予備知識無しで、何か刺激になるだろう、ぐらいの軽い気持ちで行くと徹底的に裏切られる。店の看板に羊の頭が飾ってあったので羊の肉を買って帰ろうと入ったら、メニューが近江名物鮒寿司のみだったレベルの看板詐欺である。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000003">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000005">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000016_sengoku_010/main.html" class="widgetSource">戦国4コマ ハタモト君 #010</a>
+						<a href="#image000016" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000016_sengoku_010/_thumb/i001.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #010</h2>
+								<p data-role-header="description">さろそろ寒くなってきたでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000015">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000017">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000016_sengoku_010/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000016_sengoku_010/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000015_sengoku_009/main.html" class="widgetSource">戦国4コマ ハタモト君 #009</a>
+						<a href="#image000015" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000015_sengoku_009/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #009</h2>
+								<p data-role-header="description">さろそろ寒くなってきたでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000014">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000016">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000015_sengoku_009/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000015_sengoku_009/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000014_sengoku_008/main.html" class="widgetSource">戦国4コマ ハタモト君 #008</a>
+						<a href="#image000014" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000014_sengoku_008/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #008</h2>
+								<p data-role-header="description">将門公のおんりょうでござるの巻</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000013">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000015">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000014_sengoku_008/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000014_sengoku_008/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000013_sengoku_007/main.html" class="widgetSource">戦国4コマ ハタモト君 #007</a>
+						<a href="#image000013" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000013_sengoku_007/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #007</h2>
+								<p data-role-header="description">パンツがなくて大ピンチでござる</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000012">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000014">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000013_sengoku_007/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000013_sengoku_007/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000012_sengoku_006/main.html" class="widgetSource">戦国4コマ ハタモト君 #006</a>
+						<a href="#image000012" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000012_sengoku_006/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #006</h2>
+								<p data-role-header="description">独眼竜政宗でござる</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000011">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000013">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000012_sengoku_006/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000012_sengoku_006/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="writing" data-layout-mode="doc">
+						<a href="contents/writing/1410/b01_dominique.html" class="widgetSource">新宿ルミネのドミニクが閉店していた件:TONKATSU now Writing #001</a>
+						<a href="#writing000003" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/1410/shinjuku.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">新宿ルミネのドミニクが閉店していた件:TONKATSU now Writing #001</h2>
+								<p data-role-header="description">新宿ルミネのドミニク・サブロン マルシェ・エ・カフェが閉店していることに気が付いた。もちろんこれはフランソワ・トリュフォー映画祭のジャン・ピエール・レオー登壇回の前売りはすでに完売していて、当日券も出ないことを考えればデズモンド一家の陰謀であることは明白である。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#writing000014">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="てきとう漫画" data-layout-mode="image_doc">
+						<a href="contents/image/_000011_bakery_001/main.html" class="widgetSource">夜のベーカリー</a>
+						<a href="#image000011" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000011_bakery_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">夜のベーカリー</h2>
+								<p data-role-header="description">現にあるということが意味することについて</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000010">前の記事</div>
+									<div data-link-roll="prevArticle" data-hash="#image000012">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000011_bakery_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000011_bakery_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000010_sengoku_005/main.html" class="widgetSource">戦国4コマ ハタモト君 #005</a>
+						<a href="#image000010" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000010_sengoku_005/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #005</h2>
+								<p data-role-header="description">いよいよ天下分け目の関が原の合戦でござる</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000009">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000011">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000010_sengoku_005/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000010_sengoku_005/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000009_sengoku_004/main.html" class="widgetSource">戦国4コマ ハタモト君 #004</a>
+						<a href="#image000009" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000009_sengoku_004/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #004</h2>
+								<p data-role-header="description">戦国に生きる男ハタモト君の活躍を描いた戦国バトル4コマ漫画の第4話です。Android アプリ版(無料)でまとめて読めます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000008">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000010">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000009_sengoku_004/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000009_sengoku_004/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000008_sengoku_003/main.html" class="widgetSource">戦国4コマ ハタモト君 #003</a>
+						<a href="#image000008" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000008_sengoku_003/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #003</h2>
+								<p data-role-header="description">戦国に生きる男ハタモト君の活躍を描いた戦国バトル4コマ漫画の第3話です。Android アプリ版(無料)でまとめて読めます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000007">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000009">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000008_sengoku_003/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000008_sengoku_003/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="いのうえさんの近況" data-layout-mode="image_doc">
+						<a href="contents/image/_000007_inoue_001/main.html" class="widgetSource">いのうえさんの近況 #0001</a>
+						<a href="#image000007" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000007_inoue_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">いのうえさんの近況 #0001</h2>
+								<p data-role-header="description">いのうえさんのゆれるおとめごころと激うま帝国</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000006">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000008">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000007_inoue_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000007_inoue_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="4コマ" data-layout-mode="image_doc">
+						<a href="contents/image/_000006_unko_001/main.html" class="widgetSource">ゆるさないぞ！</a>
+						<a href="#image000006" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000006_unko_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">ゆるさないぞ</h2>
+								<p data-role-header="description">ゆるさないぞ！！</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000005">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000007">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000006_unko_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000006_unko_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="whats" data-layout-mode="doc">
+						<a href="contents/whats/w01_art.html" class="widgetSource"></a>
+						<a href="#whats000001" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/whats/thumb_01.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">『とんかつひろば』のアートコンセプト - WHAT Is TONKATSU? 01</h2>
+								<p data-role-header="description">とんかつひろばの基礎を制作していた時期(2013年)に観たコンテンポラリーな創作物の中で、特に感動したのがレオス・カラックスの『ホーリー・モーターズ』、新国立美術館の『アンドレアス・グルスキー展』、島袋道浩『ヘペンチスタのペネイラ・エ・ソンニャドールにタコの作品のリミックスをお願いした』、の 3 つだった。3 つとも何に感動したのか説明しようと思うと難しい。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#whats000002">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#whats000004">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="whats" data-layout-mode="doc">
+						<a href="contents/whats/w04_gusto.html" class="widgetSource"></a>
+						<a href="#whats000004" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/whats/thumb_gusto.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">ガスト北村全発言 - WHAT Is TONKATSU? 04 (2014年9月)</h2>
+								<p data-role-header="description">神は敢えて、人間をドリンクバーの回し飲みが出来るように創った。「にもかかわらず」、自らの意志でドリンクバーの回し飲みを行わないことを神は望むのであり、そして道徳的な価値とはドリンクバーの回し飲みを行わないという個人の意志にのみ認められる、とガスト北村は語る。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#whats000001">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000005_sengoku_002/main.html" class="widgetSource">戦国4コマ ハタモト君 #002</a>
+						<a href="#image000005" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000005_sengoku_002/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #002</h2>
+								<p data-role-header="description">戦国に生きる男ハタモト君の活躍を描いた戦国バトル4コマ漫画の第2話です。Android アプリ版(無料)でまとめて読めます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000004">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000006">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000005_sengoku_002/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000005_sengoku_002/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="whats" data-layout-mode="doc">
+						<a href="contents/whats/w02_yft.html" class="widgetSource"></a>
+						<a href="#whats000002" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/whats/thumb_02.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">山田.F.とんかつのプロフィール - WHAT Is TONKATSU? 00 (2014年9月)</h2>
+								<p data-role-header="description">ここでは山田.F.とんかつのプロフィールがかたられる。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#whats000001">前の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					
+					<div class="widget" data-widget-category="experimental" data-widget-sub-category="JavaScript" data-layout-mode="js_doc">
+					
+						<a href="contents/experimental/e01_cell_automaton/main.html" class="widgetSource"></a>
+						<a href="contents/experimental/e01_cell_automaton/script.js" class="widgetScript"></a>
+						
+						<a href="#experimental000001" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/experimental/e01_cell_automaton/_thumb/ca01.png">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">JavaScript でライフゲーム (2014年4月)</h2>
+								<p data-role-header="description">マット・ピアソンの楽しい本『ジェネラティブ・アート -Processingによる実践ガイド』のチュートリアルで初めて自分でセル・オートマトンを書いて、なるほどセル・オートマトンはProcessing にぴったりの題材だな、と思ったものです。でもこれくらいは JavaScript でもすぐに書けるよね、というのが今回のテーマです。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="プロジェクション・マッピング" data-layout-mode="kinema_doc">
+					
+						<a href="contents/kinema/1404/k01_pm.html" class="widgetSource"></a>
+						
+						<a href="#kinema000001" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/kinema/1404/_thumb/t01.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">プロジェクション・マッピング小作品と制作記録 (2014年4月)</h2>
+								<p data-role-header="description">イベントでのプロジェクション・マッピングのプロジェクトに関わることになったので、まずは小品を試作した。学ぶことは多かったので、できるだけ記録しておきたい。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t01.jpg">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t02.jpg">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t03.jpg">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t04.jpg">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t05.jpg">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t06.jpg">
+								<img class="thumb" data-src="contents/kinema/1404/_thumb/t07.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="apps" data-widget-sub-category="ブレストミキサー" data-cont-name="brain_storming_mixer" data-layout-mode="flash">
+						<a href="contents/apps/a03_brain_storming_mixer/main.html" class="widgetSource"></a>
+						<a href="contents/apps/a03_brain_storming_mixer/script.js" class="widgetScript"></a>
+						<a href="#apps000003" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/common/icon/bsm_rotation_anim.gif">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">ブレストミキサー (2014年1月)</h2>
+								<p data-role-header="description">ブレストミキサー紹介ページを公開しました。</p>
+
+							</div>
+							<img class="appsWidgetIcon" data-src="bsm_rotation">
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="映画" data-layout-mode="doc">
+						<a href="contents/writing/1311/b01_besteh.html" class="widgetSource">小人の饗宴の「ペシテペシテ！」がなんなのかやっと分かった</a>
+						<a href="#writing000002" class="widgetHash">
+						
+							<img class="mainThumb" src="assets/images/article_image/13/dwarf.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">小人の饗宴の「ペシテペシテ！」がなんなのかやっと分かった (2013年11月)</h2>
+								<p data-role-header="description">ヘルツォークの『小人の饗宴』にひたすら「ペシテペシテ！」と言い続ける小人症の人物が出てきます。(というか、この映画には小人症の人物しか出てきませんが。)これがあまりにインパクトが強くて、この映画を観た後はしばらく「ペシテペシテ!ウケケケ…ペシテペシテ!」という声が延々と脳内再生され続け、気付いたら自分でも往来で「ペシテペシテ…ペシテペシテ…」とつぶやいていたりして、変な人だと思われたりいたしますペシテペシテ。</p>
+
+							</div>
+							
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing000001">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000003">次の記事</div>
+								</div>
+								
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="戦国4コマ ハタモト君" data-layout-mode="image_doc">
+						<a href="contents/image/_000004_sengoku_001/main.html" class="widgetSource">戦国4コマ ハタモト君 #001</a>
+						<a href="#image000004" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000004_sengoku_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">戦国4コマ ハタモト君 #001</h2>
+								<p data-role-header="description">戦国に生きる男ハタモト君の活躍を描いた戦国バトル4コマ漫画の第1話です。Android アプリ版(無料)でまとめて読めます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000003">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000005">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000004_sengoku_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000004_sengoku_001/_thumb/i001.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="エスプレッソみみくそ" data-layout-mode="image_doc">
+						<a href="contents/image/_000003_espresso_001/main.html" class="widgetSource">エスプレッソみみくそ #001</a>
+						<a href="#image000003" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000003_espresso_001/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">エスプレッソみみくそ #001</h2>
+								<p data-role-header="description">カレー好きの少女いのうえさんと謎の生き物たちの交流を描いた漫画『エスプレッソみみくそ』の Web 版第一話です。Android アプリ版(無料)でまとめて読めます。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000002">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000004">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000003_espresso_001/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000003_espresso_001/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000003_espresso_001/_thumb/i002.jpg">
+								<img class="thumb" data-src="contents/image/_000003_espresso_001/_thumb/i003.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="イラストレーション" data-layout-mode="image_doc">
+						<a href="contents/image/_000002_math/main.html" class="widgetSource">数学の入門書をゆっくり楽しむ会 イラストレーション</a>
+						<a href="#image000002" class="widgetHash">
+							
+							<img class="mainThumb" src="contents/image/_000002_math/_thumb/i000.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">数学の入門書をゆっくり楽しむ会 イラストレーション (2013年10月)</h2>
+								<p data-role-header="description">『数学の入門書をゆっくり楽しむ会 』は東京で開催されている初心者向きの数学勉強会です。最初は、大田春外『高校と大学をむすぶ幾何学』を読み、現在は『はじめよう位相空間』を読んでいます。勉強会の告知用のイラストはY.F.とんかつが描いています。せっかくなので勉強会の宣伝も兼ねて紹介します。イラストのテーマはなぜか「ドリトス」でまとまっていたり、そうでもなかったり。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image000001">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000003">次の記事</div>
+								</div>
+								
+							</div>
+							
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i000.jpg">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i001.jpg">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i002.jpg">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i003.jpg">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i004.jpg">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i005.jpg">
+								<img class="thumb" data-src="contents/image/_000002_math/_thumb/i006.jpg">
+							</div>
+							
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="Web制作" data-layout-mode="doc">
+						<a href="contents/writing/1310/b01_css_tips.html" class="widgetSource">SS Tips - z-index 等 CSS のハマりやすい罠のまとめ</a>
+						<a href="#writing000001" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">CSS Tips - z-index 等 CSS のハマりやすい罠のまとめ (2013年10月)</h2>
+								<p data-role-header="description">ここ最近はCSS の仕様と格闘していた。せっかくなので、どのへんでハマってどう解決したか、といったことをjQuey との関連も含めて記録しておく。</p>
+							</div>
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999999">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000002">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="イラストレーション" data-layout-mode="image_doc">
+						<a href="contents/image/_000001_hirashima/main.html" class="widgetSource">ひらしまさん大全集</a>
+						<a href="#image000001" class="widgetHash">
+						
+							<img  class="mainThumb" src="contents/image/_000001_hirashima/_thumb/wedding.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">ひらしまさん大全集 (2013年10月)</h2>
+								<p data-role-header="description">ひらしまさんの絵をまとめていますよ</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#image999999">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#image000002">次の記事</div>
+								</div>
+								
+							</div>
+								
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/wedding.jpg">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/hirashima_pastel.jpg">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/onion.jpg">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/hirashima_unko.jpg">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/icon.jpg">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/manga.jpg">
+								<img class="thumb" data-src="contents/image/_000001_hirashima/_thumb/hirasima_unko2.jpg">
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="tech" data-layout-mode="doc">
+						<a href="contents/writing/1306/b02_air.html" class="widgetSource">Android4.2.2(Nexus 7 などのデバイス) で Air アプリをデバッグできなくなったときの対処法</a>
+						<a href="#writing999999" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">Android4.2.2(Nexus 7 などのデバイス) で Air アプリをデバッグできなくなったときの対処法 (2013年6月)</h2>
+								<p data-role-header="description">Nexus 7 などのデバイスを Android4.2.2 にアップデートするとFlash CS 6 や Flash Builder などでAir for Android アプリを開発時にデバッグができなくなる不具合があります。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999998">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing000001">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+						
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1306/b01_disgrace.html" class="widgetSource">『Disgrace』感想 愛はイデオロギーであるかとか、わくわくさんの倫理観とか TONKATSU now reading</a>
+						<a href="#writing999998" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">『Disgrace』感想 愛はイデオロギーであるかとか、わくわくさんの倫理観とか TONKATSU now reading (2013年6月)</h2>
+								<p data-role-header="description">愛がイデオロギーだと言われて、最初は、いや違うでしょ、と思った。というのは犬と生活していると、犬が愛情という他ない感情を示してくることがあるからだ。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999997">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999999">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1305/b05_book.html" class="widgetSource">今日の本屋 丸の内丸善</a>
+						<a href="#writing999997" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">今日の本屋 丸の内丸善 (2013年5月)</h2>
+								<p data-role-header="description">犬と人が出会うとき 異種協働のポリティクス, ビューティフルビジュアライゼーション, Antonio Lopez Garcia, 空と夢―運動の想像力にかんする試論 他</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999996">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999998">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="美術" data-layout-mode="doc">
+						<a href="contents/writing/1305/b03_california.html" class="widgetSource">カリフォルニア・デザイン 1930-1965 －モダン・リヴィングの起源－</a>
+						<a href="#writing999996" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">カリフォルニア・デザイン 1930-1965 －モダン・リヴィングの起源－ (2013年5月)</h2>
+								<p data-role-header="description">新国立美術館『カリフォルニア・デザイン 1930-1965 －モダン・リヴィングの起源－』に行ってきました。これだけアメリカ文化漬けの我々なので、それをわざわざ美術館に観に行って、一歩引いた視点で観直すというのは面白いことです。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999995">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999997">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="kinema" data-widget-sub-category="写真" data-layout-mode="image_doc">
+						<a href="contents/image/_999999_giacomelli/main.html" class="widgetSource">マリオ・ジャコメッリ写真展</a>
+						<a href="#image999999" class="widgetHash">
+						
+							<img  class="mainThumb" src="contents/image/_999999_giacomelli/_thumb/giacomelli-5.jpg">
+							
+							<div class="widgetText">
+								<h2 data-role-header="title">マリオ・ジャコメッリ写真展 (2013年5月)</h2>
+								<p data-role-header="description">東京都写真美術館のマリオ・ジャコメッリ写真展に行ってきた。まあ、とにかく白黒だった。なんといっても白黒だった。</p>
+							</div>
+							
+							<div class="widgetNoText">
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#image000001">次の記事</div>
+								</div>
+								
+							</div>
+								
+							<div class="thumbContainer">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-1.jpg">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-2.jpg">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-3.jpg">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-4.jpg">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-5.jpg">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-6.jpg">
+								<img class="thumb" data-src="contents/image/_999999_giacomelli/_thumb/giacomelli-7.jpg">
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="イベント" data-layout-mode="doc">
+						<a href="contents/writing/1305/b01_old_design.html" class="widgetSource">とんかつスーパー道場とモンドリアンっぽいウォッフォンモッフォン</a>
+						<a href="#writing999995" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">とんかつスーパー道場とモンドリアンっぽいウォッフォンモッフォン (2013年5月)</h2>
+								<p data-role-header="description">"一日あれば何か作品が作れてしまったりもするものだから、日々やることはあれど、少しのまとまった時間で集中して何かを作る! その間は他のやらなきゃいけないことは無視する！ という日が月に一度くらいあったらいいんじゃないかな、という趣旨です。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999994">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999996">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1305/b00_book.html" class="widgetSource">メディアはウォッフォンモッフォンである - TONKATSU now Reading 『マクルーハン理論―電子メディアの可能性』  </a>
+						<a href="#writing999994" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="date">2013年5月</h2>
+								<h2 data-role-header="title">メディアはウォッフォンモッフォンである - TONKATSU now Reading 『マクルーハン理論―電子メディアの可能性』 </h2>
+								<p data-role-header="description">"マクルーハンて、かなり怪しいことを言ってる気がするけど、現にあるものをないことにしても始まらないという姿勢はとても正しいと思う。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999993">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999995">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アプリ開発" data-layout-mode="doc">
+						<a href="contents/writing/1304/b06_nemcafe.html" class="widgetSource">ネムカフェとんかつ会議 カモレスラーの不安(仮) の音のこと</a>
+						<a href="#writing999993" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">ネムカフェとんかつ会議 カモレスラーの不安(仮) の音のこと (2013年4月)</h2>
+								<p data-role-header="description">カモレスラーの不安(仮) では4 小節ぐらいの短い BGM をピンポイントで入れていきます。それで、音楽だったらジャズ山さんに頼むのが鉄板なのですが、人に頼むとなるとどんな音が欲しいのか具体的に説明する必要があります。ここで、いかに音について適当に考えていたかが露呈するわけです。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999992">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999994">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1304/b05_bookstore.html" class="widgetSource">今日の本屋 写真とか技術書とか</a>
+						<a href="#writing999992" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">今日の本屋 写真とか技術書とか (2013年4月)</h2>
+								<p data-role-header="description">カモアプリがようやく本格的なコーディングの段階に入りまして、最近はわりとプログラマモードです。新宿紀伊国屋南店に行って『Androidゲームプログラミング A to Z』を買って来ました。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999991">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999993">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アプリ開発" data-layout-mode="doc">
+						<a href="contents/writing/1304/b04_manga.html" class="widgetSource">コミックアプリをリリースしました -『至高のコーヒー』『エスプレッソみみくそ』-</a>
+						<a href="#writing999991" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">コミックアプリをリリースしました -『至高のコーヒー』『エスプレッソみみくそ』- (2013年4月)</h2>
+								<p data-role-header="description">TONKATSU の新しい Android アプリ、コーヒーを題材にした奇妙なお話『至高のコーヒー』とカレーをテーマにしたハートウォーミングなストーリー『エスプレッソみみくそ』を Google Play にアップしました。どちらも無料のコミックアプリです。よろしくお願いします。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999990">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999992">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1304/b03_book.html" class="widgetSource">映像とか数学とかの考え方の溝 -TONKATSU now Reading 『本物の表現力をそだてる映像撮影術』-</a>
+						<a href="#writing999990" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">映像とか数学とかの考え方の溝 -TONKATSU now Reading 『本物の表現力をそだてる映像撮影術』- (2013年4月)</h2>
+								<p data-role-header="description">『本物の表現力をそだてる映像撮影術』読んでてあらためて思ったのは、自分はアニメから映像に入った人だなあ、ということ。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999989">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999991">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="カレー" data-layout-mode="doc">
+						<a href="contents/writing/1304/b02_trip.html" class="widgetSource">さようなら高円寺トリップ</a>
+						<a href="#writing999989" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">さようなら高円寺トリップ (2013年4月)</h2>
+								<p data-role-header="description">トリップが閉店したらしい。とても悲しい。トリップは高円寺駅南にあるスープカレーの出るバーです。(TONKATSU の本拠地は高円寺です。)TONKATS は厳しい入社試験があるためメンバーは全員カレー好きで構成されており、よくとんかつ会議にトリップを利用したのでした。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999988">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999990">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1304/b01_book.html" class="widgetSource">TONKATSU now Reading 『「民族浄化」を裁く -旧ユーゴ戦犯法廷の現場から-』</a>
+						<a href="#writing999988" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">TONKATSU now Reading 『「民族浄化」を裁く -旧ユーゴ戦犯法廷の現場から-』 (2013年4月)</h2>
+								<p data-role-header="description">やはりなんといっても『アンダーグラウンド』ですが、あと『アワー・ミュージック』とか『サラエボ、希望の街角』とかウィキペディア流し読み+世界史リブレット数冊くらいの知識で観てたら、よく分からないところがあって、(それでも映画は全然問題なく面白いのですが、)とりあえず、関連書を「ほしい物リスト」に突っ込んでおいて、今回ようやく一冊ピックアップできたという感じです。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999987">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999989">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1303/b07_lpl.html" class="widgetSource">論理学ととんかつ会のおすすめ -TONKATSU now Reading 『論理学の基礎と演習』-</a>
+						<a href="#writing999987" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">論理学ととんかつ会のおすすめ -TONKATSU now Reading 『論理学の基礎と演習』- (2013年3月)</h2>
+								<p data-role-header="description">私が論理学面白いなー、と思うのは形式的なものの普遍性に着目してるところです。小説でも映画でも漫画でもある程度意識して注意深く読むようになると国語のテスト的な「意味」や「作者のメッセージ」よりも、より表面的な形式に注目するようになる傾向があると思います。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999986">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999988">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アプリ開発" data-layout-mode="doc">
+						<a href="contents/writing/1303/b06_kamo23.html" class="widgetSource">人形アニメ撮影 -カモレスラーの不安(仮) 開発記録-</a>
+						<a href="#writing999986" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="date">2013年3月</h2>
+								<h2 data-role-header="title">人形アニメ撮影 -カモレスラーの不安(仮) 開発記録- (2013年3月)</h2>
+								<p data-role-header="description">Android アプリのための人形アニメ撮影。コマ撮りはとかく色々問題が起こります。ライティングが不安定だとか、羽根の可動域が狭すぎるとか、実は、前回「人形が完成したぜ！ ひゃほーぅヒャ!」的なエントリを書いてから一週間以上、人形や撮影装置の改造やら、合成処理の研究などに費やしたのでした。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999985">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999987">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="詩" data-layout-mode="doc">
+						<a href="contents/writing/1303/b05_saturday.html" class="widgetSource">POETORY: M.O.S from TinzHenev</a>
+						<a href="#writing999985" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">POETORY: M.O.S from TinzHenev (2013年3月)</h2>
+								<p data-role-header="description">疲れてるとこういうの描きますよね</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999984">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999986">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="美術" data-layout-mode="doc">
+						<a href="contents/writing/1303/b04_bacon.html" class="widgetSource">フランシス・ベーコン展のごくごく個人的な感想</a>
+						<a href="#writing999984" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">フランシス・ベーコン展のごくごく個人的な感想 (2013年3月)</h2>
+								<p data-role-header="description">逆説的ですが、美術館に行くと美しいものや善いものだけが必要とされているわけではないと思えます。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999983">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999985">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アプリ開発" data-layout-mode="doc">
+						<a href="contents/writing/1303/b03_kamo08.html" class="widgetSource">はらぺこカモさん (仮) 開発記録</a>
+						<a href="#writing999983" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">はらぺこカモさん (仮) 開発記録 (2013年3月)</h2>
+								<p data-role-header="description">今回はフェルトを採用することにしました。もともと、とにかくコマ撮りがやりたくて、なんとなくクレイを選んでいたので、特にこだわる必要はないし、素材から考えなおそうという時に、ベルギーのインディペンデント系アニメ"Oh Willy..."を観まして、おそらくフェルトやウールを使っているのですが、この質感がとてもいいね、ということになり、その方向で色々試した結果です。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999982">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999984">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1303/b02_book05.html" class="widgetSource">今日の本屋</a>
+						<a href="#writing999982" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">今日の本屋 (2013年3月)</h2>
+								<p data-role-header="description">紀伊国屋新宿南店に行って来ました。面白そうだった本のメモ。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999981">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999983">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="イベント" data-layout-mode="doc">
+						<a href="contents/writing/1303/b01_impro.html" class="widgetSource">自由即興フェスタ</a>
+						<a href="#writing999981" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">自由即興フェスタ (2013年3月)</h2>
+								<p data-role-header="description">向井さんがよく言うのが「それぞれがやりたいことを存分にやれば、調和させようとしなくても自然と調和する」ということ。実際、ワークショップでは、いのえさんがコンビニのおでんを入れるところにカレーを入れる詩とか、パリのアパルトマンに日本から海苔が届くコントとか、ごはんおいしいパンまずいの歌とか、ウィトゲンシュタインとかドリンクバーの回し飲みとか、そういうやりたいことが好きにできて、とても楽しいのです。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999980">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999982">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アプリ開発" data-layout-mode="doc">
+						<a href="contents/writing/1302/b06_ebizo.html" class="widgetSource">エビゾーとメ芸と TONKATSU の次のアプリ</a>
+						<a href="#writing999980" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">エビゾーとメ芸と TONKATSU の次のアプリ (2013年2月)</h2>
+								<p data-role-header="description">文化庁メディア芸術祭と恵比寿映像祭をTONKATSU として観た。今回特に感心したのは 'GRAVITY DAZE', 'Strata', 『布団』の3作品。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999979">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999981">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="イベント" data-layout-mode="doc">
+						<a href="contents/writing/1302/b05_math.html" class="widgetSource">読書会</a>
+						<a href="#writing999979" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">読書会 (2013年2月)</h2>
+								<p data-role-header="description">とんかつ道場というイベントをやろうとしてます。多分、絵や造形や映像やマンガやコントをやります。それとは別に (TONKATSU 主催というわけじゃないのですが)、都内でいくつか読書会をやってます。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999978">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999980">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="reading" data-layout-mode="doc">
+						<a href="contents/writing/1302/b04_reading_var130218.html" class="widgetSource">今日の本屋 - TONKATSU now Reading『反解釈』他</a>
+						<a href="#writing999978" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">今日の本屋 - TONKATSU now Reading『反解釈』他 (2013年2月)</h2>
+								<p data-role-header="description">覚書。今日は予定が流れたので、紀伊国屋で本を見た。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999977">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999979">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="映画" data-layout-mode="doc">
+						<a href="contents/writing/1302/b03_guerin.html" class="widgetSource">『メカス×ゲリン 往復書簡』 -TONKATSU au Cinéma-</a>
+						<a href="#writing999977" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">『メカス×ゲリン 往復書簡』 -TONKATSU au Cinéma- (2013年2月)</h2>
+								<p data-role-header="description">回転ドアの映り込み、車窓からの風景、広がる枝、旅先で出会った女性など、ホセ・ルイス・ゲリンの撮るものは、自分(とんかつ) が普段遊びでカメラを回してるのをアップグレードしたらこうなる、という感じでモロに自分の趣味だった。</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="prevArticle" data-hash="#writing999976">前の記事</div>
+									<div data-link-roll="nextArticle" data-hash="#writing999978">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+					<div class="widget" data-widget-category="writing" data-widget-sub-category="アプリ開発" data-layout-mode="doc">
+						<a href="contents/writing/1302/b02_meeting_cat.html" class="widgetSource">クレイアニメーションふたたび -とんかつ会議-</a>
+						<a href="#writing999976" class="widgetHash">
+							<div class="widgetText">
+								<h2 data-role-header="title">クレイアニメーションふたたび -とんかつ会議- (2013年2月)</h2>
+								<p data-role-header="description">「タマちゃん(アザラシ)と矢ガモがゲストの東京フレンドパークみたいな番組をクレイアニメでやる」という、今考えると謎のコンセプトのあの企画、ついに日の目を見るのか！？</p>
+	
+							</div>
+							<div class="widgetNoText">
+								
+								<div class="widgetLinks">
+									<div data-link-roll="nextArticle" data-hash="#writing999977">次の記事</div>
+								</div>
+								
+							</div>
+						</a>
+					</div>
+					
+				</div>
+				
+				<div id="shelf" class="shelf scroller">
+					
+				</div>
+				
+				<div id="floater">
+				</div>
+				
+			</div>
+			
+			<div id="menuContainer" class="full">
+			
+				<div id="mainMenu" class"mainMenu">
+					
+					<img class="mainMenuImage" data-url="/main_menu/main_menu.png">
+					
+					<div id="whatsContainer">
+						
+						<div id="whatsTitle">とんかつとは何か?</div>
+						
+						<div id="whatsMain">
+						
+							<div id="cont">
+											
+								<div class="outer">
+								
+									<div class="inner">
+										<img src="article_image/whats/thoth_a.jpg" alt="TONKATSU メインイメージ by 伊敷トゥート">
+									</div>
+									
+								</div>
+							
+								<div class="outer">
+									<blockquote class="inner">
+										とんかつとは何であるか。<br>
+										誰も私に問わなければ、<br>
+										私は知っている。<br>
+										しかし誰か問うものに<br>
+										説明しようとすると、<br>
+										私は知らないのである。<br>
+										(アウレリウス・アウグスティヌス)
+									</blockquote>
+									
+								</div>
+					
+								<div class="outer">
+								
+									<div class="inner">
+										<h2>とんかつとは何か？</h2>
+										TONKATSU は<br>
+										ビデオアーティスト/身体表現パフォーマーの<br>
+										山田.F.とんかつをはじめ、<br>
+										アーティストくずれの<br>
+										失業者たちが寄り集まって創業した <br>
+										Android アプリメーカーです。<br>
+										斬新なビジュアルを打ち出した<br>
+										アプリやゲームで<br>
+										スマートフォンの世界に<br>
+										新しい地平を開くことを<br>
+										ミッションとしています。<br>
+										Web サイト 'とんかつひろば' は<br>
+										アプリの制作やそのための勉強から派生する<br>
+										実験作品や思考の表現の場として<br>
+										生まれました。
+									</div>
+									
+								</div>
+							
+							
+								<div class="outer">
+								
+									<div class="inner">
+										<h2>世界イデオロギーとしてのとんかつととんかつひろば</h2>
+										サイト名『とんかつひろば』は<br>
+										長野県松本市の実在の広場の名前に<br>
+										由来します。<br>
+										現代の最も偉大な預言者<br>
+										マハル師の寝言によれば、<br>
+										そもそもこの広場の名称は、<br>
+										チンズへネベの最も偉大な神・大マハートの<br>
+										450年前の寝言に由来するとされており、<br>
+										17次元宇宙秩序の実存に<br>
+										限りなく近い表現を与える名前と言えます。<br>
+										にもかかわらず、<br>
+										近年、この広場は<br>
+										「信州大学 生協前広場」という<br>
+										誤った名称が流布されていました。<br>
+										また、記憶のある方も多いと思われますが、<br>
+										当時「両手をハサミにカニ歩き」や<br>
+										「両手をついてカエル跳び」が、<br>
+										あろうことか子供向けのテレビ番組で、<br>
+										忍術として紹介されるという<br>
+										痛ましい事件が発生しました。<br>
+										我が国固有の文化である<br>
+										忍者の品格を貶める虚偽の風説が<br>
+										かくも堂々と罷り通ることに<br>
+										心を痛めた山田.F.とんかつは、<br>
+										いつの日にか真理が勝利をおさめることを祈念し、<br>
+										真なる名『とんかつひろば』の看板を<br>
+										制作しました。<br>
+										<img src="article_image/whats/tonkatsu_hiroba.jpg" alt="信州大学松本キャンパスとんかつひろば">
+										以来、とんかつが<br>
+										世界の最も有力なイデオロギーの一つに<br>
+										数えられていることは周知の事実です。
+									</div>
+									
+								</div>
+							
+								<div class="outer">
+								
+									<div class="inner">
+										ここでは TONKATSU のアプリや Web サイト、<br>
+										また、数々のイメージやビデオについて、<br>
+										制作者とその基調コンセプト、<br>
+										そして、そのテクノロジーやアートを<br>
+										紹介します。
+									</div>
+									
+								</div>
+								
+								<div class="outer">
+								
+									<div class="inner">
+										<h2>コンテンツ</h2>
+										<ul>
+											<a href="#whats000001"><li>WHAT Is TONKATSU? 01:<br>
+											とんかつひろばのアートコンセプト</li></a>
+											<a href="#whats000002"><li> WHAT Is TONKATSU? 02:<br>
+											制作者:山田.F.とんかつ</li></a>
+											<a href="#whats000004"><li>WHAT Is TONKATSU? 04:<br>
+											ガスト北村全発言</li></a>
+											<a href="#whats000005"><li>WHAT Is TONKATSU? 05:<br>
+											とんかつひろばのイメージ</li></a>
+										</ul>
+									</div>
+									
+								</div>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="subMenu">
+					
+					<div id="subMenuText">
+					
+						<div id="subMenuAdContainer">
+						</div>
+						
+					</div>
+					
+					<div class="subMenuRecommend">
+						<a href="#experimental000018">
+							<h4 data-role-header="date">【最新記事】 15/7/8</h4>
+							<h3 data-role-header="title">CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #003: float の詳細</h3>
+							<img src="assets/images/article_image/1507/css03_05.jpg">
+						</a>
+					</div>
+					
+					<div class="subMenuRecommend">
+						<a href="#writing000030">
+							<h4 data-role-header="date">【最新記事】 15/7/2</h4>
+							<h3 data-role-header="title">『映画記号学の諸問題』:ものづくりのための面白い本の話 #001</h3>
+							<img class="mainThumb" src="assets/images/article_image/1507/semeology01.jpg">
+						</a>
+					</div>
+					
+					<div class="subMenuRecommend">
+						<a href="#writing000015">
+							<h4 data-role-header="date">14/12/07</h4>
+							<h3 data-role-header="title">キツくなったら会社を辞めればいいと思っている人たちにこれだけは言っておきたい:TONKATSU now Writing #003</h3>
+							<img class="mainThumb" src="assets/images/article_image/1412/dog.jpg">
+						</a>
+					</div>
+					
+					<div id="subMenuBackToTopButton"></div>
+					
+				</div>
+				
+				<div id="subMenuLowerImage">
+				</div>
+				
+				<div id="footerButtonContainer">
+					
+				</div>
+				
+				<div id=footerRecommendations>
+					<div data-hash="#experimental000018">最新記事</div>
+					<div data-hash="#writing000030">最新記事</div>
+					<div data-hash="#experimental000015">最新記事</div>
+				</div>
+				
+				<div id="footerBg">
+					<img class="footerBgImg">
+				</div>
+				
+				<div id="sharePanel">
+				
+					<div id="sharePanelFirstTouchArea"></div>
+					
+					<img id="sharePanelImage">
+					
+					<div id="sharePanelButtonsContainer">
+						<div id="sharePanelFbLike"></div>
+						<div id="sharePanelFbPageLike"></div>
+						<div id="sharePanelTweet"></div>
+						<div id="sharePanelGooglePlus"></div>
+						<div id="sharePanelHatena"></div>
+					</div>
+					
+				</div>
+				
+				<div id="adContainer">
+				
+					<div class="googleAdsense" id="mainAd">
+					</div>
+					
+					<div class="googleAdsense" id="mainAdB">
+					</div>
+				
+					<div class="googleAdsense" id="subMenuAd">
+					</div> 
+				
+				</div>
+				
+			</div>
+							
+		</div>
+		
+	</body>
+	
+</html>

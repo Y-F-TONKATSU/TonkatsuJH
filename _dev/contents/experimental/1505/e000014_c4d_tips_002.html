@@ -1,0 +1,260 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000014-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000014-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					CINEMA 4D に移行するときに<br>
+					詰まりがちな<br>
+					あれどうやるの？ 的な事<br>
+					(というか自分が<br>
+					微妙に悩んだ事)<br>
+					まとめのつづき。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. 例えば、<br>
+					上面図から、<br>
+					長方形選択で<br>
+					立方体を<br>
+					こんな感じで<br>
+					選択すると、<br>
+					全選択されると<br>
+					思うじゃないですか。<br>
+					<img src="article_image/1505/c4d_000.jpg" alt="CINEMA 4D 上面図で長方形選択">
+				</div>
+				
+				<div class="inner">
+					ところが、<br>
+					立方体の上面しか<br>
+					選択されません。<br>
+					<img src="article_image/1505/c4d_001.jpg" alt="CINEMA 4D 裏側のポリゴンが選択されていない">
+				</div>
+				
+				<div class="inner">
+					どうすれば<br>
+					裏側のポイントや<br>
+					ポリゴンを<br>
+					選択できますか？
+				</div>
+				
+				<div class="inner">
+					A. 選択ツールを選択して、<br>
+					属性マネージャをで<br>
+					ツールのオプションを<br>
+					見てみると、<br>
+					「可視エレメントのみ選択」<br>
+					というオプションが<br>
+					あります。<br>
+					<img src="article_image/1505/c4d_002.jpg" alt="CINEMA 4D 属性マネージャ 可視エレメントのみ選択">
+				</div>
+				
+				<div class="inner">
+					これのチェックを<br>
+					外しておくと、<br>
+					背面にあるエレメントも<br>
+					操作の対象になります。
+				</div>
+				
+				<div class="inner">
+					重要なオプションなので、<br>
+					ショートカットを<br>
+					設定しておくと<br>
+					便利です。<br>
+					またマニュアルによれば…
+				</div>
+				
+				<blockquote class="inner">
+					ライブ選択ツールを<br>
+					使っている場合、<br>
+					「可視エレメントのみ」<br>
+					オプションを外すと、<br>
+					より多くのメモリが<br>
+					必要になることに<br>
+					注意して下さい。<br>
+					したがって、<br>
+					特に必要のないかぎり、<br>
+					このオプションは<br>
+					選択しておいて下さい。<br>
+					(Cinema4D ヘルプ 日本語版より)
+				</blockquote>
+				
+				<div class="inner">
+					…とのことです。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. 選択メニューに<br>
+					「選択範囲の記録」<br>
+					というのがあるけど、<br>
+					どうやって<br>
+					記録した選択範囲を<br>
+					復元するんですか？
+					<img src="article_image/1505/c4d_003.jpg" alt="CINEMA 4D 選択メニュー 選択範囲を記録">
+				</div>
+				
+				<div class="inner">
+					A. 「選択の記録」を<br>
+					使うと、<br>
+					対象オブジェクトに<br>
+					選択範囲タグが<br>
+					作成されます。<br>
+					(選択エレメントが<br>
+					ポイントかエッジか<br>
+					ポリゴンかで、<br>
+					アイコンが変わります)<br>
+					<img src="article_image/1505/c4d_004.jpg" alt="CINEMA 4D オブジェクトマネージャに選択範囲タグが作成され、選択すると属性マネージャにボタンが表示される">
+				</div>
+				
+				<div class="inner">
+					オブジェクトマネージャから<br>
+					タグをダブルクリックで<br>
+					選択範囲を復元できます。
+				</div>
+				
+				<div class="inner">
+					またタグを選択すると、<br>
+					属性マネージャに<br>
+					選択範囲を<br>
+					あれこれするための<br>
+					ボタン群が表示されます。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					Q. スポットライトからの<br>
+					視点を確認したいです。<br>
+					ライトビューは<br>
+					ないんですか？
+				</div>
+				
+				<div class="inner">
+					A. ライトを選択して、<br>
+					ビューポートのメニューから<br>
+					カメラ→選択したオブジェクトからの視点。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					Q. 移動とか回転の<br>
+					軸を制限する<br>
+					赤緑青のハンドル(ギズモ)が<br>
+					なぜか表示されなりました。
+				</div>
+				
+				<div class="inner">
+					A. 「軸を表示」が<br>
+					何かのはずみで<br>
+					OFF になったと<br>
+					思われます。<br>
+					Alt+D(option+D)で<br>
+					切り替えられます。
+				</div>
+				
+				<div class="inner">
+					逆にギズモが邪魔で<br>
+					ポイントが<br>
+					選択できない時なんかは<br>
+					同じショートカットで<br>
+					非表示に切り替えられます。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					Q. モデリング作業中に<br>
+					ポリゴンが一部<br>
+					裏返ってしまいました。<br>
+					どうすれば<br>
+					向きを揃えられますか？
+				</div>
+				
+				<div class="inner">
+					A. メッシュ>法線>法線をそろえる<br>
+					で、向きが揃ってない<br>
+					ポリゴンを検出して<br>
+					勝手に直してくれます。<br>
+					便利。<br>
+					手動でやるなら、<br>
+					裏返ってるポリゴンを選択して<br>
+					メッシュ>法線>法線を反転。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					Q. LightWave3D の<br>
+					ラウンダーみたいに<br>
+					角を丸めたい。
+				</div>
+				
+				<div class="inner">
+					A. メッシュ>作成ツール>ベベル。<br>
+					ポイント/エッジ/ポリゴンの<br>
+					各モードで挙動が変わる。<br>
+					すごく便利。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					Q. LightWave の<br>
+					Metaform Plus みたいに<br>
+					ポリゴンに<br>
+					丸みを付けたい。
+				</div>
+				
+				<div class="inner">
+					A. メッシュ>コマンド>細分化<br>
+					の右に付いてる<br>
+					歯車マークを<br>
+					クリックすると、<br>
+					ツールのオプションの<br>
+					設定ダイアログが<br>
+					出るので、<br>
+					「サブディビジョンで分割」<br>
+					にチェックを入れ、<br>
+					適当な分割数を設定して、<br>
+					OK をクリック。
+				</div>
+				
+			</div>
+						
+		</div>
+		
+		<!--footer--experimental000014-->
+		
+	</body>
+	
+</html>

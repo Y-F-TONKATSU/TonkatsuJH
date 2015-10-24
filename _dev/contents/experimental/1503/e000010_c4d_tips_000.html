@@ -1,0 +1,357 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000010-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000010-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					CINEMA 4D に移行するときに<br>
+					詰まりがちな<br>
+					あれどうやるの？ 的な事<br>
+					(というか自分の詰まったとこ)<br>
+					まとめ。
+				</div>
+				
+				<div class="inner">
+					前に書いた<br>
+					<a href="http://ton-katsu.net/#experimental000006">C4D クイックツアー</a>の<br>
+					続きを書かないと、<br>
+					とは思ってるんだけど、<br>
+					まだ触っていると<br>
+					毎日新しく覚えることが<br>
+					出てくる段階で、<br>
+					まとまった記事が<br>
+					書けないので、<br>
+					とりあえず断片的なメモ。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. ポリゴンモードとか<br>
+					ポイントモードにしても<br>
+					ポリゴンやポイントが<br>
+					選択できない。
+				</div>
+				
+				<div class="inner">
+					A. オブジェクトを選択して<br>
+					「編集可能にする」を<br>
+					クリック。<br>
+					<img src="article_image/1503/c4d_tips_001.jpg" alt="CINEMA 4D 「編集可能にする」ボタン">
+				</div>
+				
+				<div class="inner">
+					C4D のプリミティブな<br>
+					オブジェクトは、<br>
+					「編集可能にする」までは<br>
+					パラメトリックな性質を<br>
+					維持する。<br>
+					<img src="article_image/1503/c4d_tips_002.jpg" alt="CINEMA 4D 立方体オブジェクトは編集可能なポリゴンオブジェクトにすると立方体としてのパラメータを失う">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. いじったビューを<br>
+					元に戻したい。
+				</div>
+				
+				<div class="inner">
+					A. ビューのメニューから<br>
+					ビュー→初期の表示。<br>
+					<img src="article_image/1503/c4d_tips_003.jpg" alt="CINEMA 4D ビューのメニューから ビュー→初期の表示">
+				</div>
+				
+				<div class="inner">
+					以下のショートカットも<br>
+					使える。<br>
+					<br>
+					s…選択エレメント<br>
+					(選択中のポイントとか<br>
+					ポリゴンとか)<br>
+					にビューをフィット、<br>
+					<br>
+					o…選択オブジェクトに<br>
+					ビューをフィット<br>
+					(つまりポリゴンとかの<br>
+					選択状態に関係なく<br>
+					オブジェクト全体を表示)
+				</div>
+				
+				<div class="inner">
+					また各ビューは<br>
+					取り消しヒストリを<br>
+					独自に持っていて、<br>
+					オブジェクトの操作に<br>
+					影響を与える心配なく<br>
+					アンドゥ/リドゥできる。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. NURBS があるって<br>
+					聞いたんだけど<br>
+					見つからない。
+				</div>
+				
+				<div class="inner">
+					A. ジェネレータに<br>
+					改名しましたよ。<br>
+					<img src="article_image/1503/c4d_tips_004.jpg" alt="CINEMA 4D NURBS 改め ジェネレータの位置">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. サブディビジョン<br>
+					サーフェスは<br>
+					どうやったら<br>
+					オブジェクトに<br>
+					適用されるの？
+				</div>
+				
+				<div class="inner">
+					A. まず、<br>
+					サブディビジョンサーフェスを<br>
+					作成したら…<br>
+					<img src="article_image/1503/c4d_tips_005.jpg" alt="CINEMA 4D サブディビジョンサーフェスを作成">
+				</div>
+				
+				<div class="inner">
+					オブジェクトマネージャ上で<br>
+					オブジェクトを<br>
+					サブディビジョンサーフェスに<br>
+					ドラッグして、<br>
+					サブディビジョンサーフェスの<br>
+					子にすると<br>
+					適用される。<br>
+					<img src="article_image/1503/c4d_tips_006.jpg" alt="CINEMA 4D オブジェクトをサブディビジョンサーフェスの子にしてサブディビジョンサーフェスを適用">
+				</div>
+				
+				<div class="inner">
+					なお、<br>
+					サブディビジョンサーフェス<br>
+					(だけでなくジェネレータ一般)は<br>
+					複数の子オブジェクトが<br>
+					あっても、<br>
+					最初の子オブジェクト及び<br>
+					その子孫にしか<br>
+					影響しない。<br>
+					<img src="article_image/1503/c4d_tips_012.jpg" alt="CINEMA 4D ジェネレータは最初の子オブジェクトとその子孫に影響">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. オブジェクトを<br>
+					デフォーマの<br>
+					子にしたのに<br>
+					適用されない。
+				</div>
+				
+				<div class="inner">
+					A. デフォーマは<br>
+					親オブジェクトと<br>
+					その子孫に<br>
+					影響する。<br>
+					<img src="article_image/1503/c4d_tips_007.jpg" alt="CINEMA 4D デフォーマは親オブジェクトとその子孫に影響">
+				</div>
+				
+				<div class="inner">
+					デフォーマが<br>
+					一番上の階層にあると<br>
+					影響するオブジェクトが<br>
+					何もないことになり、<br>
+					何も起こらない。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. マテリアルに<br>
+					カラーと反射しか<br>
+					設定できないんだけど…。
+				</div>
+				
+				<div class="inner">
+					A. マテリアルを選択して、<br>
+					属性マネージャの<br>
+					「基本」属性で<br>
+					使いたいチャンネルに<br>
+					チェックを入れると<br>
+					バンプとかアルファも<br>
+					表示される。<br>
+					<img src="article_image/1503/c4d_tips_008.jpg" alt="CINEMA 4D 属性マネージャ「基本」属性でチャンネルを選択できる">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. テクスチャが<br>
+					一枚しか貼れないよ！
+				</div>
+				
+				<div class="inner">
+					A. オブジェクトに<br>
+					マテリアルタグを<br>
+					複数設定すれば、<br>
+					オブジェクトマネージャ上の<br>
+					タグの並び順で、<br>
+					右から順番に<br>
+					処理される。<br>
+					<img src="article_image/1503/c4d_tips_009.jpg" alt="CINEMA 4D オブジェクトマネージャ 複数のマテリアルタグを設定">
+				</div>
+				
+				<div class="inner">
+					当然だけど、<br>
+					重ね順が上の<br>
+					右側のタグに<br>
+					アルファを設定しないと、<br>
+					それより左にある<br>
+					マテリアルは<br>
+					表示されない。
+				</div>
+				
+				<div class="inner">
+					なお、カラーチャンネルの<br>
+					「強度」や「混合モード」を<br>
+					いじっても、<br>
+					基本色とテクスチャの<br>
+					合成の具合が変わるだけで、<br>
+					下のマテリアルには<br>
+					影響しないので注意。
+				</div>
+				
+				<div class="inner">
+					Body Paint 3D や、<br>
+					ノードエディタである<br>
+					XPresso を使えば、<br>
+					より複雑な<br>
+					テクスチャを設定できる。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. マテリアルの<br>
+					投影方法は<br>
+					どうやって変えるの？
+				</div>
+				
+				<div class="inner">
+					A. マテリアルの投影方法は<br>
+					マテリアルの属性ではなく、<br>
+					マテリアルタグの属性である。<br>
+					よって、マテリアルを<br>
+					実際にオブジェクトに<br>
+					適用してから<br>
+					タグを選択すると、<br>
+					属性マネージャから<br>
+					変更できる。<br>
+					<img src="article_image/1503/c4d_tips_010.jpg" alt="CINEMA 4D オブジェクトマネージャからマテリアルタグを選択すると属性マネージャでマテリアルの投影法を選択できる">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. キーボード<br>
+					ショートカットを<br>
+					カスタマイズしたい。
+				</div>
+				
+				<div class="inner">
+					A. ウインドウ<br>
+					→カスタマイズ<br>
+					→コマンドをカスタマイズ
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Q. カスタマイズした<br>
+					キーボードショートカットを<br>
+					デフォルトに戻したい。
+				</div>
+				
+				<div class="inner">
+					A. 編集→一般設定 で出る<br>
+					ダイアログの左下の<br>
+					「一般設定フォルダを開く」ボタンを<br>
+					クリックすると、<br>
+					C4D の設定フォルダが開く。<br>
+					<img src="article_image/1503/c4d_tips_011.jpg" alt="CINEMA 4D 一般設定ダイアログの「一般設定フォルダを開く」ボタン">
+				</div>
+				
+				<div class="inner">
+					設定フォルダにある<br>
+					"prefs" フォルダ内にある<br>
+					"shortcuttable.res" という<br>
+					ファイルに<br>
+					コマンドが記録されている。
+				</div>
+				
+				<div class="inner">
+					設定をリセットするには<br>
+					"shortcuttable.res" ファイルを<br>
+					リネームするか削除してから<br>
+					C4D を起動する。
+				</div>
+				
+				<div class="inner">
+					なお、<br>
+					この設定フォルダ内の<br>
+					ファイルをコピーすることで、<br>
+					別の環境への<br>
+					設定のエクスポートも可能。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					多分まだまだ出てくるので、<br>
+					いずれ続きを書きます。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000010-->
+		
+	</body>
+	
+</html>

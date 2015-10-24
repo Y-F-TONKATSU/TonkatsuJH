@@ -1,0 +1,432 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000012-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000012-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					CINEMA 4D に移行するときに<br>
+					最初は、<br>
+					カメラとビューポートの関係が<br>
+					よく分からなかったので、<br>
+					その後調べて分かったことを<br>
+					まとめておきます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					CINEMA 4D で<br>
+					初めてレンダリング<br>
+					(正確には<br>
+					「画像表示にレンダリング」)<br>
+					をしてみた時、<br>
+					「まずはカメラを<br>
+					配置しないと<br>
+					ダメなんじゃないか？」<br>
+					と、ふと思いました。
+				</div>
+				
+				<div class="inner">
+					まあいいか、<br>
+					と押してみると、<br>
+					ビューポートに<br>
+					見えているものが<br>
+					そのまま<br>
+					レンダリングされました。<br>
+					<img src="article_image/1504/c4d_tips_001.jpg" alt="CINEMA 4D デフォルトのビューポートを画像表示にレンダリング">
+				</div>
+				
+				<div class="inner">
+					<h3>原則:<br>
+					レンダリングには<br>
+					ビューポートを使う</h3>
+					CINEMA 4D  で<br>
+					「画像表示にレンダリング」を<br>
+					行うと、<br>
+					ビューポート上で<br>
+					見えている構図を<br>
+					そのまま使用して<br>
+					レンダリングします。
+				</div>
+				
+				<div class="inner">
+					ビューポートが<br>
+					複数ある時は<br>
+					ビューポートの<br>
+					メニューから<br>
+					ビュー→このビューをレンダリング<br>
+					で、どのビューを<br>
+					レンダリングに使うかを<br>
+					指定できます。<br>
+					<img src="article_image/1504/c4d_tips_002.jpg" alt="CINEMA 4D ビュー→このビューをレンダリングでレンダリングに使用するビューを選択">
+				</div>
+				
+				<div class="inner">
+					しかし、<br>
+					カメラがないのに<br>
+					なぜレンダリング<br>
+					できるのか？<br>
+					という疑問が残りました。<br>
+					(それを言うなら<br>
+					ライトがなくても<br>
+					レンダリングできることも<br>
+					気になりますが、<br>
+					それは多分次回のテーマ)
+				</div>
+				
+				<div class="inner">
+					結論から言うと、<br>
+					デフォルトカメラという<br>
+					オブジェクトマネージャに<br>
+					表示されない<br>
+					特別なカメラがあるから<br>
+					レンダリングできる、<br>
+					ということになります。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>原則:各ビューポートには<br>
+					リンクするカメラがある</h3>
+					ビューポートは必ず<br>
+					それぞれリンクする<br>
+					カメラを持っており、<br>
+					ビューポート上で<br>
+					見えているものは<br>
+					そのカメラから<br>
+					見えるものです。<br>
+					(従って、<br>
+					レンダリング結果も<br>
+					結局カメラから<br>
+					見えるものになります。)
+				</div>
+				
+				<div class="inner">
+					カメラを<br>
+					配置していない状態で<br>
+					見えているビューは<br>
+					デフォルトカメラという<br>
+					各ビューポートと<br>
+					1対1で対応する<br>
+					特別なカメラからの<br>
+					視点になります。
+				</div>
+				
+				<div class="inner">
+					ビューをパンしたり<br>
+					ズームしたりする操作は、<br>
+					このデフォルトカメラの<br>
+					属性の操作<br>
+					（つまり移動や回転）<br>
+					ということになります。
+				</div>
+				
+				<div class="inner">
+					属性マネージャから<br>
+					このデフォルトカメラの<br>
+					属性をみることもできます。<br>
+					カメラを選択していない状態で<br>
+					属性マネージャから<br>
+					モード→カメラ<br>
+					を選ぶと、<br>
+					「カメラ」という名前の<br>
+					カメラの属性が<br>
+					表示されます。<br>
+					<img src="article_image/1504/c4d_tips_003.jpg" alt="CINEMA 4D 属性マネージャから モード→カメラでデフォルトカメラのプロパティを表示">
+				</div>
+				
+				<div class="inner">
+					このカメラの属性を<br>
+					変更すると<br>
+					対応するビューポートの<br>
+					状態も変わります。<br>
+					逆も同様です。<br>
+					(ただし、アニメートは<br>
+					できません。)<br>
+					<img src="article_image/1504/c4d_tips_004.jpg" alt="CINEMA 4D 属性マネージャからデフォルトカメラのZ位置を小さくするとビューポートがズームアウトする">
+				</div>
+				
+				<div class="inner">
+					また、<br>
+					全てのビューポートに共通の<br>
+					デフォルトカメラが<br>
+					あるわけではなく、<br>
+					ビューポート1つにつき<br>
+					1つのデフォルトカメラが<br>
+					存在します。<br>
+					(4分割画面なら<br>
+					4つのデフォルトカメラが<br>
+					あるわけです。)
+				</div>
+				
+				<div class="inner">
+					このことは<br>
+					あるビューポートの<br>
+					デフォルトカメラの属性を<br>
+					操作しても、<br>
+					別のビューには<br>
+					影響が無いことからも<br>
+					分かります。
+				</div>
+				
+				<div class="inner">
+					しかし、まだ<br>
+					「透視図に関しては<br>
+					それでいいけど<br>
+					上面図とかは何なの？」<br>
+					という疑問が残ります。
+				</div>
+				
+				<div class="inner">
+					が、それは置いといて、<br>
+					まずは<br>
+					カメラオブジェクトを<br>
+					作成して、<br>
+					ビューポートに<br>
+					リンクする方法を<br>
+					見てみます。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>カメラオブジェクトの<br>
+					作成はコピー</h3>
+					透視図をアクティブにして、<br>
+					カメラボタンを押して、<br>
+					カメラオブジェクトを<br>
+					作成します。<br>
+					<img src="article_image/1504/c4d_tips_005.jpg" alt="CINEMA 4D カメラボタン">
+				</div>
+				
+				<div class="inner">
+					すると透視図に<br>
+					枠線のようなものが<br>
+					表示されます。<br>
+					別のビューポートを<br>
+					見てみると、<br>
+					カメラとその画角が<br>
+					表示されています。
+					<img src="article_image/1504/c4d_tips_006.jpg" alt="CINEMA 4D カメラが作成されて枠線が表示された">
+				</div>
+				
+				<div class="inner">
+					カメラを作成すると、<br>
+					作成されたカメラの<br>
+					属性は、<br>
+					その時点で<br>
+					アクティブなビューポートに<br>
+					リンクしているカメラの<br>
+					属性のコピーになります。<br>
+					(アニメートしている場合は、<br>
+					そのフレームでの属性のみ)
+				</div>
+				
+				<div class="inner">
+					この場合、<br>
+					透視図のデフォルトカメラが<br>
+					複製されて、<br>
+					新しいカメラオブジェクトに<br>
+					なったわけです。
+				</div>
+				
+			</div>
+						
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>カメラとビューポートのリンク</h3>
+					移動ツールで、<br>
+					上面図から<br>
+					カメラを右に<br>
+					スライドさせてみます。
+				</div>
+				
+				<div class="inner">
+					透視図の視点も<br>
+					変わるかと思いきや、<br>
+					枠線が動くだけです。<br>
+					<img src="article_image/1504/c4d_tips_007.jpg" alt="CINEMA 4D カメラを右にスライドするとビューが変わらずに枠線が右に動いた">
+				</div>
+				
+				<div class="inner">
+					これは、<br>
+					カメラを作成しただけでは、<br>
+					カメラはどのビューポートにも<br>
+					リンクされないためです。<br>
+					このままアンドゥしないで<br>
+					カメラとビューポートを<br>
+					リンクしてみます。
+				</div>
+				
+				<div class="inner">
+					カメラとビューポートを<br>
+					リンクするには、<br>
+					リンクしたいビューポートを<br>
+					アクティブにして、<br>
+					オブジェクトマネージャから<br>
+					図のアイコンを<br>
+					クリックします。<br>
+					<img src="article_image/1504/c4d_tips_008.jpg" alt="CINEMA 4D オブジェクトマネージャ カメラとビューポートをリンクするアイコン">
+				</div>
+				
+				<div class="inner">
+					または、<br>
+					ビューポートのメニューの<br>
+					カメラ→使用カメラ<br>
+					から、<br>
+					リンクしたいカメラを<br>
+					選びます。<br>
+					<img src="article_image/1504/c4d_tips_009.jpg" alt="CINEMA 4D ビューポートのメニューのカメラ→使用カメラから、リンクしたいカメラを選択">
+				</div>
+				
+				<div class="inner">
+					すると、<br>
+					ビューポートがスライドして、<br>
+					ビューポートの<br>
+					暗い部分と<br>
+					明るい部分の<br>
+					境界線、<br>
+					つまりレンダリングエリアと<br>
+					枠線が重なって、<br>
+					枠線が消えます。<br>
+					枠線のあったところが<br>
+					新たなレンダリングエリアに<br>
+					なったわけです。<br>
+					他のビューを見ると、<br>
+					画角を示す枠線の色が<br>
+					鮮やかな緑になって、<br>
+					リンクされたことが<br>
+					わかります。<br>
+					<img src="article_image/1504/c4d_tips_010.jpg" alt="CINEMA 4D カメラとビューがリンクされた状態">
+				</div>
+				
+				<div class="inner">
+					この状態で、<br>
+					他のビューポートから<br>
+					カメラを動かすと、<br>
+					透視図も連動して動きます。<br>
+					また透視図上で、<br>
+					ビューポートを操作すると、<br>
+					カメラオブジェクトが<br>
+					連動することが<br>
+					他のビューポートから<br>
+					確認できます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>原則:<br>
+					投影法はカメラの属性</h3>
+					最後に、<br>
+					上面図とかは何なの？<br>
+					という疑問に答えます。
+				</div>
+				
+				<div class="inner">
+					2つのビューポートを<br>
+					同じカメラにリンクして、<br>
+					一方のビューポートの<br>
+					メニューから<br>
+					カメラ→上面<br>
+					にしてみると…<br>
+					<img src="article_image/1504/c4d_tips_011.jpg" alt="CINEMA 4D 2つの同じカメラにリンクしたビューポートの一方を上面図にする">
+				</div>
+				
+				<div class="inner">
+					2つとも<br>
+					上面図になります。<br>
+					<img src="article_image/1504/c4d_tips_012.jpg" alt="CINEMA 4D 2つとも上面図になった">
+				</div>
+				
+				<div class="inner">
+					このことから<br>
+					投影法は<br>
+					ビューポートではなく<br>
+					カメラの属性だと<br>
+					分かります。
+				</div>
+				
+				<div class="inner">
+					デフォルトの4分割画面で<br>
+					表示される三面図は、<br>
+					投影法を<br>
+					それぞれ上面、正面、右面に<br>
+					設定した<br>
+					デフォルトカメラと<br>
+					リンクされた<br>
+					ビューポートです。
+				</div>
+				
+				<div class="inner">
+					実際、属性マネージャから<br>
+					カメラの投影法を<br>
+					選択することも<br>
+					可能です。<br>
+					<img src="article_image/1504/c4d_tips_013.jpg" alt="CINEMA 4D 属性マネージャでカメラの投影法を変更">
+				</div>
+				
+			</div>
+				
+			<div class="outer">
+				
+				<div class="inner">
+					以上です。<br>
+					とりあえず、<br>
+					ここまでの理解だけでも<br>
+					レンダリングの構図を<br>
+					決めるための<br>
+					最低限の操作は<br>
+					出来るかと思います。
+				</div>
+				
+				<div class="inner ads">
+					余談ですが、<br>
+					モデリングの記事を<br>
+					書いてて、<br>
+					標準的な<br>
+					モデリングの手法って、<br>
+					どのレベルまで<br>
+					確立されてるんだろう？<br>
+					みたいなことが<br>
+					気になってきて、<br>
+					これを読み始めてます。<br>
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F1598220071%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51gDRi-pe9L._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F1598220071%2F%3Ftag%3Da8-affi-233326-22" target="_blank">Polygonal Modeling: Basic And Advanced Techniques (Worldwide Game and Graphics Library)</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥7,452<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/4/17 00:26時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www10.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+				
+				<div class="inner">
+					読書会とかできたら、<br>
+					楽しそうなんだけど。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000012-->
+		
+	</body>
+	
+</html>

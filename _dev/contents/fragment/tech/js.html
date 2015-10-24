@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+
+	<head>
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="keywords" content="JavaScript typeof とんかつメモ">
+		<meta name="description" content="JavaScript に関するメモ">
+		
+		<link rel="index" href="http://ton-katsu.net/">
+		
+		<link rel="shortcut icon" href="/favicon.ico" />
+		
+		<title>とんかつメモ:JavaScript typeof</title>
+		
+	</head>
+	
+	<body>
+	
+		<div id="cont">			
+
+			※断片的なメモです。<br>
+			<br>
+			<h2>とんかつメモ:JavaScript typeof</h2>
+			
+			<p>
+				JavaScript では、<br>
+				typeof xxx<br>
+				で xxx の型を示す文字列を返す。<br>
+				主な値は<br>
+				"undefined", "boolean", "number",<br>
+				"string", "object", "function" など。
+			</p>
+			
+			<p>
+				typeof にはいくつか不便な点がある。<br>
+				1 つは、<br>
+				typeof null が "object" を<br>
+				返す問題である。<br>
+				null をチェックするには、<br>
+				if(value === null)<br>
+				という具合にする。
+			</p>
+			
+			<p>
+				もう一つ、
+				配列に対しても
+				"object" を返す。
+			</p>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>new 演算子</h2>
+					JavaScript では
+					コンストラクタは
+					基本的にただの関数であるが、
+					new 演算子を使って
+					呼び出した場合、
+					以下の通り
+					若干変わった挙動をする。
+					<ul>
+						<li>
+							空のオブジェクトが生成され、
+							this に代入される。
+							これが新しく生成される
+							オブジェクトになる。
+						</li>
+						<li>
+							return がなくても
+							返り値が this,
+							つまり新しく生成された
+							オブジェクトになる。
+						</li>
+					</ul>
+				</div>
+			
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>ビルトインオブジェクトのコンストラクタとリテラル</h2>
+					Number, String, Boolean は、
+					new を使って生成すると
+					
+				</div>
+			
+			</div>
+			
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>Object.prototype のプロパティ</h2>
+					constructor, hasOwnProperty(), isPrototypeOf(),
+					propertyIsEnumerable(), toLocaleString(),
+					toString(), valueOf().
+					全てのオブジェクトは
+					これらのプロパティにアクセスできる。
+				</div>
+			
+			</div>
+			
+
+		</div>
+		
+		<a href="http://ton-katsu.net/">とんかつひろばにもどる</a>
+		
+	</body>
+	
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		
+        <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/test-min.css">
+		<script src="../test/test-min.js"></script>
+		
+		<script src="composition-manager.js"></script>
+		<script src="composition-manager-test.js"></script>
+		
+		<style>
+			.foreground{
+				background:rgba(200,194,248,0.10);
+				pointer-events: none;
+				height:100%;
+				width:100%;
+				position:absolute;
+			}
+			
+			.main{
+				background:rgba(248,194,195,0.50);
+				position:absolute;
+			}
+
+			.sidebar{
+				background:rgba(100,250,248,0.50);
+				position:absolute;
+			}
+
+			.background{
+				background:rgba(200,100,248,0.50);
+				pointer-events: none;
+				height:100%;
+				width:100%;
+				position:absolute;
+			}
+
+		</style>
+		
+		<title>Test</title>
+		
+	</head>
+	
+	<body>
+		
+		<div class='foreground'>
+		
+		</div>
+		
+		<div class='main'>
+		
+			<h1>Main</h1>
+			
+			<div class='landscape'>
+				<a class='small'>横_小</a>
+				<a class='medium'>横_中</a>
+				<a class='large'>横_大</a>
+			</div>
+			
+			<div class='portrait'>
+				<a class='small'>縦_小</a>
+				<a class='medium'>縦_中</a>
+				<a class='large'>縦_大</a>
+			</div>
+			
+			<div id="mocha"></div>
+			
+		</div>
+		
+		<div class='sidebar'>
+			<h1>SideBar</h1>
+		</div>
+		
+		<div class='background'>
+		</div>
+		
+	</body>
+	
+</html>

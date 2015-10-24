@@ -1,0 +1,462 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000008-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000008-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					PhotoShop の自動処理に関する<br>
+					連載記事の続きです。<br>
+					<a href="http://ton-katsu.net/contents/experimental/1503/e000007_ps_auto_003.html">前回</a>は<br>
+					主に中止コマンドについて<br>
+					解説しました。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<a href="http://ton-katsu.net/contents/experimental/1503/e000007_ps_auto_003.html">前回</a>までで、<br>
+					初期レイヤーが<br>
+					背景ならレイヤーに変換<br>
+					→最前面レイヤーを選択<br>
+					→新規レイヤー作成<br>
+					→表示レイヤーを結合<br>
+					→ハイパス<br>
+					→レイヤー合成モードを<br>
+					ハードライトに変更<br>
+					→アクションを中止して、<br>
+					ルックを調整<br>
+					…まで<br>
+					アクションを作成しました。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_023.jpg" alt="PhotoShop アクションパネル レイヤー統合してハイパス掛けてハードライト合成">
+				</div>
+								
+				<div class="inner">
+					今回は、<br>
+					加工した写真に<br>
+					署名を配置して、<br>
+					保存します。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+				
+				<div class="inner">
+					こういう署名の png があって…<br>
+					<img src="article_image/1503/sign.jpg" alt="TONKATSU 署名">
+				</div>
+				
+				<div class="inner">
+					こんな感じで…<br>
+					<img src="article_image/1503/spider.jpg" alt="蜘蛛の写真 TONKATSU 署名入り">
+				</div>
+				
+				<div class="inner">
+					写真の右下端に挿入したいとします。<br>
+					（こういうのを<br>
+					PhotoShop のアクションで<br>
+					やるべきか? というと<br>
+					微妙な気もしますが。）
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					とりあえず、<br>
+					適当にやってみます。<br>
+					アクションの記録を再開し、<br>
+					レイヤーパネルから<br>
+					新規レイヤーを作成します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_024.jpg" alt="PhotoShop レイヤーパネル 新規レイヤーを作成">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					ファイル→リンクを配置<br>
+					で、署名画像を読み込みます。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_025.jpg" alt="PhotoShop リンクを配置で署名を読み込み">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					画像を右下に持っていって、<br>
+					Enter で読み込みを<br>
+					確定します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_026.jpg" alt="PhotoShop 署名を右下端に移動">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					できたアクションを<br>
+					確認してみると、<br>
+					変換:816 pixel, 648 pixel<br>
+					とあります。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_027.jpg" alt="PhotoShop アクションパネルの配置コマンド詳細 中央:中心 変換:816 pixel, 648 pixel">
+				</div>
+				
+				<div class="inner">
+					変換とは<br>
+					位置の移動のことなので、<br>
+					このコマンドは<br>
+					「署名を読み込んで、<br>
+					x 方向に 816 pixel,<br>
+					y 方向に 648 pixel<br>
+					動かす。」<br>
+					という動作になります。
+				</div>
+				
+				<div class="inner">
+					処理したい<br>
+					写真のサイズが<br>
+					いつも同じである<br>
+					保証があれば<br>
+					これで問題無いですが、<br>
+					サイズや向きが違うと<br>
+					困ったことになります。
+				</div>
+				
+				<div class="inner">
+					縦の写真に適用すると、<br>
+					このように、<br>
+					署名が右端に<br>
+					寄ってくれません。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_028.jpg" alt="PhotoShop 縦の写真だと署名が右下に寄らない！">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					今回の問題は<br>
+					バッチ処理対象の<br>
+					画像のサイズが<br>
+					予測不可能なことです。
+				</div>
+				
+				<div class="inner">
+					どうにかして<br>
+					「右下に配置」という<br>
+					抽象的な指示が<br>
+					できないでしょうか?
+				</div>
+				
+				<div class="inner">
+					PhotoShop のヘルプによると…
+				</div>
+				
+				<blockquote class="inner">
+					位置を記録するツールと同様に、<br>
+					モード操作とモードツールでも、<br>
+					定規に現在指定されている単位が<br>
+					使用されます。<br>
+					(中略)<br>
+					様々なサイズの<br>
+					ファイルに対する<br>
+					アクションを<br>
+					記録する場合は、<br>
+					定規単位をパーセント値で<br>
+					設定します。<br>
+					これにより、<br>
+					アクションは常に<br>
+					画像内の一定の位置で<br>
+					再生されるようになります。<br>
+					(Adobe Community Help<br>
+					Photoshop / アクションの作成<br>
+					<a href="https://helpx.adobe.com/jp/photoshop/using/creating-actions.html">https://helpx.adobe.com/jp/photoshop/using/creating-actions.html</a><br>
+					から引用)
+				</blockquote>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					なるほど。<br>
+					では、定規を<br>
+					% 単位にしてみます<br>
+					定規をダブルクリックで<br>
+					設定できます。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_029.jpg" alt="PhotoShop 環境設定ダイアログ 単位・定規">
+				</div>
+				
+				<div class="inner">
+					署名を読み込んで、<br>
+					右下端に寄せます。<br>
+					% で表示されるように<br>
+					なりました。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_030.jpg" alt="PhotoShop % 単位で署名を右下端に移動">
+				</div>
+				
+				<div class="inner">
+					アクションパネルを見てみると、<br>
+					確かに % 単位で<br>
+					記録されていますが…
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_031.jpg" alt="PhotoShop アクションパネル 配置コマンド詳細 変換:40.5%, 42.9%">
+				</div>
+				
+				<div class="inner">
+					縦写真に適用してみると<br>
+					惜しい結果に。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_032.jpg" alt="PhotoShop 縦写真へのアクションの実行結果 署名が少しずれている">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					問題は<br>
+					署名画像のサイズと<br>
+					写真の比率なので、<br>
+					単に署名の位置を<br>
+					写真上の相対位置で<br>
+					指定するだけでは<br>
+					端に寄せることは<br>
+					できないわけです。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					ここはひとつ<br>
+					発想を変えて、<br>
+					ちょっとした<br>
+					トリックを使います。<br>
+					画像を<br>
+					「リンクを配置」で<br>
+					読み込むと、<br>
+					まず中央に<br>
+					配置されますが、<br>
+					これは実は<br>
+					「画像の中央」ではなく<br>
+					「選択範囲の中央」<br>
+					であることを<br>
+					利用します。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					さっき作った配置コマンドを<br>
+					アクションから削除して、<br>
+					記録を再開します。
+				</div>
+				
+				<div class="inner">
+					定規の単位は % のまま、<br>
+					ズームツールで<br>
+					写真の右端に、<br>
+					ピクセルの区切りが<br>
+					見えるまで<br>
+					ズームします。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_033.jpg" alt="PhotoShop 写真右下端にピクセルの区切りが見えるまでズーム">
+				</div>
+				
+				<div class="inner">
+					選択ツールで、<br>
+					右下端の 1 ピクセルだけ<br>
+					選択します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_034.jpg" alt="PhotoShop 写真右下端の1ピクセルだけを選択">
+				</div>
+				
+				<div class="inner">
+					定規の単位を<br>
+					% にしておくのが<br>
+					ミソです。<br>
+					こうすれば、<br>
+					どんな写真でも<br>
+					右下端のピクセルを<br>
+					選択できます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					次に定規の単位を<br>
+					また変更して、<br>
+					pixel 等の<br>
+					絶対位置で指定できる<br>
+					単位にします。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_035.jpg" alt="PhotoShop 環境設定ダイアログ 単位・定規を pixel に変更">
+				</div>
+				
+				<div class="inner">
+					「リンクを配置」で<br>
+					署名画像を読み込みます。<br>
+					今度は<br>
+					選択ピクセルの<br>
+					中心に読み込まれます。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_036.jpg" alt="PhotoShop 画像が写真右下端に読み込まれている">
+				</div>
+				
+				<div class="inner">
+					署名が右下端に<br>
+					ぴったり寄るように<br>
+					移動して、<br>
+					配置を確定します。<br>
+					署名画像の大きさは<br>
+					いつも同じなので、<br>
+					ここでは絶対位置指定に<br>
+					しておけば、<br>
+					写真の大きさに関係なく、<br>
+					署名を端に寄せられます。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_037.jpg" alt="PhotoShop 縦写真へのアクションの実行結果 署名が少しずれている">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					縦写真に適用してみます。<br>
+					やっと成功しました！
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_038.jpg" alt="PhotoShop 縦写真へのアクションの実行結果 署名が右下端に寄っている">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					あとは保存して閉じるだけです。<br>
+					保存に関しては、<br>
+					この連載の<br>
+					<a href="http://ton-katsu.net/contents/experimental/1502/e03_ps_auto_000.html">#000</a>で詳しく書いたので、<br>
+					そちらを参照してください。
+				</div>
+				
+				<div class="inner">
+					これでアクションは完成です。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_039.jpg" alt="PhotoShop アクションパネル 完成したアクション">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					位置の指定に関わる<br>
+					コマンドは<br>
+					アクションでは<br>
+					使いづらいですが、<br>
+					定規の単位変更で、<br>
+					絶対指定と相対指定を<br>
+					うまく切り替えることで、<br>
+					対応できることもあります。
+				</div>
+				
+				<div class="inner">
+					特に相対指定を<br>
+					うまく使えば、<br>
+					画像サイズの<br>
+					違いに関わらず<br>
+					適用できる、<br>
+					汎用性の高いアクションが<br>
+					作成できます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					一連の作例は<br>
+					これで完結です。<br>
+					次回はアクションに関する<br>
+					色々な小技的なことを<br>
+					まとめて、<br>
+					この連載の最終回に<br>
+					したいと思います。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000008-->
+		
+	</body>
+	
+</html>

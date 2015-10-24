@@ -1,0 +1,286 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000009-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000009-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					PhotoShop の自動処理に関する<br>
+					連載記事の続きです。<br>
+					<a href="http://ton-katsu.net/contents/experimental/1503/e000008_ps_auto_004.html">前回</a>までで<br>
+					具体例を通して、<br>
+					アクションを作る時に<br>
+					ハマりやすい罠と<br>
+					その回避方法を<br>
+					解説しました。
+				</div>
+								
+				<div class="inner">
+					今回は、<br>
+					前回までで触れなかった<br>
+					知っておくと<br>
+					役に立つかもしれない<br>
+					細かいこといろいろを<br>
+					書きます。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+				
+				<div class="inner">
+					<h2>コマンドの再記録</h2>
+					アクションパネル上で<br>
+					コマンドをダブルクリックするか、<br>
+					コマンドを選択した状態で<br>
+					パネルメニューから<br>
+					「再記録」をクリックすると、<br>
+					そのコマンドが<br>
+					実行されます。
+				</div>
+								
+				<div class="inner">
+					<img src="article_image/1503/psa_040.jpg" alt="PhotoShop アクションパネル 「ハイパス」の再記録">
+				</div>
+				
+				<div class="inner">
+					このとき、<br>
+					コマンドが<br>
+					「ハイパス」のように<br>
+					オプションを<br>
+					ダイアログで<br>
+					設定できるものの場合、<br>
+					ダイアログが表示されます。<br>
+					ダイアログで<br>
+					オプションを再設定すれば、<br>
+					アクションに記録された<br>
+					オプションも<br>
+					再設定されます。
+				</div>
+				
+				<div class="inner">
+					いちいち<br>
+					アクションを消して<br>
+					記録し直すよりも早く、<br>
+					便利です。
+				</div>
+				
+				<div class="inner">
+					新規レイヤー作成時の<br>
+					不透明度や合成モード、<br>
+					条件コマンドで<br>
+					実行するアクションなんかも<br>
+					再記録できます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>画像サイズと保存 1:<br>
+					「Web 用に保存」</h2>
+					バッチ処理の<br>
+					実行後オプションを<br>
+					利用した<br>
+					ファイルの保存に関しては<br>
+					<a href="http://ton-katsu.net/contents/experimental/1502/e03_ps_auto_000.html">#000</a>で詳しく書きましたが、<br>
+					ファイルの保存には<br>
+					「Web 用に保存」という<br>
+					選択肢もあります。
+				</div>
+								
+				<div class="inner">
+					<img src="article_image/1503/psa_041.jpg" alt="PhotoShop 「Web 用に保存」 ダイアログ">
+				</div>
+				
+				<div class="inner">
+					「Web 用に保存」を使うと<br>
+					画像サイズと画像形式は<br>
+					ダイアログで<br>
+					簡単に設定できます。<br>
+					画像サイズを<br>
+					パーセントで<br>
+					指定できるのも<br>
+					便利です。
+				</div>
+				
+				<div class="inner">
+					ただし、これは逆に言うと、<br>
+					画像サイズなどの設定を、<br>
+					アクションと密に<br>
+					関連付けることになるので、<br>
+					アクションの汎用性を<br>
+					損ねます。
+				</div>
+				
+				<div class="inner">
+					またファイル名は<br>
+					コマンド作成時に指定した<br>
+					名前で固定されます。<br>
+					ということは、<br>
+					複数のファイルに<br>
+					適用すると<br>
+					次々と上書きしてしまいます。
+				</div>
+				
+				<div class="inner">
+					ただし、<br>
+					名前を変更しなかった場合は<br>
+					バッチ処理対象の<br>
+					画像のファイル名が<br>
+					(拡張子以外は)<br>
+					そのまま使われます。<br>
+					この場合、<br>
+					上書きは避けられます。
+				</div>
+				
+				<div class="inner">
+					これは<br>
+					「別名で保存」と同様の<br>
+					挙動ですが、<br>
+					バッチ処理のオプションで<br>
+					上書きできない分、<br>
+					汎用性は低いです。
+				</div>
+				
+				<div class="inner">
+					一番の利点は<br>
+					バッチ処理のオプションに<br>
+					いちいち悩まなくても<br>
+					いいことかもしれません。
+				</div>
+				
+				<div class="inner">
+					アクションの作成は、<br>
+					手間を減らすために<br>
+					やることなので、<br>
+					実行時の手順が<br>
+					複雑じゃないというのは<br>
+					けっこう重要です。<br>
+					特定の作業に<br>
+					限定したアクションで、<br>
+					保存先やサイズなどが<br>
+					常に同じである場合は、<br>
+					「Web 用に保存」は<br>
+					有用でしょう。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>画像サイズと保存 2:<br>
+					「画像解像度」</h2>
+					では、<br>
+					バッチ処理のオプションで<br>
+					保存先を指定する場合、<br>
+					画像サイズを<br>
+					どうやって<br>
+					変更すれば<br>
+					いいでしょうか？
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_042.jpg" alt="PhotoShop 「画像解像度」 ダイアログ">
+				</div>
+				
+				<div class="inner">
+					「イメージ」<br>
+					→「画像解像度」で<br>
+					画像そのもののサイズを<br>
+					変更するのが便利でしょう。
+				</div>
+				
+				<div class="inner">
+					普通なら<br>
+					元画像の解像度が<br>
+					失われるのを嫌って、<br>
+					書き出しオプションで<br>
+					サイズを<br>
+					指定するところですが、<br>
+					元のファイルを<br>
+					上書きしない前提で<br>
+					アクションを作る場合は、<br>
+					不可逆な操作も<br>
+					問題になりません。<br>
+					(バッチ処理の<br>
+					設定を間違えて、<br>
+					上書きしちゃう<br>
+					可能性はあるので、<br>
+					バックアップは<br>
+					しておきたいですが。)
+				</div>
+				
+				<div class="inner">
+					「画像解像度」では、<br>
+					画像のサイズを<br>
+					pixel などの<br>
+					固定サイズで<br>
+					指定することも、<br>
+					パーセントで<br>
+					相対的に<br>
+					指定することも<br>
+					可能です。
+				</div>
+				
+				<div class="inner">
+					何かの都合で、<br>
+					自由変形などを使って<br>
+					サイズ変更する場合は、<br>
+					ものさしの単位の設定で<br>
+					絶対指定と相対指定を<br>
+					切り替えられることを<br>
+					覚えておくといいでしょう。<br>
+					詳しくは<br>
+					<a href="http://ton-katsu.net/contents/experimental/1503/e000008_ps_auto_004.html">前回</a>の記事を<br>
+					参照してください。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					書くことが<br>
+					なくなってきたので、<br>
+					この連載は<br>
+					終わりにします。
+				</div>
+								
+				<div class="inner">
+					そのうち、<br>
+					スクリプトでの<br>
+					自動処理についても<br>
+					書くつもりです。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner ads">
+						<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4862462103%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51g0TuyhgeL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4862462103%2F%3Ftag%3Da8-affi-233326-22" target="_blank">Photoshop 合成の秘訣 -選択ツールを極め 驚異のエフェクトで実現する合成- Photoshop Compositing Secrets 日本語版</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥6,480<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/3/21 17:27時点)</span></p></td></tr></table>
+					<img border="0" width="1" height="1" src="http://www12.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+								
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000009-->
+		
+	</body>
+	
+</html>

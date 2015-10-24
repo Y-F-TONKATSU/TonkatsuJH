@@ -1,0 +1,63 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--writing999999-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing999999-->
+									
+		<div id="cont">
+			
+			<div class="outer">
+				<div class="inner">
+					Nexus 7 などのデバイスを Android4.2.2 にアップデートすると<br>
+					Flash CS 6 や Flash Builder などで<br>
+					Air for Android アプリを開発時に<br>
+					デバッグができなくなる不具合があります。<br>
+					どうやら ADT のアップデートに<br>
+					Air SDK に付属しているビルドツールが<br>
+					対応していないために問題が起きているようです。<br>
+					Air SDK は ADT のビルドツールを参照せずに<br>
+					ビルドを行なっているので、<br>
+					ADT をインストールしていなくてもアプリ開発ができますが、<br>
+					こういう問題が起こることもあるってことですね。
+				</div>
+			</div>
+
+			
+			<div class="outer">
+				<div class="inner">
+					対処方法はこちら<br>
+					<a href="http://forums.adobe.com/message/5076869">http://forums.adobe.com/message/5076869</a><br>
+					にある通り、<br>
+					最新の Android SDK をダウンロードして、<br>
+					(SDK のインストールフォルダ)\platform-tools<br>
+					および<br>
+					(SDK のインストールフォルダ)\build-tools\android-4.2.2<br>
+					フォルダから以下のファイル<br>
+					aapt.exe, adb.exe, AdbWinApi.dll, AdbWinUsbApi.dll, dx.jar, fastboot.exe<br>
+					をコピーして、<br>
+					(Flash CS 6 インストールフォルダ)\AIR3.4\lib\android\bin<br>
+					のものと置き換えれば OK.
+				</div>
+			</div>
+			
+			<div class="outer">
+				<div class="inner">
+					なんかこういうことにばかり時間を取られている気が。<br>
+					最新のツールを使うってことは、<br>
+					動く標的に照準を合わせるようなものですね。
+				</div>
+			</div>
+
+		</div>
+		
+		<!--footer--writing999999-->
+		
+	</body>
+	
+</html>

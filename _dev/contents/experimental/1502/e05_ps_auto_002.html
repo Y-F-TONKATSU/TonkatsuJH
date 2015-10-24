@@ -1,0 +1,241 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000005-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000005-->
+						
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					PhotoShop の自動処理に関する<br>
+					連載記事の続きです。<br>
+					<a href="http://ton-katsu.net/contents/experimental/1502/e04_ps_auto_001.html">前回</a>は<br>
+					主にレイヤーの<br>
+					相対位置指定について<br>
+					解説しました。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<a href="http://ton-katsu.net/contents/experimental/1502/e04_ps_auto_001.html">前回</a>は最前面のレイヤーを<br>
+					選択するところまで<br>
+					アクションを作りました。<br>
+					このアクションを、<br>
+					前回処理に失敗した<br>
+					ブタの写真に<br>
+					再び適用してみます。
+				</div>
+				
+				<div class="inner">
+					レイヤー名の指定の問題は<br>
+					<a href="http://ton-katsu.net/contents/experimental/1502/e04_ps_auto_001.html">前回</a>クリアしたので<br>
+					うまくいくはずなのですが…
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_013.jpg" alt="「最前面へ レイヤー」は現在使用できません。"><br>
+					…同じエラーが出てしまいました。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					どうも背景レイヤーのみの場合、<br>
+					PhotoShop は<br>
+					レイヤーを移動しようとすると、<br>
+					「できないよ。」と<br>
+					警告するようです。
+				</div>
+			
+				<div class="inner">
+					では背景レイヤーを<br>
+					通常のレイヤーに<br>
+					変換する処理を<br>
+					入れればいいでしょうか？<br>
+					しかし、そうすると<br>
+					背景レイヤーを持たない<br>
+					画像を開いた時に<br>
+					余分なコマンドが<br>
+					入ってしまいます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>条件付きコマンド</h2>
+					背景レイヤーがあるときだけ、<br>
+					通常レイヤーへの変換処理を<br>
+					実行したいところです。<br>
+					幸い、CS6 から<br>
+					こういう時に便利な機能が<br>
+					追加されています。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+				
+				<div class="inner">
+					<h3>背景レイヤーの変換</h3>
+					まず、背景を変換する<br>
+					アクションを作ります。<br>
+					(条件付きで<br>
+					アクションを実行するためには、<br>
+					条件が合った時に<br>
+					実行するアクションを<br>
+					予め作っておく<br>
+					必要があります。)
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_007.jpg" alt="新規アクション「背景レイヤーを変換」">
+				</div>
+												
+				<div class="inner">
+					背景レイヤーのみの<br>
+					画像を開いて、<br>
+					アクションを新規作成したら、<br>
+					レイヤー→新規→背景からレイヤーへ<br>
+					で、背景レイヤーを変換し、<br>
+					アクションの記録を停止します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_006.jpg" alt="レイヤー 'レイヤー→新規→背景からレイヤーへ">
+				</div>
+												
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>条件 の挿入</h3>
+					前回作成した<br>
+					アクションを選択し、<br>
+					アクションパネルの<br>
+					パネルメニューから<br>
+					「条件の挿入」を<br>
+					クリックすると、<br>
+					ダイアログが<br>
+					表示されます。
+				</div>
+			
+				<div class="inner">
+					<img src="article_image/1502/psa_008.jpg" alt="レイヤー 'レイヤー→新規→背景からレイヤーへ">
+				</div>
+												
+				<div class="inner">
+					1番上のダイアログは<br>
+					アクションを実行する<br>
+					条件を指定できます。<br>
+					今回は<br>
+					「レイヤーは背景です」を<br>
+					選択します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_009.jpg" alt="レイヤーは背景ですを選択">
+				</div>
+												
+				<div class="inner">
+					2番目のダイアログは<br>
+					条件が満たされている時に<br>
+					実行するアクションを、<br>
+					指定します。<br>
+					さきほど作成した<br>
+					背景レイヤーを<br>
+					変換するアクションを<br>
+					指定します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_010.jpg" alt="背景を変換アクションを選択">
+				</div>
+												
+				<div class="inner">
+					3番目のダイアログは<br>
+					条件が満たされていない時に<br>
+					実行するアクションを、<br>
+					指定します。<br>
+					ここでは「なし」のままに<br>
+					しておきます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					OK をクリックすると、<br>
+					条件付きコマンドが<br>
+					アクションに挿入されます。<br>
+					最前面レイヤーを<br>
+					選択する前に<br>
+					レイヤーを変換したいので、<br>
+					順番を入れ替えて、<br>
+					条件付きコマンドが<br>
+					先に実行されるようにします。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_011.jpg" alt="アクションパネル上でコマンドを並べ替え">
+				</div>
+												
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					変更したアクションで、<br>
+					バッチ処理を実行すると、<br>
+					背景レイヤーが<br>
+					通常レイヤーに<br>
+					変換されています。<br>
+					エラーも起こらなくなりました。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_012.jpg" alt="バッチ処理してもエラーが起こらなくなった">
+				</div>
+												
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					条件付きコマンドは<br>
+					画像の向きや<br>
+					カラーモードによって<br>
+					処理を変えるなど、<br>
+					色々と便利に使えます。
+				</div>
+				
+				<div class="inner">
+					次回はアクションの<br>
+					停止処理について書きます。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000005-->
+		
+	</body>
+	
+</html>

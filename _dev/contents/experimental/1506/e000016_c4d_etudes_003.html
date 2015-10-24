@@ -1,0 +1,272 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000016-->
+		
+	</head>
+	
+	<body>
+	
+		<!--header--experimental000016-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					相変わらず、<br>
+					CINEMA 4D のマニュアルを<br>
+					ちまちま読み進める日々です。
+				</div>
+				
+				<div class="inner">
+					ぼちぼち、簡単なものは<br>
+					作れるようになってきました。<br>
+					いくつか公開します。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<img src="article_image/1506/cup.jpg" alt="CINEMA 4D でモデリングしたコーヒーカップ">
+				</div>
+				
+				<div class="inner">
+					コーヒーカップ。<br>
+					スプラインと<br>
+					「回転」ジェネレータで作成。<br>
+					LW でも、こういうのは<br>
+					回転体で作ったけど、<br>
+					C4D の場合は<br>
+					ポリゴン化されないので、<br>
+					スプラインを調整するだけで<br>
+					カップ全体の形状を<br>
+					(ポリゴン化する前なら)<br>
+					いつでも修正できる。
+				</div>
+				
+				<div class="inner">
+					ハンドル部分は<br>
+					スプラインと<br>
+					「ロフト」ジェネレータで<br>
+					別に作って、<br>
+					ブールオブジェクトで<br>
+					結合している。<br>
+					結合部に<br>
+					「地形」プリミティブを<br>
+					これまたブールで合成して、<br>
+					手作り感を出してみた。
+				</div>
+				
+				<div class="inner">
+					ブール演算は強力だけど、<br>
+					ポリゴンの構造は<br>
+					コントロールしにくくなる。<br>
+					C4D っぽい、<br>
+					モデリングオブジェクトや<br>
+					ジェネレータを使ったモデリングは<br>
+					柔軟で強力だけど、<br>
+					ローポリで作りたいなら<br>
+					さっさとポリゴン化したほうが<br>
+					いいかもしれない。
+				</div>
+				
+			</div>
+												
+			<div class="outer">
+			
+				<div class="inner">
+					<img src="article_image/1506/glass.jpg" alt="CINEMA 4D によるガラス球の表現">
+				</div>
+				
+				<div class="inner">
+					ガラス球。<br>
+					色違いのライトを<br>
+					中に入れてみた。
+				</div>
+				
+				<div class="inner">
+					C4D の「反射」マテリアルは<br>
+					非常に強力で、<br>
+					ここの設定だけで<br>
+					反射に関する<br>
+					あらゆる現象を<br>
+					再現できる。<br>
+					で、マテリアルの設定とは<br>
+					つまるところ<br>
+					反射の設定なので、<br>
+					ここの設定で<br>
+					マテリアルに関する<br>
+					あらゆることが<br>
+					設定できることにもなる。
+				</div>
+				
+				<div class="inner">
+					スペキュラ反射が<br>
+					独立したパラーメータに<br>
+					なっていたのは<br>
+					計算時間の短縮のためで、<br>
+					現象としては<br>
+					スペキュラ反射は<br>
+					鏡面反射と同じ、<br>
+					ということが<br>
+					レンダリングの理論書を<br>
+					読んでいると分かる。<br>
+					CINEMA 4D R16 では、<br>
+					ついにそれが<br>
+					実際のアプリ上でも<br>
+					統合された、<br>
+					ということらしい。
+				</div>
+				
+				<div class="inner">
+					あと、今まで<br>
+					屈折を適当に使ってて、<br>
+					ポリゴンには厚みがないのに<br>
+					どうして屈折を<br>
+					表現できるのか<br>
+					疑問だった。
+				</div>
+				
+				<div class="inner">
+					C4D では、<br>
+					屈折が設定された<br>
+					マテリアルを<br>
+					光が通過すると<br>
+					光が曲がり、<br>
+					同じマテリアルを<br>
+					再度通過すると元に戻る、<br>
+					という感じの<br>
+					処理らしいことが<br>
+					今回マニュアルを<br>
+					読んで分かった。<br>
+					要するに<br>
+					表と裏の<br>
+					ポリゴン間の距離が<br>
+					厚みとみなされるっぽい。
+				</div>
+				
+				<div class="inner">
+					だから屈折を設定した<br>
+					オブジェクトは<br>
+					ちゃんと閉じないと<br>
+					変なことになるよ、<br>
+					とのことらしい。
+				</div>
+				
+				<div class="inner">
+					てことは<br>
+					一つのオブジェクトに<br>
+					複数の屈折率を<br>
+					設定したら、<br>
+					さらに変なことに<br>
+					なるのだろうか？<br>
+					とか、<br>
+					色々試してみたくなった。
+				</div>
+				
+			</div>
+												
+			<div class="outer">
+			
+				<div class="inner">
+					<img src="article_image/1506/shelf.jpg" alt="CINEMA 4D によるブレた棚の表現">
+				</div>
+				
+				<div class="inner">
+					インフォーマルなグリッド。
+				</div>
+				
+				<div class="inner">
+					マテリアル設定に<br>
+					「霧」という<br>
+					見慣れるぬモノが<br>
+					あったので、<br>
+					使ってみたら、<br>
+					カメラのブレみたいになった。
+				</div>
+				
+				<div class="inner">
+					こういう<br>
+					モノをいっぱい並べる系は、<br>
+					MoGraph を使うと<br>
+					かなり楽しそうなので、<br>
+					次は MoGraph を<br>
+					いじってみたい。
+				</div>
+				
+			</div>
+												
+			<div class="outer">
+			
+				<div class="inner">
+					<img src="article_image/1506/room.jpg" alt="CINEMA 4D にステンドグラスの表現">
+				</div>
+				
+				<div class="inner">
+					暗い部屋に差し込む<br>
+					ステンドグラスの光。
+				</div>
+				
+				<div class="inner">
+					透過チャンネルに<br>
+					テクスチャを設定すると<br>
+					特定の色の光線だけが<br>
+					透過する、という<br>
+					説明を読んで、<br>
+					そういうの大好きなので<br>
+					さっそく試してみた。
+				</div>
+				
+				<div class="inner">
+					これ作ってる時に、<br>
+					Light Leak (光漏れ) に<br>
+					若干悩まされた。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1506/leak.jpg" alt="CINEMA 4D で、光が漏れる問題">
+				</div>
+				
+				<div class="inner">
+					図のように<br>
+					ライトを箱の外に置くと、<br>
+					箱のなかは<br>
+					真っ暗になるはずなんだけど、<br>
+					ポリゴンの隙間から<br>
+					光がもれる。
+				</div>
+				
+				<div class="inner">
+					ライトの種類、<br>
+					影の設定などによって<br>
+					発生したりしなかったりで、<br>
+					原因ははっきりしない。
+				</div>
+				
+				<div class="inner">
+					最終的には、<br>
+					壁を2重にしたら<br>
+					漏れなくなった。<br>
+					もともと壁には<br>
+					厚みをつけるつもりだったので、<br>
+					どのみち必要な作業ではあった。
+				</div>
+				
+				<div class="inner video" data-link="https://www.youtube.com/embed/4l4rwvAPhfA">
+					<h2>参考にした動画</h2>
+					<iframe width="1280" height="720" src="https://www.youtube.com/embed/4l4rwvAPhfA" frameborder="0" allowfullscreen></iframe>
+				</div>
+				
+			</div>
+
+		</div>
+		
+		<!--footer--experimental000016-->
+		
+	</body>
+	
+</html>

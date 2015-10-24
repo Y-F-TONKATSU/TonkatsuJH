@@ -1,0 +1,391 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--writing000012-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing000012-->
+		
+		<div id="cont">
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>Expression 初歩の初歩</h2>
+					AE の基本機能の覚書の続きです。<br>
+					前回は<a href="http://ton-katsu.net#writing000010">こちら</a>。<br>
+					今回は Expression を<br>
+					ある程度便利に使える<br>
+					最低限のレベルまで<br>
+					ざっくりさらってみます。
+				</div>
+				
+			</div>		
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>基本操作</h3>
+					レイヤープロパティの<br>
+					ストップウォッチを<br>
+					Alt + クリックすると、<br>
+					Expression が有効になり、<br>
+					そのプロパティの値は<br>
+					スクリプトで<br>
+					決定されるようになる。<br>
+					テンキーの Enter か<br>
+					入力欄以外の UI を<br>
+					クリックで<br>
+					スクリプトを確定する。<br>
+					(メインキーボードの<br>
+					Enter は改行。)<br>
+					もう一度 Alt + クリックで<br>
+					Expression を消去。<br>
+					一時的に無効にする場合は<br>
+					= のボタンをクリック。<br>
+					ショートカットキー EE で<br>
+					選択されたレイヤー<br>
+					(何も選択していない場合<br>
+					全レイヤー)の<br>
+					Expression が設定された<br>
+					プロパティのみを表示する。
+				</div>
+				
+			</div>		
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>基本文法</h3>
+					基本的に JavaScript で、<br>
+					ブラウザ用のオブジェクトがなく、<br>
+					AE 用のオブジェクト<br>
+					(主にそのプロジェクト上の<br>
+					コンポジションや<br>
+					レイヤーなんかを<br>
+					取得できる)<br>
+					が追加されている。
+				</div>
+				
+				<div class="inner">
+					Expression は<br>
+					各フレームのレンダリング時ごと<br>
+					(もしくはプレビュー時ごと)<br>
+					に実行されて、<br>
+					スクリプトの最後に<br>
+					評価された値が<br>
+					そのプロパティの値になる。<br>
+					例えば、 回転プロパティに<br>
+					<br>
+					1 + 1;<br>
+					<br>
+					という Expression を<br>
+					設定すると、<br>
+					回転は 2° になる。<br>
+					(もちろんこんなのは<br>
+					Expression を使うまでもなくて、<br>
+					普通に設定した方がいい。)
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>自分自身の値を取得</h3>
+					Expression を設定していても、<br>
+					普通にキーフレームは設定できる。<br>
+					ただし、Expression で決定される<br>
+					値が優先されるので、<br>
+					キーフレームの値は無視される。<br>
+					しかし、thisProperty で<br>
+					設定した値を取得できる。<br>
+					たとえば、<br>
+					<br>
+					thisProperty;<br>
+					<br>
+					これで、キーフレームで<br>
+					設定した通りの<br>
+					アニメーションになる。<br>
+					もちろんこれも<br>
+					全く面白く無い例である。
+				</div>
+				
+				<div class="inner">
+					amount = 0.5;<br>
+					thisProperty * amount;<br>
+					<br>
+					こうすると、<br>
+					amount の値によって<br>
+					アニメーションの量を<br>
+					変えられて、少し面白い。<br>
+					この例の場合は、<br>
+					キーフレームで設定した値の<br>
+					半分の量でアニメーションする。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>他のプロパティを参照</h3>
+					thisProperty で<br>
+					プロパティが自分自身を<br>
+					参照できるように、<br>
+					thisLayer で<br>
+					自分自身が含まれる<br>
+					レイヤーを参照できる。<br>
+					thisLayer は<br>
+					レイヤーを表現する<br>
+					オブジェクトなので、<br>
+					transform や effect といった<br>
+					メンバーを持っている。
+				</div>
+				
+				<div class="inner">
+					たとえばこれ<br>
+					<br>
+					thisLayer.transform.anchorPoint;<br>
+					<br>
+					をポジションに設定すると<br>
+					ポジションの値が<br>
+					アンカーポイントの値に追従する。<br>
+					こうすると<br>
+					アンカーポイントの値を変えても<br>
+					回転やスケールの<br>
+					基準点が変わるだけで、<br>
+					見た目の位置は変化しなくなる。<br>
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>他のレイヤーの<br>
+					プロパティを参照</h3>
+					レイヤーにアクセスできるように、<br>
+					コンポジションにも<br>
+					thisComp で<br>
+					アクセスできる。<br>
+					thisComp はコンポジションを<br>
+					表現したオブジェクトで、<br>
+					layer プロパティから<br>
+					各レイヤーにアクセスできる。<br>
+					(逆に言うと、<br>
+					同じコンポジションの<br>
+					別のレイヤーに<br>
+					アクセスするには<br>
+					thisComp を<br>
+					経由する必要がある。)<br>
+					layer は関数で、<br>
+					引数として<br>
+					文字列を渡すと、<br>
+					名前の一致する<br>
+					レイヤーを返す。<br>
+					(名前とは<br>
+					レイヤーを選択して Enter で<br>
+					変更できる文字列のこと。)
+				</div>
+				
+				<div class="inner">
+					たとえばこんな感じだ。<br>
+					<br>
+					thisComp.layer("Layer2").transform.rotation;<br>
+					<br>
+					これを Layer1 の回転に設定すると、<br>
+					Layer1 の回転の値は<br>
+					Layer2 のそれに追従する。
+				</div>
+				
+				<div class="inner">
+					なお、layer メソッドは<br>
+					引数に整数値 n を渡すことで、<br>
+					タイムライン上で<br>
+					上から n 番目のレイヤーを<br>
+					取得することも可能。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>ピックウィップ</h3>
+					このように、<br>
+					別のプロパティを<br>
+					参照したくなることは<br>
+					よくあるので、<br>
+					ショートカットが<br>
+					用意されている。
+				</div>
+				
+				<div class="inner">
+					Expression を設定すると<br>
+					プロパティの値の下に<br>
+					渦巻きのような<br>
+					ムチのアイコンが<br>
+					表示される。<br>
+					ムチのアイコンを<br>
+					他のプロパティに<br>
+					ドラッグすると、<br>
+					ドラッグ先のプロパティを<br>
+					参照するスクリプトが<br>
+					自動で入力される。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>プロパティの型と<br>
+					Expression コントロールエフェクト</h3>
+					ところで、<br>
+					今まで敢えて無視してきたが、<br>
+					プロパティの値には<br>
+					いくつかの型がある。<br>
+					ポジションやアンカーポイントの<br>
+					値を指定するには、<br>
+					[960, 540] のように<br>
+					2つ(3Dレイヤーなら3つ) の数値を含む<br>
+					配列を指定しなければならない。<br>
+					(違う型で指定した場合は<br>
+					適当に変換される。)<br>
+					詳細は<a href="http://helpx.adobe.com/jp/after-effects/using/expression-language-reference.html#other_math_methods_expression_reference">言語リファレンス</a>で確認できる<br>
+					…と思ったが、<br>
+					「数が多すぎるので<br>
+					全部は載せないから、<br>
+					ピックウィップで<br>
+					取得できる構文を<br>
+					参考にしてね。」<br>
+					みたいなことが<br>
+					書いてあるな。<br>
+					まあ、それで十分か。
+				</div>
+				
+				<div class="inner">
+					エフェクトのカテゴリに<br>
+					Expression コントロール<br>
+					というモノがある。<br>
+					これらは様々な<br>
+					プロパティの型を<br>
+					一通り取り揃えている。<br>
+					これらのエフェクトは<br>
+					適用しても何も起こらない<br>
+					空のエフェクトで、<br>
+					Expression のターゲットとなる<br>
+					抽象的なプロパティを<br>
+					設定するために存在している。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>wiggle</h3>
+					以下は、<br>
+					その他よく使いそうなものを<br>
+					補足する。<br>
+					wiggle は<br>
+					プロパティに<br>
+					自然な変動を与える関数で、<br>
+					手持ちカメラの<br>
+					振動のような動きなんかを<br>
+					表現できる。<br>
+					初歩的な<br>
+					Expression の機能としては<br>
+					他のプロパティへの<br>
+					追随と並んで<br>
+					よく使われる。
+				</div>
+				
+				<div class="inner">
+					第 1 引数で<br>
+					1 秒間に何回変動させるかを、<br>
+					第 2 引数で<br>
+					変動の量を指定する。
+				</div>
+				
+				<div class="inner">
+					たとえば<br>
+					<br>
+					wiggle(10, 50);<br>
+					<br>
+					をポジションに設定すると、<br>
+					1秒間に10回、<br>
+					プラスマイナス50の範囲で、<br>
+					ガタガタ動くようになる。<br>
+					(wiggle の引数は実は<br>
+					3 つあるが、<br>
+					第 3 引数については省略する。)
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>time と<br>
+					timeToFrames</h3>
+					時間に応じて<br>
+					プロパティを変化させるには<br>
+					time を使う。<br>
+					time には現在の<br>
+					秒数が格納されている。
+				</div>
+				
+				<div class="inner">
+					Expression が<br>
+					評価されるタイミングは<br>
+					各フレーム毎なので、<br>
+					29.97 fps のような<br>
+					中途半端なフレームレートだと<br>
+					(大抵そうだが)、<br>
+					time の値も<br>
+					中途半端な値になる。<br>
+					たとえば、29.97 fpsの<br>
+					コンポジションで、<br>
+					回転を<br>
+					<br>
+					time * 360;<br>
+					<br>
+					にする。<br>
+					1 秒でちょうど一回転する<br>
+					と思いきや、<br>
+					タイムコード上の 00:01:00<br>
+					の時点では<br>
+					ぴったり元の角度には戻らない。<br>
+					(計算上は正確に 1 秒の時点で<br>
+					ちょうど一回転してはいるのだが。)
+				</div>
+				
+				<div class="inner ads">
+					半端な秒数ではなく<br>
+					フレーム数で取得したい時も<br>
+					あるかもしれない。<br>
+					<br>
+					timeToFrames(time);<br>
+					<br>
+					と書いてやると、<br>
+					秒数がフレーム数に変換される。<br>
+					この場合は 1 フレーム毎に<br>
+					プロパティの値が<br>
+					1 ずつ上がっていく。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--writing000012-->
+		
+	</body>
+	
+</html>

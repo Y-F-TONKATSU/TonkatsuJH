@@ -1,0 +1,277 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000011-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000011-->
+		
+		<div id="cont">
+			
+			<div class="experimental">
+				
+				<h2>HTML5 の Canvas で時計を描いてみた その1</h2>
+				<canvas id='canvas' width='400' height='400'></canvas>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					最近は、<br>
+					このサイトを<br>
+					もう少し<br>
+					賢くするために<br>
+					LESS やら<br>
+					Node.js やら<br>
+					Grunt.js やら<br>
+					テストスイートやら<br>
+					色々やってみている。<br>
+					(React.js とかも<br>
+					なんか有用そうで<br>
+					気になっている)
+				</div>
+				
+				<div class="inner">
+					その手のやつに比べて、<br>
+					Canvas とかを使って<br>
+					ガリガリと<br>
+					描いていく感じのやつは<br>
+					ユーザビリティに<br>
+					寄与しないから、<br>
+					残念なことに、<br>
+					普通に Web サイトを<br>
+					作るにはあまり役に立たなくて、<br>
+					覚えるのが<br>
+					後回しになりがちである。
+				</div>
+				
+				<div class="inner">
+					しかし、<br>
+					本当にやりたいのは<br>
+					こういう動くものなので、<br>
+					Canvas のアプリも<br>
+					少しずつ書いていく。
+				</div>
+			
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					最初は小手調べに<br>
+					時計を描いてみた。
+				</div>
+				
+				<div class="inner">
+					さすがにこれだけでは<br>
+					つまらなさすぎるので、<br>
+					徐々に機能を覚えながら、<br>
+					これをベースに<br>
+					無駄に色々と<br>
+					動かしていくことにする。
+				</div>
+				
+				<div class="inner">
+					現状のコードは<br>
+					こんな感じ。
+				</div>
+				
+			</div>
+			
+			<div class="code">
+<pre>var Clock;
+
+(function(){
+	
+	var _canvas, _context;
+	
+	var FONT_HEIGHT = 15;
+	var NUM_MARGIN = 20;
+	var DEFAULT_MARGIN = 40;
+	
+	var HANDS_LENGTH = {
+		'sec': 0.9,
+		'min': 0.7,
+		'hour': 0.5
+	};
+	
+	var REFRESH_RATE = 1000;
+	
+	Clock = function(canvas, margin){
+		
+		if(!canvas){
+			canvas = $('canvas').get(0);
+		}
+		
+		this.setCanvas(canvas);
+		
+		if(!margin){
+			margin = DEFAULT_MARGIN;
+		}
+		this._margin = margin;
+			
+	}
+	
+	Clock.prototype.getCenterX = function(){
+		return this.getCanvasWidth() / 2;
+	};
+	
+	Clock.prototype.getCenterY = function(){
+		return this.getCanvasHeight() / 2;
+	};
+	
+	Clock.prototype.getCanvas = function(){
+		return _canvas;
+	}
+	
+	Clock.prototype.setCanvas = function(val){
+		_canvas = val;
+		_context = $(_canvas).get(0).getContext('2d');
+	}
+	
+	Clock.prototype.getContext = function(){
+		return _context;
+	}
+	
+	Clock.prototype.getCanvasWidth = function(){
+		return parseInt($(_canvas).attr('width'));
+	}
+	
+	Clock.prototype.getCanvasHeight = function(){
+		return parseInt($(_canvas).attr('height'));
+	}
+	
+	Clock.prototype.getRadius = function(){
+		return this.getCanvasWidth() / 2 - this._margin;
+	}
+	
+	Clock.prototype.getHandRadius = function(){
+		return this.getRadius() + NUM_MARGIN;
+	}
+	
+	Clock.prototype.clearCanvas = function(){
+		_context.clearRect(0, 0, this.getCanvasWidth(), this.getCanvasHeight())
+	}
+	
+	Clock.prototype.drawCircle = function(){
+		
+		_context.beginPath();
+		_context.arc(this.getCenterX(), this.getCenterY(), this.getRadius(), 0, Math.PI * 2, true);
+		_context.stroke();
+	}
+	
+	Clock.prototype.drawCenterBit = function(){
+		
+		_context.beginPath();
+		_context.arc(this.getCenterX(), this.getCenterY(), this.getRadius() / 10, 0, Math.PI * 2, true);
+		_context.fill();
+	}
+	
+	Clock.prototype.getHandLength = function(handType){
+		
+		return this.getRadius() * HANDS_LENGTH[handType];
+		
+	}
+	
+	Clock.prototype.drawNums = function(){
+		
+		var nums = [];
+		for (var i = 0; i &lt; 12; i++){
+			nums.push(i + 1);
+		}
+		
+		var that = this;
+		var angle = 0;
+		var numWidth = 0;
+		$(nums).each(function(index, element) {
+			angle = Math.PI / 6 * (element - 3);
+			numWidth = _context.measureText(element).width;
+			var x = that.getCanvasWidth() / 2 + Math.cos(angle) * that.getHandRadius() - numWidth / 2;
+			var y = that.getCanvasHeight() / 2 + Math.sin(angle) * that.getHandRadius() + FONT_HEIGHT / 3;
+			_context.fillText(element, x, y);
+		});
+		
+	};
+	
+	Clock.prototype.drawHand = function(handType, dir){
+		
+		var angle = (Math.PI * 2) * (dir / 60) - Math.PI / 2;
+		_context.moveTo(this.getCenterX(), this.getCenterY());
+		_context.lineTo(
+			this.getCenterX() + Math.cos(angle) * this.getHandLength(handType),
+			this.getCenterY() + Math.sin(angle) * this.getHandLength(handType)
+		);
+		_context.stroke();
+		
+	};
+	
+	Clock.prototype.dateToDirection = function(date){
+		
+		if(!date){return null};
+		
+		var dir = {
+			sec: date.getSeconds(),
+			min: date.getMinutes(),
+			hour: ((date.getHours() % 12) * 5 + date.getMinutes() / 12)
+		}
+		
+		return dir;
+		
+	}
+	
+	Clock.prototype.drawHands = function(date){
+		var dir = this.dateToDirection(date);
+		this.drawHand('hour', dir.hour);
+		this.drawHand('min', dir.min);
+		this.drawHand('sec', dir.sec);
+	}
+	
+	Clock.prototype.drawClock = function(){
+		var that = this;
+		setInterval(function(){
+			that.clearCanvas();
+			that.drawCircle();
+			that.drawNums();
+			that.drawCenterBit();
+			that.drawHands(new Date());
+		}, REFRESH_RATE);
+	}
+	
+	var clock  = new Clock($('#canvas').get(0), 100);
+	clock.drawClock();
+
+})();</pre>
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					TDD の練習も兼ねていて、<br>
+					動かすだけなら<br>
+					不要なコードも<br>
+					若干入っている。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner ads">
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873116872%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51jlKdsH46L._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873116872%2F%3Ftag%3Da8-affi-233326-22" target="_blank">プログラミング HTML5 Canvas ―ウェブ・モバイル・ゲーム開発者のためのアプリケーション開発ガイド</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥4,104<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/4/14 02:34時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www14.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+				
+			</div>
+
+		</div>
+		
+		<!--footer--experimental000011-->
+		
+	</body>
+	
+</html>

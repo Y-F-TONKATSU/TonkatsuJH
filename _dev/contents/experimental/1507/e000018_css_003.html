@@ -1,0 +1,523 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000018-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000018-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					<a href='http://ton-katsu.net/contents/experimental/1505/e000015_css_002.html'>前回</a>、<br>
+					width と margin の<br>
+                    相関関係について<br>
+                    説明した。<br>
+                    今回は float について。
+				</div>
+				
+				<div class="inner">
+                    表面的な説明では、<br>
+                    CSS の float プロパティは<br>
+                    いわゆる「回り込み」を<br>
+                    実現するとされる。
+				</div>
+                
+				<div class="inner">
+                	一応直感的に<br>
+                    使えるように<br>
+                    なってはいるのだが、<br>
+                    それを実現する仕組みは<br>
+                    複雑である。
+				</div>
+                
+				<div class="inner">
+                	よく理解せず、<br>
+                    複雑な文脈で使うと、<br>
+                    途端に<br>
+                    訳の分からない挙動を<br>
+                    目にすることになる。
+				</div>
+                
+				<div class="inner">
+                    float は実は、<br>
+                    margin:auto ありきの<br>
+                    概念で、<br>
+                    ボックスモデルを抜きに<br>
+                    理解することは難しい。
+				</div>
+                
+			</div>
+            
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>フローティングボックスは<br>
+                    空気のような存在</h2>
+                    float が指定された要素は<br>
+                    フローティングボックスという<br>
+                    特別なブロックを形成する。
+				</div>
+			
+				<div class="inner">
+                	フローティングボックスは<br>
+                    後続の要素からの<br>
+                    扱いが特殊である。<br>
+                    後続の要素はまるで<br>
+                    フローティングボックスが<br>
+                    存在しないかのように<br>
+                    配置される。
+				</div>
+			
+				<div class="inner">
+					そうすると<br>
+                    後続の要素は<br>
+                    フローティングボックスと<br>
+                    重なり合って配置される。<br>
+                    (ここがキモの一つ)
+				</div>
+			
+				<div class="inner">
+                    ただし、<br>
+                    後続の要素は<br>
+                    そのコンテンツを<br>
+                    フローティングボックスに<br>
+                    重ならないように<br>
+                    配置する。
+				</div>
+				
+				<div class="inner">
+					結果、回りこみが<br>
+                    実現する。
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1507/css03_01.jpg' alt='フローティングボックスは空気のような存在'>
+				</div>
+                
+			</div>
+            
+			<div class="outer">
+			
+				<div class="inner">
+					具体例。<br>
+                    まずは float 指定無しの<br>
+                    ブロック要素を<br>
+                    2つ並べる。
+				</div>
+				
+				<div class="inner">
+<pre>.orange{
+    width:200px;
+    margin-left:200px;
+    margin-right:auto;
+    padding:0px;
+    background-color:orange;
+}
+
+.yellow{
+    width:auto;
+    margin-left:0px;
+    padding:0px;
+    background-color:yellow;
+}
+
+.parent{
+	width:600px;
+	background-color:green;
+}</pre><br>
+					<img src='article_image/1507/css03_02.jpg' alt='float を指定していない状態'>
+				</div>
+				
+				<div class="inner">
+                    包含ブロックの<br>
+                    width は 600px である。<br>
+                    ブロック要素は<br>
+                    包含ブロックの<br>
+                    width を埋め尽くすので、<br>
+                    子要素の<br>
+                    2つのボックスは<br>
+                    当然縦に並ぶ。
+				</div>
+				
+				<div class="inner">
+                    また、オレンジの要素は<br>
+                    width:200px<br>
+                    margin-left:200px<br>
+                    で、 margin-right は<br>
+                    auto になっているから<br>
+                    右の余白は<br>
+                    600 - 200 - 200<br>
+                    で、200px になる。<br>
+                    結果として<br>
+                    中央寄せになっている。
+				</div>
+				
+				<div class="inner">
+                    黄色の要素は<br>
+                    余白が0で、<br>
+                    width:auto <br>
+                    なので、<br>
+                    包含ブロックの横幅を<br>
+                    埋め尽くしている。<br>
+                    ここまでは<br>
+                    前回の復習。
+				</div>
+				
+			</div>
+            
+			<div class="outer">
+			
+				<div class="inner">
+                    ここで、オレンジの要素に<br>
+                    float:left<br>
+                    を設定すると…
+				</div>
+				
+				<div class="inner">
+<pre>.orange{
+    width:200px;
+    margin-left:200px;
+    margin-right:auto;
+    padding:0px;
+    background-color:orange;
+    float:left;
+}
+
+.yellow{
+    width:auto;
+    margin-left:0px;
+    padding:0px;
+    background-color:yellow;
+}
+
+.parent{
+	width:600px;
+	background-color:green;
+}</pre><br>
+					<img src='article_image/1507/css03_03.jpg' alt='float:left を指定'>
+				</div>
+				
+				<div class="inner">
+                    …こうなる。<br>
+                    黄色のボックスと<br>
+                    オレンジのボックスが<br>
+                    重なっていることに<br>
+                    注目しよう。
+				</div>
+				
+				<div class="inner">
+                	オレンジのボックスが<br>
+                    フローティングボックスに<br>
+                    なったので、<br>
+                    黄色のブロックは<br>
+                    オレンジのブロックが<br>
+                    存在しないかのように<br>
+                    配置される。
+				</div>
+				
+				<div class="inner">
+                    黄色のブロックの<br>
+                    コンテンツは<br>
+                    右側 200px に<br>
+                    配置されている。
+				</div>
+				
+				<div class="inner">
+                    オレンジのブロックの<br>
+                    margin-right と<br>
+                    同じサイズなので、<br>
+                    黄色のブロックの<br>
+                    コンテンツが<br>
+                    オレンジのブロックの<br>
+                    右の余白に<br>
+                    配置されているようにも<br>
+                    見えるが、<br>
+                    そうではない。
+				</div>
+				
+                
+			</div>
+            
+			<div class="outer">
+			
+				<div class="inner">
+                    今度は<br>
+                    float:right を<br>
+                    指定してみると…
+				</div>
+				
+				<div class="inner">
+<pre>.orange{
+    width:200px;
+    margin-left:200px;
+    margin-right:auto;
+    padding:0px;
+    background-color:orange;
+    float:right;
+}
+
+.yellow{
+    width:auto;
+    margin-left:0px;
+    padding:0px;
+    background-color:yellow;
+}
+
+.parent{
+	width:600px;
+	background-color:green;
+}</pre><br>
+					<img src='article_image/1507/css03_04.jpg' alt='float:right を指定'>
+				</div>
+                
+				<div class="inner">
+                    …こうなる。<br>
+                    何が起こったのだろうか？
+				</div>
+				
+				<div class="inner">
+                    この場合、<br>
+                    オレンジの要素の<br>
+                    margin-left は<br>
+                    固定値(200px)で、<br>
+                    margin-right は<br>
+                    auto になっているのが<br>
+                    ポイントである。
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>float の<br>
+                    スコスコなイメージ</h2>
+                    そもそも何故<br>
+                    回り込みの指定が<br>
+                    'float' なのか<br>
+                    疑問に思った人も<br>
+                    多いだろう。
+				</div>
+			
+				<div class="inner">
+                	margin と width の<br>
+                    関係を理解しているなら、<br>
+                    margin:auto <br>
+                    を、伸縮する<br>
+                    突っ張り棒のようなものとして<br>
+                    イメージできると思う。
+				</div>
+			
+				<div class="inner">
+                    この突っ張り棒が外れて<br>
+                    スコスコ動くようなのが、<br>
+                    フローティングボックスの<br>
+                    イメージだ。
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1507/css03_05.jpg' alt='margin:auto は突っ張り棒！ はずすとすかすかだ！dd'>
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+                	今度は<br>
+                    margin-left を<br>
+                    auto にして、<br>
+                    margin-right を<br>
+                    200px にしてみると…
+				</div>
+				
+				<div class="inner">
+<pre>.orange{
+    width:200px;
+    margin-left:auto;
+    margin-right:200px;
+    padding:0px;
+    background-color:orange;
+    float:right;
+}
+
+.yellow{
+    width:auto;
+    margin-left:0px;
+    padding:0px;
+    background-color:yellow;
+}
+
+.parent{
+	width:600px;
+	background-color:green;
+}</pre><br>
+					<img src='article_image/1507/css03_06.jpg' alt='margin-left に auto を指定'>
+				</div>
+                
+				<div class="inner">
+                	こうなる。<br>
+                    左右どちらかの<br>
+                    margin が auto に<br>
+                    なっていて、<br>
+                    かつ、固定された余白と<br>
+                    width の合計が<br>
+                    包含ブロックの<br>
+                    width より<br>
+                    小さくないと、<br>
+                    回りこみは行われない。
+				</div>
+				
+				<div class="inner">
+                	いわば「遊び」の<br>
+                    空間が無いと、<br>
+                    フローティングさせても<br>
+                    スコスコできない、<br>
+                    みたいなイメージである。
+				</div>
+				
+			</div>
+            
+			<div class="outer">
+			
+				<div class="inner">
+					ところで、<br>
+                    margin:auto を<br>
+                    突っ張り棒に例えたが、<br>
+                    margin を固定値にしての<br>
+                    width:auto も<br>
+                    突っ張り棒に似た<br>
+                    働きをする。
+				</div>
+			
+				<div class="inner">
+                	width:auto<br>
+                    で、左右の余白を<br>
+                    200px にしてみると…
+				</div>
+                
+				<div class="inner">
+<pre>.orange{
+    width:auto;
+    margin-left:200px;
+    margin-right:200px;
+    padding:0px;
+    background-color:orange;
+    float:right;
+}
+
+.yellow{
+    width:auto;
+    margin-left:0px;
+    padding:0px;
+    background-color:yellow;
+}
+
+.parent{
+	width:600px;
+	background-color:green;
+}</pre><br>
+					<img src='article_image/1507/css03_07.jpg' alt='width に auto を指定'>
+				</div>
+                
+				<div class="inner">
+                	こうなる。<br>
+                	margin の値が<br>
+                    小さくなっても<br>
+                    その分 width が<br>
+                    増えるだけである。
+				</div>
+                                    
+				<div class="inner">
+                	margin を<br>
+                    auto にすると、<br>
+                    余白は 0 になるが、<br>
+                    その分 width が<br>
+                    増えるだけで、<br>
+                    突っ張り棒健在となる。
+				</div>
+                                    
+				<div class="inner">
+                    「遊び」の空間は<br>
+                    なくなってしまい、<br>
+                    回りこみは行われない。
+				</div>
+                
+            </div>
+            
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>そもそも float 自体<br>
+                    あまり有用じゃないという説もある</h2>
+                    回りこみが<br>
+                    どのように実現されるか、<br>
+                    仕組みを理解すれば、<br>
+                    予想外の挙動を<br>
+                    されることは<br>
+                    少なくなるだろう。
+				</div>
+			
+				<div class="inner">
+					しかし、<br>
+                    float の仕組みは<br>
+                   	明らかに必要以上に<br>
+                    複雑で柔軟性を欠く。
+				</div>
+			
+				<div class="inner">
+					例えば、float で<br>
+                    マルチカラムレイアウトを<br>
+                    実現するとかは<br>
+                    結構ストレスが溜まると思う。
+				</div>
+			
+				<div class="inner">
+					フレックスコンテナボックス<br>
+                    のような<br>
+                    CSS3 の新しい機能が<br>
+                    実用化されてくれば、<br>
+                    複雑な文脈では<br>
+                    使われなくなるだろうし、<br>
+                    現状でも<br>
+                    jQuery プラグインなどで<br>
+                    迂回できるなら<br>
+                    そのほうがいい。
+				</div>
+			
+				<div class="inner">
+					とはいえ、<br>
+                    シンプルな文脈では<br>
+                    仕組みを知っておけば、<br>
+                    便利に使えるだろう。
+				</div>
+			
+			</div>
+			
+			<div class="outer">
+                
+				<div class="inner">
+                	今回はこれまで。<br>
+                	フローティングボックスの<br>
+                    スコスコしたイメージを<br>
+                    掴んでいただけただろうか？
+				</div>
+                
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000018-->
+		
+	</body>
+	
+</html>

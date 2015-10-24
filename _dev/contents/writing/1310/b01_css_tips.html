@@ -1,0 +1,507 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--writing000001-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing000001-->
+							
+		<div id="cont">
+			
+				<div class="outer">
+				
+					<div class="inner">
+					
+						<h2>Web アプリクライアントサイドの今昔</h2>
+						
+						筆者（とんかつ）は触ること自体が楽しいような<br>
+						リッチな UI を作るのが好きなので、<br>
+						昔から Flash を愛用していた。<br>
+						(こんなのとか<br>
+						<a href="http://mb.from.tv/kinepon_main.html">http://mb.from.tv/kinepon_main.html</a>)<br>
+						しかし Web の主戦場が<br>
+						モバイルに移ってきたこともあり、<br>
+						Web 標準の構造化文書から得られるメリットも<br>
+						大きくなってきたので、<br>
+						この TONKATSU のサイトは<br>
+						HTML, CSS, JavaScript で書いた。
+					</div>
+					
+					<div class="inner">
+						実際やってみると、<br>
+						レイアウトとアニメーションの自由度や<br>
+						イベント検出の機能などが Flash と比べて落ちるのは<br>
+						覚悟のうえだからいいとして、<br>
+						CSS の各ブラウザ実装のとっ散らかり具合がひどい。<br>
+						「Web 標準」のはずの技術を採用したせいで<br>
+						かえってブラウザ互換の問題に悩まされた。
+					</div>
+					
+				</div>
+			
+				<div class="outer">
+				
+					<div class="inner">
+						ひどい、10 年前から進化してない！<br>
+						と思ったのだが、 jQuery の使い方を学ぶうちに、<br>
+						プラグインまで視野にいれるなら、<br>
+						状況はむしろ飛躍的に改善していることにも気付いた。<br>
+						(そもそも人力でマークアップしないのが主流だし、<br>
+						本来の進化の方向だという話もある。<br>
+						Adobe Edge ツールみたいなのも出てきているし。)
+					</div>
+					
+					<div class="inner">
+						そんなわけで、ここ最近は<br>
+						CSS の仕様と格闘していた。<br>
+						せっかくなので、どのへんでハマって<br>
+						どう解決したか、といったことを<br>
+						jQuery との関連も含めて記録しておく。
+					</div>
+					
+					<div class="inner">
+						ただしあくまでも、頭で自由に想像したビジュアルを<br>
+						最速で再現するのが目指すところで、<br>
+						Web 独自のデザイン手法や<br>
+						構造化文書の概念を理解することには重点を置いてない。<br>
+						そのため CSS の仕様をしっかり読み込んだりはしてないから、<br>
+						正確な記述にはなっていないと思う。
+					</div>
+					
+				</div>
+			
+				<div class="outer">
+				
+					<div class="inner">
+						(※ところで、JavaScript と ActionScript は<br>
+						比較するとまさに一長一短である。<br>
+						同じ EcmaScript 系で似たところはあっても、<br>
+						実は志向するところが全く違う。<br>
+						AS3 はまともにクラスが使えるので<br>
+						(abstract が無いとか色々瑕はある)<br>
+						それなりに固く書けるし、<br>
+						JavaScript はダイナミックな書き方ができて、<br>
+						危険だが楽しい。)
+					</div>
+					
+				</div>
+				
+				<div class="outer">
+				
+					<div class="inner">
+					
+						<h2>ブロック要素のサイズ関連</h2>
+					
+						構造化文書という考え方自体あまり好きではないので、<br>
+						こういうものにあまり時間を取られたくない。<br>
+						しかし、 CSS は感覚的にレイアウトができるような道具ではない。<br>
+						(だから好きじゃないというのも大きいのだが)<br>
+						理解が曖昧なままで<br>
+						動的なレイアウトなどをやろうとすると、<br>
+						必ず崩壊を起こして却って延々と悩む羽目になる。
+					</div>
+					
+				</div>
+				
+					<div class="outer">
+						
+						<div class="inner">
+						
+							<h3>width と height</h3>
+							
+							普通 HTML のブロック要素は<br>
+							そのコンテンツが占める広さに応じて、<br>
+							必要なだけの領域を<br>
+							ブラウザが自動で確保する。<br>
+							しかし、レイアウトにある程度凝るなら、<br>
+							要素の領域を<br>
+							コントロールしたいことが多い。<br>
+							そういうときは<br>
+							 width 及び height プロパティを<br>
+							 設定すれば、<br>
+							要素を特定のレイアウトに<br>
+							収めることが出来る。<br>
+							(これらのプロパティは<br>
+							デフォルト値が 'auto' なので、<br>
+							上述のような挙動になる。)<br>
+							(設定した領域にコンテンツが収まらない時は<br>
+							overflow プロパティに応じて<br>
+							はみ出したコンテンツが処理される。)
+						</div>
+						
+						<div class="inner">
+							…と、かなり基本的なことを書いたが、<br>
+							ここだけでもいくつか罠がある。
+						</div>
+						
+					</div>
+					
+					<div class="outer">
+					
+						<blockquote class="inner">
+							要素の幅や高さをその style.width や style.height プロパティで調べようと試みた人は、
+							ある悲しい事実に直面したはずだ。
+							これらのプロパティは、その要素の対応する style 属性によってしか設定されない。
+							だから要素の寸法をこういったプロパティを介して調べるには、
+							まず最初に寸法を設定しておく必要があるわけだ。
+							それでは「役に立つ」とはいえない。<br>
+							(コア jQuery + プラグイン / jQuery UI 開発実践技法 pp.78)
+						</blockquote>
+						
+					</div>
+					
+					<div class="outer">
+					
+						<div class="inner">
+							height を 80% とかで指定して、<br>
+							実際は何ピクセルになったのかな？ と出力させたら<br>
+							"80%" と表示されたときは確かに悲しかった。<br>
+							(そして、そういうコードは<br>
+							動的なレイアウトを実現するためには頻繁に必要になる)
+						</div>
+						
+						<div class="inner">
+							なお、引用した本は jQuery の本なので、<br>
+							でも、jQuery の width(), height() メソッドを<br>
+							使えば大丈夫！ と続く。<br>
+							実際これらのメソッドにはお世話になった。
+						</div>
+						
+					</div>
+				
+					
+					<div class="outer">
+					
+						<div class="inner">
+						
+							<h3>スクロールバーの罠</h3>
+						
+							ブラウザの表示領域全体のサイズを取得するには<br>
+							window.innerWidth, window.innerHeight, が使えるのだが、<br>
+							これらのプロパティはスクロールバーが<br>
+							表示されていてもいなくても同じ値を返す。<br>
+							厳密にレイアウトを整えたいときには<br>
+							これだと困ることもある。<br><br>
+							これも jQuery を使って<br>
+							$(document).width() などとしておくと、<br>
+							スクロールバーが表示されていれば<br>
+							バーの幅を引いた値を返してくれる。<br>
+							スクロールバーを含めたい場合は<br>
+							$(window).width().
+						</div>
+						
+					</div>
+			
+					<div class="outer">
+					
+						<div class="inner">
+						
+							<h3>Margin と Padding とボーダーとブロック要素のサイズ</h3>
+					
+							Margin プロパティは<br>
+							要素の外側の余白のサイズの指定、<br>
+							Padding プロパティは<br>
+							要素の内側の余白のサイズを指定する。
+						</div>
+						
+						<div class="inner">
+							動的なレイアウトを組む上で<br>
+							重要かつ見落としがちなのは<br>
+							width や height で<br>
+							指定あるいは取得できるサイズは、<br>
+							コンテンツエリアのサイズである<br>
+							(つまり余白を一切含まない)点と、<br>
+							ボーダーのサイズも<br>
+							一種の余白のように扱われる点である。<br>
+							例えばこんな Div を書いてみる。<br>
+							&lt;div style="position:relative; height: 10px; width: 10px; margin:10px; padding:10px; border: 10px solid #000000;"&gt;<br>
+							するとこんな感じでレンダリングされる。<br>
+							<img src="article_image/13/css_border.png"><br>
+							ボーダーはマージンとパディングに重ならず、<br>
+							パディングはコンテンツエリア<br>
+							(width, height で指定した幅)に重ならずに、<br>
+							独自の領域を形成する。
+						</div>
+						
+						<div class="inner">
+							見た目のサイズ、つまりボーダーの外側は<br>
+							一片 50 px あるのだが、<br>
+							width() で取得できるサイズは 10 である。<br>
+							このようにボーダーとパディングを<br>
+							大きく設定すると見た目のサイズと<br>
+							設定値がかけ離れてしまったりもする。<br>
+							特に後述する borderImage を使う場合は<br>
+							太いボーダーを設定することが多いため<br>
+							注意が必要である。
+						</div>
+						
+					</div>
+					
+					<div class="outer">
+					
+						<div class="inner">
+							逆にいうと、ブロック要素全体が占める領域は<br>
+							width(あるいは height), padding, <br>
+							border-width, margin の合計になる。<br>
+							なお、これは width, height の値を<br>
+							指定していない場合も同様で、<br>
+							その場合 jQuery の<br>
+							width(), height() メソッドは、<br>
+							コンテンツが占める広さに応じた<br>
+							余白を含まない値を返す。
+						</div>
+						
+						<div class="inner">
+							(ただし、margin は相殺が起こることがある。<br>
+							margin は挙動がやたらと複雑なので<br>
+							厳密にレイアウトを組む場合は、<br>
+							基本的に 0 にしておいたほうが、<br>
+							結果として時間を無駄に食わないかも。)
+						</div>
+					</div>
+			
+				<div class="outer">
+				
+						<div class="inner">
+						
+							<h2>z-index 関連</h2>
+						
+							z-index プロパティは<br>
+							重なりあった要素の重ね順を指定するプロパティで<br>
+							動的で立体的なレイアウトを組むには欠かせない。<br>
+							そして、こいつには罠が多いのである。
+						</div>
+					
+				</div>
+				
+					<div class="outer">
+
+						<div class="inner">
+						
+							<h3>position は static 以外に</h3>
+							
+							まず position プロパティが static だと<br>
+							z-index を指定しても無視される。<br>
+							position:static の指定は<br>
+							left, top, z-index など、<br>
+							位置を指示する css プロパティを無視しろ、<br>
+							という指示になる。<br>
+							(width, height, padding, margin なんかは有効)<br>
+							これがデフォルトなので、<br>
+							初心者は z-index だけ指定しても<br>
+							反映されなくて ??? となりがち。
+						</div>
+						
+						<div class="inner">
+							位置はデフォルトのままで<br>
+							重ね順だけ変えたいときは<br>
+							position:relative;<br>
+							left:0px;<br>
+							top:0px;<br>
+							とでもしとけばいいでしょう。
+						</div>
+						
+					</div>
+					
+					<div class="outer">
+					
+						<div class="inner">
+						
+							<h3>ネストされた要素の z-index の比較</h3>
+							
+							要素がネストされている場合、<br>
+							親同士の z-index の比較が優先される。<br>
+							要するに貧乏な家に生まれた秀才が<br>
+							金持ちのバカ息子に負ける世界。<br>
+							ただし、これは親要素の z-index を指定した場合で、<br>
+							親の z-index が auto (初期値) の場合は、<br>
+							子の z-index 値が親子関係を超えて評価される。
+						</div>
+						
+						<div class="inner">
+							逆に言うと、見た目の重ね順に合わせて、<br>
+							文書上の階層構造を分けなければいけない、<br>
+							というケースも有り得るわけだが、<br>
+							それがどのくらい避けるべきことなのかはよく分からない。
+						</div>
+						
+					</div>
+					
+					<div class="outer">
+					
+						<div class="inner">
+						
+							<h3>JavaScript では zIndex と表記する</h3>
+							
+							css では z-index や background-image のような<br>
+							2 ワード以上のプロパティ名はハイフンで区切るが、<br>
+							JavaScript では<br>
+							ハイフンはマイナスの意味になってしまうので、<br>
+							zIndex や backgroundImage のように<br>
+							いわゆる CamelCase で表記する。<br>
+							こんなのはまず間違えないんだけど、一応。
+						</div>
+						
+					</div>
+		
+					<div class="outer">
+						
+						<div class="inner">
+						
+							<h3>zIndex が上の要素をクリックに反応させないようにする</h3>
+							
+							アルファ付きの png などを使っていると、<br>
+							ボタン等の前面に透明のオブジェクトが重なって<br>
+							押せなくなることがある。
+						</div>
+						
+						<div class="inner">
+							そういうときは前面の要素に<br>
+							pointerEvents : none;<br>
+							を指定すると、<br>
+							全面の要素がクリックに反応しなくなり、<br>
+							背面のボタンが押せるようになる。<br>
+							プロパティ名の最後の s をたまに忘れる。
+						</div>
+						
+					</div>
+					
+			<div class="outer">
+				
+				<div class="inner">
+				
+					<h2>src, href, url()</h2>
+					
+					筆者だけかもしれないが、<br>
+					リンク先を指定する属性を<br>
+					書き間違えることがたまにある。<br>
+					DreamWeaver で書いてると間違えないけど、<br>
+					JavaScript だと何の警告もコードヒントもないので。
+				</div>
+				
+				<div class="inner">
+					&lt;a&gt;タグでリンク先を指定するときは href,<br>
+					&lt;img&gt;タグで画像を指定するときは src,<br>
+					background-image や border-image などで<br>
+					画像を指定するときは url(***.png).
+				</div>
+				
+				<div class="inner">
+					そんなに間違えないけど、<br>
+					間違えると気付きにくくて延々とハマったりする。
+				</div>
+				
+			</div>
+				
+			<div class="outer">
+			
+				<div class="inner">
+					
+					<h2>ブラウザ互換がうんこなことになっているプロパティ</h2>
+					
+					先に上げた border-image も一例であるように、<br>
+					CSS3 で追加された<br>
+					opacity や transform といったプロパティは<br>
+					視覚表現上、かなり強力である。 <br>
+					（個人的にはみんなもっと<br>
+					無闇にモノを斜めに置くべきだと思う。）<br>
+					しかし、困ったことにこれらのプロパティは<br>
+					各ブラウザの実装がまちまちである。<br>
+					例えば要素を 30°回転させるには<br>
+					-ms-transform:rotate(30deg);<br>
+					-webkit-transform:rotate(30deg); <br>
+					-moz-transform:rotate(30deg); <br>
+					のように書かないと<br>
+					IE, chrome, safari, FireFox の<br>
+					全てのブラウザでは動作しない。
+				</div>
+				
+				<div class="inner">
+					これ系の問題は大体<br>
+					jQuery が解決してくれる。<br>
+					jQuery の css() メソッドで<br>
+					css プロパティを設定すれば、<br>
+					ブラウザに応じたコードに<br>
+					勝手に変換してくれる。<br>
+					これは便利だ。
+				</div>
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					しかし、逆にいうと<br>
+					こういったプロパティを<br>
+					ストレス無く使うには<br>
+					jQuery が必要になってくるわけで、<br>
+					つまり、JavaScript で<br>
+					css を指定しなければならない。<br>
+					これはすごく困るわけではないが、<br>
+					プログレッシブ・エンハンスメントに<br>
+					反するケースも多いし、<br>
+					.css ファイルに指定をまとめられないのは<br>
+					気持ち悪くもある。 
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+				 
+					<h2>なんだかんだいって Web アプリ開発環境は進化している</h2>
+					
+					というわけで、この とんかつひろば 2.0 の開発では、<br>
+					jQuery の威力に感動しっぱなしでした。<br>
+					最後に参考書籍を紹介します。
+				</div>
+				
+				<div class="inner ads">
+					コア jQuery + プラグイン / jQuery UI 開発実践技法<br>
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4798124281%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51pRId8sBzL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4798124281%2F%3Ftag%3Da8-affi-233326-22" target="_blank">コアjQuery＋プラグイン/jQuery UI 開発実践技法 (Programmer’s SELECTION)</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥3,780<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/4/20 02:36時点)</span></p></td></tr></table>
+					<img border="0" width="1" height="1" src="http://www11.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">					
+					途中で引用したこの本は<br>
+					情報が古いところもけっこうありますが、<br>
+					分かりやすくておすすめです。<br>
+				</div>
+				
+				<div class="inner ads">
+					また、jQuery が内部で<br>
+					何をやってるのかを知りたい向きにはこちら。<br><br>
+					JavaScript Ninjaの極意 ライブラリ開発のための知識とコーディング
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4798128457%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51wsFoSKrKL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4798128457%2F%3Ftag%3Da8-affi-233326-22" target="_blank">JavaScript Ninjaの極意 ライブラリ開発のための知識とコーディング (Programmers’ SELECTION)</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥3,672<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/4/20 02:37時点)</span></p></td></tr></table>
+					<img border="0" width="1" height="1" src="http://www19.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">					
+					流石に著者が jQuery の開発者である<br>
+					ジョン・レシグなだけあって、<br>
+					高レベルな内容ですが、<br>
+					コードが分かりやすい単位に分けられているなど、<br>
+					読みやすさにも配慮がなされています。<br>
+					ローカライズにも気合が入った良書だと思います。<br>
+					9 章までは JavaScript を使うなら<br>
+					マスターしておきたいテクニックが<br>
+					凝縮されています。<br>
+					10 章以降は自分でライブラリを作ってみたい人向けで、<br>
+					ライブラリ内部の高度な仕組みが解説されています。<br>
+					逆に言うと、ライブラリを使うだけなら<br>
+					読んでも具体的に使える内容ではないのですが、<br>
+					読んでいるとクロスブラウザ対応の<br>
+					原則が見えてくると思います。<br>
+					（このサイトに関して言うと<br>
+					勉強しながら作ったので、<br>
+					必ずしも読んだ内容が活きていませんが、<br>
+					それは今後の課題ということで。）
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--writing000001-->
+		
+	</body>
+	
+</html>

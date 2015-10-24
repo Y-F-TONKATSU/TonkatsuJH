@@ -1,0 +1,704 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000013-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000013-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					CSS のボックスモデルの<br>
+					理解し難いところを<br>
+					できるだけ明確に<br>
+					解説してみる。
+				</div>
+				
+				<div class="inner ads">
+					もっと基本的なところから<br>
+					知りたいという人には、<br>
+					網羅的で詳しい<br>
+					この本↓がおすすめ。<br>
+					<h4>CSS3 スタンダード・デザインガイド</h4>
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4839946965%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51LhlE15foL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4839946965%2F%3Ftag%3Da8-affi-233326-22" target="_blank">CSS3 スタンダード・デザインガイド【改訂第2版】 (Web Designing Books)</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥3,110<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/4/28 11:55時点)</span></p></td></tr></table>
+					<img border="0" width="1" height="1" src="http://www10.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+			
+				<div class="inner">
+					<h2>ボックスモデル</h2>
+					HTML の要素は<br>
+					ブロック要素であっても<br>
+					インライン要素であっても<br>
+					ボックスを構成する。
+				</div>
+				
+				<div class="code">
+					例:<br>
+<pre>{
+	width:10px;
+	height:10px;
+	padding:10px;
+	border:10px;
+	margin:10px;
+}</pre>
+				</div>
+				
+				<div class="inner">
+					のように指定すると、<br>
+					このようなボックスが<br>
+					形成される<br>
+					<img src='article_image/13/css_border.png' alt='CSS ボックスモデルにおけるコンテンツ, padding, border, margin のそれぞれのエリア'>
+				</div>
+				
+				<div class="inner">
+					border も<br>
+					独自のエリアを<br>
+					形成する点と、<br>
+					コンテンツエリアは<br>
+					余白を一切含まない点は<br>
+					注意しておきたい。
+				</div>
+				
+				<div class="inner">
+					なお、本記事では、<br>
+					コンテンツ, padding,<br>
+					border, margin<br>
+					それぞれの領域を<br>
+					コンテンツエリア、<br>
+					パディングエリア等<br>
+					「エリア」と呼び、<br>
+					コンテンツから<br>
+					マージンまで<br>
+					全てのエリアを<br>
+					含めた領域を<br>
+					「ボックス」と呼ぶ。
+				</div>
+				
+				<div class="inner">
+					また、<br>
+					あるボックスを<br>
+					包含する<br>
+					親のコンテナ要素の<br>
+					ブロックを、<br>
+					そのボックスの<br>
+					包含ブロックと呼ぶ。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>ボックスのサイズと<br>
+					width, margin</h2>
+					上図から分かるように<br>
+					ボックスのサイズは<br>
+					コンテンツ, padding,<br>
+					border, margin<br>
+					の合計で決まる。
+				</div>
+				
+				<div class="inner">
+					また、<br>
+					コンテンツエリアのサイズは<br>
+					width, height プロパティで<br>
+					決まる。
+				</div>
+				
+				<div class="inner">
+					と言っても、<br>
+					width, height を<br>
+					CSS で auto にした場合、<br>
+					もしくは<br>
+					この後見ていくように、<br>
+					width, height を<br>
+					指定できない<br>
+					インラインボックスの場合、<br>
+					width, height の<br>
+					最終的な値は、<br>
+					コンテンツのサイズ及び、<br>
+					margin と包含ブロックのサイズの<br>
+					関係によって、<br>
+					動的に変化する。<br>
+					(そして auto は<br>
+					初期値なので<br>
+					指定しなかった場合も<br>
+					そうなる。)
+				</div>
+				
+				<div class="inner">
+					ここが CSS の<br>
+					最も理解し難い<br>
+					ポイントの一つである。
+				</div>
+				
+				<div class="inner">
+					しかし、<br>
+					width と margin の<br>
+					関係などは<br>
+					次回に譲る。<br>
+					今回はまず、<br>
+					display:block と<br>
+					display:inline と<br>
+					display:inline-block<br>
+					の違いを見ていく。<br>
+					ここが理解できれば、<br>
+					width や margin の<br>
+					正体も見えてくる。
+				</div>
+				
+				<div class="inner">
+					なお、本記事は<br>
+					横書きを前提とする。<br>
+					(とはいえ、<br>
+					縦書きの場合も<br>
+					width と height などを<br>
+					読み替えれば、<br>
+					そのままである)
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+				
+				<div class="inner">
+					<h2>ブロックボックスと<br>
+					インラインボックス</h2>
+					大まかに言うと、<br>
+					インラインボックスは<br>
+					1行の中に<br>
+					いくつも含められる<br>
+					ボックスであり、<br>
+					ブロックボックスは<br>
+					1ボックスで<br>
+					1行を埋め尽くす<br>
+					ボックスである。
+					<img src='article_image/1504/css_006.jpg' alt='ブロックボックスとインラインボックスの違いを示すイラスト'>
+				</div>
+				
+				<div class="inner">
+					ではこの場合、<br>
+					「行」とは何か？<br>
+					行とは、<br>
+					包含ブロックの width,<br>
+					大まかには<br>
+					親要素の<br>
+					コンテンツエリアの<br>
+					横幅のことである。
+				</div>
+				
+				<div class="inner">
+					ボックスを<br>
+					包含ブロックに挿入しても、<br>
+					まだ横幅が余る場合、<br>
+					width か margin を<br>
+					調整して<br>
+					余白を埋めてしまうのが<br>
+					ブロックボックスであり、<br>
+					余ったスペースに<br>
+					別のボックスを挿入するのが<br>
+					インラインボックス<br>
+					だとも言える。
+				</div>
+				
+				<div class="inner">
+					以下、具体例。
+				</div>
+				
+				
+				<div class="inner">
+					<h2>display:block</h2>
+					<ul>
+						<li>ボックスが包含ブロックの幅を<br>
+						100% 埋める。<br>
+						他のボックスが横に並ばず、<br>
+						前後に改行が入ったような<br>
+						見た目になる</li>
+						<li>width, height を指定できる</li>
+					</ul>
+				</div>
+				
+				<div class="code">
+					例:<br>
+<pre>/* html */
+&lt;div class='parent'&gt;
+	&lt;p class='a'&gt;ドリンクバーの回し飲みは犯罪なんです！ &lt;/p&gt;
+	&lt;p class='b'&gt;犯罪なんですよぉォォーー！！！&lt;/p&gt;
+	&lt;p class='c'&gt;ドリンクバーの回し飲みは！ カッコ悪いんだよ！！&lt;/p&gt;
+&lt;/div&gt;
+
+/* css */
+.parent{
+	display:block;
+	margin:0px;
+	padding:0px;
+	width:200px;
+	height:250px;
+	background-color: orange;
+}
+
+.a{
+	display:block;
+	width:auto;  /*最終的な値は 200px (包含ブロックの width と同じ)*/
+	height:auto; /*最終的な値は 2行分の高さ*/
+	margin:0px;
+	background-color: green;
+}
+
+.b{
+	display:block;
+	width:auto; /*最終的な値は 100px (包含ブロックの width から左右 margin を引いた値)*/
+	height:auto;
+	margin-right:50px;
+	margin-left:50px;
+	background-color: blue;
+}
+
+.c{
+	display:block;
+	width:100px;
+	height:100px;
+	margin:auto; /*最終的な左右の margin 値は 50px (包含ブロックの width から 100px を引いて、残りを左右に均等に割り振った値)*/
+	background-color: black;
+}</pre>
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1504/css_000.jpg' alt='display:block の使用例'>
+				</div>
+				
+				<div class="inner">
+					ブロックボックスは<br>
+					width, padding,<br>
+					border, margin の合計が<br>
+					包含ブロック<br>
+					(上の例では<br>
+					parent クラスのdiv)<br>
+					の width と一致する。
+				</div>
+				
+				<div class="inner">
+					上の例では、<br>
+					width を固定値で<br>
+					指定した場合は<br>
+					margin が、<br>
+					margin を固定値で<br>
+					指定した場合は<br>
+					width が調整されて、<br>
+					行(包含ブロックのwidth) を<br>
+					埋めているのが分かる。
+				</div>
+			
+				<div class="inner">
+					width と margin を<br>
+					両方固定値で<br>
+					指定した場合、<br>
+					margin-right が<br>
+					勝手に auto になり、<br>
+					無理やり隙間を埋める。
+				</div>
+			
+				<div class="inner">
+					この width と margin の関係は<br>
+					重要なところで、<br>
+					次回にさらに書く。
+				</div>
+			
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>display:inline</h2>
+					<ul>
+						<li>前後に<br>
+						他のインラインボックスを<br>
+						置くと、<br>
+						横幅が足りるなら、<br>
+						横に並べられる</li>
+						<li>width, height の指定は無効</li>
+						<li>複数行に渡ると、<br>
+						領域が行ごとに<br>
+						分断されたようになる。</li>
+					</ul>
+				</div>
+				
+				<div class="code">
+					例:<br>
+<pre>/* html */
+&lt;div class='parent'&gt;
+	&lt;p class='a'&gt;「神は人間があたえられている自由を乱用してドリンクバーの回し飲みをするのを欲してはいない。&lt;/p&gt;
+	&lt;p class='b'&gt;しかし、神はドリンクバーの回し飲みを妨げないのだ。神は人間が自分で選択してドリンクバーの回し飲みをしないように人間を自由なものにしたのだ。」&lt;/p&gt;
+&lt;/div&gt;
+
+/* css */
+.parent{
+	display:block;
+	width:200px;
+	height:200px;
+	padding:0px;
+	margin:0px;
+	background-color: orange;
+}
+
+.a{
+	display:inline;
+	width:auto; /* 無意味な指定 */
+	height:auto; /* 無意味な指定 */
+	margin:0px;
+	background-color: green;
+}
+
+.b{
+	display:inline;
+	width:100px; /* 無意味な指定 */
+	height:100px; /* 無意味な指定 */
+	margin:0px;
+	background-color: blue;
+}</pre>
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1504/css_001.jpg' alt='display:inline の使用例'>
+				</div>
+				
+				<div class="inner">
+					width, height の指定は<br>
+					無効になっている。
+				</div>
+				
+				<div class="inner">
+					横幅は<br>
+					コンテンツを表示するのに<br>
+					必要なだけの大きさになり、<br>
+					包含ブロックの大きさに合わせて、<br>
+					margin が変わることはない。
+				</div>
+				
+				<div class="inner">
+					包含ブロックの width 分の<br>
+					横幅を使い果たしたら<br>
+					改行され、<br>
+					改行されるごとに<br>
+					どんどん縦に<br>
+					伸びていく。<br>
+					(縦にはみ出した時の<br>
+					処理は、<br>
+					包含ブロックの overflow の<br>
+					値で決まる。)
+				</div>
+				
+				<div class="inner">
+					なお、上の例では<br>
+					margin も padding も<br>
+					0 なのに、<br>
+					ボックスとボックスの間に<br>
+					小さな隙間が空いているが、<br>
+					これは本文中の<br>
+					2つの&lt;p&gt;タグの間の<br>
+					改行コードとタブが<br>
+					1つのスペースとして<br>
+					解釈されているため。
+				</div>
+				
+				<div class="code">
+<pre>/* html */
+&lt;div class='parent'&gt;
+	&lt;p class='a'&gt;ドリンクバーの回し飲みは&lt;/p&gt;&lt;p class='b'&gt;ゆるさないぞ！&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+				
+				<div class="inner">
+					として、<br>
+					スペースをなくすと<br>
+					隙間はなくなる。<br>
+					<img src='article_image/1504/css_003.jpg' alt='display:inline-block の使用例'>
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>display:inline-block</h2>
+					<ul>
+						<li>width, height を<br>
+						指定できる。</li>
+						<li>包含ブロックを埋めず、<br>
+						他のボックスと<br>
+						横に並べられる</li>
+					</ul>
+				</div>
+				
+				<div class="code">
+					例:<br>
+<pre>/* html */
+&lt;div class='parent'&gt;
+	&lt;p class='a'&gt;インド思想では&lt;/p&gt;
+	&lt;p class='b'&gt;ドリンクバーの回し飲み&lt;/p&gt;
+	&lt;p class='a'&gt;は&lt;/p&gt;
+	&lt;p class='b'&gt;「輪廻(サンサーラ saṃsāra)」と呼ばれており、仏教では苦とされている。&lt;/p&gt;
+	&lt;p class='c'&gt;仏教の目的は回し飲みの環からの解脱である。&lt;/p&gt;
+&lt;/div&gt;
+
+/* css */
+.parent{
+	display:block;
+	width:250px;
+	height:250px;
+	margin:0px;
+	padding:0px;
+	background-color: orange;
+}
+
+
+.a{
+	display:inline-block;
+	width:auto;
+	hegiht:auto;
+	margin:0px;
+	background-color: green;
+}
+
+.b{
+	display:inline-block;
+	width:100px;
+	height:100px;
+	margin:0px;
+	background-color: blue;
+}
+
+.c{
+	display:inline;
+	margin:0px;
+	background-color: black;
+}</pre>
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1504/css_002.jpg' alt='display:inline-block の使用例'>
+				</div>
+				
+				<div class="inner">
+					インラインブロックボックスは<br>
+					width, height を<br>
+					指定できるが、<br>
+					width を固定値で<br>
+					指定しても、<br>
+					margin が自動調整されて、<br>
+					包含ブロックの width を<br>
+					埋めることはない。
+				</div>
+				
+				<div class="inner">
+					width を<br>
+					auto にした場合も<br>
+					コンテンツの<br>
+					実際の大きさ以上に<br>
+					コンテンツエリアが<br>
+					確保されることはない。
+				</div>
+				
+				<div class="inner">
+					逆に言えば、<br>
+					width が auto で<br>
+					コンテンツのサイズが<br>
+					行全体を埋めるほど<br>
+					大きいなら、<br>
+					ブロック要素と<br>
+					変わらない見え方になる。
+				</div>
+				
+				<div class="inner">
+					height を指定したり<br>
+					改行した結果、<br>
+					縦に長いボックスに<br>
+					なった場合、<br>
+					でかい文字みたいに<br>
+					扱われる。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>置換要素</h3>
+					&lt;img&gt; や&lt;canvas&gt; は<br>
+					CSS のプロパティではなく、<br>
+					要素の直接の属性として、<br>
+					width, height を持つ。<br>
+					(例:&lt;canvas width='400' height='300' &gt;)
+				</div>
+				
+				<div class="inner">
+					このような、それ自体で<br>
+					固有のサイズを持つ要素を<br>
+					置換要素と呼ぶ。
+				</div>
+				
+				<div class="inner">
+					置換要素は基本的に<br>
+					インラインブロックボックス<br>
+					のように扱われる。<br>
+					(要素の直接の属性ではなく)<br>
+					CSS で、<br>
+					width, height を指定すると、<br>
+					ピクセルが<br>
+					引き伸ばされるような形で<br>
+					コンテンツ自体が伸縮する。
+				</div>
+				
+				<div class="inner">
+					置換要素の伸縮は<br>
+					display:inline を<br>
+					指定していても<br>
+					発生する。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>display:none と<br>
+					visibility:hidden</h3>
+					ついでに、<br>
+					display:none<br>
+					にも触れておく。
+				</div>
+				
+				<div class="inner">
+					display:none にした要素は<br>
+					ボックスを構成しなくなり、<br>
+					見た目上は<br>
+					意味のない要素になる。
+				</div>
+				
+				<div class="inner">
+					visibility:hidden でも、<br>
+					要素は非表示になるが、<br>
+					ボックスの構成は<br>
+					行われるため、<br>
+					ボックスの大きさ分だけ<br>
+					隙間があくことになる。
+				</div>
+
+				<div class="code">
+					display:none の例:<br>
+<pre>/* html */
+&lt;div class='parent'&gt;
+	&lt;p class='a'&gt;ドリンクバーの回し飲みは&lt;/p&gt;
+	&lt;p class='b'&gt;ゆるさないぞ！&lt;/p&gt;
+&lt;/div&gt;
+
+/* css */
+.a{
+	display:none;
+	background-color: green;
+}
+
+.b{
+	display:inline;
+	background-color: blue;
+}</pre>
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1504/css_004.jpg' alt='display:none の使用例。見た目上、要素が無いものとして扱われる。'>
+					最初の段落は表示されず、<br>
+					ボックスも構成されない。
+				</div>
+				
+				<div class="code">
+					visibility:hidden の例:<br>
+<pre>/* html */
+&lt;div class='parent'&gt;
+	&lt;p class='a'&gt;ドリンクバーの回し飲みは&lt;/p&gt;
+	&lt;p class='b'&gt;ゆるさないぞ！&lt;/p&gt;
+&lt;/div&gt;
+
+/* css */
+.a{
+	visibility:hidden;
+	display:inline;
+	background-color: green;
+}
+
+.b{
+	display:inline;
+	background-color: blue;
+}</pre>
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1504/css_005.jpg' alt='display:none の使用例。最初の段落のテキストは表示されないが、その長さ分だけ隙間が空く。'>
+					最初の段落のテキストの<br>
+					長さの分だけ<br>
+					隙間が空いている。
+				</div>
+				
+				<div class="inner">
+					なお、jQuery で<br>
+					hide() した要素は<br>
+					display:none になる。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					次回は、<br>
+					width と margin の関係を<br>
+					詳しく述べる。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					display プロパティは<br>
+					他にも list-item や<br>
+					run-in などの<br>
+					値を取ることができるが、<br>
+					本記事では触れない。
+				</div>
+				
+				<div class="inner ads">
+					細かいところまで<br>
+					勉強するなら、<br>
+					冒頭でも紹介した<br>
+					この本がおすすめ。<br>
+					<h3>CSS3 スタンダード・デザインガイド</h3>
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4839946965%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51LhlE15foL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4839946965%2F%3Ftag%3Da8-affi-233326-22" target="_blank">CSS3 スタンダード・デザインガイド【改訂第2版】 (Web Designing Books)</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥3,110<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/4/28 11:55時点)</span></p></td></tr></table>
+					<img border="0" width="1" height="1" src="http://www10.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+			
+				<div class="inner ads">
+					網羅的で詳しく、<br>
+					図解も豊富。<br>
+					CSS の<br>
+					リファレンス的な本を<br>
+					一冊置いておくなら<br>
+					現状これ一択だと思う。<br>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000013-->
+		
+	</body>
+	
+</html>

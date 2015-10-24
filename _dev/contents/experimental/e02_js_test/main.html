@@ -1,0 +1,568 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000002-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000002-->
+		
+		<div id="cont">
+			
+			<div class="outer">
+			
+				<div class="inner">
+					JavaScript 文法の、<br>
+					少しブランクがあったりしたら<br>
+					忘れそうなところを、<br>
+					すぐに復習できるように<br>
+					<a href="http://mochajs.org/">Mocha</a> と <a href="http://chaijs.com/">Chai</a> で<br>
+					学習テストを書いた。<br>
+					ブログでもポイントを<br>
+					まとめておく。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h3>== (等価演算子) と === (厳密等価演算子) の違い</h3>
+<pre>assert.strictEqual(true, 1 == "1", '数値 1 と文字列 "1" は等価');
+assert.strictEqual(false, 1 === "1", 'しかし厳密等価ではない');</pre>
+					== だと数とその String 表現は同じ。<br>
+					== は基本使わないのが健全。
+				</div>
+					
+				<div class="code">
+<pre>assert.strictEqual(true, null == undefined, 'null と undefined は等価');
+assert.strictEqual(false, null === undefined, 'しかし厳密等価ではない');</pre>
+					null チェックは x === null で。<br>
+					null と undefined は明確に使い分けるべき。<br>
+					初期化されていないことを示すのが<br>
+					undefined で、<br>
+					値が空であることを明示する時は<br>
+					null を使う。
+				</div>
+					
+				<div class="code">
+<pre>assert.strictEqual(true, 1 == true, '1 と true は等価');
+assert.strictEqual(false, 1 === true, '1 と true は厳密等価ではない');
+assert.strictEqual(true, 0 == false, '0 と false は等価');
+assert.strictEqual(false, 0 === false, '0 と false は厳密等価ではない');
+assert.strictEqual(true, false == "", '空の文字列と false は等価');</pre>
+					0, null, NaN, undefined, ""(空の文字列)は<br>
+					== だと false と等価。<br>
+					これ以外のすべての値は<br>
+					true と等価である。<br>
+					これは Boolean() で<br>
+					これらの値をキャストした時の<br>
+					返り値に対応する。
+				</div>
+				
+				<div class="code">
+					<h4>NaN</h4>
+					<pre>assert.strictEqual(false, NaN === NaN, 'NaN は自分自身とも等しくない');</pre>
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h4>参照型は参照するものが同じ時に等価</h4>
+<pre>assert.strictEqual(false, {} == {}, '2つの空のオブジェクトは等価ではない');
+assert.strictEqual(true, function(){
+	var o = {};
+	var o2 = o;
+	return o == o2 && o === o2;
+}(), '参照型は参照先が同じ時に等価');
+assert.strictEqual(false, function(){
+	var o = {tonkatsu:3};
+	var o2 = {tonkatsu:3};
+	return o == o2;
+}(), '参照型は中身が同じでも参照が違えば等価ではない');
+assert.strictEqual(true, function(){
+	var o = {tonkatsu:3};
+	var o2 = {tonkatsu:3};
+	return o.unko == o2.unko;
+}(), '参照型の中身はプリミティブ値同士なら、値が同じなら等価');</pre>
+					参照型の比較は、<br>
+					参照するものが等しい時のみ<br>
+					等価になる。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h3>instanceof</h3>
+<pre>assert.strictEqual(true, [] instanceof Array, '配列は Array のインスタンス');
+assert.strictEqual(true, [] instanceof Object, 'あらゆる参照型の値は Object のインスタンス');
+assert.strictEqual(true, function(){} instanceof Object, 'あらゆる参照型の値は Object のインスタンス');</pre>
+					JavaScript では Number, String, Boolean の<br>
+					3 種のプリミティブ以外の<br>
+					全ての値は Object のサブタイプで<br>
+					参照型である。
+				</div>
+					
+				<div class="code">
+<pre>assert.strictEqual(false, 1 instanceof Number, '数値リテラルに instanceof は使えない');
+assert.strictEqual(false, 1 instanceof Object, '数値リテラルに instanceof は使えない');
+assert.strictEqual(true, (new Number(1)) instanceof Number, 'new で生成した場合は使える');</pre>
+					プリミティブ値に instanceof を使っても<br>
+					期待する結果にはならない。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h3>typeof</h3>
+<pre>assert.strictEqual("undefined", typeof function(){
+	var v;
+	return v;
+}(), '初期化していない変数の型は undefined');
+assert.strictEqual("boolean", typeof (10==10), '10==10 の型は boolean');
+assert.strictEqual("number", typeof 10, '10 の型は number');
+assert.strictEqual("string", typeof "tonkatsu", '"tonkatsu" の型は string');
+assert.strictEqual("object", typeof {}, '空のオブジェクトの型は object');
+assert.strictEqual("object", typeof [], '配列の型は object');
+assert.strictEqual("object", typeof null, 'null の型は object');
+assert.strictEqual("object", typeof new Date(), 'Date の型は object');
+assert.strictEqual("object", typeof /\\/, '正規表現リテラルの型は object');
+assert.strictEqual("function", typeof function(){}, '関数オブジェクトの型は function');</pre>
+					JavaScript の typeof は<br>
+					いささか一貫性に欠けている。<br>
+					null, Date, 配列, 正規表現に<br>
+					typeof を使うと "object" が返る。<br>
+					undefined, function は<br>
+					"undefined", "function" が返る。
+				</div>
+					
+				<div class="code">
+<pre>assert.strictEqual("function", typeof(new String("Tonkatsu").replace) , 'new で生成したオブジェクトは String.prototype のメソッドが使える');
+assert.strictEqual("function", typeof ("Tonkatsu".replace) , 'リテラルもオブジェクトのように扱うと、バックグラウンドでラッパーオブジェクトが生成されて String.prototype のメソッドが使える');
+assert.strictEqual(true, (new String("Tonkatsu").prototype) === "Tonkatsu".prototype , 'new で生成したオブジェクトとリテラルのラッパーオブジェクトは同じプロトタイプチェーンをたどる');</pre>
+					JavaScript では<br>
+					プリミティブ値を<br>
+					オブジェクトのように<br>
+					扱うことが出来る。<br>
+					例えば<br>
+					"Tonkatsu".replace()<br>
+					のように書くと、<br>
+					String のラッパーオブジェクトが<br>
+					バックグランドで生成されて、<br>
+					String.prototype.replace()<br>
+					メソッドが参照される。<br>
+					メソッドが実行されると<br>
+					ラッパーオブジェクトは<br>
+					破棄される。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h3>プリミティブのコンストラクタ</h3>
+<pre>assert.strictEqual("string", typeof "Tonkatsu", '文字列リテラルの型は string');
+assert.strictEqual("object", typeof new String("Tonkatsu"), 'new で生成すると object 型');
+assert.strictEqual("number", typeof 1, '数値リテラルの型は number');
+assert.strictEqual("object", typeof new Number(1), 'new で生成すると object 型');
+assert.strictEqual("boolean", typeof true, '真偽値リテラルの型は boolean');
+assert.strictEqual("object", typeof new Boolean(true), 'new で生成すると object 型');</pre>
+					String, Number, Boolean は<br>
+					new を使って初期化すると<br>
+					リテラルと違う型になる。<br>
+					実際に new を使って<br>
+					初期化することはない。<br>
+				</div>
+					
+				<div class="code">
+<pre>assert.strictEqual(true, "constructor" in [], '配列リテラルは constructor プロパティを持つ');
+assert.strictEqual(true, "hasOwnProperty" in [], '配列リテラルは hasOwnPropety プロパティを持つ');
+assert.strictEqual(true, "isPrototypeOf" in [], '配列リテラルは isPrototypeOf プロパティを持つ');
+assert.strictEqual(true, "propertyIsEnumerable" in [], '配列リテラルは propertyIsEnumerable プロパティを持つ');
+assert.strictEqual(true, "toLocaleString" in [], '配列リテラルは toLocaleString プロパティを持つ');
+assert.strictEqual(true, "toString" in [], '配列リテラルは toString プロパティを持つ');
+assert.strictEqual(true, "valueOf" in [], '配列リテラルは valueOf プロパティを持つ');</pre>
+					全ての JavaScript の値は<br>
+					Object.prototype のプロパティを<br>
+					参照できる。
+				</div>
+					
+				<div class="code">
+					<h4>toLocaleString()</h4>
+<pre>assert.strictEqual(true, {}.toString() === {}.toLocaleString(), '空のオブジェクトの toString() と toLocaleString() の戻り値は同じ');
+assert.strictEqual(true, function(){
+	var f = {toString:function(){return "tonkatsu"}};
+	return f.toString() === f.toLocaleString();
+}(), '独自オブジェクトで toString() をオーバーライドしても戻り値は同じ');
+assert.strictEqual(false, new Date().toString() === new Date().toLocaleString(), 'Date では toString() と toLocaleString() の結果が違う');
+assert.strictEqual(false, (1000).toString() === (1000).toLocaleString(), 'Number でも toString() と toLocaleString() の結果が違う');</pre>
+					ところで、<br>
+					toLocaleString() って何だ？<br>
+					と思って調べてみた。<br>
+					ビルトインオブジェクトの文字列表現を<br>
+					JavaScript のホスト環境(ブラウザ等)が<br>
+					オーバーライドできる toString() <br>
+					という感じっぽい。<br>
+					ビルトインオブジェクト以外に使うと<br>
+					toString() と全く同じ値を返す。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h4>constructor プロパティ</h4>
+<pre>assert.strictEqual(true, (new String("tonkatsu")).constructor === String, 'new String で生成したオブジェクトの constructor は String');
+assert.strictEqual(true, "tonkatsu".constructor === String, '文字列リテラルのラッパーオブジェクトの constructor は String');
+assert.strictEqual(true, function(){
+	var f = function (){};
+	return (new f()).constructor === f;
+}(), 'ユーザー定義のコンストラクタで new しても、自動で constructor プロパティが設定される');</pre>
+					constructor プロパティは<br>
+					プロトタイプチェーンの<br>
+					一階層上のオブジェクトを参照する。<br>
+					ユーザー定義のコンストラクタで<br>
+					new しても、<br>
+					バックグラウンドで<br>
+					constructor プロパティが<br>
+					設定される
+				</div>
+					
+				<div class="code">
+					<h4>in と hasOwnProperty()</h4>
+<pre>assert.strictEqual(true, function(){
+	var o = {
+		"tonkatsu":1,
+		"fillet":2,
+		"roast":3,
+	};
+	return ("fillet" in o);
+}(), 'in でオブジェクトが fillet という名前のプロパティを持っているか確かめられる');
+assert.strictEqual(true, "toString" in {}, 'プロパティ名がプロトタイプチェーン上のどこかにあれば検出される');
+assert.strictEqual(true, function(){
+	var o = {
+		"tonkatsu":1,
+		"fillet":2,
+		"roast":3,
+	};
+	return (o.hasOwnProperty("fillet"));
+}(), 'hasOwnProperty でもオブジェクトが fillet という名前のプロパティを持っているか確かめられる');
+assert.strictEqual(false, {}.hasOwnProperty("toString"), 'hasOwnProperty ではプロトタイプチェーンをさかのぼって検出しない');
+assert.strictEqual(6, function(){
+	var o = {
+		"tonkatsu":1,
+		"fillet":2,
+		"roast":3,
+	};
+	var r = 0;
+	for (key in o){
+		if(o.hasOwnProperty(key)){
+			r += o[key];
+		}
+	}
+	return r;
+}(), 'hasOwnProperty と for-in を使ってオブジェクトの独自プロパティを抽出できる(順序は保証されない)');</pre>
+					JavaScript では<br>
+					オブジェクトのプロトタイプのプロパティや<br>
+					スーパークラスからプロトタイプ継承されたプロパティを<br>
+					オブジェクト自身のプロパティと同様に扱える。<br>
+					プロパティがオブジェクト自身のものかを<br>
+					確かめるには hasOwnProperty() を使う。<br>
+					in 演算子は<br>
+					指定したプロパティ名が<br>
+					プロトタイプチェーン上のどこかにあれば<br>
+					true を返す。<br>
+					上記の例のように、<br>
+					hasOwnProperty() と for-in を組み合わせれば、<br>
+					オブジェクトの独自プロパティを全て抽出できる<br>
+					ただし順序は保証されない。
+				</div>
+					
+				<div class="code">
+					for-in ループは<br>
+					プロトタイプチェーン上の全ての<br>
+					プロパティを列挙するわけではなく、<br>
+					列挙可能に設定されたプロパティのみを<br>
+					列挙することにも注意。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h3>this</h3>
+<pre>assert.strictEqual(true, function(){
+var o = {"method":function(){return this;}};
+return o.method() === o;
+}(), 'オブジェクトのメソッドとして関数を呼び出した場合, this はそのオブジェクト');
+assert.strictEqual(true, function(){
+	var o = {"method":function(){
+		return (function(){return this;})();
+	}};
+	return o.method() === window;
+}(), '関数が入れ子になっていていると this はグローバルオブジェクト');
+assert.strictEqual(true, function(){
+	var o = {"method":function(){
+		var that = this;
+		return (function(){return that;})();
+	}};
+	return o.method() === o;
+}(), '親の関数で this の値を変数に保持しておけば、スコープチェーンを辿って親の this を参照できる');
+assert.strictEqual(true, function(){
+	var o = {"method":function(){return this;}};
+	var p = {};
+	p.method = o.method;
+	return p.method() === p;
+}(), '別のオブジェクトのメソッドとして呼び出すと参照先の関数は同じでも this は別のオブジェクトになる');</pre>
+					関数が入れ子になっていていると<br>
+					this がグローバルオブジェクトになるのは<br>
+					JavaScript の最もメジャーな罠の一つ。
+				</div>
+				
+				<div class="code">
+					<h4>call() と apply()</h4>
+<pre>assert.strictEqual(true, function(){
+	var o = {"method":function(){return this;}};
+	var p = {};
+	return o.method.call(p) === p;
+}(), 'call() メソッドに渡したオブジェクトが this になる');
+assert.strictEqual(true, function(){
+	var o = {"method":function(){return this;}};
+	var p = {};
+	return o.method.apply(p) === p;
+}(), 'apply() メソッドに渡したオブジェクトが this になる');
+assert.strictEqual(6, function(){
+	var o = {"method":function(x, y){return x + y + this.z;}};
+	var p = {z:3};
+	return o.method.call(p, 1, 2);
+}(), 'call() は 2 番目以降の引数がメソッドに渡すパラメーターになる');
+assert.strictEqual(6, function(){
+	var o = {"method":function(x, y){return x + y + this.z;}};
+	var p = {z:3};
+	return o.method.apply(p, [1, 2]);
+}(), 'apply() は 2 番目の引数に配列を渡すと、メソッドに渡すパラメーターになる(call との違いはパラメーターの渡し方のみ)');</pre>
+					call() と apply() の違いは<br>
+					パラメーターの渡し方のみ。<br>
+					apply() は配列を渡す。
+				</div>
+				
+				<div class="code">
+					<h4>arguments</h4>
+<pre>assert.strictEqual(0, function(v, w){
+	return arguments.length;
+}(), 'arguments.length は定義された引数の数ではなく実際に受け取った引数の数を返す');
+assert.strictEqual(3, function(v, w){
+	return arguments.length;
+}("x", "y", "z"), 'arguments.length は定義された引数の数ではなく実際に受け取った引数の数を返す');
+assert.strictEqual("katsu", function(v){
+	arguments[0] = "katsu"
+	return v;
+}("ton"), 'arguments を編集すると引数の値も編集される');
+assert.strictEqual(true, function(){
+	var f = function(){return arguments.callee;};
+	return f === f();
+}(), 'arguments.callee で関数自身を取得できる');</pre>
+					arguments.length は<br>
+					定義された引数の数ではなく<br>
+					実際に受け取った引数の数を返す。<br>
+					また arguments を編集すると<br>
+					引数の値も編集される。
+				</div>
+				
+				<div class="code">
+					<h4>arguments と Array-Like Object</h4>
+<pre>assert.strictEqual(10, function(v, w, x, y, z){
+	var r = 0;
+	for(var i = 0; i &lt; 5; i++){
+		r += arguments[i];
+	}
+	return r;
+}(0, 1, 2, 3, 4), 'arguments は Array-Like Object で配列のようにイテレートできる');
+assert.strictEqual(3 , function(){
+	var array = [0, 1, 2, 3, 4]
+	array.length = 3;
+	var r = 0;
+	for(var i = 0; i &lt; 5; i++){
+		if(array[i]) r += array[i];
+	}
+	return r;
+}(), 'JavaScript の配列は length の値を変えると要素の数が変わる');
+assert.strictEqual(10 , function(){
+	arguments.length = 3;
+	var r = 0;
+	for(var i = 0; i &lt; 5; i++){
+		if(arguments[i]) r += arguments[i];
+	}
+	return r;
+}(0, 1, 2, 3, 4), 'arguments は Array-Like Object で length の値を変えても配列の要素の数は変わらない');
+assert.strictEqual(undefined, function(){
+	return arguments.pop;
+}(), 'arguments は Array-Like Object で Array.prototype のメソッドは使えない');</pre>
+					arguments は Array-Like Object で、<br>
+					配列のようにインデックスを指定して<br>
+					中身を取得できるが、<br>
+					Array.prototype のメソッドは使えない。<br>&lt;
+					また length の値を変えても<br>
+					配列の要素の数は変わらない。<br>
+					(配列だと変わる。)
+				</div>
+				
+				<div class="code">
+					<h4>関数の巻き上げ</h4>
+<pre>assert.strictEqual("tonkatsu", function(){
+	var r = f();
+	function f(){return "tonkatsu"};
+	return r;
+}(), 'function ステートメントで関数を定義すると、定義以前の行から関数を実行できる');
+assert.strictEqual(undefined, function(){
+	var r = f;
+	var f = function (){return "tonkatsu"};
+	return r;
+}(), 'function ステートメントを使わずに定義された関数は巻き上げられない');</pre>
+					function ステートメントで<br>
+					関数を定義すると、<br>
+					関数の巻き上げが発生して、<br>
+					定義以前の行から関数を実行できる。<br>
+					function ステートメントを使わずに<br>
+					定義された関数は<br>
+					巻き上げられない。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="code">
+					<h3>クロージャ</h3>
+<pre>assert.strictEqual("nnn", function(){
+	var s, f, g, h;
+	
+	s = "t";
+	f = function(){return s;};
+	
+	s = "o"
+	g = function(){return s;};
+	
+	s = "n"
+	h = function(){return s;};
+	
+	return f() + g() + h();
+}(), 'クロージャにスコープチェーン上の変数の変化が反映されている');
+assert.strictEqual("ton", function(){
+	var s, f, g, h;
+	
+	s = "t";
+	f = function(s){return function(){return s;};}(s);
+	
+	s = "o"
+	g = function(s){return function(){return s;};}(s);
+	
+	s = "n"
+	h = function(s){return function(){return s;};}(s);
+	
+	return f() + g() + h();
+}(), '即時関数で変数をマスクすると参照しなくなる');</pre>
+					JS本には必ず出てくるクロージャの罠。
+				</div>
+				
+			</div>
+					
+			<div class="outer">
+			
+				<div class="code">
+					<h3>プロトタイプ継承</h3>
+<pre>assert.strictEqual("tonkatsu", function(){
+	var f = function(){};
+	f.prototype.to = "to";
+	
+	var g = function(){
+		this.n = "n";
+	};
+	g.prototype = new f();
+	g.prototype.katsu = "katsu";
+	
+	var o = new g();
+	
+	return o.to + o.n + o.katsu;
+}(), 'prototype にオブジェクトを設定することで、プロパティを継承できる');</pre>
+					とんかつひろばは<br>
+					new を使わずに書いたけど、<br>
+					最近は使ったほうがいい気がしてきている。<br>
+					カプセル化はコーディング規約でも十分だし。
+				</div>
+				
+			</div>
+					
+			<div class="outer ads">
+			
+				<div class="inner ads">
+					主な参考書籍:
+					
+					<h2>JavaScript 第6版</h2>
+					定番のサイ本。
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873115736%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51c9uCrhHgL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873115736%2F%3Ftag%3Da8-affi-233326-22" target="_blank">JavaScript 第6版</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥4,536<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/3/19 01:12時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www16.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+				
+				<div class="inner ads">
+					<h2>開眼! JavaScript</h2>
+					一通り学んだ人が<br>
+					要点を短時間で<br>
+					復習するのに便利。<br>
+					サイと GoodParts の<br>
+					橋渡し的に読むのも<br>
+					いいと思います。
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F487311621X%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51jMq3+DklL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F487311621X%2F%3Ftag%3Da8-affi-233326-22" target="_blank">開眼!  JavaScript ―言語仕様から学ぶJavaScriptの本質</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥2,376<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/3/19 01:12時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www19.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+					
+				</div>
+				
+				<div class="inner ads">
+					<h2>JavaScript: The Good Parts ―「良いパーツ」によるベストプラクティス</h2>
+					これも定番ですね。
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873113911%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/41H0Dk-K3PL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4873113911%2F%3Ftag%3Da8-affi-233326-22" target="_blank">JavaScript: The Good Parts ―「良いパーツ」によるベストプラクティス</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥1,944<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/3/19 00:35時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www16.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+				
+				<div class="inner ads">
+					<h2>JavaScript Ninjaの極意 ライブラリ開発のための知識とコーディング</h2>
+					流石に著者が jQuery の開発者である<br>
+					ジョン・レシグなだけあって、<br>
+					高レベルな内容ですが、<br>
+					コードが分かりやすい単位に分けられているなど、<br>
+					読みやすさにも配慮がなされています。<br>
+					ローカライズにも気合が入った良書だと思います。<br>
+					9 章までは JavaScript を使うなら<br>
+					マスターしておきたいテクニックが<br>
+					凝縮されています。<br>
+					10 章以降は自分でライブラリを作ってみたい人向けで、<br>
+					ライブラリ内部の高度な仕組みが解説されています。<br>
+					逆に言うと、ライブラリを使うだけなら<br>
+					読んでも具体的に使える内容ではないのですが、<br>
+					読んでいるとクロスブラウザ対応の<br>
+					原則が見えてくると思います。
+					<table cellpadding="0" cellspacing="0" border="0" style=" border:1px solid #ccc; width:300px;"><tr style="border-style:none;"><td style="vertical-align:top; border-style:none; padding:10px;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4798128457%2F%3Ftag%3Da8-affi-233326-22" target="_blank"><img border="0" alt="" src="http://ecx.images-amazon.com/images/I/51wsFoSKrKL._SS160_.jpg" /></a></td><td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;"><p style="padding:0; margin:0;"><a href="http://px.a8.net/svt/ejp?a8mat=1ZSZDP+1ELVYY+249K+BWGDT&a8ejpredirect=http%3A%2F%2Fwww.amazon.co.jp%2Fdp%2F4798128457%2F%3Ftag%3Da8-affi-233326-22" target="_blank">JavaScript Ninjaの極意 ライブラリ開発のための知識とコーディング (Programmers’ SELECTION)</a></p><p style="color:#cc0000; font-weight:bold; margin-top:10px;">新品価格<br/>￥3,672<span style="font-weight:normal;">から</span><br/><span style="font-size:10px; font-weight:normal;">(2015/3/19 01:14時点)</span></p></td></tr></table>
+<img border="0" width="1" height="1" src="http://www19.a8.net/0.gif?a8mat=1ZSZDP+1ELVYY+249K+BWGDT" alt="">
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000002-->
+
+	</body>
+
+</html>

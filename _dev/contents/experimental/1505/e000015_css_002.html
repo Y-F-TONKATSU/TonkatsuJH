@@ -1,0 +1,375 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000018-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000018-->
+		
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					<a href='http://ton-katsu.net/contents/experimental/1504/e000013_css_001.html'>前回</a>、<br>
+					インラインボックスと<br>
+					ブロックボックスの<br>
+					振る舞いの違いを<br>
+					解説した。
+				</div>
+				
+				<div class="inner">
+					簡単にまとめると<br>
+					包含ブロック<br>
+					(≒親要素の<br>
+					コンテンツエリアの width)<br>
+					を必ず 100% 埋めるのが<br>
+					ブロック要素で、<br>
+					必要最小限しか埋めないのが<br>
+					インライン要素だ。<br>
+					<img src='article_image/1504/css_006.jpg' alt='ブロックボックスとインラインボックスの違いを示すイラスト'>
+				</div>
+				
+				<div class="inner">
+					インライン要素の横幅は<br>
+					コンテンツの<br>
+					サイズで決まり、<br>
+					width プロパティは<br>
+					適用できない。
+				</div>
+				
+				<div class="inner">
+					一方、ブロック要素は<br>
+					width プロパティで<br>
+					横幅を指定することができる。
+				</div>
+				
+				<div class="inner">
+					このことの意味を<br>
+					詳しく見ていく。
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>width プロパティの意味</h2>
+					直観的には、<br>
+					ブロック要素の<br>
+					width プロパティを<br>
+					大きくとると、<br>
+					要素のボックスサイズも<br>
+					大きくなるように思える。
+				</div>
+				
+				<div class="inner">
+					<img src='article_image/1505/css_004.jpg' alt='包含ブロックよりも大きい width を指定した例'><br>
+					実際、包含ブロックより<br>
+					大きい width を指定すると<br>
+					ボックスサイズは<br>
+					見た目上は<br>
+					明らかに増える。
+				</div>
+				
+				<div class="inner">
+					上の画像は<br>
+					width が 200px の<br>
+					包含ボックス（オレンジ）内の<br>
+					ブロック要素(グリーン)の<br>
+					width を 250px に<br>
+					設定した例である。
+				</div>
+				
+				<div class="inner">
+					しかし実は、<br>
+					ブロック要素のボックスは<br>
+					包含ブロックの横幅と<br>
+					同じになるので、<br>
+					ボックスのサイズは<br>
+					width をどう指定しても<br>
+					変わらないのである。
+				</div>
+				
+				<div class="inner">
+					それなら<br>
+					width プロパティは<br>
+					何に影響するのだろうか？
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>width と margin の関係</h2>
+					結局のところ width は<br>
+					margin-left と margin-right<br>
+					との相対的関係においてしか<br>
+					意味を成さないのである。<br>
+					つまり、width を増やすことは<br>
+					margin-left か margin-right を<br>
+					減らすことであり、<br>
+					width を減らすことは<br>
+					margin-left か margin-right を<br>
+					増やすことである。
+				</div>
+				
+				<div class="inner">
+					これは逆にも言えて、<br>
+					margin-left と margin-right を<br>
+					大きくとると、<br>
+					width は小さくなり、<br>
+					margin-left と margin-right を<br>
+					小さくとると、<br>
+					width は大きくなる。<br>
+					<img src='article_image/1505/css_000.jpg' alt='width が増えてもボックスサイズは変わらないよ！'>
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+					ポイントは auto である。<br>
+					width, marign-left, margin-right<br>
+					のどれか1つを<br>
+					auto に指定して、<br>
+					残り2つを<br>
+					固定値で指定したとする。<br>
+					すると、auto に設定した<br>
+					プロパティの<br>
+					実際の値は<br>
+					包含ブロックから<br>
+					残り2つの値を<br>
+					引いたものになる。
+				</div>
+				
+				<div class="inner">
+					具体例を見てみよう。<br>
+					いずれの例も<br>
+					包含ブロックの width は<br>
+					200px で、<br>
+					border, padding は<br>
+					全て 0 になっている。
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>width を auto にした場合</h3>
+					width: auto;<br>
+					margin-left: 50px;<br>
+					margin-right: 50px;<br>
+					<img src='article_image/1505/css_001.jpg' alt='width を auto にした場合'>
+				</div>
+				
+				<div class="inner">
+					緑のボックスに<br>
+					上記の CSS を<br>
+					適用している。<br>
+					オレンジのボックスが<br>
+					包含ブロックだ。<br>
+					auto になっている<br>
+					width の実際の値は<br>
+					200px - 50px - 50px = 100px<br>
+					になる。
+				</div>
+				
+				<div class="inner">
+					<h3>margin を auto にして中央寄せする</h3>
+					width: 100px;<br>
+					margin-left: auto;<br>
+					margin-right: auto;<br>
+					<img src='article_image/1505/css_001.jpg' alt='margin を auto にして中央寄せする'>
+				</div>
+				
+				<div class="inner">
+					margin の代わりに<br>
+					width を指定しているが、<br>
+					上の例と結果は同じになる。<br>
+					margin-left と margin-right に<br>
+					auto を指定しての<br>
+					センタリングは<br>
+					CSS の頻出イディオムである。
+				</div>
+				
+				<div class="inner">
+					<h3>margin-right を 0 にして右寄せする</h3>
+					width: 150px;<br>
+					margin-left: auto;<br>
+					margin-right: 0px;<br>
+					<img src='article_image/1505/css_002.jpg' alt='margin を auto にして中央寄せする'>
+				</div>
+				
+				<div class="inner">
+					margin-right や<br>
+					margin-left を<br>
+					0 にすると、<br>
+					右寄せや左寄せができる。<br>
+					では両方 0 にすると？
+				</div>
+				
+				<div class="inner">
+					<h3>余白をなくす</h3>
+					width: auto;<br>
+					margin-left: 0px;<br>
+					margin-right: 0px;<br>
+					<img src='article_image/1505/css_006.jpg' alt='margin-left と margin-right を 0 にして余白をなくす'>
+				</div>
+				
+				<div class="inner">
+					こうなる。<br>
+					これは width:100%;<br>
+					と同じ。
+				</div>
+				
+				<div class="inner">
+					<h3>3つ全部に固定値を指定した場合</h3>
+					width: 100px;<br>
+					margin-left: 100px;<br>
+					margin-right: 100px;<br>
+					<img src='article_image/1505/css_003.jpg' alt='width, marign-left, margin-rightの全てに固定値を指定すると、marigin-right が auto になる'>
+				</div>
+				
+				<div class="inner">
+					これは分かりにくい例である。<br>
+					width, marign-left, margin-rightは、<br>
+					どれか1つは<br>
+					auto でなくてはならない。<br>
+					もし、全てに固定値を<br>
+					指定すると、<br>
+					marigin-right が<br>
+					勝手に auto に<br>
+					設定される。<br>
+					残った<br>
+					width と margin-left が<br>
+					包含ブロックの幅を<br>
+					使い尽くすので、<br>
+					結果 margin-right は<br>
+					0 になり、<br>
+					右寄せになる。
+				</div>
+				
+				<div class="inner">
+					width: 100px;<br>
+					margin-left: 50px;<br>
+					margin-right: 65536px;<br>
+					<img src='article_image/1505/css_001.jpg' alt='width, marign-left, margin-rightの全てに固定値を指定すると、marigin-right の指定は無視される'>
+				</div>
+				
+				<div class="inner">
+					同じような例。<br>
+					こういう場合、<br>
+					margin-right に<br>
+					何を指定しても<br>
+					影響はない。
+				</div>
+				
+				<div class="inner">
+					<h3>ネガティブマージン</h3>
+					width: auto;<br>
+					margin-left: 0px;<br>
+					margin-right: -50px;<br>
+					<img src='article_image/1505/css_004.jpg' alt='ネガティブマージンを指定してコンテンツサイズをボックスサイズよりも大きくする'>
+				</div>
+				
+				<div class="inner">
+					マージンには<br>
+					マイナスの値も指定できる<br>
+					(ネガティブマージン)。<br>
+					こうすると<br>
+					見た目上は<br>
+					ボックスの幅が<br>
+					包含ブロックより<br>
+					大きくなる。
+				</div>
+				
+				<div class="inner">
+					width: 250px;<br>
+					margin-left: 0px;<br>
+					margin-right: 0px;<br>
+					<img src='article_image/1505/css_004.jpg' alt='包含ブロックよりも大きい width を指定すると、自動でネガティブマージンが設定される'>
+				</div>
+				
+				<div class="inner">
+					記事の冒頭に挙げた例。<br>
+					1つ上の例と同じ結果になる。<br>
+					包含ブロックよりも<br>
+					大きい width を<br>
+					設定すると、<br>
+					margin-right に<br>
+					ネガティブマージンが<br>
+					自動で設定される。<br>
+				</div>
+				
+				<div class="inner">
+					width は<br>
+					包含ブロックよりも<br>
+					大きくても、<br>
+					余白がマイナスだから、<br>
+					合計したサイズは<br>
+					包含ブロックと<br>
+					同じ幅のまま、<br>
+					(250 + (-50) = 200)<br>
+					という理屈だ。<br>
+					これが<br>
+					包含ブロックよりも<br>
+					大きく見える<br>
+					ボックスの正体である。
+				</div>
+				
+				<div class="inner">
+					width: 100%;<br>
+					margin-left: auto;<br>
+					margin-right: -50px;<br>
+					<img src='article_image/1505/css_005.jpg' alt='ネガティブマージンを応用した変なレイアウト'>
+				</div>
+				
+				<div class="inner">
+					ネガティブマージンを使うと、<br>
+					position: relative;<br>
+					left: 50px;<br>
+					とかやらなくても<br>
+					こういう変なレイアウトを<br>
+					実現できる。
+				</div>
+				
+			</div>
+
+			<div class="outer">
+			
+				<div class="inner">
+					今回はここまで。
+				</div>
+				
+				<div class="inner">
+					width と margin の<br>
+					関係について述べたが、<br>
+					height はまた違った<br>
+					挙動をする。
+				</div>
+				
+				<div class="inner">
+					また、margin には<br>
+					相殺という<br>
+					厄介な挙動もある。<br>
+					次回以降は<br>
+					その辺を解説していく。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000015-->
+		
+	</body>
+	
+</html>

@@ -1,0 +1,240 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000007-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000007-->
+				
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					PhotoShop の自動処理に関する<br>
+					連載記事の続きです。<br>
+					<a href="http://ton-katsu.net/contents/experimental/1502/e05_ps_auto_002.html">前回</a>は<br>
+					条件分岐について<br>
+					解説しました。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<a href="http://ton-katsu.net/contents/experimental/1502/e05_ps_auto_002.html">前回</a>までで、<br>
+					初期レイヤーが<br>
+					背景ならレイヤーに変換し、<br>
+					最前面レイヤーを<br>
+					選択するところまで<br>
+					アクションを作成しました。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_014.jpg" alt="PhotoShop アクションパネル 背景レイヤーを条件付きで変換し、最前面のレイヤーを選択">
+				</div>
+								
+				<div class="inner">
+					今回は、<br>
+					具体的な画像処理を<br>
+					実行していきます。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					アクションの記録を再開し、<br>
+					レイヤーパネルから<br>
+					新規レイヤーを作成します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_015.jpg" alt="PhotoShop レイヤーパネル 新規レイヤーを作成">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					Ctrl+Alt+Shift+e で、<br>
+					表示レイヤーを<br>
+					新規レイヤーに<br>
+					結合します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_016.jpg" alt="PhotoShop レイヤーパネル 表示レイヤーを結合">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					フィルタ→その他→ハイパス<br>
+					でフィルタを掛けます。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_017.jpg" alt="PhotoShop フィルタ ハイパス">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					レイヤーの合成モードを<br>
+					「ハードライト」にします。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_018.jpg" alt="PhotoShop　レイヤーパネル 合成モード ハイパス">
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					これで<br>
+					写真がシャープになりますが、<br>
+					この効果は<br>
+					強く掛かり過ぎることが<br>
+					あります。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_019.jpg" alt="PhotoShop　レイヤーパネル 合成モード ハイパス">
+				</div>
+				
+				<div class="inner">
+					手動でやる場合は、<br>
+					レイヤーの不透明度を下げるか、<br>
+					レイヤーマスクで効果を<br>
+					部分的に弱めるところですが、<br>
+					どの程度弱めるかは<br>
+					ケースバイケースなので<br>
+					完全に自動化はできません。
+				</div>
+				
+				<div class="inner">
+					自動処理の効果を<br>
+					目で見て確認した上で、<br>
+					手動の作業を、<br>
+					アクションの合間に<br>
+					挟むことにします。
+				</div>
+				
+				<div class="inner">
+					そういう時のために<br>
+					「中止の挿入」という<br>
+					コマンドが用意されています。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					アクションパネルの<br>
+					パネルメニューから<br>
+					「中止の挿入」を<br>
+					クリックします。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_020.jpg" alt="PhotoShop アクションパネル 中止の挿入">
+				</div>
+				
+				<div class="inner">
+					ダイアログが出るので、<br>
+					何のために中止するのか、<br>
+					意図を説明する<br>
+					メッセージを書きます。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_021.jpg" alt="PhotoShop 中止の挿入 メッセージ">
+				</div>
+				
+				<div class="inner">
+					「続行許可」オプションに<br>
+					チェックを入れておくと、<br>
+					中止実行時に出てくる<br>
+					ダイアログで、<br>
+					処理の続行、<br>
+					つまり手動作業の省略を<br>
+					選択できるようになります。
+				</div>
+				
+				<div class="inner">
+					この場合、<br>
+					ルックに問題がなければ<br>
+					アクションを続行できるように<br>
+					チェックを入れておきます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					アクションを実行すると、<br>
+					ハードライトに<br>
+					変更したところで、<br>
+					ダイアログが出て<br>
+					処理が止まります。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1503/psa_022.jpg" alt="PhotoShop アクション実行時のダイアログ">
+				</div>
+								
+				<div class="inner">
+					ルックを手動で調整したら、<br>
+					再びアクション実行ボタンで<br>
+					その後の処理を<br>
+					（まだ作ってませんが）<br>
+					続行できます。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					「中止の挿入」は<br>
+					自動化の利点を<br>
+					減少させるので、<br>
+					できるだけ使いたくない<br>
+					コマンドではありますが、<br>
+					自動作業の合間に<br>
+					手動の作業を<br>
+					挟まざるをえない時には<br>
+					有効な選択肢になります。
+				</div>
+				
+				<div class="inner">
+					次回はピクセルの操作と<br>
+					サイズの変更について<br>
+					書きます。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000007-->
+		
+	</body>
+	
+</html>

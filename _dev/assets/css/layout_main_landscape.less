@@ -1,0 +1,33 @@
+@ratio:3 / 16;
+@sidebarRatio:100% * @ratio;
+@mainRatio:100% - @sidebarRatio;
+
+.main, .sidebar{
+	position:fixed;
+}
+
+.fullLayer{
+	position:fixed;
+	pointer-events:none;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+}
+.main{
+	width:@mainRatio;
+	height:100%;
+	left:@sidebarRatio;
+	top:0%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.sidebar{
+	width:@sidebarRatio;
+	height:100%;
+	left:0%;
+	top:0%;
+	overflow-x:visible;
+	overflow-y:auto;
+}

@@ -1,0 +1,283 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000004-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000004-->
+								
+		<div id="cont">
+					
+			<div class="outer">
+			
+				<div class="inner">
+					<a href="http://ton-katsu.net/contents/experimental/1502/e03_ps_auto_000.html">前回</a>はPhotoShop の自動処理の<br>
+					基本的なことで、<br>
+					陥りやすい罠の<br>
+					回避方法を<br>
+					書きました。<br>
+					今回からは、<br>
+					具体例をみながら<br>
+					レイヤー操作、<br>
+					条件分岐、停止など、<br>
+					若干応用的な<br>
+					テクニックについて<br>
+					書いていきます。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<img src="article_image/1502/psa_000.jpg" alt="Adobe Bridge 画面キャプチャ、犬 猫 豚 亀 蜘蛛 の写真"><br>
+				</div>
+								
+				<div class="inner">
+					<h2>ハイパス+ハードライト</h2>
+					例として、<br>
+					5 枚の動物の写真を<br>
+					加工した PSD に<br>
+					同じ処理を適用する<br>
+					アクションを作成します。
+				</div>
+								
+				<div class="inner">
+					以下のような処理を<br>
+					自動化したいとします。<br>
+					<ul>
+						<li>0. 開く</li>
+						<li>1. 表示レイヤーの統合したものを複製</li>
+						<li>2. 複製したレイヤーにフィルタ「ハイパス」を適用</li>
+						<li>3. 複製したレイヤーのモードを「ハードライト」にする</li>
+						<li>4. ブラシで署名を描く</li>
+						<li>5. 別フォルダに .jpg として保存</li>
+						<li>6. 閉じる</li>
+					</ul>
+				</div>
+								
+				<div class="inner">
+					写真の仕上がりを<br>
+					シャープにするための<br>
+					よくある処理ですが、<br>
+					実際にアクションを作っていくと、<br>
+					「これどうすればいいの？」<br>
+					というポイントが<br>
+					いくつか出てきます。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+								
+				<div class="inner">
+					<h3>「開く」と「保存」</h3>
+					アクションパネルから<br>
+					新しいアクションを作成し、<br>
+					アクションの記録を開始します。
+				</div>
+				
+				<div class="inner">
+					まず、迷うのが<br>
+					「開く」をアクションに<br>
+					含めるべきがどうかです。
+				</div>
+								
+				<div class="inner">
+					結論から言うと、<br>
+					必要ありません。
+				</div>
+								
+				<div class="inner">
+					アクションを<br>
+					バッチ処理するには、<br>
+					アクションに<br>
+					「開く」と「別名で保存」を<br>
+					必ず含めるように書いてある<br>
+					記事もありますが、<br>
+					バッチ処理のオプションで<br>
+					対処できるので、<br>
+					実は必須ではありません。
+				</div>
+								
+				<div class="inner">
+					アクションに<br>
+					これらのコマンドを含めない時は<br>
+					バッチ処理の際に、<br>
+					対応するオプションの<br>
+					チェックを切ります。<br>
+					「開く」を含めない<br>
+					→「開くコマンドを無視」を切る。<br>
+					「別名で保存」を含めない<br>
+					→「"別名で保存" コマンドを省略」を切る。<br>
+					…で、対応できます。<br>
+					逆に含める場合は、<br>
+					チェックを入れます。
+				</div>
+								
+				<div class="inner">
+					ただし、<br>
+					ファイルのフォーマットを変えて<br>
+					保存する場合に限って、<br>
+					「別名で保存」が<br>
+					必須になります。
+				</div>
+								
+				<div class="inner">
+					「開く」と「別名で保存」と<br>
+					バッチ処理オプションとの関係の<br>
+					詳細は、<br>
+					<a href="http://ton-katsu.net/contents/experimental/1502/e03_ps_auto_000.html">前回の記事</a>を
+					参照してください。
+				</div>
+								
+			</div>
+											
+			<div class="outer">
+			
+				<div class="inner">
+					<h3>レイヤー操作</h3>
+					ファイルを開いて、<br>
+					アクションを作成し、<br>
+					記録を開始します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_001.jpg" alt="アクションパネルから新規アクションを作成"><br>
+				</div>
+								
+				<div class="inner">
+					新しいレイヤーを<br>
+					一番上に作るために、<br>
+					まずは一番上のレイヤーを<br>
+					選択します。<br>
+					ここで早くも<br>
+					問題が発生します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_002.jpg" alt="レイヤーパネルの一番上のレイヤーをクリック"><br>
+				</div>
+				
+				<div class="inner">
+					一番上のレイヤーを<br>
+					選択して、<br>
+					アクションパネルの<br>
+					記録を見てみると…
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_003.jpg" alt="選択範囲 レイヤー 'レベル補正 1'"><br>
+				</div>
+				
+				<div class="inner">
+					選択範囲 レイヤー 'レベル補正 1'<br>
+					となっています。<br>
+					これは「レベル補正 1」という<br>
+					レイヤー名のレイヤーを<br>
+					選択する、という意味です。<br>
+					これでは大抵の場合<br>
+					正しく動作しません。
+				</div>
+
+				<div class="inner">
+					ここでの問題は、<br>
+					アクションを適用する<br>
+					psd ファイルの<br>
+					レイヤー構成が<br>
+					予測不可能なことです。
+				</div>
+
+				<div class="inner">
+					このアクションを<br>
+					'レベル補正 1' <br>
+					というレイヤーが<br>
+					存在しない<br>
+					ブタの写真に適用すると、<br>
+					エラーになります。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_004.jpg" alt="レイヤー 'レベル補正 1'は現在使用できません。">
+				</div>
+				
+				<div class="inner">
+					もちろん<br>
+					同じ名前のレイヤーが<br>
+					あったとしても、<br>
+					常に一番上にあるとは<br>
+					限りません。
+				</div>
+
+				<div class="inner">
+					<h3>レイヤーの相対位置指定</h3>
+					こうした<br>
+					レイヤーの指定一般の問題を<br>
+					解決するには<br>
+					ショートカットキーを使って、<br>
+					レイヤーを相対位置で指定します。
+				</div>
+								
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					以下の様な<br>
+					ショートカットキーが<br>
+					利用できます。<br>
+					Alt + .（ピリオド）… 一番上のレイヤーを選択<br>
+					Alt + ,（コンマ）… 一番下のレイヤーを選択<br>
+					Alt + [ … 一番上のレイヤーを選択<br>
+					Alt + ] … 一番下のレイヤーを選択<br>
+					Ctrl + Alt + A … 全てのレイヤーを選択<br>
+					また、shift 同時押しで、<br>
+					現在のレイヤーと<br>
+					新たに選択したレイヤーの<br>
+					間にあるレイヤーを<br>
+					全て選択できます。
+				</div>
+								
+				<div class="inner">
+					この例の場合は<br>
+					Alt + .（ピリオド）で<br>
+					一番上のレイヤーを<br>
+					選択します。
+				</div>
+				
+				<div class="inner">
+					<img src="article_image/1502/psa_005.jpg" alt="選択範囲 最前面へ レイヤー">
+				</div>
+				
+				<div class="inner">
+					これで、<br>
+					どんなレイヤー構成の<br>
+					ファイルでも<br>
+					一番上のレイヤーが<br>
+					選択できるでしょうか？<br>
+					実はまだ問題があります。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					今回はここまで。<br>
+					次はアクションの<br>
+					条件分岐について書きます。
+				</div>
+								
+			</div>
+			
+		</div>
+		
+		<!--footer--experimental000004-->
+		
+	</body>
+	
+</html>

@@ -1,0 +1,309 @@
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--writing000006-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing000006-->
+					
+		<div id="cont">
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>とりあえず豆知識:基本編つづき</h2>
+					AE の基本機能の覚書の続きです。<br>
+					前回は<a href="http://ton-katsu.net#writing000005">こちら</a>。
+				</div>
+				
+				<div class="inner">
+					プロパティの数値を<br>
+					ドラッグして増減させるときに、<br>
+					Shift を同時押しで<br>
+					変動量 10 倍、<br>
+					Ctrl を同時押しで<br>
+					変動量 0.1 倍になる。
+				</div>
+				
+				<div class="inner">
+					スケールを大きくして<br>
+					オブジェクトがカメラに向かってくるような<br>
+					奥行きの動きを<br>
+					2D でエミュレートするときに<br>
+					普通にリニア補完すると<br>
+					遠近法の関係で<br>
+					だんだん動きが遅くなるように見える。<br>
+					これを解決するには<br>
+					スケールを指数的に<br>
+					上昇させる必要がある。<br>
+					このために、<br>
+					キーフレーム補助に<br>
+					指数スケールというのがあって、<br>
+					2 つのキーフレームを選択して適用すると<br>
+					指数的な変化になるように<br>
+					キーフレームを打ってくれる。<br>
+					(イイ感じに<br>
+					ベジェってくれるわけではなくて<br>
+					単にキーフレームをいっぱい打つ。)<br>
+					3D レイヤーを使ったほうが<br>
+					より根本的な解決になるかも。
+				</div>
+				
+				<div class="inner">
+					Ctrl+^ で全画面表示。<br>
+					プロジェクションマッピングを<br>
+					やるときは<br>
+					これが出来ないと困る。<br>
+					Mac だと上手くいかないという噂もある。
+				</div>
+				
+			</div>
+			
+			<div class="outer">
+			
+				<div class="inner">
+					<h2>ショートカット:基本編つづき</h2>
+					ショートカットキーのよく使うやつ　その2
+				</div>
+				
+				<div class="inner">
+					<h3>プレビュー</h3>
+					<table>
+						<tr>
+							<th>ショートカット</th>
+							<th>機能</th>
+							<th>補足など</th>
+						</tr>
+						<tr>
+							<td>テンキーの 0</td>
+							<td>RAM プレビュー</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Shift+テンキーの 0</td>
+							<td>Shfit RAM プレビュー</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>テンキーの小数点キー</td>
+							<td>サウンドプレビュー</td>
+							<td></td>
+						</tr>
+					</table>
+					
+				</div>
+				
+				<div class="inner">
+					<h3>コンポジションパネルの表示関係</h3>
+					<table>
+						<tr>
+							<th>ショートカット</th>
+							<th>機能</th>
+							<th>補足など</th>
+						</tr>
+						<tr>
+							<td>Space またはマウスのミドルボタン</td>
+							<td>一時的にハンドツールを有効にする</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>,/.</td>
+							<td>ズームアウト/イン</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Z</td>
+							<td>ズームツール一を時的に有効にする</td>
+							<td>左手をホームポジションから
+							動かさずに押せるのが利点。</td>
+						</tr>
+						<tr>
+							<td>Alt+/</td>
+							<td>フィット表示(最大100%)</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Shift+/</td>
+							<td>フィット表示</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>/</td>
+							<td>100%表示</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Alt+4</td>
+							<td>アルファチャンネルをグレースケールで表示</td>
+							<td>Alt+1/2/3 も R/G/B の各チャンネルに対応</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="inner">
+					<h3>表示関係その他</h3>
+					<table>
+						<tr>
+							<th>ショートカット</th>
+							<th>機能</th>
+							<th>補足など</th>
+						</tr>
+						<tr>
+							<td>F3</td>
+							<td>エフェクトコントロール</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+F3</td>
+							<td>グラフエディタに切り替え/元に戻す</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F4</td>
+							<td>モードとスイッチの表示/非表示</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Shift+F4</td>
+							<td>親子関係の表示/非表示</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Shift+F10/F11/F12</td>
+							<td>ワークスペースの切り替え</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+0</td>
+							<td>プロジェクトパネル</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+R</td>
+							<td>定規を表示</td>
+							<td></td>
+						</tr>
+					</table>
+					
+				</div>
+				
+				<div class="inner">
+					<h3>プロジェクトパネル関係</h3>
+					<table>
+						<tr>
+							<th>ショートカット</th>
+							<th>機能</th>
+							<th>補足など</th>
+						</tr>
+						<tr>
+							<td>プロジェクトパネルの何もない場所をダブルクリック</td>
+							<td>ファイルのインポート</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>プロジェクトパネル上でフッテージを、
+							タイムライン上でレイヤーを選択した状態で
+							Ctrl+Alt+/ または
+							タイムライン上でレイヤーを選択した状態で
+							フッテージをレイヤーに Alt+ドラッグ</td>
+							<td>レイヤーのプロパティはそのままに
+							フッテージだけを置き換える</td>
+							<td>けっこう重要な操作だと思うんだけど
+							なぜかメニューからはできない。</td>
+						</tr>
+						<tr>
+							<td>Ctrl+Alt+L</td>
+							<td>フッテージをリロード</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Alt+H</td>
+							<td>フッテージを別ファイルに入れ替え</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Alt+G</td>
+							<td>フッテージの読み込みオプションダイアログ</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>F5/F6/F7/F8</td>
+							<td>スナップショットを表示</td>
+							<td>Shift 同時押しで撮影</td>
+						</tr>
+					</table>
+					
+				</div>
+				
+				<div class="inner">
+					<h3>レイヤー関係その他</h3>
+					<table>
+						<tr>
+							<th>ショートカット</th>
+							<th>機能</th>
+							<th>補足など</th>
+						</tr>
+						<tr>
+							<td>Ctrl+N</td>
+							<td>新規コンポジション</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Y</td>
+							<td>新規平面レイヤー</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Alt+Y</td>
+							<td>新規調整レイヤー</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Alt+Shift+Y</td>
+							<td>新規 Null</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Shift+Y</td>
+							<td>平面レイヤーやカメラなどの設定ダイアログ</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+E</td>
+							<td>外部アプリで編集</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Ctrl+Alt+R</td>
+							<td>時間反転レイヤー</td>
+							<td></td>
+						</tr>
+					</table>
+					
+				</div>
+				
+			</div>		
+			
+			<div class="outer">
+			
+				<div class="inner">
+					今回はここまで。<br>
+					マスク・シェイプ関係とか<br>
+					グラフエディタにも<br>
+					重要なショートカットがありますが、<br>
+					それは別枠で。
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--footer--writing000006-->
+		
+	</body>
+	
+</html>		
