@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 	
 	//Definitions of variables
 	var pkg = grunt.file.readJSON('package.json');
+	var cont;
 	
 	var root = '../../';
 	var assets = root + '_dev/assets/';
@@ -47,13 +48,21 @@ module.exports = function(grunt) {
 		return res;
 	};
 	
+	var contentsJson;
+	var getContents = function(){
+		if(!contentsJson) {
+			contentsJson = grunt.file.readJSON('../../_processing/docs/contents.json');
+		}
+		return contentsJson;
+	}
+	
 	var getMetaTags = function(hash){
 		
 		var match = META_REGEXP.exec(hash);
 		var category = match[1];
 		var id = match[2];
 		
-		var contents = grunt.file.readJSON('../../_dev/_trans/contents.json');
+		var contents = getContents();
 		
 		var i;
 		var items = contents.rss.channel.item;
@@ -114,7 +123,7 @@ module.exports = function(grunt) {
 		var category = match[1];
 		var id = match[2];
 		
-		var contents = grunt.file.readJSON('../../_dev/_trans/contents.json');
+		var contents = ;
 		
 		var i,j;
 		var items = contents.rss.channel.item;
@@ -144,7 +153,7 @@ module.exports = function(grunt) {
 	
 	var getWidgets = function(){
 		
-		var contents = grunt.file.readJSON('../../_dev/_trans/contents.json');
+		var contents = getContents();;
 		
 		var list = '';
 		
