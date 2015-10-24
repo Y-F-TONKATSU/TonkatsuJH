@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 		var category = match[1];
 		var id = match[2];
 		
-		var contents = ;
+		var contents = getContents();
 		
 		var i,j;
 		var items = contents.rss.channel.item;
@@ -153,7 +153,7 @@ module.exports = function(grunt) {
 	
 	var getWidgets = function(){
 		
-		var contents = getContents();;
+		var contents = getContents();
 		
 		var list = '';
 		
@@ -371,7 +371,7 @@ module.exports = function(grunt) {
 				expand:true,
 				cwd: '../../_dev/assets/images/',
 				src: ['**'],
-				dest: '../../_processing/assets/'
+				dest: '../../_processing/assets/images'
 			},
 			image_m: {
 				expand:true,
@@ -472,7 +472,7 @@ module.exports = function(grunt) {
 			},
 			xml2json: {
 				src: ['../../_dev/contents.xml'],
-				dest: '../../_processing/contents.json'
+				dest: '../../_processing/docs/contents.json'
 			}
 		}
 		
