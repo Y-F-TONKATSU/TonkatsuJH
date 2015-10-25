@@ -329,7 +329,6 @@ var testCanvasHandler = function(){
 		
 		test("zip() 複数の配列から同じインデックスの要素を取り出して組にした配列の配列を返す", function() {
 			var r = _.zip([1, 2, 3],[4, 5, 6],[7, 8, 9]);
-			console.log(r);
 			assert.strictEqual([1, 4, 7].toString(), r[0].toString(), '同じインデックスが組になっている');
 			assert.strictEqual([2, 5, 8].toString(), r[1].toString(), '同じインデックスが組になっている');
 			assert.strictEqual([3, 6, 9].toString(), r[2].toString(), '同じインデックスが組になっている');
@@ -337,10 +336,32 @@ var testCanvasHandler = function(){
 		
 		test("unzip() 配列の配列から同じインデックスの要素を取り出して組にした配列の配列を返す", function() {
 			var r = _.unzip([[1, 2, 3],[4, 5, 6],[7, 8, 9]]);
-			console.log(r);
 			assert.strictEqual([1, 4, 7].toString(), r[0].toString(), '同じインデックスが組になっている');
 			assert.strictEqual([2, 5, 8].toString(), r[1].toString(), '同じインデックスが組になっている');
 			assert.strictEqual([3, 6, 9].toString(), r[2].toString(), '同じインデックスが組になっている');
+		});
+		
+		test("object() 複数の配列からオブジェクトを作って返す", function() {
+			var r = _.object(['a', 'b', 'c'],[1, 2, 3]);
+			assert.strictEqual(1, r.a, '2つの配列のインデックス 0 からキーと値を取る');
+			assert.strictEqual(2, r.b, '2つの配列のインデックス 1 からキーと値を取る');
+			assert.strictEqual(3, r.c, '2つの配列のインデックス 2 からキーと値を取る');
+			var r = _.object([['a', 1], ['b', 2], ['c', 3]]);
+			assert.strictEqual(1, r.a, '3つの配列をもつ配列の1番目の配列からキーと値を取る');
+			assert.strictEqual(2, r.b, '3つの配列をもつ配列の2番目の配列からキーと値を取る');
+			assert.strictEqual(3, r.c, '3つの配列をもつ配列の3番目の配列からキーと値を取る');
+		});
+		
+		test("indexOf() 配列の中から第2引数と同じ要素を探して見つかった最初のインデックスを返す", function() {
+			assert.strictEqual(2, _.indexOf(['a', 'b', 'c'], 'c'), '文字列 c のインデックスを返す');
+			assert.strictEqual(2, _.indexOf(['a', 'b', 'c', 'c'], 'c'), '2つある場合最初のインデックスを返す');
+			assert.strictEqual(-1, _.indexOf(['a', 'b', 'c', 'c'], 'd'), '見つからない時は -1 を返す');
+		});
+		
+		test("lastIndexOf() 配列の中から第2引数と同じ要素を探して見つかった最初のインデックスを返す", function() {
+			assert.strictEqual(2, _.lastIndexOf(['a', 'b', 'c'], 'c'), '同じ要素がないなら indexOf と同じ');
+			assert.strictEqual(3, _.lastIndexOf(['a', 'b', 'c', 'c'], 'c'), '2つある場合最後のインデックスを返す');
+			assert.strictEqual(-1, _.lastIndexOf(['a', 'b', 'c', 'c'], 'd'), '見つからない時は -1 を返す');
 		});
 		
 				
