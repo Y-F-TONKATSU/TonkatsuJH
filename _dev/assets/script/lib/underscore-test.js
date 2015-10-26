@@ -364,6 +364,23 @@ var testCanvasHandler = function(){
 			assert.strictEqual(-1, _.lastIndexOf(['a', 'b', 'c', 'c'], 'd'), '見つからない時は -1 を返す');
 		});
 		
+		test("sortedIndex() 第2引数の値が配列の中で何番目かを返す。第3引数で判定に使うキー値か predicate 関数を指定できる", function() {
+			assert.strictEqual(2, _.sortedIndex(['a', 'b', 'd'], 'c'), '文字列 c は2番目の要素');
+			assert.strictEqual(2, _.sortedIndex([1, 2, 4, 5, 6], 3), '3 は 2 の次に来る');
+			assert.strictEqual(1, _.sortedIndex([1, 5, 4, 2, 1], 3), '最初に見つかった自分より大きい値のインデックスを返す');
+			assert.strictEqual(2, _.sortedIndex([1, 2, 3, 2, 1], 3), '最初に見つかった自分と同じ値のインデックスを返す');
+			
+			var data = [
+				{name:'a', score:30, age:10},
+				{name:'b', score:40, age:30},
+				{name:'d', score:10, age:40},
+			];
+			
+			assert.strictEqual(1, _.sortedIndex(data, {name:'c', score:40, age:20}, 'age'), 'オブジェクトの配列の場合、第3引数でキー値を指定できる');
+			assert.strictEqual(2, _.sortedIndex(data, {name:'c', score:40, age:20}, 'name'), 'オブジェクトの配列の場合、第3引数でキー値を指定できる');
+			assert.strictEqual(1, _.sortedIndex(data, {name:'c', score:40, age:20}, function(v){return v.score + v.age}), 'オブジェクトの配列の場合、第3引数で predicate 関数を指定できる');
+			assert.strictEqual(3, _.sortedIndex(data, {name:'c', score:100, age:20}, function(v){return v.score + v.age}), 'オブジェクトの配列の場合、第3引数で predicate 関数を指定できる');
+		});
 				
 	});
 	
