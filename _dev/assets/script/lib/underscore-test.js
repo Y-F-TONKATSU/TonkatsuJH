@@ -2,14 +2,14 @@ var testCanvasHandler = function(){
 	
 	mochaSetup();
 	
-	suite('CanvasHandler', function() {
+	suite('UnderScore Learning Tests', function() {
 		
 		setup(function(){
 			
 		});
 		
-		test("CanvasHandler()", function() {
-			assert.strictEqual("function", typeof _, "_が存在する。");
+		test("_ オブジェクト", function() {
+			assert.strictEqual("function", typeof _, "_ が存在する。");
 		});
 		
 		test("each() 単にシーケンスをイテレートする", function() {
