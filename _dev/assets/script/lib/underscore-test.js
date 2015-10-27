@@ -382,6 +382,22 @@ var testCanvasHandler = function(){
 			assert.strictEqual(3, _.sortedIndex(data, {name:'c', score:100, age:20}, function(v){return v.score + v.age}), 'オブジェクトの配列の場合、第3引数で predicate 関数を指定できる');
 		});
 				
+		test("findIndex() 第2引数で指定した predicate 関数をパスする最初の要素のインデックスを返す", function() {
+			assert.strictEqual(2, _.findIndex([0, 1, 2, 3, 4, 5, 6], function(v){return (v % 3 === 2)}), '最初の3で割って2余る数は2');
+			assert.strictEqual(-1, _.findIndex([0, 1, 2, 3, 4, 5, 6], function(v){return (v > 10)}), 'パスする要素がなければ -1 を返す');
+		});
+		
+		test("findLastIndex() 第2引数で指定した predicate 関数をパスする最後の要素のインデックスを返す", function() {
+			assert.strictEqual(5, _.findLastIndex([0, 1, 2, 3, 4, 5, 6], function(v){return (v % 3 === 2)}), '最後の3で割って2余る数は5');
+		});
+		
+		test("range() 整数の配列を作って返す", function() {
+			assert.strictEqual([0, 1, 2].toString(), _.range(3).toString(), '3つの整数の配列を作る');
+			assert.strictEqual([3, 4, 5].toString(), _.range(3, 6).toString(), '3から5までの整数の配列を作る');
+			assert.strictEqual([3, 6, 9].toString(), _.range(3, 12, 3).toString(), '3から12までの3ずつ増加する整数の配列を作る');
+			assert.strictEqual([3, 0, -3, -6, -9].toString(), _.range(3, -12, -3).toString(), '3から-12までの3ずつ現象する整数の配列を作る');
+		});
+		
 	});
 	
 	$(function(){
