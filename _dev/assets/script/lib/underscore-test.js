@@ -398,6 +398,38 @@ var testCanvasHandler = function(){
 			assert.strictEqual([3, 0, -3, -6, -9].toString(), _.range(3, -12, -3).toString(), '3から-12までの3ずつ現象する整数の配列を作る');
 		});
 		
+		test("bind() 関数が常に指定したオブジェクトを this として実行されるようにする. 第3引数以降で引数を部分適用できる", function() {
+			var f = function(){return this.namae;}
+			var tf = _.bind(f, {namae:'tonkatsu'});
+			assert.strictEqual(undefined, f(), 'f の this は window');
+			assert.strictEqual('tonkatsu', tf(), '無名オブジェクトを f のコンテクストとして設定した');
+			var g = function(v, w){return v * w * this.age;}
+			var tg = _.bind(g, {age:10}, 5);
+			assert.strictEqual(100, tg(2), 'g の第1引数に5を部分適用');
+			
+		});
+		
+		test("bindAll() オブジェクトの第2引数以降で名前を指定したメソッドが常にそのオブジェクトを this として実行されるようになる", function() {
+			var o = {
+				whatsThis:function(){return this},
+				onNamae:function(){return this.namae},
+				onAge:function(){return this.age},
+				namae:'tonkatsu',
+				age:10
+			}
+			var f = o.whatsThis;
+			assert.strictEqual(window, f(), 'f の this は window');
+			_.bindAll(o, 'whatsThis', 'onNamae', 'onAge');
+			assert.strictEqual(window, f(), 'bindAll しても f の this はまだ window');
+			var g = o.whatsThis;
+			var h = o.onNamae;
+			var i = o.onAge;
+			assert.strictEqual(o, g(), 'g の this は o');
+			assert.strictEqual('tonkatsu', h(), 'コンテクストを無視して o を this にする');
+			assert.strictEqual(10, i(), 'コンテクストを無視して o を this にする');
+			
+		});
+		
 	});
 	
 	$(function(){
