@@ -430,6 +430,97 @@ var testCanvasHandler = function(){
 			
 		});
 		
+		test("partial() 引数の部分適用を行う", function() {
+			var add = function(a, b){return a + b;}
+			var add10 = _.partial(add, 10);
+			assert.strictEqual(11, add10(1), '2つの引数を足す関数から1つの引数に10を足す関数を作る');
+			var sub = function(a, b){return a - b;}
+			var sub10 = _.partial(sub, _, 10);
+			assert.strictEqual(10, sub10(20), '_ を指定すると、部分適用を行わない');
+		});
+		
+		test("memoize() 関数が実行結果をキャッシュするようになる", function() {
+			var add10 = function(a){return a + 10;}
+			var superAdd10 = _.memoize(add10);
+			var twenty = superAdd10(10);
+
+			assert.strictEqual(20, twenty, '10を足す関数に10を渡すと戻り値は20');
+			assert.strictEqual(twenty, superAdd10.cache['10'], '結果がキャッシュされている');
+		});
+		
+		test("once() 2回目以降の実行を無効化するバージョンの関数を返す", function() {
+			var i = 0;
+			var f = function(){i++;};
+			var onceF = _.once(f);
+			assert.strictEqual(0, i, '発火する前の値は0');
+			onceF();
+			assert.strictEqual(1, i, '1回発火した後の値は1');
+			onceF();
+			assert.strictEqual(1, i, '2回発火した後の値も1のまま');
+			f();
+			assert.strictEqual(2, i, 'オリジナルの関数を発火すると2');
+		});
+		
+		test("after() 指定した回数だけ呼ばれた後にのみ一回だけ発火する関数を返す", function() {
+			var i = 0;
+			var f = function(){i++; console.log(i);};
+			var g = _.after(5, f);
+			assert.strictEqual(0, i, '関数を1回も呼ばないと i は0');
+			g();
+			assert.strictEqual(0, i, '関数を1回呼んでも i は0');
+			g();
+			g();
+			g();
+			g();
+			assert.strictEqual(1, i, '関数を5回呼ぶと i は1');
+			g();
+			assert.strictEqual(2, i, '関数を6回呼ぶと i は2');
+			g();
+			assert.strictEqual(3, i, '関数を7回呼ぶと i は3');
+		});
+		
+		test("before() 指定した回数だけ呼ばれた後にのみ一回だけ発火する関数を返す", function() {
+			var i = 0;
+			var f = function(){i++;};
+			var g = _.before(5, f);
+			assert.strictEqual(0, i, '関数を1回も呼ばないと i は0');
+			g();
+			assert.strictEqual(1, i, '関数を1回呼ぶと i は1');
+			g();
+			g();
+			g();
+			assert.strictEqual(4, i, '関数を4回呼ぶと i は4');
+			g();
+			assert.strictEqual(4, i, '関数を5回呼んでも i は4');
+			g();
+			assert.strictEqual(4, i, '関数を6回呼んでも i は4');
+		});
+		
+		test("wrap() 第1引数の関数を引数に固定したバージョンの第2引数に渡した関数を返す", function() {
+			var i = 10;
+			var f = function(){return i + 10;};
+			var g = _.wrap(f, function(func){i += func() * 5;});
+			g();
+			assert.strictEqual(110, i, 'i は 110');
+		});
+		
+		test("negate() predicate 関数の審議を逆にしたバージョンを返す", function() {
+			var isEven = function(v){return v % 2 === 0;};
+			var isOdd = _.negate(isEven);
+			assert(isEven(2), '2 は 偶数');
+			assert(isOdd(1), '1 は 奇数');
+			
+		});
+		
+		test("compose() 複数の関数を渡すとそれらを全て実行する関数を返す.返り値は次に実行される関数の引数になる", function() {
+			var getTen = function(){return 10;}
+			var multiplyTwo = function(v){return v * 2;}
+			var subtractFifteen = function(v){return v - 15;}
+			var comp = _.compose(subtractFifteen, multiplyTwo, getTen);
+			assert.strictEqual(5, comp(), '10 に 2 を掛けて 15 引く関数を作った');
+		});
+		
+				
 	});
 	
 	$(function(){
