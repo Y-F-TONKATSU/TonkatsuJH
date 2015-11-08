@@ -463,7 +463,7 @@ var testCanvasHandler = function(){
 		
 		test("after() 指定した回数だけ呼ばれた後にのみ一回だけ発火する関数を返す", function() {
 			var i = 0;
-			var f = function(){i++; console.log(i);};
+			var f = function(){i++;};
 			var g = _.after(5, f);
 			assert.strictEqual(0, i, '関数を1回も呼ばないと i は0');
 			g();
@@ -518,6 +518,54 @@ var testCanvasHandler = function(){
 			var subtractFifteen = function(v){return v - 15;}
 			var comp = _.compose(subtractFifteen, multiplyTwo, getTen);
 			assert.strictEqual(5, comp(), '10 に 2 を掛けて 15 引く関数を作った');
+		});
+		
+		test("keys() オブジェクトの全てのキーの配列を返す", function() {
+			var f = function(){
+				this.a = 1;
+				this.b = 2;
+				this.c = 3;
+			};
+			f.prototype = {'d':4};
+			o = new f();
+			assert.strictEqual('a', _.keys(o)[0], '1番目のキーはa');
+			assert.strictEqual('b', _.keys(o)[1], '2番目のキーはb');
+			assert.strictEqual('c', _.keys(o)[2], '3番目のキーはc');
+			assert.strictEqual(4, o.d, 'o はキー d を持っているが');
+			assert.strictEqual(undefined, _.keys(o)[3], 'd は配列に含まれない');
+			
+		});
+		
+		test("allKeys() オブジェクトの全てのキーの配列を返す", function() {
+			var f = function(){
+				this.a = 1;
+				this.b = 2;
+				this.c = 3;
+			};
+			f.prototype = {'d':4};
+			o = new f();
+			assert.strictEqual('a', _.allKeys(o)[0], '1番目のキーはa');
+			assert.strictEqual('b', _.allKeys(o)[1], '2番目のキーはb');
+			assert.strictEqual('c', _.allKeys(o)[2], '3番目のキーはc');
+			assert.strictEqual(4, o.d, 'o はキー d を持っていて');
+			assert.strictEqual('d', _.allKeys(o)[3], 'd も配列に含まれる');
+			
+		});
+		
+		test("values() オブジェクトの全ての値の配列を返す", function() {
+			var f = function(){
+				this.a = 1;
+				this.b = 2;
+				this.c = 3;
+			};
+			f.prototype = {'d':4};
+			o = new f();
+			assert.strictEqual(1, _.values(o)[0], '1番目の値は1');
+			assert.strictEqual(2, _.values(o)[1], '2番目の値は2');
+			assert.strictEqual(3, _.values(o)[2], '3番目の値は3');
+			assert.strictEqual(4, o.d, 'o は値 4 を持っているが');
+			assert.strictEqual(undefined, _.values(o)[3], '4 は配列に含まれない');
+			
 		});
 		
 				
