@@ -240,11 +240,11 @@ module.exports = function(grunt) {
 			},
 			less_landscape:{
 				src: ['../../_dev/assets/less/layout_main_common.less', '../../_dev/assets/less/layout_main_landscape.less'],
-				dest:'../../_dev/assets/css/layout_main_landscape.less'
+				dest:'../../_processing/assets/css/layout_main_landscape.less'
 			},
 			less_portrait:{
 				src: ['../../_dev/assets/less/layout_main_common.less', '../../_dev/assets/less/layout_main_portrait.less'],
-				dest:'../../_dev/assets/css/layout_main_portrait.less'
+				dest:'../../_processing/assets/css/layout_main_portrait.less'
 			},
 			js_main:{
 				src: jsList,
@@ -266,17 +266,17 @@ module.exports = function(grunt) {
 		less: {
 			css_main: {
 				files: {
-					'../../_dev/assets/css/base.css':['../../_dev/assets/less/base.less']
+					'../../_processing/assets/css/base.css':['../../_dev/assets/less/base.less']
 				}
 			},
 			css_landscape: {
 				files: {
-					'../../_dev/assets/css/layout_main_landscape.css':['../../_dev/assets/css/layout_main_landscape.less']
+					'../../_processing/assets/css/layout_main_landscape.css':['../../_processing/assets/css/layout_main_landscape.less']
 				}
 			},
 			css_portrait: {
 				files: {
-					'../../_dev/assets/css/layout_main_portrait.css':['../../_dev/assets/css/layout_main_portrait.less']
+					'../../_processing/assets/css/layout_main_portrait.css':['../../_processing/assets/css/layout_main_portrait.less']
 				}
 			}
 		},
@@ -285,16 +285,16 @@ module.exports = function(grunt) {
 			options: {
 			},
 			css_main:{
-				src: '../../_dev/assets/css/base.css',
-				dest: '../../_dev/assets/css/base-vender-fixed.css'
+				src: '../../_processing/assets/css/base.css',
+				dest: '../../_processing/assets/css/base-vender-fixed.css'
 			},
 			css_landscape:{
-				src: '../../_dev/assets/css/layout_main_landscape.css',
-				dest: '../../_dev/assets/css/layout_main_landscape-vender-fixed.css'
+				src: '../../_processing/assets/css/layout_main_landscape.css',
+				dest: '../../_processing/assets/css/layout_main_landscape-vender-fixed.css'
 			},
 			css_portrait:{
-				src: '../../_dev/assets/css/layout_main_portrait.css',
-				dest: '../../_dev/assets/css/layout_main_portrait-vender-fixed.css'
+				src: '../../_processing/assets/css/layout_main_portrait.css',
+				dest: '../../_processing/assets/css/layout_main_portrait-vender-fixed.css'
 			}
 		},
 		
@@ -310,7 +310,7 @@ module.exports = function(grunt) {
 			css_main: {
 				files: [
 					{
-						src:'../../_dev/assets/css/base-vender-fixed.css',
+						src:'../../_processing/assets/css/base-vender-fixed.css',
 						dest:'../../public/assets/css/base-min.css'
 					}
 				]
@@ -318,7 +318,7 @@ module.exports = function(grunt) {
 			css_landscape: {
 				files: [
 					{
-						src:'../../_dev/assets/css/layout_main_landscape-vender-fixed.css',
+						src:'../../_processing/assets/css/layout_main_landscape-vender-fixed.css',
 						dest:'../../public/assets/css/layout_main_landscape-min.css'
 					}
 				]
@@ -326,7 +326,7 @@ module.exports = function(grunt) {
 			css_portrait: {
 				files: [
 					{
-						src:'../../_dev/assets/css/layout_main_portrait-vender-fixed.css',
+						src:'../../_processing/assets/css/layout_main_portrait-vender-fixed.css',
 						dest:'../../public/assets/css/layout_main_portrait-min.css'
 					}
 				]
@@ -382,13 +382,14 @@ module.exports = function(grunt) {
 				src: ['**'],
 				dest: '../../public/assets/images'
 			},
-			main: [{
+			main: {
 				src: '../../_processing/docs/index_widgets_min.html',
 				dest: '../../public/index.html'
-			},{
+			},
+			favicon: {
 				src: '../../_dev/favicon.ico',
 				dest: '../../public/favicon.ico'
-			}],
+			},
 			contents: {
 				expand:true,
 				cwd: '../../_dev/contents/',
@@ -493,7 +494,7 @@ module.exports = function(grunt) {
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
 	var cssTasks = ['concat:less_landscape', 'concat:less_portrait', 'less:css_main', 'less:css_landscape', 'less:css_portrait', 'autoprefixer:css_main', 'autoprefixer:css_landscape', 'autoprefixer:css_portrait', 'cssmin:css_main', 'cssmin:css_landscape', 'cssmin:css_portrait'];
-	var htmlTasks = ['replace:main', 'htmlmin:main', 'copy:main'];
+	var htmlTasks = ['replace:main', 'htmlmin:main', 'copy:main', 'copy:favicon'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
 	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'replace:contents', 'replace:contents_header', 'replace:contents_footer',  'copy:contents_2', 'htmlmin:contents']);
