@@ -80,7 +80,7 @@ var testCanvasHandler = function(){
 				{name:'Namayuba', favorite:'curry', age:50}
 			];
 			var r = _.findWhere(data, {	favorite:'curry'});
-			assert(r.name == 'TONKATSU',"where でオブジェクトの配列から favorite の値が curry のオブジェクトだけを取り出せる");
+			assert(r.name == 'TONKATSU',"findWhere でオブジェクトの配列から favorite の値が curry の最初のオブジェクトを取り出せる");
 		});
 		
 		test("reject() シーケンスから predicate 関数が true を返す値を排除して、残った値の配列を返す", function() {
@@ -98,6 +98,7 @@ var testCanvasHandler = function(){
 			assert.strictEqual(r[0], 'def', "reject でオブジェクトの中から値に文字 c を含むアイテムを排除できる");
 		});
 				
+
 		test("every() シーケンス内の全ての要素が predicate 関数をパスするなら true を返す", function() {
 			assert.strictEqual(true, _.every([2, 4, 6, 8, 10, 12], function(v){return v % 2 == 0;}), "全て偶数なら true");
 			assert.strictEqual(false, _.every([1, 2, 3, 4, 5, 6], function(v){return v % 2 == 0;}), "全て偶数でなければ false");
@@ -565,6 +566,545 @@ var testCanvasHandler = function(){
 			assert.strictEqual(3, _.values(o)[2], '3番目の値は3');
 			assert.strictEqual(4, o.d, 'o は値 4 を持っているが');
 			assert.strictEqual(undefined, _.values(o)[3], '4 は配列に含まれない');
+			
+		});
+		
+		test("mapObject() オブジェクトのキーと値を引数にとって関数を実行し、返り値をオブジェクトのそれぞれの値に代入したオブジェクトを返す", function() {
+			var o =  {
+				'unko':'man',
+				'maguro':'man',
+				'pants':'man',
+			};
+			var p = _.mapObject(o, function(v, k){
+				return k + '-' + v;
+			});
+			assert.strictEqual('unko-man', p.unko, 'キーと値の文字列を結合して値に代入した');
+			assert.strictEqual('maguro-man', p.maguro, 'キーと値の文字列を結合して値に代入した');
+			assert.strictEqual('pants-man', p.pants, 'キーと値の文字列を結合して値に代入した');
+			
+		});
+		
+		test("pairs() オブジェクトをキー(0)と値(1)の2つのインデックスを持つ配列の配列に変換して返す", function() {
+			var o =  {
+				'unko':'man',
+				'maguro':'man',
+				'pants':'man',
+			};
+			var p = _.pairs(o);
+			assert.strictEqual('unko', p[0][0], 'オブジェクトを配列の配列に変換した');
+			assert.strictEqual('man', p[0][1], 'オブジェクトを配列の配列に変換した');
+			assert.strictEqual('maguro', p[1][0], 'オブジェクトを配列の配列に変換した');
+			assert.strictEqual('man', p[1][1], 'オブジェクトを配列の配列に変換した');
+			assert.strictEqual('pants', p[2][0], 'オブジェクトを配列の配列に変換した');
+			assert.strictEqual('man', p[2][1], 'オブジェクトを配列の配列に変換した');
+			
+		});
+		
+		test("invert() オブジェクトのキーと値を入れ替える", function() {
+			var o =  {
+				'unko':'max',
+				'maguro':'man',
+				'pants':'master',
+			};
+			var p = _.invert(o);
+			assert.strictEqual('unko', p.max, 'キーと値の文字列を入れ替えた');
+			assert.strictEqual('maguro', p.man, 'キーと値の文字列を入れ替えた');
+			assert.strictEqual('pants', p.master, 'キーと値の文字列を入れ替えた');
+			
+		});
+		
+		test("create() プロトタイプから新しいオブジェクトを作って返す", function() {
+			var f = function(){
+				this.name = 'unko';
+			};
+			f.prototype = {
+				p:'proto',
+				q:'qroto'
+			};
+			var o = _.create(f.prototype, {p:'curry'});
+			
+			assert.strictEqual('qroto', o.q, 'プロトタイプが q を持つ新しいオブジェクトを作った');
+			assert.strictEqual('curry', o.p, 'p を上書きして新しいオブジェクトを作った');
+			
+		});
+		
+		test("functions() オブジェクトが持つ全ての関数の配列を返す", function() {
+			var f = function(){
+				this.f = function(){};
+			};
+			f.prototype = {
+				g:function(){},
+				h:function(){}
+			};
+			var o = new f();
+			
+			assert.strictEqual(3, _.functions(o).length, 'オブジェクトが持つ関数を数え上げた');
+			
+		});
+		
+		test("findKey() predicate 関数をパスする要素のキーを返す", function() {
+			var f = function(){
+				this.p = 2;
+				this.q = 3;
+				this.r = 4;
+			};
+			f.prototype = {
+				s:5,
+				t:6
+			};
+			var o = new f();
+			
+			assert.strictEqual('q', _.findKey(o, function(v, k){return v % 2 == 1}), '奇数の値を持つキーを見つけた');
+			assert.strictEqual(undefined, _.findKey(o, function(v, k){return v % 4 == 1}), 'プロトタイプからは値を見つけない');
+			
+		});
+		
+		test("extend() 第2引数のオブジェクトの全てのプロパティを第1引数のオブジェクトにコピーする", function(){
+			var person = {
+				name:'tonkatsu',
+				age:100
+			};
+			
+			var Ability = function(){
+				this.specialPower = 'unkomax';
+				this.age = 200;
+			}
+			Ability.prototype = {
+				favorite:'curry',
+			};
+			ability = new Ability();
+			
+			assert.strictEqual(person.specialPower, undefined, 'extend する前はプロパティがない');
+			
+			_.extend(person, ability);
+			
+			assert.strictEqual(person.name, 'tonkatsu', '元からあったプロパティは変わらない');
+			assert.strictEqual(person.specialPower, 'unkomax', 'ablility のプロパティがコピーされている');			
+			assert.strictEqual(person.age, 200, '元からあったプロパティは上書きされる');
+			assert.strictEqual(person.favorite, 'curry', 'プロトタイプのオブジェクトも追加される');
+			
+		});
+		
+				
+		test("extendOwn() 第2引数のオブジェクトの全てのプロパティを第1引数のオブジェクトにコピーする", function(){
+			var person = {
+				name:'tonkatsu',
+				age:100
+			};
+			
+			var Ability = function(){
+				this.specialPower = 'unkomax';
+				this.age = 200;
+			}
+			Ability.prototype = {
+				favorite:'curry',
+			};
+			ability = new Ability();
+			
+			_.extendOwn(person, ability);
+			
+			assert.strictEqual(person.name, 'tonkatsu', '元からあったプロパティは変わらない');
+			assert.strictEqual(person.specialPower, 'unkomax', 'ablility のプロパティがコピーされている');			
+			assert.strictEqual(person.age, 200, '元からあったプロパティは上書きされる');
+			assert.strictEqual(person.favorite, undefined, 'プロトタイプのオブジェクトは追加されない');
+			
+			
+		});
+		
+				
+		test("pick() オブジェクトから指定したプロパティを抽出したオブジェクトを返す", function(){
+			var person = {
+				name:'tonkatsu',
+				age:100,
+				favorite:'curry',
+				unkoA:'A',
+				unkoB:'B',
+			};
+			
+			
+			var client = _.pick(person, 'name', 'age');
+			
+			assert.strictEqual(client.name, 'tonkatsu', 'name は抽出されている');
+			assert.strictEqual(client.favorite, undefined, 'favoirite は抽出されていない');
+			
+			var soldier = _.pick(person, function(value, key, object){
+				return key.indexOf('unko') >= 0;
+			});
+			
+			assert.strictEqual(soldier.name, undefined, 'name は抽出されていない');
+			assert.strictEqual(soldier.unkoA, 'A', 'unko がキーに含まれるプロパティは抽出されている');
+			assert.strictEqual(soldier.unkoB, 'B', 'unko がキーに含まれるプロパティは抽出されている');
+			
+			
+		});
+		
+		test("omit() オブジェクトから指定したプロパティをオミットしたオブジェクトを返す", function(){
+			var person = {
+				name:'tonkatsu',
+				age:100,
+				favorite:'curry',
+				unkoA:'A',
+				unkoB:'B',
+
+			};
+			
+			
+			var client = _.omit(person, 'favorite', 'age');
+			
+			assert.strictEqual(client.name, 'tonkatsu', 'name はオミットされていない');
+			assert.strictEqual(client.favorite, undefined, 'favoirite はオミットされている');
+			
+			var soldier = _.omit(person, function(value, key, object){
+				return key.indexOf('unko') >= 0;
+			});
+			
+			assert.strictEqual(soldier.name, 'tonkatsu', 'name はオミットされていない');
+			assert.strictEqual(soldier.unkoA, undefined, 'unko がキーに含まれるプロパティはオミットされている');
+			assert.strictEqual(soldier.unkoB, undefined, 'unko がキーに含まれるプロパティはオミットされている');
+			
+			
+		});
+		
+				
+		test("defaults() 指定したプロパティが undefined の時のみ、値を設定する", function(){
+			var person = {
+				name:'tonkatsu',
+				age:100,
+				favorite:'curry',
+			};
+			
+			
+			var ninja = _.defaults(person, {name:'Hattori' , skill:'unko beam'});
+			
+			assert.strictEqual(ninja.name, 'tonkatsu', 'name は変更されていない');
+			assert.strictEqual(ninja.skill, 'unko beam', 'skill はデフォルト値が設定されている');
+			
+			
+		});
+		
+		test("clone() オブジェクトの浅いコピーを作る", function(){
+			
+			var o = {
+				name:'unko'
+			}
+			
+			var person = {
+				name:'tonkatsu',
+				favorite:o,
+			};
+			
+			
+			var ninja = _.clone(person);
+			
+			assert.strictEqual(ninja.name, 'tonkatsu', 'name がコピーされている');
+			assert.strictEqual(ninja.favorite.name, 'unko', '参照がコピーされている');
+			
+			o.name = 'curry';
+			
+			assert.strictEqual(ninja.favorite.name, 'curry', '参照元の変更を反映');
+									
+			
+		});
+		
+		test("tap() 関数をラッパーオブジェクトを返すようにして、メソッドチェインに繋げるようにする", function(){
+			
+			var o = {
+				a:1,
+				b:2,
+				c:3,
+			};
+			
+			var p = _.chain(o)
+			.filter(function(value){
+					return value % 2 === 0;
+				})
+			.tap(function(self){
+				self.size = _.size(self);
+				})
+			.value();
+			
+			assert.strictEqual(p.size, 1, '関数をメソッドチェインに繋げた');
+									
+			
+		});
+		
+		test("matcher() 指定したオブジェクトに一致するキーと値を持つオブジェクトなら true を返す predicate 関数を返す", function(){
+			
+			var personA = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			var personB = {
+				name:'tonkatsu',
+				favorite:'unko'
+			};
+			
+			var isTonkatsu = _.matcher({'name':'tonkatsu', 'favorite':'curry'});
+			
+			var list = [personA, personB];
+			var filtered = _.filter(list, isTonkatsu);
+						
+			assert.strictEqual(1, filtered.length, 'predicate 関数で要素がフィルタされた');
+			assert.strictEqual('curry', filtered[0].favorite, 'matcher で指定したオブジェクトと同じプロパティを持つ要素が残った');
+									
+			
+		});
+		
+		test("property() オブジェクトを引数として渡すと、指定した文字列のキーの値を取得する関数を返す", function(){
+			
+			var o = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			var getFavorite = _.property('favorite');
+			var r = getFavorite(o);
+									
+			assert.strictEqual('curry', r, 'favorite の値を調べる関数を作った');
+									
+			
+		});
+		
+		test("propertyOf() 文字列を引数として渡すと、指定したオブジェクトからその文字列をキーとする値を取得する関数を返す", function(){
+			
+			var o = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			var getFromObject = _.propertyOf(o);
+			var r = getFromObject('favorite');
+									
+			assert.strictEqual('curry', r, 'favorite の値を調べる関数を作った');
+									
+			
+		});
+		
+		test("isEqual() オブジェクトを深く比較する", function(){
+			
+			var o = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			var p = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			assert(_.isEqual(o, p), 'オブジェクトのプロパティが全て同じなら true');
+			p.favorite = 'unko';
+			assert(!_.isEqual(o, p), 'オブジェクトのプロパティが全て同じなら false');									
+			
+		});
+		
+		test("isMatch() 第1引数のオブジェクトが、第2引数のオブジェクトの全てのプロパティについて、同じ値を持っていれば true を返す", function(){
+			
+			var o = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			var p = {
+				favorite:'curry'
+			};
+			
+			var q = {
+				favorite:'unko'
+			};
+			
+			var r = {
+				name:'tonkatsu',
+				age:100
+			};
+			
+			assert(_.isMatch(o, p), 'q のプロパティが全て o と同じなので true');
+			assert(!_.isMatch(o, q), 'favorite の値が違うので false');
+			assert(!_.isMatch(o, r), 'o は age プロパティを持っていないので false');
+			
+		});
+		
+				
+		test("isElement() DOM エレメントであれば true を返す", function(){
+			
+			var o = {
+				name:'tonkatsu',
+				favorite:'curry'
+			};
+			
+			var e = $('div').get(0);
+			var f = $('div');
+			
+			
+			assert(!_.isElement(o), 'o は DOM ではない');
+			assert(_.isElement(e), 'e は DOM');
+			assert(!_.isElement(f), 'jQuery オブジェクトでは false');
+			
+		});
+		
+		test("isEmpty() 空であれば true を返す", function(){
+			
+			assert(_.isEmpty({}), '空オブジェクトに true を返す');
+			assert(_.isEmpty([]), '空配列に true を返す');
+			assert(_.isEmpty(""), '空文字列に true を返す');
+			
+			assert(!_.isEmpty({o:""}), '中身があると false');
+			assert(!_.isEmpty([1]), '中身があると false');
+			assert(!_.isEmpty("unko"), '中身があると false');
+			assert(_.isEmpty(1), 'シーケンシャルデータでなければ true');
+		});
+		
+		test("isArray() 配列であれば true を返す", function(){
+			
+			assert(!_.isArray({}), '空オブジェクトに false を返す');
+			assert(_.isArray([]), '空配列に true を返す');
+			assert(!_.isArray(""), '空文字列に false を返す');
+			
+		});
+		
+		
+		test("isObject() オブジェクトであれば true を返す。配列や関数もオブジェクトとみなされる。", function(){
+			
+			assert(_.isObject({}), '空オブジェクトに true を返す');
+			assert(_.isObject([]), '空配列に true を返す');
+			assert(_.isObject(function(){}), '関数オブジェクトに true を返す');
+			assert(!_.isObject(""), '空文字列に false を返す');
+			
+		});
+		
+		test("isArguments() arguments オブジェクトであれば true を返す。", function(){
+			
+			var v = function(){
+				assert(_.isArguments(arguments), 'arguments オブジェクトに true を返す');
+				return arguments;
+			}();
+			
+			assert(_.isArguments(v), '関数の外でも true を返す');
+			
+			var arguments = {"unko":"0"};
+			
+			assert(!_.isArguments(arguments), 'arguments でなければ false');
+			
+			
+		});
+		
+		test("isFunction() 関数であれば true を返す。", function(){
+			
+			assert(_.isFunction(function(){}), '関数オブジェクトに true を返す');
+			assert(!_.isFunction({}), 'ただのオブジェクトに false を返す');
+			
+		});
+		
+		test("isString() 文字列であれば true を返す。", function(){
+			
+			assert(_.isString(""), '空文字列に true を返す');
+			assert(!_.isString(function(){}), '関数オブジェクトに false を返す');
+			assert(!_.isString({}), 'ただのオブジェクトに false を返す');
+			
+		});
+		
+		test("identity() 同じオブジェクトを返す", function(){
+			
+			var o = {"name":"tonkatsu"};
+			
+			assert(_.identity(o) === o, '同じオブジェクトに true を返す');
+			
+		});
+		
+		test("constant() 引数と同じ値を常に返す関数を返す", function(){
+			
+			var o = {"name":"tonkatsu"};
+			var con = _.constant(o);
+			
+			assert(con() === o, '関数の実行結果と引数が同じ');
+			
+		});
+		
+		test("noop() 常に undefined を返す関数を返す", function(){
+			
+			assert(_.noop() === undefined, '引数無しで undefined を返す');
+			assert(_.noop({}) === undefined, '引数有りで undefined を返す');
+			
+		});
+		
+		test("times() 第1引数で指定した回数分だけ、第2引数で指定する関数を実行する", function(){
+			
+			var n = 0;
+			
+			var f = function(){
+				n++;
+			}
+			
+			_.times(5, f);
+			
+			assert(n === 5, '関数が5回実行された');
+			
+			n = 0;
+			
+			var g = function(index){
+				n += index;
+			}
+			
+			_.times(5, g);
+			
+			assert(n === 10, '引数として実行回数を受け取る');
+			
+			
+		});
+		
+		test("mixin() 値として関数を持つオブジェクトを渡すと、その関数をそのキーの名前で _ オブジェクトに追加する", function(){
+			
+			_.mixin({'getUnko': function(x){return x + 'unko'}});
+			
+			assert(_.getUnko('super') === 'superunko', 'getUnko 関数を追加した');
+			
+			
+		});
+		
+		test("escape() HTML の特殊文字をエスケープする", function(){
+			
+			var braces = _.escape("<>");			
+			assert(braces === '&lt;&gt;', '山カッコをエスケープした');
+			
+			var quote = _.escape('"');			
+			assert(quote === '&quot;', 'ダブルクォートをエスケープした');
+			
+			var squote = _.escape("'");			
+			assert(squote === '&#x27;', 'シングルクォートをエスケープした');
+			
+			var amp = _.escape("&");			
+			assert(amp === '&amp;', 'アンパサンドをエスケープした');
+			
+		});
+		
+		test("unescape() エスケープされた HTML の特殊文字を元に戻す", function(){
+			
+			var braces = _.unescape("&lt;&gt;");
+			console.log(braces);
+			assert(braces === '<>', '山カッコを戻した');
+			
+			var quote = _.unescape('&quot;');			
+			assert(quote === '"', 'ダブルクォートを戻した');
+			
+			var squote = _.unescape("&#x27;");			
+			assert(squote === "'", 'シングルクォートを戻した');
+			
+			var amp = _.unescape("&amp;");			
+			assert(amp === '&', 'アンパサンドを戻した');
+			
+		});
+		
+		test("result() 第1引数のオブジェクトのプロパティ名を第2引数で指定すると、関数の場合実行結果を返す", function(){
+			
+			var o = {
+				name:'tonkatsu',
+				getUnko:function(){return 'unko';}	
+			}
+			
+			assert(_.result(o, 'name') === 'tonkatsu', '第2引数で指定したプロパティを返す');
+			assert(_.result(o, 'getUnko') === 'unko', '第2引数で指定した関数を実行する');
+			assert(_.result(o, 'getCurry', 'nothing') === 'nothing', 'プロパティがない場合、第3引数で指定したデフォルト値を返す。');
 			
 		});
 		

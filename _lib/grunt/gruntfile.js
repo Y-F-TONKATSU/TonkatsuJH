@@ -4,13 +4,14 @@ module.exports = function(grunt) {
 	var pkg = grunt.file.readJSON('package.json');
 	var cont;
 	
+	//Directories
 	var root = '../../';
 	var assets = root + '_dev/assets/';
+	var testScriptDest = root + '_dev/assets/script/test/test-min.js';
+	var testCssDest = root + '_dev/assets/css/test-min.css';
+	var tonkatsuScriptDest = root + 'public/assets/script/tonkatsu.js';
 	
-	var testScriptDest = '../../_dev/assets/script/test/test-min.js';
-	var testCssDest = '../../_dev/assets/css/test-min.css';
-	var tonkatsuScriptDest = '../../public/assets/script/tonkatsu.js';
-	
+	//RegExp
 	var CATEGORY_LIST = ['top', 'writing', 'kinema', 'image', 'experimental', 'apps', 'whats'];
 	var modePattern = '(';
 	for (var i in CATEGORY_LIST){
@@ -21,11 +22,12 @@ module.exports = function(grunt) {
 			modePattern += '|';
 		}
 	}
+	//for replacing
 	var META_REGEXP = new RegExp('<!--meta--' + modePattern + '(\\d{6})-->');
 	var HEADER_REGEXP = new RegExp('<!--header--' + modePattern + '(\\d{6})-->');
 	var FOOTER_REGEXP = new RegExp('<!--footer--' + modePattern + '(\\d{6})-->');
 	
-	
+	//List for JS Files that compose site's script file
 	var jsList = [
 		'../../_dev/assets/script/tonkatsu.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
@@ -33,7 +35,7 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/ui/display-handler.js'
 	];
 	
-	//Util Funcs
+	/* Util Funcs */
 	var fillDigits = function(n){
 		var zeroLen = 6 - n.toString().length;
 		var zeros = '';
@@ -223,6 +225,7 @@ module.exports = function(grunt) {
 		return list;
 				
 	};
+	/* Util Funcs End */
 	
 	//Init Task Options
 	grunt.initConfig({
@@ -379,10 +382,13 @@ module.exports = function(grunt) {
 				src: ['**'],
 				dest: '../../public/assets/images'
 			},
-			main: {
+			main: [{
 				src: '../../_processing/docs/index_widgets_min.html',
 				dest: '../../public/index.html'
-			},
+			},{
+				src: '../../_dev/favicon.ico',
+				dest: '../../public/favicon.ico'
+			}],
 			contents: {
 				expand:true,
 				cwd: '../../_dev/contents/',
