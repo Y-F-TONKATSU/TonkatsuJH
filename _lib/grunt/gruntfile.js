@@ -182,7 +182,7 @@ module.exports = function(grunt) {
 			}
 			
 			var layout = items[i].layout;
-			var src = items[i].link.replace('http://ton-katsu.net/', '');
+			var hash = '#' + category + id;
 			var title = escapeText(items[i].title);
 			var description = escapeText(items[i].description);
 			
@@ -211,7 +211,7 @@ module.exports = function(grunt) {
 			var date = year + '年 ' + month + '月';
 	
 			list += "<li class='widget' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-layout-mode='" + layout + "'>\n\n" + 
-			"\t\t\t\t\t\t<a class='widget_link' href='" + src + "' data-id='#" + category + id + "'>\n\n" +
+			"\t\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
 			"\t\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 			"\t\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
 			"\t\t\t\t\t\t\t<div class='widget_date'>" + date + "</div>\n" +
