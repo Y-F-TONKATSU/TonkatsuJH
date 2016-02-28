@@ -51,6 +51,14 @@ var CanvasHandler;
 			return parseInt($(this._canvas).attr('height'));
 		},
 		
+		setCanvasWidth:function(v){
+			return parseInt($(this._canvas).attr('width', v));
+		},
+		
+		setCanvasHeight:function(v){
+			return parseInt($(this._canvas).attr('height', v));
+		},
+		
 		clear:function(){
 			this._context.clearRect(0, 0, this.getCanvasWidth(), this.getCanvasHeight())
 		},

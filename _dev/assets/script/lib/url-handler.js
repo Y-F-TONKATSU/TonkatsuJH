@@ -52,6 +52,11 @@ var UrlHandler;
 		
 		setHash:function(hash){
 			
+			if(_.isEmpty(hash)){
+				console.log('Hash is Default');
+				return Hash.DEAFAULT_HASH_OBJ;
+			}
+		
 			if(!this.validateHash(hash)){return null;}
 			
 			if(typeof hash === 'string'){
@@ -76,11 +81,14 @@ var UrlHandler;
 		},
 	
 		changePage:function(){
-			
+			console.log('Changing Page:' + this._currentHash.category);
+			if(this._currentHash.category === 'top'){
+				bgManager.setPage($('.main').width(), $('.main').height());
+			}
 		},
 	
 		changeTo:function(hash){
-			
+			console.log('Hash Changed:' + hash);
 			if(this.setHash(hash)){
 				this.changePage();
 			}

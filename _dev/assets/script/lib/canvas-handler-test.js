@@ -29,6 +29,11 @@ var testCanvasHandler = function(){
 			assert.strictEqual(300, ch.getCanvasHeight(), "height 300 の Canvas だと 300 を返す");
 			assert.strictEqual(200, ch.getCenterX(), "width 400 の Canvas だと 200 を返す");
 			assert.strictEqual(150, ch.getCenterY(), "height 300 の Canvas だと 150 を返す");
+			
+			ch.setCanvasWidth(800);
+			ch.setCanvasHeight(600);
+			assert.strictEqual(800, ch.getCanvasWidth(), "width を変更した");
+			assert.strictEqual(600, ch.getCanvasHeight(), "height を変更した");
 		});
 		
 		test("clearCanvas()", function() {

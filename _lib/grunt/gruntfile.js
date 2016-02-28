@@ -32,7 +32,10 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/tonkatsu.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
 		'../../_dev/assets/script/lib/url-handler.js',
-		'../../_dev/assets/script/ui/display-handler.js'
+		'../../_dev/assets/script/lib/hash.js',
+		'../../_dev/assets/script/ui/display-handler.js',
+		'../../_dev/assets/script/ui/background-manager.js',
+		'../../_dev/assets/script/ui/animators/draw_rec_animator.js'
 	];
 	
 	/* Util Funcs */
