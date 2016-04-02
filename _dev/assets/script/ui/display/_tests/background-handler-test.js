@@ -1,17 +1,17 @@
-var testBackgroundManager = function(){
+var testBackgroundHandler = function(){
 	
 	mochaSetup();
 	
-	suite('BackgroundManager', function() {
+	suite('BackgroundHandler', function() {
 		
 		var bm;
 		
 		setup(function(){
-			bm = new BackgroundManager($('#front'), $('#back'));
+			bm = new BackgroundHandler($('#front'), $('#back'));
 		});
 		
-		test('BackgroundManager(front, back)', function() {
-			assert.strictEqual('function', typeof BackgroundManager, 'コンストラクタ関数 DisplayHandler() が存在する。');
+		test('BackgroundHandler(front, back)', function() {
+			assert.strictEqual('function', typeof BackgroundHandler, 'コンストラクタ関数 DisplayHandler() が存在する。');
 		});
 						
 		test('getFrontCanvasHandler()', function() {

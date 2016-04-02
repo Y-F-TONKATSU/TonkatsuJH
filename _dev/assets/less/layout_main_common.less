@@ -8,16 +8,19 @@
 
 .main, .sidebar{
 	position:fixed;
-	z-index:@ZI_MAIN;
 }
 
 .fullLayer{
-	position:fixed;
+	position:absolute;
 	pointer-events:none;
 	left:0%;
 	top:0%;
 	width:100%;
 	height:100%;
+}
+
+.mainDocContainer, .indexContainer{
+	z-index:@ZI_MAIN;
 }
 
 .background{

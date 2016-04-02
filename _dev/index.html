@@ -34,7 +34,9 @@
 		<script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js'></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.17/p5.js"></script>
-		
+		<!-- CreateJS -->
+		<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+		<!-- Main -->
 		<script src='assets/script/tonkatsu.js'></script>
 		
 	</head>
@@ -42,20 +44,20 @@
 	<body>
 	
 		<div id='TonkatsuMainContainer'>
-			
-			<div class='background fullLayer'>
-			
-			</div>
-			
+						
 			<div class='main'>
 			
+				<div class='background fullLayer'>
+				
+				</div>
+				
 				<div id='mainDocContainer'>
 					
 					<article id='mainDoc'>
 					
 						<header id='mainDoc_header'></header>
 						
-						<div id='mainDoc_cont'></div>
+						<div id='mainDoc_cont'>メイン</div>
 					
 						<footer id='mainDoc_footer'></footer>
 					
@@ -75,6 +77,10 @@
 					</ul>
 					
 				</nav>
+				
+				<div class='foreground fullLayer'>
+				
+				</div>
 				
 			</div>
 			
@@ -134,11 +140,7 @@
 				</nav>
 			
 			</div>
-			
-			<div class='foreground fullLayer'>
-			
-			</div>
-			
+						
 		</div>
 		
 	</body>

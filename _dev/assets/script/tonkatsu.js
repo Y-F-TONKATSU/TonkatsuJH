@@ -5,23 +5,23 @@ var displayHandler;
 var bgManager;
 
 Tonkatsu.init = function(){
-	urlHandler = new UrlHandler();	
+	urlHandler = new UrlHandler();
 	displayHandler = new DisplayHandler();
-	bgManager = new BackgroundManager($('.foreground'), $('.background'));
+	domHandler = new DomHandler();
+	bgHandler = new BackgroundHandler($('.foreground'), $('.background'));
 	console.log('Init Complete');
 };
 
 Tonkatsu.onHashChanged = function(e){
-	
+
 	var hash = String(location.hash).substring(1);
 	urlHandler.changeTo(hash);
 
 };
 
-$(function(){
+$(window).load(function(){
 	Tonkatsu.init();
 	Tonkatsu.onHashChanged();
 });
 
 $(window).on('hashchange', Tonkatsu.onHashChanged);
-	

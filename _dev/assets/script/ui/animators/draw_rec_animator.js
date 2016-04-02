@@ -5,7 +5,7 @@ var DRAW_REC_ANIMATOR = function(fg, bg, div, frame, baseLeft, baseTop){
 		return false;	
 	}
 	
-	var TOTAL_FRAMES = 1000;
+	var TOTAL_FRAMES = 100;
 	
 	var fctx = fg.getContext();
 	var progress = (frame / TOTAL_FRAMES);
@@ -14,9 +14,9 @@ var DRAW_REC_ANIMATOR = function(fg, bg, div, frame, baseLeft, baseTop){
 	var width =  $(div).width();
 	var height =  $(div).height();
 	
-	var left = baseLeft + position.left + parseInt($(div).css('marginLeft'), 10) - $('body').scrollLeft();
+	var left = position.left + parseInt($(div).css('marginLeft'), 10);
 	var right = left + width;
-	var top = baseTop + position.top + parseInt($(div).css('marginTop'), 10) - $('body').scrollTop();
+	var top = position.top + parseInt($(div).css('marginTop'), 10);
 	var bottom = top + height;
 	
 	fctx.beginPath();

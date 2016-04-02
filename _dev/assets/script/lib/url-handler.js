@@ -3,13 +3,52 @@ var UrlHandler;
 (function(){
 	
 	UrlHandler = function(hash){
-		this._currentHash = Hash.DEAFAULT_HASH_OBJ;
-		this.setHash(hash);
+		this._currentHash = undefined;
+		if(!_.isEmpty(hash)){
+			this.setCurrentHash(hash);
+		}
 	};
 	
 	UrlHandler.prototype = {
 		
+		getCurrentHash:function(){
+			return this._currentHash;
+		},
+		
+		getCurrentHashString:function(){
+			if(_.isEmpty(this.getCurrentHash())){return '';}
+			return this.getCurrentCategory() + this.getCurrentId() ;
+		},
+		
+		setCurrentHash:function(hash){
+			
+			if(!this.validateHash(hash)){
+				console.log('Hash is Default');
+				hash = Hash.getDefaultHashObject();
+			}
+		
+			if(typeof hash === 'string'){
+				hash = this.processHashString(hash);
+			}
+			this._currentHash = hash;
+			
+			return this._currentHash;
+			
+		},
+		
+		getCurrentCategory:function(){
+			return this._currentHash.category;
+		},
+		
+		getCurrentId:function(){
+			return this._currentHash.id;
+		},
+	
 		validateHash:function(hash){
+			
+			if(_.isEmpty(hash)){
+				return false;
+			}
 			
 			if(typeof hash === 'string'){
 				return (
@@ -27,11 +66,38 @@ var UrlHandler;
 			
 		},
 	
+		isSameHash:function(hash){
+			
+			if(_.isEmpty(this._currentHash)){
+				return false;
+			}
+			
+			var obj;
+			
+			if(this.validateHash(hash)){
+				
+				if(typeof hash === 'string'){
+					obj = this.processHashString(hash);
+				} else if (typeof hash === 'object'){
+					obj = hash;
+				}
+			
+			} else {
+				
+				obj = Hash.getDefaultHashObject();
+				
+			}
+			
+			return obj.category === this.getCurrentCategory() &&
+				obj.id === this.getCurrentId();	
+						
+		},
+		
 		processHashString:function(hash){
 		
 			if(!this.validateHash(hash)){return null;}
 			
-			var idObj = Hash.DEAFAULT_HASH_OBJ;
+			var idObj = Hash.getDefaultHashObject();
 			
 			$.each(Hash.CATEGORY_LIST, function(index, value){
 				
@@ -50,47 +116,20 @@ var UrlHandler;
 			
 		},
 		
-		setHash:function(hash){
-			
-			if(_.isEmpty(hash)){
-				console.log('Hash is Default');
-				return Hash.DEAFAULT_HASH_OBJ;
-			}
-		
-			if(!this.validateHash(hash)){return null;}
-			
-			if(typeof hash === 'string'){
-				hash = this.processHashString(hash);
-			}
-			this._currentHash = hash;
-			
-			return this._currentHash;
-			
-		},
-		
-		getCurrentHash:function(){
-			return this._currentHash;
-		},
-		
-		getCurrentCategory:function(){
-			return this._currentHash.category;
-		},
-		
-		getCurrentId:function(){
-			return this._currentHash.id;
-		},
-	
-		changePage:function(){
+		changeToCurrentHashPage:function(){
 			console.log('Changing Page:' + this._currentHash.category);
 			if(this._currentHash.category === 'top'){
-				bgManager.setPage($('.main').width(), $('.main').height());
+				domHandler.setIndexMode();
+			} else {
+				domHandler.setMainDocMode('contents/experimental/1603/e000019_crouton.html');
 			}
 		},
 	
 		changeTo:function(hash){
-			console.log('Hash Changed:' + hash);
-			if(this.setHash(hash)){
-				this.changePage();
+			console.log('Hash Changed from:' + this.getCurrentHashString() + ' to:' + hash);
+			if(!this.isSameHash(hash)){
+				this.setCurrentHash(hash);
+				this.changeToCurrentHashPage();
 			}
 			
 		}

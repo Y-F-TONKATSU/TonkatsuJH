@@ -27,10 +27,12 @@ var Hash;
 		
 		ID_FIGURES:idFigures,
 		
-		DEAFAULT_HASH_OBJ:{
-			"category":"top",
-			"id":"000000",
-			"option":"",
+		getDefaultHashObject:function(){
+			return {
+				"category":"top",
+				"id":"000000",
+				"option":"",
+			};
 		}
 		
 	};

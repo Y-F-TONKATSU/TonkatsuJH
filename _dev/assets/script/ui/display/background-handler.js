@@ -1,8 +1,8 @@
-var BackgroundManager;
+var BackgroundHandler;
 
 (function(){
 	
-	BackgroundManager = function(fdiv, bdiv){
+	BackgroundHandler = function(fdiv, bdiv){
 		
 		this._frontCanvasHandler = getNewCanvasHandler(fdiv);
 		this._backCanvasHandler = getNewCanvasHandler(bdiv);
@@ -21,10 +21,17 @@ var BackgroundManager;
 		return ch;
 	}
 	
-	BackgroundManager.prototype = {
+	BackgroundHandler.prototype = {
 		
 		PAGE_DATA_INDEX:{
 			'id':'index',
+		},
+		
+		setCanvasSize:function(w, h){
+			this._frontCanvasHandler.setCanvasWidth(w);
+			this._frontCanvasHandler.setCanvasHeight(h);
+			this._backCanvasHandler.setCanvasWidth(w);
+			this._backCanvasHandler.setCanvasHeight(h);
 		},
 		
 		getFrontCanvasHandler:function(){
@@ -45,11 +52,14 @@ var BackgroundManager;
 		
 		setPage:function(w, h){
 			console.log('Setting Page..');
+			this.setCanvasSize(w, h);
+			
 			var divs = $('.widget');
 			var that = this;
 			_.each(divs, function(div){
 				that.startAnimation(div, DRAW_REC_ANIMATOR, $('.main').position().left, $('.main').position().top);
 			});
+						
 		},
 		
 		startAnimation:function(div, animator, baseLeft, baseTop){
