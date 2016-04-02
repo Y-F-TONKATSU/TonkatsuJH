@@ -5,7 +5,7 @@
 		<link>http://ton-katsu.net/</link>
 		<description>Web サイト『とんかつひろば』はあらゆるアイデアを詰め込む変幻自在の器を目指して設計されました。形式としては Web における表現の可能性を追求する要塞、内容は山田.F.とんかつの試行錯誤の跡です。アニメーションを多用した動的なUIは、哲学者イマニュエル・カントの心を満たしたという3つのもの、すなわち、頭上の星、内なる道徳律、目前のカレーへの賞賛を表しています。</description>
 		<lastBuildDate>Sun, 21 Jun 2015 22:10:00 +0900</lastBuildDate>
-		
+
 		<item>
 			<title>クルトンの作り方</title>
 			<link>http://ton-katsu.net/contents/experimental/1603/e000019_crouton.html</link>
@@ -14,13 +14,13 @@
 			<category>experimental</category>
 			<id>000019</id>
 			<subCategory>アニメーション</subCategory>
-			<series>とんかつビデオ</series>
+			<series>とんかつクッキング</series>
 			<mainThumb></mainThumb>
 			<tags>クルトン 作り方 経済再生担当大臣</tags>
 			<layout>flash</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title></title>
 			<link>http://ton-katsu.net/contents/writing/1602/w000033_renewal.html</link>
@@ -35,7 +35,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『ファシズムと文化(世界史リブレット 78)』:読書記録 #007</title>
 			<link>http://ton-katsu.net/contents/writing/1509/w000032_reading.html</link>
@@ -50,7 +50,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『イギリス支配とインド社会(世界史リブレット 38)』:読書記録 #006</title>
 			<link>http://ton-katsu.net/contents/writing/1509/w000031_reading.html</link>
@@ -65,7 +65,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #003: float の詳細</title>
 			<link>http://ton-katsu.net/contents/experimental/1507/e000018_css_003.html</link>
@@ -80,7 +80,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『映画記号学の諸問題』:ものづくりのための面白い本の話 #002</title>
 			<link>http://ton-katsu.net/contents/writing/1507/w000030_semeology.html</link>
@@ -95,7 +95,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>後藤 明『カメハメハ大王 ハワイの神話と歴史』 - 読書記録 #005</title>
 			<link>http://ton-katsu.net/contents/writing/1506/w000029_reading05.html</link>
@@ -110,7 +110,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>Canvas からビデオ出力する方法:TONKATSU on Canvas #002</title>
 			<link>http://ton-katsu.net/contents/experimental/1506/e000017_canvas_002.html</link>
@@ -125,7 +125,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>レオナルド・ディカプリオの陰毛を個人輸入してみた - あるいは最近『インセプション』を再見しての感想</title>
 			<link>http://ton-katsu.net/contents/writing/1506/w000028_purio.html</link>
@@ -140,7 +140,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CINEMA4D で色々作ってみた:C4D Études #003</title>
 			<link>http://ton-katsu.net/contents/experimental/1506/e000017_c4d_etudes_003.html</link>
@@ -157,7 +157,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>パン吉先パイ #003 石原の○てるじむしょのなぞ</title>
 			<link>http://ton-katsu.net/contents/image/_000053_pan_003/main.html</link>
@@ -173,7 +173,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #002: width と margin の関係</title>
 			<link>http://ton-katsu.net/contents/experimental/1505/e000015_css_002.html</link>
@@ -188,7 +188,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CINEMA4D でうんこ作ってみた:C4D Études #002</title>
 			<link>http://ton-katsu.net/contents/kinema/1405/k000003_c4d_unko_002.html</link>
@@ -205,7 +205,7 @@
 			<layout>kinema_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CINEMA4D でモーショングラフィックを作ってみた:C4D Études #001</title>
 			<link>http://ton-katsu.net/contents/kinema/1405/k000002_c4d_etudes_001.html</link>
@@ -222,7 +222,7 @@
 			<layout>kinema_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>女子力高いうんこ #005 女子会への道 その2</title>
 			<link>http://ton-katsu.net/contents/image/_000052_unko_005/main.html</link>
@@ -238,7 +238,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #002</title>
 			<link>http://ton-katsu.net/contents/experimental/1505/e000014_c4d_tips_002.html</link>
@@ -253,7 +253,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>パン吉先パイ #002</title>
 			<link>http://ton-katsu.net/contents/image/_000051_pan_002/main.html</link>
@@ -269,7 +269,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #001: ボックスモデルの基本とブロックボックス、インラインボックス、インラインブロックボックス</title>
 			<link>http://ton-katsu.net/contents/experimental/1504/e000013_css_001.html</link>
@@ -284,7 +284,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>女子力高いうんこ #004 女子会への道 その1</title>
 			<link>http://ton-katsu.net/contents/image/_000050_unko_004/main.html</link>
@@ -300,7 +300,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>カメラとビューポートの基本:CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #001</title>
 			<link>http://ton-katsu.net/contents/experimental/1504/e000012_c4d_tips_001.html</link>
@@ -315,7 +315,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>HTML5 の Canvas で時計を描いてみた その1:TONKATSU on Canvas #001</title>
 			<link>http://ton-katsu.net/contents/experimental/1504/e000011_canvas_001_clock/main.html</link>
@@ -331,7 +331,7 @@
 			<layout>js_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>女子力高いうんこ #003 SANUKI vs INANIWA その2</title>
 			<link>http://ton-katsu.net/contents/image/_000049_unko_003/main.html</link>
@@ -347,7 +347,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>近代都市とアソシエイション (世界史リブレット 119) - TONKATSU now Reading #004</title>
 			<link>http://ton-katsu.net/contents/writing/1503/w000027_reading04.html</link>
@@ -361,7 +361,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>女子力高いうんこ #002 SANUKI vs INANIWA その1</title>
 			<link>http://ton-katsu.net/contents/image/_000048_unko_002/main.html</link>
@@ -377,7 +377,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>世界にいくらでもあるどうでもいいもの</title>
 			<link>http://ton-katsu.net/contents/writing/1503/w000026_yuba.html</link>
@@ -392,7 +392,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>木陰と水面の抽象写真 - A l'image de la TONKATSU #006</title>
 			<link>http://ton-katsu.net/contents/image/_000047_abstract_005/main.html</link>
@@ -408,7 +408,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>CINEMA 4D に移行するときに詰まりがちなあれどうやるの？ 的な事まとめ #000</title>
 			<link>http://ton-katsu.net/contents/writing/1503/b000025_reading03.html</link>
@@ -423,7 +423,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>イラク戦争と変貌する中東世界 (世界史リブレット 126) - TONKATSU now Reading #003</title>
 			<link>http://ton-katsu.net/contents/writing/1503/b000025_reading03.html</link>
@@ -438,7 +438,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>今日の本屋:CSS, Node.js, 系統樹、ミュシャ - TONKATSU now Reading #002</title>
 			<link>http://ton-katsu.net/contents/writing/1503/b000024_reading02.html</link>
@@ -453,7 +453,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #029 C言語の最初の難関でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000046_sengoku_029/main.html</link>
@@ -469,7 +469,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>画像サイズの変更などアクション関連のその他いろいろ - PhotoShop のアクションとバッチ処理のトラブルを解決する #005</title>
 			<link>http://ton-katsu.net/contents/experimental/1503/e000009_ps_auto_005.html</link>
@@ -484,7 +484,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #028 サムライにオブジェクト指向言語など不要でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000045_sengoku_028/main.html</link>
@@ -500,7 +500,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>相対位置指定で画像サイズに依存しないアクションを作る - PhotoShop のアクションとバッチ処理のトラブルを解決する #004</title>
 			<link>http://ton-katsu.net/contents/experimental/1503/e000008_ps_auto_004.html</link>
@@ -515,7 +515,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #027 日常を脱構築するなどというとなにやら懐かしい響きでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000044_sengoku_027/main.html</link>
@@ -531,7 +531,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>アクションの中止による手動作業の挿入 - PhotoShop のアクションとバッチ処理のトラブルを解決する #003</title>
 			<link>http://ton-katsu.net/contents/experimental/1503/e000007_ps_auto_003.html</link>
@@ -546,7 +546,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>クイーンズスクエア横浜 - A l'image de la TONKATSU #005</title>
 			<link>http://ton-katsu.net/contents/image/_000043_abstract_004/main.html</link>
@@ -562,7 +562,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>C4D の基本的なインターフェイスとオブジェクトの操作</title>
 			<link>http://ton-katsu.net/contents/experimental/1503/e06_c4d_000.html</link>
@@ -577,7 +577,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>条件付きでアクションを実行 - PhotoShop のアクションとバッチ処理のトラブルを解決する #002</title>
 			<link>http://ton-katsu.net/contents/experimental/1502/e05_ps_auto_002.html</link>
@@ -592,7 +592,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>アクションでのレイヤーの相対位置指定 - PhotoShop のアクションとバッチ処理のトラブルを解決する #001</title>
 			<link>http://ton-katsu.net/contents/experimental/1502/e04_ps_auto_001.html</link>
@@ -607,7 +607,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>PhotoShop のアクションとバッチ処理のトラブルを解決する #000</title>
 			<link>http://ton-katsu.net/contents/experimental/1502/e03_ps_auto_000.html</link>
@@ -622,7 +622,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>今まで頭を通り過ぎていくだけだった知識をしっかり積み上げていくための「基盤」を作る、人生の大原則のまとめ</title>
 			<link>http://ton-katsu.net/contents/image/_000042_maxims/main.html</link>
@@ -638,7 +638,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>ちくわ 対 かまぼこ</title>
 			<link>http://ton-katsu.net/contents/image/_000041_kamaboko_001/main.html</link>
@@ -654,7 +654,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #026 海賊系ベンチャーの現実は過酷でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000040_sengoku_026/main.html</link>
@@ -670,7 +670,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>パン吉先パイ #001</title>
 			<link>http://ton-katsu.net/contents/image/_000039_pan/main.html</link>
@@ -686,7 +686,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『エモーショナル・デザイン―微笑を誘うモノたちのために』:ものづくりのための面白い本の話 #001</title>
 			<link>http://ton-katsu.net/contents/writing/1502/b00_emotional_design.html</link>
@@ -701,7 +701,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>格子状の構造と身近なものの組み合わせの抽象写真 - A l'image de la TONKATSU #004</title>
 			<link>http://ton-katsu.net/contents/image/_000038_abstract_004/main.html</link>
@@ -718,7 +718,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>女子力高いうんこ</title>
 			<link>http://ton-katsu.net/contents/image/_000037_unko_001/main.html</link>
@@ -734,7 +734,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>JavaScript のしばらく触ってないと忘れそうなポイントまとめ - tonkatsu.js #002</title>
 			<link>http://ton-katsu.net/contents/experimental/e02_js_test/main.html</link>
@@ -749,7 +749,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『マクナイーマ つかみどころのない英雄』(創造するラテンアメリカ):ものづくりのための面白い本の話 #000</title>
 			<link>http://ton-katsu.net/contents/writing/1501/b05_macunaima.html</link>
@@ -764,7 +764,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『イエズス会と中国知識人』(世界史リブレット 109) - TONKATSU now Reading #000</title>
 			<link>http://ton-katsu.net/contents/writing/1501/b04_iesu.html</link>
@@ -779,7 +779,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>都市の抽象写真 その2 - A l'image de la TONKATSU #003</title>
 			<link>http://ton-katsu.net/contents/image/_000036_abstract_003/main.html</link>
@@ -796,7 +796,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>液晶ペンタブレット Cintiq 13HD レビュー</title>
 			<link>http://ton-katsu.net/contents/writing/1501/b03_cintiq.html</link>
@@ -811,7 +811,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #025 いよいよイスパニアへの旅立ちでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000035_sengoku_025/main.html</link>
@@ -827,7 +827,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #024 アヒージョというのがなんだか分からなかったけどとりあえずたのんでみたでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000034_sengoku_024/main.html</link>
@@ -843,7 +843,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #023 イダルゴだって聖家族贖罪教会が見たいでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000033_sengoku_023/main.html</link>
@@ -859,7 +859,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>英語の完了形と過去形の使用感覚の違いはカメラのフォーカスで喩えると理解しやすいかもしれないという思いつき</title>
 			<link>http://ton-katsu.net/contents/writing/1501/b02_english_pp.html</link>
@@ -874,7 +874,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>キャプテン・マサイの伝説まとめ</title>
 			<link>http://ton-katsu.net/contents/writing/1501/b01_maasai.html</link>
@@ -889,7 +889,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #022 サムライは予定説を信じるでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000032_sengoku_022/main.html</link>
@@ -905,7 +905,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>とんかつ的今年の10大ニュース:ニュースで振り返る2014年</title>
 			<link>http://ton-katsu.net/contents/writing/1412/b04_news.html</link>
@@ -920,7 +920,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>ショコラちゃん #001 ショコラちゃんデパートに行く</title>
 			<link>http://ton-katsu.net/contents/image/_000031_chocolat_001/main.html</link>
@@ -936,7 +936,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #021 亜細亜人の標準的な感想でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000030_sengoku_021/main.html</link>
@@ -952,7 +952,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>2014年に読んだ本の簡単な感想メモ:『無限と連続』『オウム真理教秘録』『オスマン帝国の近代と海軍』『ピアノの誕生』『ヨーロッパとは何か』</title>
 			<link>http://ton-katsu.net/contents/writing/1412/b03_books_001.html</link>
@@ -967,7 +967,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #020 サムライは容易に信仰を捨てないでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000029_sengoku_020/main.html</link>
@@ -983,7 +983,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #019 故郷を捨ててイスパニアを目指すでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000028_sengoku_019/main.html</link>
@@ -999,7 +999,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>キツくなったら会社を辞めればいいと思っている人たちにこれだけは言っておきたい:TONKATSU now Writing #003</title>
 			<link>http://ton-katsu.net/contents/writing/1412/b02_yuba.html</link>
@@ -1014,7 +1014,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>とんかつひろばのイメージ - WHAT Is TONKATSU? #005</title>
 			<link>http://ton-katsu.net/contents/whats/w05_image/main.html</link>
@@ -1031,7 +1031,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>紅葉の抽象写真 - A l'image de la TONKATSU #002</title>
 			<link>http://ton-katsu.net/contents/image/_000027_abstract_002/main.html</link>
@@ -1048,7 +1048,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>タクシー山田の衆院選マニフェストとみんなが真剣に考えるべき問題:TONKATSU now Writing #002</title>
 			<link>http://ton-katsu.net/contents/writing/1412/b01_taxi.html</link>
@@ -1063,7 +1063,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>光、色彩、視覚の役に立って面白い本まとめ その2 『視覚の文法』他</title>
 			<link>http://ton-katsu.net/contents/writing/1411/b05_books_002.html</link>
@@ -1078,7 +1078,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>都市の抽象写真 - A l'image de la TONKATSU #001</title>
 			<link>http://ton-katsu.net/contents/image/_000026_abstract_001/main.html</link>
@@ -1094,7 +1094,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>AfterEffects の基本機能で押さえておきたいポイント覚書 #006 Expression 初歩の初歩</title>
 			<link>http://ton-katsu.net/contents/writing/1411/b04_ae6.html</link>
@@ -1109,7 +1109,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>光、色彩、視覚の役に立って面白い本まとめ その1 『カラー ＆ ライト ～リアリズムのための色彩と光の描き方～』他</title>
 			<link>http://ton-katsu.net/contents/writing/1411/b03_books_001.html</link>
@@ -1124,7 +1124,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #018 失業保険が続いているうちは野武士も村をおそったりはしないでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000025_sengoku_018/main.html</link>
@@ -1140,7 +1140,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #017 戦国の世はキビしいでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000024_sengoku_017/main.html</link>
@@ -1156,7 +1156,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>AfterEffects の基本機能で押さえておきたいポイント覚書 #005 オーディオとのリンクとか Illustrator のパスのインポートとかレイヤーサイズの範囲外への描画の問題とか</title>
 			<link>http://ton-katsu.net/contents/writing/1411/b02_ae5.html</link>
@@ -1171,7 +1171,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #016 サムライとはニーチェの神話の中の存在でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000023_sengoku_016/main.html</link>
@@ -1187,7 +1187,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>Adobe Illustrator 覚書 #001 スウォッチの初期設定の変更と新規ドキュメントプロファイル</title>
 			<link>http://ton-katsu.net/contents/writing/1411/b01_ai_001.html</link>
@@ -1202,7 +1202,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #015 サムライも次第に自己を認知するでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000022_sengoku_015/main.html</link>
@@ -1218,7 +1218,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>Illustrator による手描き風ウォッフォンモッフォン</title>
 			<link>http://ton-katsu.net/contents/image/_000021_ai_001/main.html</link>
@@ -1236,7 +1236,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #014 由緒正しき断末魔でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000020_sengoku_014/main.html</link>
@@ -1252,7 +1252,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>AfterEffects の基本機能で押さえておきたいポイント覚書 #004 コラップストランスフォーム/連続ラスタライズスイッチ</title>
 			<link>http://ton-katsu.net/contents/writing/1411/b00_ae4.html</link>
@@ -1267,7 +1267,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #013 戦国時代なのでまだイオンではないでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000019_sengoku_013/main.html</link>
@@ -1283,7 +1283,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>AfterEffects の基本機能で押さえておきたいポイント覚書 #003 レンダリングオーダーとTスイッチの謎</title>
 			<link>http://ton-katsu.net/contents/writing/1410/b05_ae3.html</link>
@@ -1298,7 +1298,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #012 サムライの言語感覚はざつでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000018_sengoku_012/main.html</link>
@@ -1314,7 +1314,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>AfterEffects の基本機能で押さえておきたいポイント覚書 #002 豆知識とよく使うキーボード・ショートカットその2</title>
 			<link>http://ton-katsu.net/contents/writing/1410/b04_ae2.html</link>
@@ -1329,7 +1329,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #011 すごいカタナを手に入れたでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000017_sengoku_011/main.html</link>
@@ -1345,7 +1345,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>AfterEffects の基本機能で押さえておきたいポイント覚書 #001 豆知識とよく使うキーボード・ショートカットその1</title>
 			<link>http://ton-katsu.net/contents/writing/1410/b03_ae.html</link>
@@ -1360,7 +1360,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>横浜トリエンナーレという名の森村泰昌・ザ・ワールドに行ってきた</title>
 			<link>http://ton-katsu.net/contents/writing/1410/b02_yokohama.html</link>
@@ -1391,7 +1391,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>戦国4コマ ハタモト君 #009 さろそろ寒くなってきたでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000015_sengoku_009/main.html</link>
@@ -1407,7 +1407,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>戦国4コマ ハタモト君 #008 将門公のおんりょうでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000014_sengoku_008/main.html</link>
@@ -1423,7 +1423,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>戦国4コマ ハタモト君 #007 パンツがなくて大ピンチでござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000013_sengoku_007/main.html</link>
@@ -1439,7 +1439,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>戦国4コマ ハタモト君 #006 独眼竜政宗でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000012_sengoku_006/main.html</link>
@@ -1455,7 +1455,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>新宿ルミネのドミニクが閉店していた件</title>
 			<link>http://ton-katsu.net/contents/writing/1410/b01_dominique.html</link>
@@ -1470,7 +1470,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>夜のベーカリー</title>
 			<link>http://ton-katsu.net/contents/image/_000011_bakery_001/main.html</link>
@@ -1486,7 +1486,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #005 いよいよ天下分け目の関が原の合戦でござるの巻</title>
 			<link>http://ton-katsu.net/contents/image/_000010_sengoku_005/main.html</link>
@@ -1502,7 +1502,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>戦国4コマ ハタモト君 #004</title>
 			<link>http://ton-katsu.net/contents/image/_000009_sengoku_004/main.html</link>
@@ -1518,7 +1518,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>戦国4コマ ハタモト君 #003</title>
 			<link>http://ton-katsu.net/contents/image/_000008_sengoku_003/main.html</link>
@@ -1534,7 +1534,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>いのうえさんの近況 #001</title>
 			<link>http://ton-katsu.net/contents/image/_000007_inoue_001/main.html</link>
@@ -1550,7 +1550,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>ゆるさないぞ</title>
 			<link>http://ton-katsu.net/contents/image/_000006_unko_001/main.html</link>
@@ -1566,7 +1566,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>ガスト北村全発言 - WHAT Is TONKATSU? #004</title>
 			<link>http://ton-katsu.net/contents/whats/w04_gusto.html</link>
@@ -1579,7 +1579,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>山田.F.とんかつのプロフィール - WHAT Is TONKATSU? #002</title>
 			<link>http://ton-katsu.net/contents/whats/w02_yft.html</link>
@@ -1592,7 +1592,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『とんかつひろば』のアートコンセプト - WHAT Is TONKATSU? #001</title>
 			<link>http://ton-katsu.net/contents/whats/w01_art.html</link>
@@ -1605,7 +1605,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #002</title>
 			<link>http://ton-katsu.net/contents/image/_000005_sengoku_002/main.html</link>
@@ -1621,7 +1621,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>JavaScript でライフゲーム - tonkatsu.js #001</title>
 			<link>http://ton-katsu.net/contents/experimental/e01_cell_automaton/main.html</link>
@@ -1637,7 +1637,7 @@
 			<layout>js_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>プロジェクション・マッピング小作品と制作記録</title>
 			<link>http://ton-katsu.net/contents/kinema/1404/k01_pm.html</link>
@@ -1658,7 +1658,7 @@
 			<layout>kinema_doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>小人の饗宴の「ペシテペシテ！」がなんなのかやっと分かった</title>
 			<link>http://ton-katsu.net/contents/writing/1311/b01_besteh.html</link>
@@ -1673,7 +1673,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>戦国4コマ ハタモト君 #001</title>
 			<link>http://ton-katsu.net/contents/image/_000004_sengoku_001/main.html</link>
@@ -1689,7 +1689,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>エスプレッソみみくそ #001</title>
 			<link>http://ton-katsu.net/contents/image/_000003_espresso_001/main.html</link>
@@ -1707,7 +1707,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>数学の入門書をゆっくり楽しむ会 イラストレーション</title>
 			<link>http://ton-katsu.net/contents/image/_000002_math/main.html</link>
@@ -1728,7 +1728,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>CSS Tips - z-index 等 CSS のハマりやすい罠のまとめ</title>
 			<link>http://ton-katsu.net/contents/writing/1310/b01_css_tips.html</link>
@@ -1742,7 +1742,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>ひらしまさん大全集</title>
 			<link>http://ton-katsu.net/contents/image/_000001_hirashima/main.html</link>
@@ -1759,7 +1759,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>Android4.2.2(Nexus 7 などのデバイス) で Air アプリをデバッグできなくなったときの対処法</title>
 			<link>http://ton-katsu.net/contents/writing/1306/b02_air.html</link>
@@ -1773,7 +1773,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『Disgrace』感想 愛はイデオロギーであるかとか、わくわくさんの倫理観とか</title>
 			<link>http://ton-katsu.net/contents/writing/1306/b02_air.html</link>
@@ -1787,7 +1787,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>今日の丸善:犬と人が出会うとき, 空と夢など</title>
 			<link>http://ton-katsu.net/contents/writing/1305/b05_book.html</link>
@@ -1801,7 +1801,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>カリフォルニア・デザイン 1930-1965 －モダン・リヴィングの起源－</title>
 			<link>http://ton-katsu.net/contents/writing/1305/b03_california.html</link>
@@ -1815,7 +1815,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>マリオ・ジャコメッリ写真展</title>
 			<link>http://ton-katsu.net/contents/image/_999999_giacomelli/main.html</link>
@@ -1834,7 +1834,7 @@
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
-			
+
 		<item>
 			<title>とんかつスーパー道場とモンドリアンっぽいウォッフォンモッフォン</title>
 			<link>http://ton-katsu.net/contents/writing/1305/b01_old_design.html</link>
@@ -1848,7 +1848,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>メディアはウォッフォンモッフォンである:『マクルーハン理論―電子メディアの可能性』</title>
 			<link>http://ton-katsu.net/contents/writing/1305/b00_book.html</link>
@@ -1862,7 +1862,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>ネムカフェとんかつ会議 カモレスラーの不安(仮) の音のこと</title>
 			<link>http://ton-katsu.net/contents/writing/1304/b06_nemcafe.html</link>
@@ -1876,7 +1876,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>今日の丸善:写真とか技術書とか</title>
 			<link>http://ton-katsu.net/contents/writing/1304/b05_bookstore.html</link>
@@ -1890,7 +1890,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>コミックアプリをリリースしました:『至高のコーヒー』『エスプレッソみみくそ』</title>
 			<link>http://ton-katsu.net/contents/writing/1304/b04_manga.html</link>
@@ -1904,7 +1904,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>映像とか数学とかの考え方の溝:『本物の表現力をそだてる映像撮影術』</title>
 			<link>http://ton-katsu.net/contents/writing/1304/b03_book.html</link>
@@ -1918,7 +1918,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>『「民族浄化」を裁く -旧ユーゴ戦犯法廷の現場から-』</title>
 			<link>http://ton-katsu.net/contents/writing/1304/b01_book.html</link>
@@ -1932,7 +1932,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>論理学ととんかつ会のおすすめ:『論理学の基礎と演習』-</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b07_lpl.html</link>
@@ -1946,7 +1946,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>人形アニメ撮影:カモレスラーの不安(仮) 開発記録</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b06_kamo23.html</link>
@@ -1960,7 +1960,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>M.O.S from TinzHenev</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b05_saturday.html</link>
@@ -1974,7 +1974,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>フランシス・ベーコン展のごくごく個人的な感想</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b04_bacon.html</link>
@@ -1988,7 +1988,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>カモレスラーの不安(仮) 開発記録</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b03_kamo08.html</link>
@@ -2002,7 +2002,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>今日の紀伊国屋新宿南店:ノードベースのデジタルコンポジットなど</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b02_book05.html</link>
@@ -2016,7 +2016,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>自由即興フェスタ</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b01_impro.html</link>
@@ -2030,7 +2030,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>自由即興フェスタ</title>
 			<link>http://ton-katsu.net/contents/writing/1303/b01_impro.html</link>
@@ -2044,7 +2044,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>エビゾーとメ芸と TONKATSU の次のアプリ</title>
 			<link>http://ton-katsu.net/contents/writing/1302/b06_ebizo.html</link>
@@ -2058,7 +2058,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>読書会</title>
 			<link>http://ton-katsu.net/contents/writing/1302/b05_math.html</link>
@@ -2072,7 +2072,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>今日の本屋:反解釈など</title>
 			<link>http://ton-katsu.net/contents/writing/1302/b04_reading_var130218.html</link>
@@ -2086,7 +2086,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>メカス×ゲリン 往復書簡</title>
 			<link>http://ton-katsu.net/contents/writing/1302/b03_guerin.html</link>
@@ -2100,7 +2100,7 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 		<item>
 			<title>クレイアニメーションふたたび:とんかつ会議</title>
 			<link>http://ton-katsu.net/contents/writing/1302/b02_meeting_cat.html</link>
@@ -2114,6 +2114,6 @@
 			<layout>doc</layout>
 			<type>article</type>
 		</item>
-		
+
 	</channel>
 </rss>
