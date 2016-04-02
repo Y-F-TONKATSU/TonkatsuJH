@@ -1,1 +1,3 @@
-console.log($('#id').top());
+$(function(){
+	console.log($('p').position());
+});
