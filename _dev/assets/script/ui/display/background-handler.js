@@ -118,7 +118,7 @@ var BackgroundHandler;
 				});
 				
 			});
-						
+			
 			var animationLoop = function(){
 				
 				that._frontCanvasHandler.clear();
@@ -148,7 +148,9 @@ var BackgroundHandler;
 			domUtil.resetFrames();
 			
 			this._animationList = [];
-			$('main').trigger('scroll');
+			
+			domUtil.triggerScroll();
+						
 						
 		},
 		

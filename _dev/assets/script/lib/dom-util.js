@@ -10,8 +10,8 @@ var DomUtil;
 		
 		$(parent).scroll(function(){
 			
-			that._scrollTop = $(this).scrollTop();
-			that._scrollBottom = $(this).scrollTop() + displayHandler.getHeight();
+			//that._scrollTop = $(this).scrollTop();
+			//that._scrollBottom = $(this).scrollTop() + displayHandler.getHeight();
 			that._scrollListener(that.getElemLists());
 			
 		});
@@ -22,6 +22,10 @@ var DomUtil;
 		
 		setScrollListener : function(f){
 			this._scrollListener = f;
+		},
+		
+		triggerScroll : function(){
+			this._scrollListener(this.getElemLists());
 		},
 		
 		getElemRect :  function(elem){
@@ -37,27 +41,27 @@ var DomUtil;
 		
 		isTopHidden : function(rect){
 			
-			return this._scrollTop > rect.top;
+			return 0 > rect.top;
 			
 		},
 	
 		isBottomHidden : function(rect){
 			
-			return this._scrollBottom < rect.bottom;
+			return displayHandler.getHeight() < rect.bottom;
 			
 		},
 	
 		isOnScreen : function(rect){
 			
-			return this._scrollTop <= rect.top &&
-			this._scrollBottom >= rect.bottom;
+			return 0 <= rect.top &&
+			displayHandler.getHeight() >= rect.bottom;
 			
 		},
 	
 		isOffScreen : function(rect){
 			
-			return this._scrollTop > rect.bottom ||
-			this._scrollBottom < rect.top;
+			return 0 > rect.bottom ||
+			displayHandler.getHeight() < rect.top;
 			
 		},
 	
@@ -66,6 +70,7 @@ var DomUtil;
 			var rect = this.getElemRect(elem);
 			
 			console.log(elem);
+			console.log(rect);
 			
 			var buffer = 0;
 			
