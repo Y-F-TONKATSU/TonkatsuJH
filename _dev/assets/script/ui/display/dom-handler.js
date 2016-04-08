@@ -40,7 +40,7 @@ var DomHandler;
 			$('#indexContainer').show();
 			$('#mainDocContainer').hide();
 			
-			//bgHandler.startAnimation();
+			bgHandler.setPage();
 		},
 		
 	};

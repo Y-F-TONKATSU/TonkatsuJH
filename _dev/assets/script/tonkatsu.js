@@ -2,13 +2,17 @@ var Tonkatsu = {};
 
 var urlHandler;
 var displayHandler;
-var bgManager;
+var domHandler;
+var domUtil;
+var bgHandler;
 
 Tonkatsu.init = function(){
 	urlHandler = new UrlHandler();
 	displayHandler = new DisplayHandler();
 	domHandler = new DomHandler();
+	domUtil = new DomUtil($('.main'));
 	bgHandler = new BackgroundHandler($('.foreground'), $('.background'));
+	bgHandler.startAnimationLoop();
 	console.log('Init Complete');
 };
 
@@ -22,6 +26,7 @@ Tonkatsu.onHashChanged = function(e){
 $(window).load(function(){
 	Tonkatsu.init();
 	Tonkatsu.onHashChanged();
+	
 });
 
 $(window).on('hashchange', Tonkatsu.onHashChanged);

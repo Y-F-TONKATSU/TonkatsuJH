@@ -32,6 +32,7 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/tonkatsu.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
 		'../../_dev/assets/script/lib/url-handler.js',
+		'../../_dev/assets/script/lib/dom-util.js',
 		'../../_dev/assets/script/lib/hash.js',
 		'../../_dev/assets/script/ui/display/display-handler.js',
 		'../../_dev/assets/script/ui/display/dom-handler.js',        
