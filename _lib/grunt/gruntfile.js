@@ -37,7 +37,9 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/ui/display/display-handler.js',
 		'../../_dev/assets/script/ui/display/dom-handler.js',        
 		'../../_dev/assets/script/ui/display/background-handler.js',
-		'../../_dev/assets/script/ui/animators/draw_rec_animator.js'
+		'../../_dev/assets/script/ui/animators/draw_rec_animator.js',
+		'../../_dev/assets/script/cjs/cjs-loader.js',
+		'../../_dev/assets/script/cjs/abs/abs_cjs.js'
 	];
 	
 	/* Util Funcs */

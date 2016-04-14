@@ -4,6 +4,7 @@ var BackgroundHandler;
 	
 	BackgroundHandler = function(fdiv, bdiv){
 		
+		this._cjsCanvasHandler = _getNewCanvasHandler(bdiv);
 		this._frontCanvasHandler = _getNewCanvasHandler(fdiv);
 		this._backCanvasHandler = _getNewCanvasHandler(bdiv);
 	};
@@ -11,7 +12,6 @@ var BackgroundHandler;
 	var _getNewCanvasHandler = function(div){
 		
 		var canvas = $('<canvas></canvas>').get(0);
-		$(div).empty();
 		$(div).append(canvas);
 		
 		var ch = new CanvasHandler(canvas);
@@ -150,7 +150,9 @@ var BackgroundHandler;
 			this._animationList = [];
 			
 			domUtil.triggerScroll();
-						
+			
+			var cjsLoader = new CjsLoader(this._cjsCanvasHandler);
+		
 						
 		},
 		

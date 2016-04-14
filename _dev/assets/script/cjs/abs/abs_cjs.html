@@ -9,38 +9,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>crouton</title>
+<title>abs_cjs</title>
 <!-- write your code here -->
 
 
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="crouton.js?1460516693965"></script>
+<script src="abs_cjs.js?1460476023180"></script>
 <script>
 var canvas, stage, exportRoot;
 function init() {
 	// --- write your JS code here ---
 	
 	canvas = document.getElementById("canvas");
-	cjsImages = cjsImages||{};
+	cjsImages_abs = cjsImages_abs||{};
 
 	var loader = new createjs.LoadQueue(false);
 	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
-	loader.loadManifest(cjsLib.properties.manifest);
+	loader.loadManifest(cjsLib_abs.properties.manifest);
 }
 
 function handleFileLoad(evt) {
-	if (evt.item.type == "image") { cjsImages[evt.item.id] = evt.result; }
+	if (evt.item.type == "image") { cjsImages_abs[evt.item.id] = evt.result; }
 }
 
 function handleComplete(evt) {
-	exportRoot = new cjsLib.crouton_v002();
+	exportRoot = new cjsLib_abs.CjsAbstract();
 
 	stage = new createjs.Stage(canvas);
 	stage.addChild(exportRoot);
 	stage.update();
 
-	createjs.Ticker.setFPS(cjsLib.properties.fps);
+	createjs.Ticker.setFPS(cjsLib_abs.properties.fps);
 	createjs.Ticker.addEventListener("tick", stage);
 }
 
@@ -50,6 +50,6 @@ function handleComplete(evt) {
 
 </head>
 <body onload="init();" style="background-color:#D4D4D4;margin:0px;">
-	<canvas id="canvas" width="1920" height="1200" style="background-color:#FFFFFF"></canvas>
+	<canvas id="canvas" width="1920" height="1080" style="background-color:#000000"></canvas>
 </body>
 </html>
