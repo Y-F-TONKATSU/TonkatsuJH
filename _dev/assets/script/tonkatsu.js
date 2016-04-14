@@ -6,6 +6,8 @@ var domHandler;
 var domUtil;
 var bgHandler;
 
+var animators
+
 Tonkatsu.init = function(){
 	urlHandler = new UrlHandler();
 	displayHandler = new DisplayHandler();

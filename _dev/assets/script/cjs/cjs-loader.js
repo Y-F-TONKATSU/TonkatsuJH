@@ -3,7 +3,7 @@ var CjsLoader;
 (function(){
 	
 		
-	CjsLoader = function(ch){
+	CjsLoader = function(ch, lib, cjsImages){
 		
 		this.canvasHandler = ch;
 		
@@ -14,7 +14,7 @@ var CjsLoader;
 		loader.addEventListener("fileload", function(evt) {
 			
 			if (evt.item.type == "image") { 
-				cjsImages_abs[evt.item.id] = evt.result;
+				cjsImages[evt.item.id] = evt.result;
 			}
 			
 		});
@@ -23,18 +23,18 @@ var CjsLoader;
 			
 			var canvas = that.canvasHandler.getCanvas();
 			
-			that.root = new cjsLib_abs.CjsAbstract();
+			that.root = new lib.CjsAbstract();
 			
 			that.stage = new createjs.Stage(canvas);
 			that.stage.addChild(that.root);
 			that.stage.update();
 			
-			createjs.Ticker.setFPS(cjsLib_abs.properties.fps);
+			createjs.Ticker.setFPS(lib.properties.fps);
 			createjs.Ticker.addEventListener("tick", that.stage);
 			
 		});
 		
-		loader.loadManifest(cjsLib_abs.properties.manifest);
+		loader.loadManifest(lib.properties.manifest);
 		
 	}
 	
