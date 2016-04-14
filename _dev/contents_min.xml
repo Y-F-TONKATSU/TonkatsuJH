@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+	<channel>
+		<title>とんかつひろば</title>
+		<link>http://ton-katsu.net/</link>
+		<description>Web サイト『とんかつひろば』はあらゆるアイデアを詰め込む変幻自在の器を目指して設計されました。形式としては Web における表現の可能性を追求する要塞、内容は山田.F.とんかつの試行錯誤の跡です。アニメーションを多用した動的なUIは、哲学者イマニュエル・カントの心を満たしたという3つのもの、すなわち、頭上の星、内なる道徳律、目前のカレーへの賞賛を表しています。</description>
+		<lastBuildDate>Sun, 21 Jun 2015 22:10:00 +0900</lastBuildDate>
+
+		<item>
+			<title>クルトンの作り方</title>
+			<link>http://ton-katsu.net/contents/experimental/1603/e000019_crouton.html</link>
+			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>
+			<pubDate>Mon, 21 Mar 2016 22:00:00 +0900</pubDate>
+			<category>experimental</category>
+			<id>000019</id>
+			<subCategory>アニメーション</subCategory>
+			<series>とんかつクッキング</series>
+			<mainThumb></mainThumb>
+			<tags>クルトン 作り方 経済再生担当大臣</tags>
+			<layout>flash</layout>
+			<type>article</type>
+		</item>
+
+		<item>
+			<title>『ファシズムと文化(世界史リブレット 78)』:読書記録 #007</title>
+			<link>http://ton-katsu.net/contents/writing/1509/w000032_reading.html</link>
+			<description>この時代のイタリア文化というと、未来派の過激なパフォーマンスに注目が集まりがちだ。しかし、本書はその他にも、戦後のイタリア芸術に繋がる多くの要素が、ファシスト政権のもとで培われていたことを示す。</description>
+			<pubDate>Tue, 15 Sep 2015 22:00:00 +0900</pubDate>
+			<category>writing</category>
+			<id>000032</id>
+			<subCategory>本</subCategory>
+			<series>読書記録</series>
+			<mainThumb></mainThumb>
+			<tags>世界史リブレット ファシズム ムッソリーニ イタリア芸術 ロッセリーニ チネチッタ ヴェネチア映画祭 テラーニ サンテーリア パガーニ</tags>
+			<layout>doc</layout>
+			<type>article</type>
+		</item>
+
+		<item>
+			<title>『イギリス支配とインド社会(世界史リブレット 38)』:読書記録 #006</title>
+			<link>http://ton-katsu.net/contents/writing/1509/w000031_reading.html</link>
+			<description>『ヒンドゥー教』と『カースト制』は、インド社会を語るキーワードとして定着している。しかし、これらにはイギリス支配により外部からその是非を問われて初めて、「インド固有の文化」と認識され始めた面があるという。</description>
+			<pubDate>Tue, 15 Sep 2015 20:00:00 +0900</pubDate>
+			<category>writing</category>
+			<id>000031</id>
+			<subCategory>本</subCategory>
+			<series>読書記録</series>
+			<mainThumb></mainThumb>
+			<tags>世界史リブレット インド イギリス カレー ガンジー ヒンドゥー カースト</tags>
+			<layout>doc</layout>
+			<type>article</type>
+		</item>
+
+		<item>
+			<title>CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる #003: float の詳細</title>
+			<link>http://ton-katsu.net/contents/experimental/1507/e000018_css_003.html</link>
+			<description>今回は float の話。margin と width の 関係を理解しているなら、margin:auto を、伸縮する突っ張り棒のようなものとしてイメージできると思う。この突っ張り棒が外れてスコスコ動くようなのが、フローティングボックスのイメージだ。</description>
+			<pubDate>Wed, 7 Jul 2015 7:00:00 +0900</pubDate>
+			<category>experimental</category>
+			<id>000018</id>
+			<subCategory>CSS</subCategory>
+			<series>CSS のボックスモデルの理解し難いところをできるだけ明確に解説してみる</series>
+			<mainThumb>assets/images/article_image/1507/css03_05.jpg</mainThumb>
+			<tags>CSS HTML float margin auto 回り込み ボックスモデル フローティングボックス</tags>
+			<layout>doc</layout>
+			<type>article</type>
+		</item>
+
+
+
+	</channel>
+</rss>
