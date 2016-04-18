@@ -10,8 +10,6 @@ var DomUtil;
 		
 		$(parent).scroll(function(){
 			
-			//that._scrollTop = $(this).scrollTop();
-			//that._scrollBottom = $(this).scrollTop() + displayHandler.getHeight();
 			that._scrollListener(that.getElemLists());
 			
 		});
@@ -47,30 +45,26 @@ var DomUtil;
 	
 		isBottomHidden : function(rect){
 			
-			return displayHandler.getHeight() < rect.bottom;
+			return $(this._parent).height() < rect.bottom;
 			
 		},
 	
 		isOnScreen : function(rect){
-			
 			return 0 <= rect.top &&
-			displayHandler.getHeight() >= rect.bottom;
+			$(this._parent).height() >= rect.bottom;
 			
 		},
 	
 		isOffScreen : function(rect){
 			
 			return 0 > rect.bottom ||
-			displayHandler.getHeight() < rect.top;
+			$(this._parent).height() < rect.top;
 			
 		},
 	
 		getOnScreenState : function(elem, handler){
 			
 			var rect = this.getElemRect(elem);
-			
-			console.log(elem);
-			console.log(rect);
 			
 			var buffer = 0;
 			
@@ -132,7 +126,7 @@ var DomUtil;
 			
 			var that = this;
 			
-			$(that._parent).find('.widget')
+			$(that._parent).find('section')
 				.each(function(){
 					that.getOnScreenState(this, {
 						onScreen:function(elem){

@@ -14,7 +14,7 @@
 
 
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="crouton.js?1460595399494"></script>
+<script src="crouton.js"></script>
 <script>
 var canvas, stage, exportRoot;
 function init() {
@@ -34,7 +34,7 @@ function handleFileLoad(evt) {
 }
 
 function handleComplete(evt) {
-	exportRoot = new cjsLib.crouton_v002();
+	exportRoot = new cjsLib.crouton_v003();
 
 	stage = new createjs.Stage(canvas);
 	stage.addChild(exportRoot);
@@ -50,6 +50,6 @@ function handleComplete(evt) {
 
 </head>
 <body onload="init();" style="background-color:#D4D4D4;margin:0px;">
-	<canvas id="canvas" width="1920" height="1200" style="background-color:#FFFFFF"></canvas>
+	<canvas id="canvas" width="1920" height="1200" style="background-color:#000000"></canvas>
 </body>
 </html>
