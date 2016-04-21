@@ -1,6 +1,7 @@
 (function (lib, img, cjs, ss) {
 
 var p; // shortcut to reference prototypes
+lib.webFontTxtFilters = {}; 
 
 // library properties:
 lib.properties = {
@@ -8,44 +9,52 @@ lib.properties = {
 	height: 1200,
 	fps: 24,
 	color: "#000000",
+	webfonts: {},
 	manifest: [
-		{src:"images/bagguet.png?1461210042869", id:"bagguet"},
-		{src:"images/damehema_0000_foot_L.png?1461210042869", id:"damehema_0000_foot_L"},
-		{src:"images/damehema_0001_foot_R.png?1461210042869", id:"damehema_0001_foot_R"},
-		{src:"images/damehema_0002_hand_L.png?1461210042869", id:"damehema_0002_hand_L"},
-		{src:"images/damehema_0003_hand_R.png?1461210042869", id:"damehema_0003_hand_R"},
-		{src:"images/damehema_0004_eye_hema_L.png?1461210042869", id:"damehema_0004_eye_hema_L"},
-		{src:"images/damehema_0005_eye_hema_R.png?1461210042869", id:"damehema_0005_eye_hema_R"},
-		{src:"images/damehema_0006_nose_hema.png?1461210042869", id:"damehema_0006_nose_hema"},
-		{src:"images/damehema_0007_mouse_hema.png?1461210042869", id:"damehema_0007_mouse_hema"},
-		{src:"images/damehema_0008_face_hema.png?1461210042869", id:"damehema_0008_face_hema"},
-		{src:"images/damehema_0009_eye_dame_L.png?1461210042869", id:"damehema_0009_eye_dame_L"},
-		{src:"images/damehema_0010_eye_dame_R.png?1461210042869", id:"damehema_0010_eye_dame_R"},
-		{src:"images/damehema_0011_nose_dame.png?1461210042869", id:"damehema_0011_nose_dame"},
-		{src:"images/damehema_0012_mouse_dame.png?1461210042869", id:"damehema_0012_mouse_dame"},
-		{src:"images/damehema_0013_face_dame.png?1461210042869", id:"damehema_0013_face_dame"},
-		{src:"images/grass.png?1461210042869", id:"grass"},
-		{src:"images/nobuteru__0001_Mouse_D.png?1461210042869", id:"nobuteru__0001_Mouse_D"},
-		{src:"images/nobuteru__0002_Hair.png?1461210042869", id:"nobuteru__0002_Hair"},
-		{src:"images/nobuteru__0003_Face.png?1461210042869", id:"nobuteru__0003_Face"},
-		{src:"images/nobuteru__0003_Face_bagguet.png?1461210042869", id:"nobuteru__0003_Face_bagguet"},
-		{src:"images/nobuteru__0004_Nose.png?1461210042869", id:"nobuteru__0004_Nose"},
-		{src:"images/nobuteru__0005_Eye_R.png?1461210042869", id:"nobuteru__0005_Eye_R"},
-		{src:"images/nobuteru__0006_Eye_L.png?1461210042869", id:"nobuteru__0006_Eye_L"},
-		{src:"images/nobuteru__0007_Brow_R.png?1461210042869", id:"nobuteru__0007_Brow_R"},
-		{src:"images/nobuteru__0008_Brow_L.png?1461210042869", id:"nobuteru__0008_Brow_L"},
-		{src:"images/nobuteru__0009_Leaf.png?1461210042869", id:"nobuteru__0009_Leaf"},
-		{src:"images/nobuteru__0010_Body.png?1461210042869", id:"nobuteru__0010_Body"},
-		{src:"images/unkopad_0000_Unko.png?1461210042869", id:"unkopad_0000_Unko"},
-		{src:"images/unkopad_0001_Boo.png?1461210042869", id:"unkopad_0001_Boo"},
-		{src:"images/unkopad_0002_Recipe.png?1461210042869", id:"unkopad_0002_Recipe"},
-		{src:"images/unkopad_0003_Sub.png?1461210042869", id:"unkopad_0003_Sub"},
-		{src:"images/unkopad_0004_Main.png?1461210042869", id:"unkopad_0004_Main"}
+		{src:"images/bagguet.png", id:"bagguet"},
+		{src:"images/damehema_0000_foot_L.png", id:"damehema_0000_foot_L"},
+		{src:"images/damehema_0001_foot_R.png", id:"damehema_0001_foot_R"},
+		{src:"images/damehema_0002_hand_L.png", id:"damehema_0002_hand_L"},
+		{src:"images/damehema_0003_hand_R.png", id:"damehema_0003_hand_R"},
+		{src:"images/damehema_0004_eye_hema_L.png", id:"damehema_0004_eye_hema_L"},
+		{src:"images/damehema_0005_eye_hema_R.png", id:"damehema_0005_eye_hema_R"},
+		{src:"images/damehema_0006_nose_hema.png", id:"damehema_0006_nose_hema"},
+		{src:"images/damehema_0007_mouse_hema.png", id:"damehema_0007_mouse_hema"},
+		{src:"images/damehema_0008_face_hema.png", id:"damehema_0008_face_hema"},
+		{src:"images/damehema_0009_eye_dame_L.png", id:"damehema_0009_eye_dame_L"},
+		{src:"images/damehema_0010_eye_dame_R.png", id:"damehema_0010_eye_dame_R"},
+		{src:"images/damehema_0011_nose_dame.png", id:"damehema_0011_nose_dame"},
+		{src:"images/damehema_0012_mouse_dame.png", id:"damehema_0012_mouse_dame"},
+		{src:"images/damehema_0013_face_dame.png", id:"damehema_0013_face_dame"},
+		{src:"images/grass.png", id:"grass"},
+		{src:"images/nobuteru__0001_Mouse_D.png", id:"nobuteru__0001_Mouse_D"},
+		{src:"images/nobuteru__0002_Hair.png", id:"nobuteru__0002_Hair"},
+		{src:"images/nobuteru__0003_Face.png", id:"nobuteru__0003_Face"},
+		{src:"images/nobuteru__0003_Face_bagguet.png", id:"nobuteru__0003_Face_bagguet"},
+		{src:"images/nobuteru__0004_Nose.png", id:"nobuteru__0004_Nose"},
+		{src:"images/nobuteru__0005_Eye_R.png", id:"nobuteru__0005_Eye_R"},
+		{src:"images/nobuteru__0006_Eye_L.png", id:"nobuteru__0006_Eye_L"},
+		{src:"images/nobuteru__0007_Brow_R.png", id:"nobuteru__0007_Brow_R"},
+		{src:"images/nobuteru__0008_Brow_L.png", id:"nobuteru__0008_Brow_L"},
+		{src:"images/nobuteru__0009_Leaf.png", id:"nobuteru__0009_Leaf"},
+		{src:"images/nobuteru__0010_Body.png", id:"nobuteru__0010_Body"},
+		{src:"images/unkopad_0000_Unko.png", id:"unkopad_0000_Unko"},
+		{src:"images/unkopad_0001_Boo.png", id:"unkopad_0001_Boo"},
+		{src:"images/unkopad_0002_Recipe.png", id:"unkopad_0002_Recipe"},
+		{src:"images/unkopad_0003_Sub.png", id:"unkopad_0003_Sub"},
+		{src:"images/unkopad_0004_Main.png", id:"unkopad_0004_Main"}
 	]
 };
 
 
 
+lib.webfontAvailable = function(family) { 
+	lib.properties.webfonts[family] = true;
+	var txtFilters = lib.webFontTxtFilters && lib.webFontTxtFilters[family] || [];
+	for(var f = 0; f < txtFilters.length; ++f) {
+		txtFilters[f].updateCache();
+	}
+};
 // symbols:
 
 

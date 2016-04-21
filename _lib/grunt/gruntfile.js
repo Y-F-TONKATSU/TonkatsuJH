@@ -26,6 +26,7 @@ module.exports = function(grunt) {
 	var META_REGEXP = new RegExp('<!--meta--' + modePattern + '(\\d{6})-->');
 	var HEADER_REGEXP = new RegExp('<!--header--' + modePattern + '(\\d{6})-->');
 	var FOOTER_REGEXP = new RegExp('<!--footer--' + modePattern + '(\\d{6})-->');
+	var CJS_REGEXP = new RegExp('<!--cjs--' + modePattern + '(\\d{6})-->');
 	
 	//List for JS Files that compose site's script file
 	var jsList = [
@@ -158,6 +159,33 @@ module.exports = function(grunt) {
 			"\t\t</div>";
 		
 		return tags;
+		
+	};
+	
+	var getCjs = function(hash){
+		
+		console.log(hash);
+		var match = CJS_REGEXP.exec(hash);
+		var category = match[1];
+		var id = match[2];
+		
+		var contents = getContents();
+		
+		var i;
+		var items = contents.rss.channel.item;
+		for (var j in items){
+			if(items[j].category == category && items[j].id == id){
+				i = j;
+			}
+		}
+		
+		var path = items[i].cjs;
+		
+		var script = grunt.file.read('../../_processing/' + path);
+		
+		var tag = '<script>' + script + '</script>';
+
+		return tag;
 		
 	};
 	
@@ -478,6 +506,16 @@ module.exports = function(grunt) {
 						return getFooter(hash);
 					}
 				}]
+			},
+			contents_cjs: {
+				src: ['../../_processing/contents/**/*.html'],
+				overwrite: true,
+				replacements: [{
+					from: CJS_REGEXP, 
+					to: function(hash){
+						return getCjs(hash);
+					}
+				}]
 			}
 		},
 		
@@ -505,7 +543,7 @@ module.exports = function(grunt) {
 	var htmlTasks = ['replace:main', 'htmlmin:main', 'copy:main', 'copy:favicon'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
-	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'replace:contents', 'replace:contents_header', 'replace:contents_footer',  'copy:contents_2', 'htmlmin:contents']);
+	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
 	
 	var imageTasks = ['clean:image', 'copy:image_s', 'responsive_images', 'copy:image_m'];
 	
