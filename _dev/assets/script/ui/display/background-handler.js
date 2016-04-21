@@ -4,9 +4,10 @@ var BackgroundHandler;
 	
 	BackgroundHandler = function(fdiv, bdiv){
 		
-		this._cjsCanvasHandler = _getNewCanvasHandler(bdiv);
-		this._frontCanvasHandler = _getNewCanvasHandler(fdiv);
-		this._backCanvasHandler = _getNewCanvasHandler(bdiv);
+		this.foreDiv = fdiv;
+		this.backDiv = bdiv;
+		this.animationTaskList = [];
+		
 	};
 	
 	var _getNewCanvasHandler = function(div){
@@ -17,6 +18,26 @@ var BackgroundHandler;
 		var ch = new CanvasHandler(canvas);
 		ch.setCanvasWidth($(div).width());
 		ch.setCanvasHeight($(div).height());
+		$(ch.getCanvas()).css({
+			width:'100%',
+			height:'100%'
+		});
+		
+		return ch;
+	}
+	
+	var _getNewFittedCanvasHandler = function(div){
+		
+		var canvas = $('<canvas></canvas>').get(0);
+		$(div).append(canvas);
+		
+		var ch = new CanvasHandler(canvas);
+		ch.setCanvasWidth(1920);
+		ch.setCanvasHeight(1080);
+		$(ch.getCanvas()).css({
+			width:'100%',
+			height:'100%'
+		});
 		
 		return ch;
 	}
@@ -84,60 +105,101 @@ var BackgroundHandler;
 		startAnimationLoop:function(){
 			
 			console.log('Start Animation Loop');
+			
+			var that = this;
 
+			that.animationLoop = function(){
+				
+				_.map(that.animationTaskList, function(task){
+					task();
+				});
+				
+				window.requestAnimationFrame(that.animationLoop);
+			}
+				
+			window.requestAnimationFrame(that.animationLoop);
+			
+		},
+		
+		setCjs:function(cjsLib, cjsImages){
+			
+			var loader = new createjs.LoadQueue(false);
+			
 			var that = this;
 			
-			domUtil.setScrollListener(function(lists){
+			var ch = _getNewFittedCanvasHandler(that.backDiv);
 			
-				console.log(lists);
+			loader.addEventListener("fileload", function(evt) {
 				
-				that._animationList = [];
-				
-				_.map(lists.onScreen, function(elem){
-					that._animationList.push({
-						'elem': elem,
-						'totalFrames': 1000,
-						'animator':DRAW_REC_ANIMATOR,
-						'stepper': _nextFrame,
-						'ender': _isAtEnd,
-					})
-				});
-				
-				_.map(lists.hidden, function(elem){
-					that._animationList.push({
-						'elem': elem,
-						'totalFrames': 1000,
-						'animator':DRAW_REC_ANIMATOR,
-						'stepper': _prevFrame,
-						'ender': _isAtStart,
-					})
-				});
-				
-				_.map(lists.offScreen, function(elem){
-					$(elem).data('frame', 0);
-				});
+				console.log('A Cjs Image Loaded');
+						
+				if (evt.item.type == "image") { 
+					cjsImages[evt.item.id] = evt.result;
+				}
 				
 			});
 			
-			var animationLoop = function(){
+			loader.addEventListener("complete", function (evt) {
 				
-				that._frontCanvasHandler.clear();
-				that._backCanvasHandler.clear();
+				console.log('Cjs Image Loading Complete');
+						
+				var canvas = ch.getCanvas();
 				
-				_.map(that._animationList, function(obj){
-					var elem = obj.elem;
+				that.root = new cjsLib.crouton_v003();
+				that.root.gotoAndPlay('Scene002_start');
 				
-					if(!obj.ender(elem)){
-						obj.stepper(elem, obj.totalFrames);
+				that.stage = new createjs.Stage(canvas);
+				that.stage.addChild(that.root);
+				that.stage.update();
+				
+				createjs.Ticker.setFPS(cjsLib.properties.fps);
+				createjs.Ticker.addEventListener("tick", that.stage);
+				createjs.Ticker.addEventListener("tick", function(e){
+					if(that.root.currentLabel.indexOf('_stop') >= 0){
+						that.root.stop();
 					}
-					that._drawFrame(elem, obj.animator);
-				})
+				});
 				
-				window.requestAnimationFrame(animationLoop);
+				that.setCjsLoop(ch);
 				
-			};
+			});
+			
+			loader.loadManifest(cjsLib.properties.manifest);
+			
+		},
 		
-			window.requestAnimationFrame(animationLoop);
+		setCjsLoop:function(ch){
+			
+			var that = this;
+			
+			var mainElem;
+			
+			domUtil.setScrollListener(function(lists){
+				mainElem = lists.hidden[0];
+			});
+			
+			domUtil.triggerScroll();
+			
+			
+			var currentScene;
+			
+			that.animationTaskList.push(function(){
+									
+				if(mainElem){
+					var scene = $(mainElem).attr('data-cjs-scene');
+					if(scene !== currentScene){
+						console.log(scene);
+						that.root.gotoAndPlay(scene + '_start');
+						currentScene = scene;
+					}
+				}
+								
+			});
+		
+			
+		},
+		
+		playCjsScene:function(scene){
 			
 		},
 		
@@ -150,10 +212,7 @@ var BackgroundHandler;
 			this._animationList = [];
 			
 			domUtil.triggerScroll();
-			
-			var cjsLoader = new CjsLoader(this._cjsCanvasHandler);
-		
-						
+									
 		},
 		
 	};

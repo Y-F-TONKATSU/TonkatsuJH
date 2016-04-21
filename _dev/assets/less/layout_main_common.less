@@ -6,12 +6,16 @@
 @ZI_MAIN:1;
 @ZI_FG:2;
 
-.main, .sidebar{
-	position:absolute;
+.full{
+	position:fixed;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
 }
 
 .fullLayer{
-	position:absolute;
+	position:fixed;
 	pointer-events:none;
 	left:0%;
 	top:0%;
@@ -19,18 +23,20 @@
 	height:100%;
 }
 
-.mainDocContainer, .indexContainer{
-	position:relative;
+#mainDoc{
+	overflow-y:scroll;
 	z-index:@ZI_MAIN;
 }
 
-.background{
-	z-index:@ZI_BG;
-	position:fixed;
-	background-color:#000000;
+#indexContainer{
+	overflow-y:scroll;
+	z-index:@ZI_MAIN;
 }
 
-.foreground{
+#background{
+	z-index:@ZI_BG;
+}
+
+#foreground{
 	z-index:@ZI_FG;
-	position:fixed;
 }

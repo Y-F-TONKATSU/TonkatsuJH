@@ -6,14 +6,14 @@ var domHandler;
 var domUtil;
 var bgHandler;
 
-var animators
+var Animators = {};
 
 Tonkatsu.init = function(){
 	urlHandler = new UrlHandler();
 	displayHandler = new DisplayHandler();
 	domHandler = new DomHandler();
-	domUtil = new DomUtil($('.main'));
-	bgHandler = new BackgroundHandler($('.foreground'), $('.background'));
+	domUtil = new DomUtil($('#mainDoc'));
+	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
 	bgHandler.startAnimationLoop();
 	console.log('Init Complete');
 };

@@ -13,7 +13,7 @@
 		<script src="../hash.js"></script>
 		<script src='../dom-util.js'></script>
 		<script src='dom-util-test.js'></script>
-		
+		<script src="../../ui/display/display-handler.js"></script>
 		
 		<title>Test</title>
 		
@@ -25,14 +25,15 @@
 		
 		<div id='log'></div>
 		
-		<div style='margin-top:500px'>
+		<div id='parent' style='position:relative; overflow-y:scroll; height: 800px;'>
 		
-			<div id='isOnScreen' style="padding:50px; margin:100px; width:400px; height:200px; position:relative; background-color:orange"></div>
+			<div id='isOnScreen' style="top:100px;  width:400px; height:200px; position:relative; background-color:orange"></div>
 		
 			<div id='getScreenRect' style="padding:50px; margin:100px; width:400px; height:200px; position:relative; background-color:yellow"></div>
+			
+			<div id='space' style="width:200px; height:1000px; position:relative;"></div>
+			
 		</div>
-		
-		<div id='space' style="width:200px; height:1000px; position:relative;"></div>
 		
 
 	</body>

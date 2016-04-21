@@ -1,11 +1,10 @@
-animators.DRAW_REC_ANIMATOR = function(fg, bg, progress, div){
+Animators.DRAW_REC_ANIMATOR = function(fg, bg, progress, div){
 	
 	if(!fg){
 		console.log('!!! Canvas is undefined!');
 		return false;	
 	}
 	
-	var rect = domUtil.getCjsLib(div);
 	var rect = domUtil.getScreenRect(div);
 	
 	var fctx = fg.getContext();

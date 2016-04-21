@@ -11,13 +11,20 @@ var DomHandler;
 		
 		$.ajax({
 			'url': url,
-			'context': $('#mainDoc_cont'),
 			'dataType':'html',
 		}).done(function(e) {
 			var newDoc = $('<div></div>');
 			newDoc.html(e);
-			console.log(newDoc);
-			$('#mainDoc_cont').empty().html($(newDoc).find('article'));
+			$(newDoc).find('section').css({
+				'position':'relative',
+				'height': displayHandler.getHeight(),
+				'padding':'20%'
+			});
+			console.log('New Doc Loaded by Ajax');
+			$('#mainDoc').empty().html($(newDoc).find('article').html());
+			
+			bgHandler.setCjs(cjsLib, cjsImages);
+			
 		});
 		
 	}
@@ -26,9 +33,8 @@ var DomHandler;
 		
 		setMainDocMode:function(url){
 			
-			$('.sidebar').hide();
 			$('#indexContainer').hide();
-			$('#mainDocContainer').show();
+			$('#mainDoc').show();
 			
 			loadDoc(url);
 			
@@ -36,9 +42,8 @@ var DomHandler;
 		
 		setIndexMode:function(){
 			
-			$('.sidebar').hide();
 			$('#indexContainer').show();
-			$('#mainDocContainer').hide();
+			$('#mainDoc').hide();
 			
 			bgHandler.setPage();
 		},
