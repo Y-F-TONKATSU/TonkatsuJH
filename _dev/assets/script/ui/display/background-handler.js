@@ -175,7 +175,7 @@ var BackgroundHandler;
 			var mainElem;
 			
 			domUtil.setScrollListener(function(){
-				mainElem = domUtil.getActiveElem();
+				mainElem = domUtil.getActiveSection();
 				console.log(mainElem);
 			});
 			

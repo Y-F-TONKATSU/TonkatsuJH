@@ -8,19 +8,50 @@ var testDomUtil = function(){
 		
 		var showScreenRect = function(){
 			
-			var target = $('#getScreenRect');
-			var rect = du.getScreenRect(target);
+			var target = $('#yellow');
+			var rect = du.getElemRect(target);
 			var rectStr = _.reduce(rect, function(memo, v, k){
 				return memo + k + ': ' + v + '<br>';
 			}, '要素のスクリーン上の位置が表示される<br>');
 			$(target).html(rectStr);
 			
-			var onScreenRect = du.getElemRect($('#isOnScreen'));
+			var result = '';
+			
+			var onScreenRect = du.getElemRect($('#orange'));
+			
 			if(du.isOnScreen(onScreenRect)){
-				$('#log').text('オレンジの div がスクリーン上にある');
+				result += 'オレンジの div 全体がスクリーン上にある<br>';
 			} else {
-				$('#log').text('オレンジの div がスクリーン上にない');
+				result += 'オレンジの div 全体がスクリーン上にない<br>';
 			}
+			
+			if(du.isOffScreen(onScreenRect)){
+				result += 'オレンジの div 全体がスクリーン外にある<br>';
+			} else {
+				result += 'オレンジの div 全体がスクリーン外にない<br>';
+			}
+			
+			if(du.isTopHidden(onScreenRect)){
+				result += 'オレンジの div が画面上にはみ出している<br>';
+			} else {
+				result += 'オレンジの div が画面上にはみ出していない<br>';
+			}
+			
+			if(du.isBottomHidden(onScreenRect)){
+				result += 'オレンジの div が画面下にはみ出している<br>';
+			} else {
+				result += 'オレンジの div が画面下にはみ出していない<br>';
+			}
+						
+			if(du.isCenter(onScreenRect)){
+				result += 'オレンジの div が真ん中辺りにある<br>';
+			} else {
+				result += 'オレンジの div が真ん中辺りにない<br>';
+			}
+			
+			result += 'アクティブなのは' + $(du.getActiveSection()).attr('id') + '<br>';			
+
+			$('#log').html(result);
 
 		}
 		
@@ -39,9 +70,9 @@ var testDomUtil = function(){
 		test("isOnScreen()", function() {
 		});
 								
-		test("getScreenRect()", function() {
-			$(du.getParent()).scroll(showScreenRect);
-			showScreenRect();
+		test("setScrollListener()", function() {
+			du.setScrollListener(showScreenRect);
+			du.triggerScroll();
 		});
 								
 	});

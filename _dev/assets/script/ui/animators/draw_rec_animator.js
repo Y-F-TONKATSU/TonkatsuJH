@@ -5,7 +5,7 @@ Animators.DRAW_REC_ANIMATOR = function(fg, bg, progress, div){
 		return false;	
 	}
 	
-	var rect = domUtil.getScreenRect(div);
+	var rect = domUtil.getElemRect(div);
 	
 	var fctx = fg.getContext();
 	

@@ -31,7 +31,7 @@ var DomUtil;
 			var top = $(elem).position().top;
 			var height = $(elem).height() + parseFloat($(elem).css('marginTop')) + parseFloat($(elem).css('marginBottom'));
 			var left = $(elem).position().left;
-			var width = $(elem).width() + $(elem).css('marginLeft') + $(elem).css('marginRight');
+			var width = $(elem).width() + parseFloat($(elem).css('marginLeft')) + parseFloat($(elem).css('marginRight'));
 			
 			return {
 				'top':top,
@@ -46,7 +46,7 @@ var DomUtil;
 		isCenter : function(rect){
 			var center = $(this._parent).height() / 2;
 			console.log(rect);
-			return center >= rect.top;
+			return center >= rect.top && center <= rect.bottom;
 			
 		},
 	
@@ -57,7 +57,6 @@ var DomUtil;
 		},
 	
 		isBottomHidden : function(rect){
-			
 			return $(this._parent).height() < rect.bottom;
 			
 		},
@@ -74,27 +73,28 @@ var DomUtil;
 			$(this._parent).height() < rect.top;
 			
 		},
-	
-		getOnScreenState : function(elem, handler){
+		
+		/* NT */
+		getOnScreenState : function(elem, handlers){
 			
 			var rect = this.getElemRect(elem);
 			
 			var buffer = 0;
 			
 			if(this.isOffScreen(rect)){
-				handler.offScreen(elem);
+				handlers.offScreen(elem);
 			} else {
 				if(this.isOnScreen(rect)){
-					handler.onScreen(elem);
+					handlers.onScreen(elem);
 				} else {
 					if(this.isTopHidden(rect) && this.isBottomHidden(rect)){
-						handler.bothHidden(elem);
+						handlers.bothHidden(elem);
 					} else if(this.isTopHidden(rect)){
-						handler.topHidden(elem);
+						handlers.topHidden(elem);
 					} else if(this.isBottomHidden(rect)){
-						handler.bottomHidden(elem);
+						handlers.bottomHidden(elem);
 					} else {
-						handler.error();
+						handlers.error();
 					}
 				}
 			}
@@ -105,6 +105,7 @@ var DomUtil;
 			return this._parent;
 		},
 		
+		/* deprecated 
 		getScreenRect : function(elem){
 			
 			var scrollTop = $(this._parent).scrollTop();
@@ -121,7 +122,8 @@ var DomUtil;
 				'width' : $(elem).width()
 			};
 		},
-
+		*/
+		
 		resetFrames : function(){
 			
 			console.log('reset all div animation frames');
@@ -171,7 +173,7 @@ var DomUtil;
 			
 		},
 
-		getActiveElem : function(){
+		getActiveSection : function(){
 			
 			var that = this;
 			var active;
