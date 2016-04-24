@@ -180,10 +180,14 @@ module.exports = function(grunt) {
 		}
 		
 		var path = items[i].cjs;
+		var imagePath = items[i].cjsImages;
 		
 		var script = grunt.file.read('../../_processing/' + path);
 		
-		var tag = '<script>' + script + '</script>';
+		//Fix Image Path
+		var r = script.replace(/{src:"/g, '{src:"' + imagePath);
+		
+		var tag = '<script>' + r + '</script>';
 
 		return tag;
 		

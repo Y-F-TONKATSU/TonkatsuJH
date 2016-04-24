@@ -9,19 +9,37 @@ var DomHandler;
 	
 	var loadDoc = function(url){
 		
+		var h = displayHandler.getHeight();
+		
 		$.ajax({
 			'url': url,
 			'dataType':'html',
-		}).done(function(e) {
+		}).done(function(result) {
+			
 			var newDoc = $('<div></div>');
-			newDoc.html(e);
+			newDoc.html(result);
+			
 			$(newDoc).find('section').css({
 				'position':'relative',
-				'height': displayHandler.getHeight(),
-				'padding':'20%'
+				'marginBottom': h * 0.4,
+				'marginLeft':'20%',
+				'backgroundColor':'yellow',
+				'width':'30%',
+				'box-shadow': '2px 2px 12px 4px #888888',
+				'padding':'2%',
+				'transform': 'rotate(2deg)',
+			}).first()
+			.css({
+				'marginTop': h * 0.4
+			}).end().last()
+			.css({
+				'marginBottom': h * 0.6,
 			});
+			
 			console.log('New Doc Loaded by Ajax');
-			$('#mainDoc').empty().html($(newDoc).find('article').html());
+			
+			$('#mainDoc').empty()
+				.html($(newDoc).find('article').html());
 			
 			bgHandler.setCjs(cjsLib, cjsImages);
 			

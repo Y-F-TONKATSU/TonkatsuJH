@@ -10,7 +10,7 @@ var DomUtil;
 		
 		$(parent).scroll(function(){
 			
-			that._scrollListener(that.getElemLists());
+			that._scrollListener();
 			
 		});
 		
@@ -23,20 +23,33 @@ var DomUtil;
 		},
 		
 		triggerScroll : function(){
-			this._scrollListener(this.getElemLists());
+			this._scrollListener();
 		},
 		
 		getElemRect :  function(elem){
+			
+			var top = $(elem).position().top;
+			var height = $(elem).height() + parseFloat($(elem).css('marginTop')) + parseFloat($(elem).css('marginBottom'));
+			var left = $(elem).position().left;
+			var width = $(elem).width() + $(elem).css('marginLeft') + $(elem).css('marginRight');
+			
 			return {
-				'top':$(elem).position().top,
-				'bottom':$(elem).position().top + $(elem).height(),
-				'height': $(elem).height(),
-				'left':$(elem).position().left,
-				'right':$(elem).position().left + $(elem).width(),
-				'width':$(elem).width(),
+				'top':top,
+				'bottom':top + height,
+				'height': height,
+				'left':left,
+				'right':left + width,
+				'width':width,
 			}
 		},
 		
+		isCenter : function(rect){
+			var center = $(this._parent).height() / 2;
+			console.log(rect);
+			return center >= rect.top;
+			
+		},
+	
 		isTopHidden : function(rect){
 			
 			return 0 > rect.top;
@@ -155,6 +168,22 @@ var DomUtil;
 				'offScreen': offScreenList,
 				'hidden': hiddenList,
 			}
+			
+		},
+
+		getActiveElem : function(){
+			
+			var that = this;
+			var active;
+			$(that._parent).find('section')
+			.each(function(){
+				var rect = that.getElemRect(this);
+				if(that.isCenter(rect)){
+					active = this;
+				};
+			})
+			
+			return active;
 			
 		},
 

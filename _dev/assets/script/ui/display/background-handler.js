@@ -145,7 +145,7 @@ var BackgroundHandler;
 						
 				var canvas = ch.getCanvas();
 				
-				that.root = new cjsLib.crouton_v003();
+				that.root = new cjsLib.crouton_v004();
 				that.root.gotoAndPlay('Scene002_start');
 				
 				that.stage = new createjs.Stage(canvas);
@@ -174,8 +174,9 @@ var BackgroundHandler;
 			
 			var mainElem;
 			
-			domUtil.setScrollListener(function(lists){
-				mainElem = lists.hidden[0];
+			domUtil.setScrollListener(function(){
+				mainElem = domUtil.getActiveElem();
+				console.log(mainElem);
 			});
 			
 			domUtil.triggerScroll();

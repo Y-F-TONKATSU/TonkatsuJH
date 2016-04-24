@@ -121,7 +121,7 @@ var UrlHandler;
 			if(this._currentHash.category === 'top'){
 				domHandler.setIndexMode();
 			} else {
-				domHandler.setMainDocMode('contents/experimental/1603/e000019_crouton.html');
+				domHandler.setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
 			}
 		},
 	
