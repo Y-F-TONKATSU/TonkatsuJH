@@ -4,12 +4,17 @@ var UrlHandler;
 	
 	UrlHandler = function(hash){
 		this._currentHash = undefined;
+		this._chagePageListener = function(){};
 		if(!_.isEmpty(hash)){
 			this.setCurrentHash(hash);
 		}
 	};
 	
 	UrlHandler.prototype = {
+		
+		setChangePageListener:function(f){
+			this._chagePageListener = f;
+		},
 		
 		getCurrentHash:function(){
 			return this._currentHash;
@@ -117,12 +122,9 @@ var UrlHandler;
 		},
 		
 		changeToCurrentHashPage:function(){
-			console.log('Changing Page:' + this._currentHash.category);
-			if(this._currentHash.category === 'top'){
-				domHandler.setIndexMode();
-			} else {
-				domHandler.setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
-			}
+			
+			this._chagePageListener(this._currentHash);
+			
 		},
 	
 		changeTo:function(hash){

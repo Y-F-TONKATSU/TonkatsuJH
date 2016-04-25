@@ -77,14 +77,14 @@ var testUrlHandler = function(){
 			assert.strictEqual(uh.processHashString('tonkatsu123456'), null, "不正な値の場合、null を返す");
 		});
 				
-		test("setHash()/getCurrentHash()/getCurrentCategory()/getCurrentId()", function() {
+		test("setCurrentHash()/getCurrentHash()/getCurrentCategory()/getCurrentId()", function() {
 			
-			uh.setHash('image024680');
+			uh.setCurrentHash('image024680');
 			
 			assert.strictEqual(uh.getCurrentHash().category, 'image', "image024680 をセットすると、getCurrentHash はカテゴリ image を返す");
 			assert.strictEqual(uh.getCurrentHash().id, '024680', "image024680 をセットすると、getCurrentHash はコンテンツ 024680 を返す");
 			
-			uh.setHash({
+			uh.setCurrentHash({
 				category:'kinema',
 				id:'123456',
 				option:''
@@ -95,19 +95,20 @@ var testUrlHandler = function(){
 			assert.strictEqual(uh.getCurrentCategory(), 'kinema', "getCurrentCategory でカテゴリを取得できる");
 			assert.strictEqual(uh.getCurrentId(), '123456', "getCurrentCategory でコンテンツ番号を取得できる");
 			
-			uh.setHash('apps?02468');
+			uh.setCurrentHash('apps?02468');
+					
+			assert.strictEqual(uh.getCurrentHash().category, 'top', "不正な値を渡すとデフォルト値がセットされる");
+			assert.strictEqual(uh.getCurrentHash().id, '000000', "不正な値を渡すとデフォルト値がセットされる");
 			
-			assert.strictEqual(uh.getCurrentHash().category, 'kinema', "不正な値を渡すと何もしない");
-			assert.strictEqual(uh.getCurrentHash().id, '123456', "不正な値を渡すと何もしない");
-			
-			uh.setHash({
+			uh.setCurrentHash({
 				category:'image',
 				id:'!02468',
 				option:''
 			});
 			
-			assert.strictEqual(uh.getCurrentHash().category, 'kinema', "不正な値を渡すと何もしない");
-			assert.strictEqual(uh.getCurrentHash().id, '123456', "不正な値を渡すと何もしない");
+			assert.strictEqual(uh.getCurrentHash().category, 'top', "不正な値を渡すとデフォルト値がセットされる");
+			assert.strictEqual(uh.getCurrentHash().id, '000000', "不正な値を渡すとデフォルト値がセットされる");
+			
 		});
 				
 		test("changeTo()", function() {
@@ -130,8 +131,8 @@ var testUrlHandler = function(){
 			
 			uh.changeTo('apps?02468');
 			
-			assert.strictEqual(uh.getCurrentHash().category, 'kinema', "不正な値を渡すと何もしない");
-			assert.strictEqual(uh.getCurrentHash().id, '123456', "不正な値を渡すと何もしない");
+			assert.strictEqual(uh.getCurrentHash().category, 'top', "不正な値を渡すとデフォルト値がセットされる");
+			assert.strictEqual(uh.getCurrentHash().id, '000000', "不正な値を渡すとデフォルト値がセットされる");
 			
 			uh.changeTo({
 				category:'image',
@@ -139,8 +140,8 @@ var testUrlHandler = function(){
 				option:''
 			});
 			
-			assert.strictEqual(uh.getCurrentHash().category, 'kinema', "不正な値を渡すと何もしない");
-			assert.strictEqual(uh.getCurrentHash().id, '123456', "不正な値を渡すと何もしない");
+			assert.strictEqual(uh.getCurrentHash().category, 'top', "不正な値を渡すとデフォルト値がセットされる");
+			assert.strictEqual(uh.getCurrentHash().id, '000000', "不正な値を渡すとデフォルト値がセットされる");			
 			
 		});
 				

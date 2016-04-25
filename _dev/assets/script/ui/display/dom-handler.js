@@ -47,24 +47,39 @@ var DomHandler;
 		
 	}
 	
+	var setMainDocMode = function(url){
+			
+		$('#indexContainer').hide();
+		$('#mainDoc').show();
+		
+		loadDoc(url);
+			
+	}
+	
+	var setIndexMode = function(){
+		
+		$('#indexContainer').show();
+		$('#mainDoc').hide();
+		
+		bgHandler.setPage();
+			
+	}
+	
+	
 	DomHandler.prototype = {
 		
-		setMainDocMode:function(url){
+		
+		
+		changeTo:function(hash){
 			
-			$('#indexContainer').hide();
-			$('#mainDoc').show();
-			
-			loadDoc(url);
-			
+			if(hash.category === 'top'){
+				setIndexMode();
+			} else {
+				setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
+			}
+		
 		},
 		
-		setIndexMode:function(){
-			
-			$('#indexContainer').show();
-			$('#mainDoc').hide();
-			
-			bgHandler.setPage();
-		},
 		
 	};
 	

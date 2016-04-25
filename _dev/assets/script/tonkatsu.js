@@ -9,13 +9,19 @@ var bgHandler;
 var Animators = {};
 
 Tonkatsu.init = function(){
+	
 	urlHandler = new UrlHandler();
 	displayHandler = new DisplayHandler();
 	domHandler = new DomHandler();
 	domUtil = new DomUtil($('#mainDoc'));
 	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
+	
+	urlHandler.setChangePageListener(domHandler.changeTo);
+	
 	bgHandler.startAnimationLoop();
+	
 	console.log('Init Complete');
+	
 };
 
 Tonkatsu.onHashChanged = function(e){
