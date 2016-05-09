@@ -9,43 +9,58 @@ var DomHandler;
 	
 	var loadDoc = function(url){
 		
-		var h = displayHandler.getHeight();
-		
 		$.ajax({
 			'url': url,
 			'dataType':'html',
 		}).done(function(result) {
 			
+			console.log('New Doc Loaded by Ajax');
+			
 			var newDoc = $('<div></div>');
 			newDoc.html(result);
+			var type = $(newDoc).find('article').attr('data-doc-type');
+			var loader = $(newDoc).find('article').attr('data-loader-type');
+			console.log(processDoc);
+			processDoc[type](newDoc, loader);
 			
-			$(newDoc).find('section').css({
+		});
+		
+	}
+	
+	var processDoc = {
+		
+		'cjsLabeled':function(doc, loader){
+			
+			var h = DisplayUtil.getHeight();
+		
+			$(doc).find('section').css({
 				'position':'relative',
-				'marginBottom': h * 0.4,
-				'marginLeft':'20%',
+				'marginTop': h * 0.2,
+				'marginBottom': h * 0.5,
+				'marginLeft':'10%',
 				'backgroundColor':'yellow',
 				'width':'30%',
 				'box-shadow': '2px 2px 12px 4px #888888',
 				'padding':'2%',
 				'transform': 'rotate(2deg)',
-			}).first()
+			}).end().find('.right').css({
+				'marginLeft':'60%',
+			}).end().find('section').first()
 			.css({
-				'marginTop': h * 0.4
+				'marginTop': h * 0.3
 			}).end().last()
 			.css({
 				'marginBottom': h * 0.6,
-			});
-			
-			console.log('New Doc Loaded by Ajax');
+			}).end().find('p');
 			
 			$('#mainDoc').empty()
-				.html($(newDoc).find('article').html());
+				.html($(doc).find('article').html());
 			
-			bgHandler.setCjs(cjsLib, cjsImages);
+			bgHandler.setCjs(cjsLib, cjsImages, loader);
 			
-		});
+		},
 		
-	}
+	};
 	
 	var setMainDocMode = function(url){
 			
@@ -54,7 +69,7 @@ var DomHandler;
 		
 		loadDoc(url);
 			
-	}
+	};
 	
 	var setIndexMode = function(){
 		
@@ -63,12 +78,10 @@ var DomHandler;
 		
 		bgHandler.setPage();
 			
-	}
+	};
 	
 	
 	DomHandler.prototype = {
-		
-		
 		
 		changeTo:function(hash){
 			

@@ -11,7 +11,7 @@ var testBackgroundHandler = function(){
 		});
 		
 		test('BackgroundHandler(front, back)', function() {
-			assert.strictEqual('function', typeof BackgroundHandler, 'コンストラクタ関数 DisplayHandler() が存在する。');
+			assert.strictEqual('function', typeof BackgroundHandler, 'コンストラクタ関数 BackgroundHandler() が存在する。');
 		});
 						
 		test('getFrontCanvasHandler()', function() {

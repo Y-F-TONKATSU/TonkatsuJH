@@ -1,15 +1,15 @@
-var testDomUtil = function(){
+var testScrollHandler = function(){
 	
 	mochaSetup();
 	
-	suite('DomUtil', function() {
+	suite('ScrollHandler', function() {
 		
-		var du;
+		var scrollHandler;
 		
 		var showScreenRect = function(){
 			
 			var target = $('#yellow');
-			var rect = du.getElemRect(target);
+			var rect = scrollHandler.getElemRect(target);
 			var rectStr = _.reduce(rect, function(memo, v, k){
 				return memo + k + ': ' + v + '<br>';
 			}, '要素のスクリーン上の位置が表示される<br>');
@@ -17,62 +17,62 @@ var testDomUtil = function(){
 			
 			var result = '';
 			
-			var onScreenRect = du.getElemRect($('#orange'));
+			var onScreenRect = scrollHandler.getElemRect($('#orange'));
 			
-			if(du.isOnScreen(onScreenRect)){
+			if(scrollHandler.isOnScreen(onScreenRect)){
 				result += 'オレンジの div 全体がスクリーン上にある<br>';
 			} else {
 				result += 'オレンジの div 全体がスクリーン上にない<br>';
 			}
 			
-			if(du.isOffScreen(onScreenRect)){
+			if(scrollHandler.isOffScreen(onScreenRect)){
 				result += 'オレンジの div 全体がスクリーン外にある<br>';
 			} else {
 				result += 'オレンジの div 全体がスクリーン外にない<br>';
 			}
 			
-			if(du.isTopHidden(onScreenRect)){
+			if(scrollHandler.isTopHidden(onScreenRect)){
 				result += 'オレンジの div が画面上にはみ出している<br>';
 			} else {
 				result += 'オレンジの div が画面上にはみ出していない<br>';
 			}
 			
-			if(du.isBottomHidden(onScreenRect)){
+			if(scrollHandler.isBottomHidden(onScreenRect)){
 				result += 'オレンジの div が画面下にはみ出している<br>';
 			} else {
 				result += 'オレンジの div が画面下にはみ出していない<br>';
 			}
 						
-			if(du.isCenter(onScreenRect)){
+			if(scrollHandler.isCenter(onScreenRect)){
 				result += 'オレンジの div が真ん中辺りにある<br>';
 			} else {
 				result += 'オレンジの div が真ん中辺りにない<br>';
 			}
 			
-			result += 'アクティブなのは' + $(du.getActiveSection()).attr('id') + '<br>';			
+			result += 'アクティブなのは' + $(scrollHandler.getActiveSection()).attr('id') + '<br>';			
 
 			$('#log').html(result);
 
 		}
 		
 		setup(function(){
-			du = new DomUtil($('#parent'));
+			scrollHandler = new ScrollHandler($('#parent'));
 		});
 		
-		test("DomUtil()", function() {
-			assert.strictEqual("function", typeof DomUtil, "コンストラクタ関数 DomUtil() が存在する。");
+		test("ScrollHandler()", function() {
+			assert.strictEqual("function", typeof ScrollHandler, "コンストラクタ関数 ScrollHandler() が存在する。");
 		});
 				
 		test("getParent()", function() {
-			assert.strictEqual('parent', $(du.getParent()).attr('id'), 'getParent() で親要素を取得した');
+			assert.strictEqual('parent', $(scrollHandler.getParent()).attr('id'), 'getParent() で親要素を取得した');
 		});
 								
 		test("isOnScreen()", function() {
 		});
 								
 		test("setScrollListener()", function() {
-			du.setScrollListener(showScreenRect);
-			du.triggerScroll();
+			scrollHandler.setScrollListener(showScreenRect);
+			scrollHandler.triggerScroll();
 		});
 								
 	});

@@ -1,8 +1,8 @@
-var DomUtil;
+var ScrollHandler;
 
 (function(){
 	
-	DomUtil = function(parent){
+	ScrollHandler = function(parent){
 		
 		var that = this;
 		that._parent = parent;
@@ -16,7 +16,7 @@ var DomUtil;
 		
 	};
 	
-	DomUtil.prototype = {
+	ScrollHandler.prototype = {
 		
 		setScrollListener : function(f){
 			this._scrollListener = f;
@@ -122,7 +122,6 @@ var DomUtil;
 				'width' : $(elem).width()
 			};
 		},
-		*/
 		
 		resetFrames : function(){
 			
@@ -132,6 +131,7 @@ var DomUtil;
 				.data('frame', 0);
 			
 		},
+		*/
 
 		getElemLists : function(){
 			

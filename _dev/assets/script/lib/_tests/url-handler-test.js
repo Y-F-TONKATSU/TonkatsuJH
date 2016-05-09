@@ -145,10 +145,61 @@ var testUrlHandler = function(){
 			
 		});
 				
-		test("changePage()", function() {
+		test("isSameHash", function() {
 			
-			assert(false, "changePage を実装した");
+			assert(!uh.isSameHash('image024680'), "何もセットしていないと isSameHash は false を返す");
 			
+			uh.setCurrentHash('image024680');
+			
+			assert(uh.isSameHash('image024680'), "image024680 をセットして isSameHash に image024680 を渡すと true が返る");
+			
+			uh.changeTo({
+				category:'image',
+				id:'024680',
+				option:''
+			});
+			
+			assert(uh.isSameHash('image024680'), "ID オブジェクトと文字列を isSameHash で比較できる");
+			assert(!uh.isSameHash('image024681'), "ID が違うと false");
+			assert(!uh.isSameHash('apps024680'), "カテゴリが違うと false");
+			
+		});
+				
+		test("changeTo()/setChangePageListener()", function() {
+			
+			var x = 1;
+			
+			uh.setChangePageListener(function(){
+				x += 1;		
+			});
+			
+			assert.strictEqual(x, 1, "リスナーが呼び出されていない");
+			
+			uh.changeTo('image024680');
+			
+			assert.strictEqual(x, 2, "changeTo() によってリスナーが呼び出された");
+			
+			uh.changeTo('image024680');
+			
+			assert.strictEqual(x, 2, "同じ ID で changeTo を呼び出してもリスナーは呼ばれない");
+			
+			uh.setChangePageListener(function(){
+				x *= 2;		
+			});
+			
+			uh.changeTo('image024681');
+			
+			assert.strictEqual(x, 4, "リスナーを上書きできる");
+			
+			uh.setChangePageListener(function(e){
+				console.log(e);
+				x = e;		
+			});
+			
+			uh.changeTo('image024682');
+			
+			assert.strictEqual(x.category, 'image', "ハッシュオブジェクトがリスナーの引数として渡される");
+			assert.strictEqual(x.id, '024682', "ハッシュオブジェクトがリスナーの引数として渡される");
 		});
 				
 	});

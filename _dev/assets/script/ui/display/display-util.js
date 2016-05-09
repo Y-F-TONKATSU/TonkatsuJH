@@ -1,13 +1,8 @@
-var DisplayHandler;
+var DisplayUtil;
 
 (function(){
 	
-	DisplayHandler = function(){
-		
-	};
-	
-	
-	DisplayHandler.prototype = {
+	DisplayUtil = {
 		
 		THRESHOLD:{
 			small:600,

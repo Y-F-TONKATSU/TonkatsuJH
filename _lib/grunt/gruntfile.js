@@ -26,6 +26,7 @@ module.exports = function(grunt) {
 	var META_REGEXP = new RegExp('<!--meta--' + modePattern + '(\\d{6})-->');
 	var HEADER_REGEXP = new RegExp('<!--header--' + modePattern + '(\\d{6})-->');
 	var FOOTER_REGEXP = new RegExp('<!--footer--' + modePattern + '(\\d{6})-->');
+	var ADS_REGEXP = new RegExp('<!--ad--(.+?)-->');
 	var CJS_REGEXP = new RegExp('<!--cjs--' + modePattern + '(\\d{6})-->');
 	
 	//List for JS Files that compose site's script file
@@ -33,9 +34,9 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/tonkatsu.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
 		'../../_dev/assets/script/lib/url-handler.js',
-		'../../_dev/assets/script/lib/dom-util.js',
+		'../../_dev/assets/script/lib/scroll-handler.js',
 		'../../_dev/assets/script/lib/hash.js',
-		'../../_dev/assets/script/ui/display/display-handler.js',
+		'../../_dev/assets/script/ui/display/display-util.js',
 		'../../_dev/assets/script/ui/display/dom-handler.js',        
 		'../../_dev/assets/script/ui/display/background-handler.js',
 		'../../_dev/assets/script/ui/animators/cjs_animator.js',
@@ -65,6 +66,14 @@ module.exports = function(grunt) {
 			contentsJson = grunt.file.readJSON('../../_processing/docs/contents.json');
 		}
 		return contentsJson;
+	}
+	
+	var adsList;
+	var getAdsList = function(){
+		if(!adsList) {
+			adsList = grunt.file.read('../../_dev/contents/ads/ads.html');
+		}
+		return adsList;
 	}
 	
 	var getMetaTags = function(hash){
@@ -162,9 +171,20 @@ module.exports = function(grunt) {
 		
 	};
 	
+	var getAds = function(tag){
+		
+		var match = ADS_REGEXP.exec(tag);
+		var id = match[1];
+		
+		var list = getAdsList();
+		
+		var result = RegExp("<div id='" + id + "'>[\\S\\s]*?<\\/div>").exec(list)[0];
+		return result;
+		
+	};
+	
 	var getCjs = function(hash){
 		
-		console.log(hash);
 		var match = CJS_REGEXP.exec(hash);
 		var category = match[1];
 		var id = match[2];
@@ -205,7 +225,6 @@ module.exports = function(grunt) {
 			
 			var category = items[i].category;
 			var id = items[i].id;
-			console.log(category + id);
 			
 			var subCategory;
 			if (!items[i].subCategory){
@@ -300,6 +319,14 @@ module.exports = function(grunt) {
 			js_main: {
 				src: tonkatsuScriptDest,
 				dest: tonkatsuScriptDest
+			},
+			js_cont: {
+			  files: [{
+				  expand: true,
+				  cwd: '../../_processing/contents/',
+				  src: '**/*.js',
+				  dest: '../../_processing/contents/'
+			  }]
 			}
 		},
 		
@@ -511,6 +538,26 @@ module.exports = function(grunt) {
 					}
 				}]
 			},
+			contents_ad: {
+				src: ['../../_processing/contents/**/*.html'],
+				overwrite: true,
+				replacements: [{
+					from: ADS_REGEXP, 
+					to: function(id){
+						return getAds(id);
+					}
+				},{
+					from: ADS_REGEXP, 
+					to: function(id){
+						return getAds(id);
+					}
+				},{
+					from: ADS_REGEXP, 
+					to: function(id){
+						return getAds(id);
+					}
+				}]
+			},
 			contents_cjs: {
 				src: ['../../_processing/contents/**/*.html'],
 				overwrite: true,
@@ -547,7 +594,7 @@ module.exports = function(grunt) {
 	var htmlTasks = ['replace:main', 'htmlmin:main', 'copy:main', 'copy:favicon'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
-	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
+	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
 	
 	var imageTasks = ['clean:image', 'copy:image_s', 'responsive_images', 'copy:image_m'];
 	

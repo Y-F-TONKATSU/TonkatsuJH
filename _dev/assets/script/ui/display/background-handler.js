@@ -33,7 +33,7 @@ var BackgroundHandler;
 		
 		var ch = new CanvasHandler(canvas);
 		ch.setCanvasWidth(1920);
-		ch.setCanvasHeight(1080);
+		ch.setCanvasHeight(1200);
 		$(ch.getCanvas()).css({
 			width:'100%',
 			height:'100%'
@@ -58,6 +58,68 @@ var BackgroundHandler;
 		return $(elem).data('frame') >= 1;
 	}
 	
+	var cjsLoader = {
+		
+		'crouton':function(){
+			
+			var loader = new createjs.LoadQueue(false);
+			
+			var that = this;
+			
+			var fch = _getNewFittedCanvasHandler(that.foreDiv);
+			var bch = _getNewFittedCanvasHandler(that.backDiv);
+			
+			loader.addEventListener("fileload", function(evt) {
+				
+				console.log('A Cjs Image Loaded');
+						
+				if (evt.item.type == "image") { 
+					cjsImages[evt.item.id] = evt.result;
+				}
+				
+			});
+			
+			loader.addEventListener("complete", function (evt) {
+				
+				console.log('Cjs Image Loading Complete');
+						
+				var bCanvas = bch.getCanvas();
+				var fCanvas = fch.getCanvas();
+				
+				that.foreMc = new cjsLib.crouton_v006().foreground;
+				that.backMc = new cjsLib.crouton_v006().background;
+				that.foreMc.gotoAndPlay('Scene002_start');
+				that.backMc.gotoAndPlay('Scene002_start');
+				
+				that.bStage = new createjs.Stage(bCanvas);
+				that.bStage.addChild(that.backMc);
+				that.bStage.update();
+				that.fStage = new createjs.Stage(fCanvas);
+				that.fStage.addChild(that.foreMc);
+				that.fStage.update();
+				
+				createjs.Ticker.setFPS(cjsLib.properties.fps);
+				createjs.Ticker.addEventListener("tick", that.fStage);
+				createjs.Ticker.addEventListener("tick", that.bStage);
+				createjs.Ticker.addEventListener("tick", function(e){
+					if(that.foreMc.currentLabel.indexOf('_stop') >= 0){
+						that.foreMc.stop();
+					}
+					if(that.backMc.currentLabel.indexOf('_stop') >= 0){
+						that.backMc.stop();
+					}
+				});
+				
+				that.setCjsLoop(fch, that.foreMc);
+				that.setCjsLoop(bch, that.backMc);
+				
+			});
+			
+			loader.loadManifest(cjsLib.properties.manifest);
+			
+		}
+	};
+		
 	BackgroundHandler.prototype = {
 		
 		PAGE_DATA_INDEX:{
@@ -121,76 +183,31 @@ var BackgroundHandler;
 			
 		},
 		
-		setCjs:function(cjsLib, cjsImages){
-			
-			var loader = new createjs.LoadQueue(false);
-			
-			var that = this;
-			
-			var ch = _getNewFittedCanvasHandler(that.backDiv);
-			
-			loader.addEventListener("fileload", function(evt) {
-				
-				console.log('A Cjs Image Loaded');
-						
-				if (evt.item.type == "image") { 
-					cjsImages[evt.item.id] = evt.result;
-				}
-				
-			});
-			
-			loader.addEventListener("complete", function (evt) {
-				
-				console.log('Cjs Image Loading Complete');
-						
-				var canvas = ch.getCanvas();
-				
-				that.root = new cjsLib.crouton_v004();
-				that.root.gotoAndPlay('Scene002_start');
-				
-				that.stage = new createjs.Stage(canvas);
-				that.stage.addChild(that.root);
-				that.stage.update();
-				
-				createjs.Ticker.setFPS(cjsLib.properties.fps);
-				createjs.Ticker.addEventListener("tick", that.stage);
-				createjs.Ticker.addEventListener("tick", function(e){
-					if(that.root.currentLabel.indexOf('_stop') >= 0){
-						that.root.stop();
-					}
-				});
-				
-				that.setCjsLoop(ch);
-				
-			});
-			
-			loader.loadManifest(cjsLib.properties.manifest);
-			
+		setCjs:function(cjsLib, cjsImages, loaderType){
+			cjsLoader[loaderType].call(this);
 		},
 		
-		setCjsLoop:function(ch){
+		setCjsLoop:function(ch, mc){
 			
 			var that = this;
 			
-			var mainElem;
+			that.mainElem;
 			
-			domUtil.setScrollListener(function(){
-				mainElem = domUtil.getActiveSection();
-				console.log(mainElem);
+			scrollHandler.setScrollListener(function(){
+				that.mainElem = scrollHandler.getActiveSection();
 			});
 			
-			domUtil.triggerScroll();
+			scrollHandler.triggerScroll();
 			
 			
 			var currentScene;
 			
 			that.animationTaskList.push(function(){
 									
-				if(mainElem){
-					var scene = $(mainElem).attr('data-cjs-scene');
+				if(that.mainElem){
+					var scene = $(that.mainElem).attr('data-cjs-scene');
 					if(scene !== currentScene){
-						console.log(scene);
-						that.root.gotoAndPlay(scene + '_start');
+						mc.gotoAndPlay(scene + '_start');
 						currentScene = scene;
 					}
 				}
@@ -208,11 +225,11 @@ var BackgroundHandler;
 			
 			console.log('Setting Page..');
 			
-			domUtil.resetFrames();
+			scrollHandler.resetFrames();
 			
 			this._animationList = [];
 			
-			domUtil.triggerScroll();
+			scrollHandler.triggerScroll();
 									
 		},
 		

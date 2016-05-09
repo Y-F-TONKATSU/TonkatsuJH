@@ -1,9 +1,8 @@
 var Tonkatsu = {};
 
 var urlHandler;
-var displayHandler;
 var domHandler;
-var domUtil;
+var scrollHandler;
 var bgHandler;
 
 var Animators = {};
@@ -11,9 +10,8 @@ var Animators = {};
 Tonkatsu.init = function(){
 	
 	urlHandler = new UrlHandler();
-	displayHandler = new DisplayHandler();
 	domHandler = new DomHandler();
-	domUtil = new DomUtil($('#mainDoc'));
+	scrollHandler = new ScrollHandler($('#mainDoc'));
 	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
 	
 	urlHandler.setChangePageListener(domHandler.changeTo);
