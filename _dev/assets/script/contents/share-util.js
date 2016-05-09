@@ -10,7 +10,6 @@ var ShareUtil;
 			
 			$(".fb-comments").css({
 				position:"relative",
-				zIndex:$taz.SNS,
 			});
 			
 			window.fbAsyncInit = function() {
@@ -54,13 +53,9 @@ var ShareUtil;
 		
 		getFbLikeTag:function(url, width){
 			
-			if($gm.getDisplaySize() == 2){
-				var showFace = "false"
-			} else{
-				var showFace = "true"
-			}
+			var showFace = "false"
 			
-			return $('<div class="fb-like" data-href="' + url + '" data-width="' + width + '" data-show-faces="' + showFace + '"></div>');
+			return $('<div class="fb-like" data-href="' + url + '" data-layout="box_count" data-action="like" data-show-faces="false" data-share="true"></div>');
 			
 		},
 		
