@@ -105,9 +105,13 @@ var BackgroundHandler;
 				createjs.Ticker.addEventListener("tick", that.bStage);
 				createjs.Ticker.addEventListener("tick", function(e){
 					var label = that.foreMc.currentLabel;
-					if(currentLabel !== label &&
-						cjsEvents.label[label]){
-						cjsEvents.label[label].call(that);
+					if(currentLabel !== label){
+						if(cjsEvents.labelOut[currentLabel]){
+							cjsEvents.labelOut[currentLabel].call(that);
+						}
+						if(cjsEvents.label[label]){
+							cjsEvents.label[label].call(that);
+						}
 					}
 					currentLabel = label;
 					if(label.indexOf('_stop') >= 0){

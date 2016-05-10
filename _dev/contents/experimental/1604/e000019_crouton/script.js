@@ -2111,25 +2111,27 @@ p.nominalBounds = new cjs.Rectangle(-0.7,-0.7,43.7,29);
 	this.instance = new lib.PanelSkin();
 	this.instance.setTransform(63.9,84.3,1.167,1.167,19.2,0,0,90,84);
 
-	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f().s("#000000").ss(1,1,1).p("AF1jDIAAIjQgBAbgbAGIqeiBQgpgIgFg4IgBoWQgBgwApAHIKTB/QAyAUgEApg");
-	this.shape_1.setTransform(47.3,45.8);
+	this.instance.mask = mask;
 
-	this.shape_2 = new cjs.Shape();
-	this.shape_2.graphics.f("#FFFFCC").s().p("AlFEAQgpgIgFg4IgBoWQgBgwApAHIKTB/QAyAUgEApIAAIjQgBAbgbAGg");
-	this.shape_2.setTransform(47.3,45.8);
-
-	this.instance.mask = this.shape_1.mask = this.shape_2.mask = mask;
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance}]},4).to({state:[{t:this.shape_2},{t:this.shape_1},{t:this.instance}]},5).wait(11));
-	this.timeline.addTween(cjs.Tween.get(this.instance).to({regX:89.9,regY:84.2,scaleX:0.96,scaleY:1.01,rotation:0,skewX:21,skewY:12.8,x:60,y:92.2},4).wait(5).to({regX:90,regY:84,scaleX:1,scaleY:1,rotation:19.2,skewX:0,skewY:0,x:75.3,y:267.7},0).wait(11));
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({regX:89.9,regY:84.2,scaleX:0.96,scaleY:1.01,rotation:0,skewX:21,skewY:12.8,x:60,y:92.2},4).to({regX:90,regY:84,scaleX:1,scaleY:1,rotation:19.2,skewX:0,skewY:0,x:75.3,y:267.7},5).wait(11));
 
 	// Buttons
-	this.shape_3 = new cjs.Shape();
-	this.shape_3.graphics.f("#FF0000").s().p("AAbBbQgFgGAFgIIAIgFQAEgCACgEIALgXQADgKABgFQgEgLgBgFQgBgMAJgDQADgDAGABQAFAAADAEQACABABAHIAAALIADAKIgCAKIgLAcIgDAFIgFAJIgLALIgJAFIgFABQgFAAgEgGgAhMA5QgFAAgEgDQgFgEABgGQABgGAFgDQAEgDAJAAIAQgBIAAAAIADgEIADgCIAAgDIABgDIAAgDQgJABgDgCQgEgCgBgFQAAgEABgEIACgBIADgDIAEgBIAFgBIALgBIAIgCIAOgDIAFgBIAGAAIAAAAQAFACAAACQABADABADQABAGgEAGIgGADIgOABIAAACIABABIgBAEIAAAFIgBAEIAIAAIAMAAIgBgBQAEADACAEIABAHQgBAFgDACQgCAFgKABIgdABQgQgBgJABIgHABIgDAAgAh4AbQgIgBgCgGQgDgFAFgHQACgFAHgDIAtgnIAQgTQAIgLANgLIAHgFQAFgBAFABQAFAAADAEQACAEgBAEQgBADgEAGIg8A9IgOAJIgJAHIgJAJQgFAFgGAAIgBAAgABZAKQgFgCAAgEQgEgFAHgHQAEgEAKgFIgUgGIgOgBIgagEQgPgBgEgFQgFgEABgHQACgGAGgDQAEgBAJABIAhAEIAZAEIASAFIARACQAKACACAHQAEAIgHAIQgEAFgIAEIgIAEIgGADIgSAKIgCAAQgDAAgDgCgAiGgWIgHgDIgCgDIgCgGIABgFIACgDIADgDIAEgCQACgCAFAAIAFAAIADAAIAIAAIADgBIAGABQAHABACAHIAAAIIgDAEQgDAEgHACIgJABgAh3hBIgHgCQgEAAgFgDQgEgEgBgDQgDgHAHgGIAFgEIAKABQAGACAGgBIAEgBIADgCIAGAAIABAAIAFADIACADIACAGQgBADgEAFIgIAFIgHADIgGACg");
-	this.shape_3.setTransform(72.3,104.6);
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#FF0000").s().p("AAbBbQgFgGAFgIIAIgFQAEgCACgEIALgXQADgKABgFQgEgLgBgFQgBgMAJgDQADgDAGABQAFAAADAEQACABABAHIAAALIADAKIgCAKIgLAcIgDAFIgFAJIgLALIgJAFIgFABQgFAAgEgGgAhMA5QgFAAgEgDQgFgEABgGQABgGAFgDQAEgDAJAAIAQgBIAAAAIADgEIADgCIAAgDIABgDIAAgDQgJABgDgCQgEgCgBgFQAAgEABgEIACgBIADgDIAEgBIAFgBIALgBIAIgCIAOgDIAFgBIAGAAIAAAAQAFACAAACQABADABADQABAGgEAGIgGADIgOABIAAACIABABIgBAEIAAAFIgBAEIAIAAIAMAAIgBgBQAEADACAEIABAHQgBAFgDACQgCAFgKABIgdABQgQgBgJABIgHABIgDAAgAh4AbQgIgBgCgGQgDgFAFgHQACgFAHgDIAtgnIAQgTQAIgLANgLIAHgFQAFgBAFABQAFAAADAEQACAEgBAEQgBADgEAGIg8A9IgOAJIgJAHIgJAJQgFAFgGAAIgBAAgABZAKQgFgCAAgEQgEgFAHgHQAEgEAKgFIgUgGIgOgBIgagEQgPgBgEgFQgFgEABgHQACgGAGgDQAEgBAJABIAhAEIAZAEIASAFIARACQAKACACAHQAEAIgHAIQgEAFgIAEIgIAEIgGADIgSAKIgCAAQgDAAgDgCgAiGgWIgHgDIgCgDIgCgGIABgFIACgDIADgDIAEgCQACgCAFAAIAFAAIADAAIAIAAIADgBIAGABQAHABACAHIAAAIIgDAEQgDAEgHACIgJABgAh3hBIgHgCQgEAAgFgDQgEgEgBgDQgDgHAHgGIAFgEIAKABQAGACAGgBIAEgBIADgCIAGAAIABAAIAFADIACADIACAGQgBADgEAFIgIAFIgHADIgGACg");
+	this.shape_1.setTransform(72.3,104.6);
 
-	this.timeline.addTween(cjs.Tween.get(this.shape_3).wait(20));
+	this.timeline.addTween(cjs.Tween.get(this.shape_1).wait(20));
+
+	// レイヤー 6
+	this.shape_2 = new cjs.Shape();
+	this.shape_2.graphics.f().s("#000000").ss(1,1,1).p("AF1jDIAAIjQgBAbgbAGIqeiBQgpgIgFg4IgBoWQgBgwApAHIKTB/QAyAUgEApg");
+	this.shape_2.setTransform(47.3,45.8);
+
+	this.shape_3 = new cjs.Shape();
+	this.shape_3.graphics.f("#FFFFCC").s().p("AlFEAQgpgIgFg4IgBoWQgBgwApAHIKTB/QAyAUgEApIAAIjQgBAbgbAGg");
+	this.shape_3.setTransform(47.3,45.8);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_3},{t:this.shape_2}]}).wait(20));
 
 	// レイヤー 4
 	this.instance_1 = new lib.Meter();

@@ -73,7 +73,7 @@ var ShareUtil;
 		
 		getHatenaTag:function(url, title){
 			
-			return $('<a href="http://b.hatena.ne.jp/entry/' + url + '" class="hatena-bookmark-button" data-hatena-bookmark-title="' + title + '" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img class="noEdit" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>');
+			return $('<a href="http://b.hatena.ne.jp/entry/' + url + '" class="hatena-bookmark-button" data-hatena-bookmark-title="' + title + '" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" async="async"/></a>');
 			
 		},
 		
@@ -81,9 +81,12 @@ var ShareUtil;
 			
 			var shareDiv = $('<div class="share"></div>');
 			$(shareDiv).append(ShareUtil.getFbLikeTag(url))
+				.append($('<br><br>'))
 				.append(ShareUtil.getTweetTag(url, title))
+				.append($('<br><br>'))
 				.append(ShareUtil.getGooglePlusTag(url))
-				.append(ShareUtil.getHatenaTag(url));
+				.append($('<br><br>'))
+				.append(ShareUtil.getHatenaTag(url), title);
 				
 			return shareDiv;
 		},
@@ -94,7 +97,6 @@ var ShareUtil;
 			var interval = setInterval(function(){
 				if(_fbApiInit == true){
 					FB.XFBML.parse();
-					trace("FB Unit Initiated");
 					clearInterval(interval);
 				}
 			}, 3000)

@@ -1,20 +1,24 @@
 var cjsEvents = {
 	'label':{
 		'Scene006_stop':function(){
-			ShareUtil.init();
-			var shareDiv = ShareUtil.getAllTags('http://ton-katsu.net/contents/experimental/1604/e000019_crouton/main.html', 'クルトンの作り方');
+			var shareDiv = ShareUtil.getAllTags('http://ton-katsu.net/public/contents/experimental/1604/e000019_crouton/main.html', 'クルトンの作り方');
 
-			$(shareDiv).append(tw).append(gp).css({
+			$(shareDiv).addClass('share_crouton').css({
 				'position':'fixed',
-				'width':'20%',
-				'height':'20%',
-				'top':'25%',
+				'width':'22%',
+				'height':'31%',
+				'top':'27%',
 				'left':'20%',
-				
+				'overflowY':'auto'
 			});
 			$('article').append(shareDiv);
 			
 			ShareUtil.render();
+		}
+	},
+	'labelOut':{
+		'Scene006_stop':function(){
+			$('.share_crouton').remove();
 		}
 	}
 	

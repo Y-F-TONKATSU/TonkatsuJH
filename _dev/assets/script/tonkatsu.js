@@ -9,6 +9,8 @@ var Animators = {};
 
 Tonkatsu.init = function(){
 	
+	ShareUtil.init();
+	
 	urlHandler = new UrlHandler();
 	domHandler = new DomHandler();
 	scrollHandler = new ScrollHandler($('#mainDoc'));
