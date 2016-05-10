@@ -28,10 +28,12 @@ module.exports = function(grunt) {
 	var FOOTER_REGEXP = new RegExp('<!--footer--' + modePattern + '(\\d{6})-->');
 	var ADS_REGEXP = new RegExp('<!--ad--(.+?)-->');
 	var CJS_REGEXP = new RegExp('<!--cjs--' + modePattern + '(\\d{6})-->');
+	var CJS_EVENTS_REGEXP = new RegExp('<!--cjsEvents--' + modePattern + '(\\d{6})-->');
 	
 	//List for JS Files that compose site's script file
 	var jsList = [
 		'../../_dev/assets/script/tonkatsu.js',
+		'../../_dev/assets/script/contents/share-util.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
 		'../../_dev/assets/script/lib/url-handler.js',
 		'../../_dev/assets/script/lib/scroll-handler.js',
@@ -200,14 +202,16 @@ module.exports = function(grunt) {
 		}
 		
 		var path = items[i].cjs;
+		var eventsPath = items[i].cjsEvents;
 		var imagePath = items[i].cjsImages;
 		
 		var script = grunt.file.read('../../_processing/' + path);
+		var events = grunt.file.read('../../_processing/' + eventsPath);
 		
 		//Fix Image Path
 		var r = script.replace(/{src:"/g, '{src:"' + imagePath);
 		
-		var tag = '<script>' + r + '</script>';
+		var tag = '<script>' + r + events + '</script>';
 
 		return tag;
 		

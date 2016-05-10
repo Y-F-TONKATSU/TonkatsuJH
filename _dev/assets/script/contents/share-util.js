@@ -51,7 +51,7 @@ var ShareUtil;
 			
 		},
 		
-		getFbLikeTag:function(url, width){
+		getFbLikeTag:function(url){
 			
 			var showFace = "false"
 			
@@ -61,7 +61,7 @@ var ShareUtil;
 		
 		getTweetTag:function(url, title){
 			
-			return $('<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + url +'" data-lang="ja"  data-text="' + title + '">ツイート</a>');
+			return $('<div><a href="https://twitter.com/share" class="twitter-share-button" data-url="' + url +'" data-lang="ja"  data-text="' + title + '">ツイート</a></div>');
 			
 		},
 	
@@ -75,6 +75,17 @@ var ShareUtil;
 			
 			return $('<a href="http://b.hatena.ne.jp/entry/' + url + '" class="hatena-bookmark-button" data-hatena-bookmark-title="' + title + '" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img class="noEdit" src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>');
 			
+		},
+		
+		getAllTags:function(url, title){
+			
+			var shareDiv = $('<div class="share"></div>');
+			$(shareDiv).append(ShareUtil.getFbLikeTag(url))
+				.append(ShareUtil.getTweetTag(url, title))
+				.append(ShareUtil.getGooglePlusTag(url))
+				.append(ShareUtil.getHatenaTag(url));
+				
+			return shareDiv;
 		},
 		
 		render:function(url){

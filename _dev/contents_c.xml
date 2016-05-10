@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+	<channel>
+		<title>とんかつひろば</title>
+		<link>http://ton-katsu.net/</link>
+		<description>Web サイト『とんかつひろば』はあらゆるアイデアを詰め込む変幻自在の器を目指して設計されました。形式としては Web における表現の可能性を追求する要塞、内容は山田.F.とんかつの試行錯誤の跡です。アニメーションを多用した動的なUIは、哲学者イマニュエル・カントの心を満たしたという3つのもの、すなわち、頭上の星、内なる道徳律、目前のカレーへの賞賛を表しています。</description>
+		<lastBuildDate>Sun, 21 Jun 2015 22:10:00 +0900</lastBuildDate>
+
+		<item>
+			<title>クルトンの作り方</title>
+			<link>http://ton-katsu.net/contents/experimental/1604/e000019_crouton/main.html</link>
+			<cjs>contents/experimental/1604/e000019_crouton/script.js</cjs>
+			<cjsEvents>contents/experimental/1604/e000019_crouton/event.js</cjsEvents>
+			<cjsImages>contents/experimental/1604/e000019_crouton/</cjsImages>
+			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>
+			<pubDate>Mon, 21 Mar 2016 22:00:00 +0900</pubDate>
+			<category>experimental</category>
+			<id>000019</id>
+			<subCategory>アニメーション</subCategory>
+			<series>とんかつクッキング</series>
+			<mainThumb></mainThumb>
+			<tags>クルトン レシピ 作り方 経済再生担当大臣 カジキマグロ</tags>
+			<layout>flash</layout>
+			<type>article</type>
+		</item>
+
+	</channel>
+</rss>

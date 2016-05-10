@@ -45,7 +45,6 @@ var ScrollHandler;
 		
 		isCenter : function(rect){
 			var center = $(this._parent).height() / 2;
-			console.log(rect);
 			return center >= rect.top && center <= rect.bottom;
 			
 		},

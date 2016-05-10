@@ -79,6 +79,8 @@ var BackgroundHandler;
 				
 			});
 			
+			var currentLabel = '';
+			
 			loader.addEventListener("complete", function (evt) {
 				
 				console.log('Cjs Image Loading Complete');
@@ -102,8 +104,15 @@ var BackgroundHandler;
 				createjs.Ticker.addEventListener("tick", that.fStage);
 				createjs.Ticker.addEventListener("tick", that.bStage);
 				createjs.Ticker.addEventListener("tick", function(e){
-					if(that.foreMc.currentLabel.indexOf('_stop') >= 0){
+					var label = that.foreMc.currentLabel;
+					if(currentLabel !== label &&
+						cjsEvents.label[label]){
+						cjsEvents.label[label].call(that);
+					}
+					currentLabel = label;
+					if(label.indexOf('_stop') >= 0){
 						that.foreMc.stop();
+						
 					}
 					if(that.backMc.currentLabel.indexOf('_stop') >= 0){
 						that.backMc.stop();
@@ -224,8 +233,6 @@ var BackgroundHandler;
 		setPage:function(w, h){
 			
 			console.log('Setting Page..');
-			
-			scrollHandler.resetFrames();
 			
 			this._animationList = [];
 			
