@@ -76,12 +76,52 @@ var CanvasHandler;
 	
 		},
 		
+		getRatio:function(){
+			return $(this._canvas).attr('height') / $(this._canvas).attr('width');
+		},
+		
 		fitCanvas:function(){
 			
+			var ratio = DisplayUtil.getRatio();
+			
+			var w, h, t, l;
+			
+			if(DisplayUtil.isLandscape()){
+				if(DisplayUtil.isOverRatio()){
+					h = DisplayUtil.getHeight();
+					w = h * DisplayUtil.getInvertedRatio();
+					l = (DisplayUtil.getWidth() - w) * 0.5
+					t = 0;					
+				} else {
+					w = DisplayUtil.getWidth();
+					h = w * DisplayUtil.getRatio();
+					t = (DisplayUtil.getHeight() - h) * 0.5
+					l = 0;
+				}
+			} else {
+				if(DisplayUtil.isOverRatio()){
+					w = DisplayUtil.getWidth();
+					h = w * DisplayUtil.getInvertedRatio();
+					t = (DisplayUtil.getHeight() - h) * 0.5
+					l = 0;
+				} else {
+					h = DisplayUtil.getHeight();
+					w = h * DisplayUtil.getRatio();
+					l = (DisplayUtil.getWidth() - w) * 0.5
+					t = 0;					
+				}
+			}
+			
 			$(this._canvas).attr({
-				'width': $(window).innerWidth(),
-				'height': $(window).innerHeight()
-			}).css('position', 'fixed');
+				'width': DisplayUtil.RATIO_X,
+				'height': DisplayUtil.RATIO_Y
+			}).css({
+				'position':'fixed',
+				'width': w,
+				'height': h,
+				'top':t,
+				'left':l
+			});
 	
 		},
 	

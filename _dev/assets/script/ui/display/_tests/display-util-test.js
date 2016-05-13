@@ -47,6 +47,22 @@ var testDisplayUtil = function(){
 			$('#size').text(DisplayUtil.getSize());
 		});
 		
+		test('getScreenRatio()', function() {
+			
+			$('#ratio').text(DisplayUtil.getScreenRatio());
+			
+		});
+		
+		test('isOverRatio()', function() {
+			var str;
+			if(DisplayUtil.isOverRatio()){
+				str = '長過ぎる'
+			} else {
+				str = '長過ぎない'
+			}
+			$('#over').text(str);
+		});
+		
 	});
 	
 	$(function(){

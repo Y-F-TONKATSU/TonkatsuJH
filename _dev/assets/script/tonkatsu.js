@@ -15,6 +15,7 @@ Tonkatsu.init = function(){
 	domHandler = new DomHandler();
 	scrollHandler = new ScrollHandler($('#mainDoc'));
 	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
+	bgHandler.putShadow();
 	
 	urlHandler.setChangePageListener(domHandler.changeTo);
 	

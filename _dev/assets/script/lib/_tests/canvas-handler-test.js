@@ -115,19 +115,29 @@ var testCanvasHandler = function(){
 			assert.strictEqual('rgba(100, 150, 200, 0.33333333)', ch.rgbas(100, 150, 200, 1 / 3), "a の値が長過ぎるときは丸める");
 		});
 		
+		test("getRatio()", function() {
+			assert.strictEqual(3 / 4, ch.getRatio(), "Canvas の縦横比を取得できる");
+		});
+		
 		test("fitCanvas()", function() {
+			ch = new CanvasHandler($('.canvas7').get(0));
 			ch.fitCanvas();
-			assert.strictEqual($(window).innerHeight(), ch.getCanvasHeight(), "Canvas の高さがウィンドウの高さとおなじになった。");
-			assert.strictEqual($(window).innerWidth(), ch.getCanvasWidth(), "Canvas の幅がウィンドウの幅とおなじになった。");
+			$(ch.getCanvas()).css({
+				'backgroundColor':'rgba(100, 150, 200, 0.2)'
+			});
 		});
 		
 				
 	});
 	
 	$(function(){
-		
+		console.log('!');
 		mocha.run();
 		
-	})
+		$(window).resize(function(){
+			location.reload();
+		})
+		
+	});
 	
 }();

@@ -4,6 +4,17 @@ var DisplayUtil;
 	
 	DisplayUtil = {
 		
+		RATIO_X: 1920,
+		RATIO_Y: 1200,
+		
+		getRatio:function(){
+			return DisplayUtil.RATIO_Y / DisplayUtil.RATIO_X;
+		},
+		
+		getInvertedRatio:function(){
+			return DisplayUtil.RATIO_X / DisplayUtil.RATIO_Y;
+		},
+		
 		THRESHOLD:{
 			small:600,
 			medium:960,
@@ -14,7 +25,7 @@ var DisplayUtil;
 			
 			var larger;
 			
-			if(this.getOrientation() === 'landscape'){
+			if(DisplayUtil.getOrientation() === 'landscape'){
 				larger = this.getWidth();
 			} else {
 				larger = this.getHeight();
@@ -39,13 +50,32 @@ var DisplayUtil;
 			return	window.innerHeight;
 		},
 		
+		isOverRatio:function(){
+			if(DisplayUtil.isLandscape()){
+				return DisplayUtil.getScreenRatio() < DisplayUtil.getRatio();
+			} else {
+				return DisplayUtil.getScreenRatio() > DisplayUtil.getInvertedRatio();
+			}
+		},
+		
+		isPortrait:function(){
+			return DisplayUtil.getOrientation() == 'portrait';
+		},
+		
+		isLandscape:function(){
+			return DisplayUtil.getOrientation() == 'landscape';
+		},
+		
 		getOrientation:function(){
 			var v = 'portrait';
-			if(this.getWidth() >= this.getHeight()){
+			if(DisplayUtil.getWidth() >= DisplayUtil.getHeight()){
 				v = 'landscape';
 			}
-			
 			return	v;
+		},
+		
+		getScreenRatio:function(){
+			return	DisplayUtil.getHeight() / DisplayUtil.getWidth();
 		}
 		
 	};
