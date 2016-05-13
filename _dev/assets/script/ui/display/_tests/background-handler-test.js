@@ -10,7 +10,7 @@ var testBackgroundHandler = function(){
 			bm = new BackgroundHandler($('#front'), $('#back'));
 		});
 		
-		test('BackgroundHandler(front, back)', function() {
+		test('BackgroundHandler()', function() {
 			assert.strictEqual('function', typeof BackgroundHandler, 'コンストラクタ関数 BackgroundHandler() が存在する。');
 		});
 						

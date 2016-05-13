@@ -20,8 +20,9 @@ var DomHandler;
 			newDoc.html(result);
 			var type = $(newDoc).find('article').attr('data-doc-type');
 			var loader = $(newDoc).find('article').attr('data-loader-type');
+			var root = $(newDoc).find('article').attr('data-cjs-root');
 			console.log(processDoc);
-			processDoc[type](newDoc, loader);
+			processDoc[type](newDoc, loader, root);
 			
 		});
 		
@@ -29,7 +30,7 @@ var DomHandler;
 	
 	var processDoc = {
 		
-		'cjsLabeled':function(doc, loader){
+		'cjsLabeled':function(doc, loader, root){
 			
 			var h = DisplayUtil.getHeight();
 		
@@ -56,7 +57,7 @@ var DomHandler;
 			$('#mainDoc').empty()
 				.html($(doc).find('article').html());
 			
-			bgHandler.setCjs(cjsLib, cjsImages, loader);
+			bgHandler.setCjs(cjsLib, cjsImages, loader, root);
 			
 		},
 		
@@ -76,8 +77,6 @@ var DomHandler;
 		$('#indexContainer').show();
 		$('#mainDoc').hide();
 		
-		bgHandler.setPage();
-			
 	};
 	
 	

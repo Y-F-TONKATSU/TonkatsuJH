@@ -2,6 +2,12 @@ var BackgroundHandler;
 
 (function(){
 	
+	var ZI_SHADOW = 1000;
+	
+	var shadowHandler;
+	var cjsHandler;
+	var frameAnimationHandler;
+	
 	BackgroundHandler = function(fdiv, bdiv){
 		
 		this.foreDiv = fdiv;
@@ -9,17 +15,6 @@ var BackgroundHandler;
 		this.animationTaskList = [];
 		
 	};
-	
-	var _getNewCanvasHandler = function(div){
-		
-		var canvas = $('<canvas></canvas>').get(0);
-		$(div).append(canvas);
-		
-		var ch = new CanvasHandler(canvas);
-		ch.fitCanvas();
-		
-		return ch;
-	}
 	
 	var _getNewFittedCanvasHandler = function(div){
 		
@@ -30,22 +25,6 @@ var BackgroundHandler;
 		ch.fitCanvas();
 		
 		return ch;
-	}
-	
-	var _nextFrame = function(elem, totalFrames){
-		$(elem).data('frame', $(elem).data('frame') + (1 / totalFrames));
-	}
-	
-	var _prevFrame = function(elem, totalFrames){
-		$(elem).data('frame', $(elem).data('frame') - (1 / totalFrames));
-	}
-	
-	var _isAtStart = function(elem){
-		return $(elem).data('frame') <= 0;
-	}
-	
-	var _isAtEnd = function(elem){
-		return $(elem).data('frame') >= 1;
 	}
 	
 	var putShadowLandscape = function(ch, ctx, shadowWidth, w, h){
@@ -59,6 +38,7 @@ var BackgroundHandler;
 		grad2.addColorStop(0.6,ch.rgbas(0, 0, 0, 0.5));
 		grad2.addColorStop(0.0,ch.rgbas(0, 0, 0, 0));
 			
+		ctx.beginPath();
 		ctx.rect(0,0, shadowWidth, h);
 		ctx.fillStyle = grad;
 		ctx.fill();
@@ -67,7 +47,7 @@ var BackgroundHandler;
 		ctx.fillStyle = grad2;
 		ctx.fill();
 		
-	}
+	};
 	
 	var putShadowPortrait = function(ch, ctx, shadowWidth, w, h){
 		
@@ -79,7 +59,8 @@ var BackgroundHandler;
 		grad2.addColorStop(1.0,ch.rgbas(0, 0, 0, 1));
 		grad2.addColorStop(0.6,ch.rgbas(0, 0, 0, 0.5));
 		grad2.addColorStop(0.0,ch.rgbas(0, 0, 0, 0));
-			
+		
+		ctx.beginPath();
 		ctx.rect(0,0, w, shadowWidth);
 		ctx.fillStyle = grad;
 		ctx.fill();
@@ -87,19 +68,16 @@ var BackgroundHandler;
 		ctx.rect(0, h - shadowWidth, w, h);
 		ctx.fillStyle = grad2;
 		ctx.fill();
-		
-	}
+			
+	};
 	
 	var cjsLoader = {
 		
-		'crouton':function(){
+		'crouton':function(fch, bch, root){
 			
 			var loader = new createjs.LoadQueue(false);
 			
 			var that = this;
-			
-			var fch = _getNewFittedCanvasHandler(that.foreDiv);
-			var bch = _getNewFittedCanvasHandler(that.backDiv);
 			
 			loader.addEventListener("fileload", function(evt) {
 				
@@ -120,14 +98,13 @@ var BackgroundHandler;
 				var bCanvas = bch.getCanvas();
 				var fCanvas = fch.getCanvas();
 				
-				that.foreMc = new cjsLib.crouton_v006().foreground;
-				that.backMc = new cjsLib.crouton_v006().background;
-				that.foreMc.gotoAndPlay('Scene002_start');
-				that.backMc.gotoAndPlay('Scene002_start');
+				that.foreMc = new cjsLib[root]().foreground;
+				that.backMc = new cjsLib[root]().background;				
 				
 				that.bStage = new createjs.Stage(bCanvas);
 				that.bStage.addChild(that.backMc);
 				that.bStage.update();
+				
 				that.fStage = new createjs.Stage(fCanvas);
 				that.fStage.addChild(that.foreMc);
 				that.fStage.update();
@@ -167,20 +144,6 @@ var BackgroundHandler;
 		
 	BackgroundHandler.prototype = {
 		
-		PAGE_DATA_INDEX:{
-			'id':'index',
-		},
-		
-		_animationList:[],
-		
-		_drawFrame:function(elem, animator){
-			
-			var frame = $(elem).data('frame');
-			
-			animator(this._frontCanvasHandler, this._backCanvasHandler, frame, elem);
-			
-		},
-		
 		startAnimationLoop:function(){
 			
 			console.log('Start Animation Loop');
@@ -200,8 +163,13 @@ var BackgroundHandler;
 			
 		},
 		
-		setCjs:function(cjsLib, cjsImages, loaderType){
-			cjsLoader[loaderType].call(this);
+		setCjs:function(cjsLib, cjsImages, loaderType, root){
+			
+			var fch = _getNewFittedCanvasHandler(this.foreDiv);
+			var bch = _getNewFittedCanvasHandler(this.backDiv);
+			
+			cjsLoader[loaderType].call(this, fch, bch, root);
+			
 		},
 		
 		setCjsLoop:function(ch, mc){
@@ -215,7 +183,6 @@ var BackgroundHandler;
 			});
 			
 			scrollHandler.triggerScroll();
-			
 			
 			var currentScene;
 			
@@ -239,7 +206,7 @@ var BackgroundHandler;
 			
 			var ch = _getNewFittedCanvasHandler(this.foreDiv);
 			$(ch.getCanvas()).css({
-				'zIndex':1000,
+				'zIndex':ZI_SHADOW,
 			});
 			var ctx = ch.getContext();
 			
@@ -247,7 +214,6 @@ var BackgroundHandler;
 			var h = ch.getCanvasHeight();
 			var shadowWidth = w * 0.05;
 			
-			ctx.beginPath();
 			if(DisplayUtil.isLandscape()){
 				if(DisplayUtil.isOverRatio()){
 					putShadowLandscape(ch, ctx, shadowWidth, w, h);
@@ -263,21 +229,7 @@ var BackgroundHandler;
 			}
 			
 
-		},
-		
-		playCjsScene:function(scene){
-			
-		},
-		
-		setPage:function(w, h){
-			
-			console.log('Setting Page..');
-			
-			this._animationList = [];
-			
-			scrollHandler.triggerScroll();
-									
-		},
+		}
 		
 	};
 	
