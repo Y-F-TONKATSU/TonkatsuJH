@@ -4,15 +4,13 @@ var ScrollHandler;
 	
 	ScrollHandler = function(parent){
 		
-		var that = this;
-		that._parent = parent;
-		that._scrollListener = function(){};
+		this._parent = parent;
+		this._scrollListener = function(){};
 		
-		$(parent).scroll(function(){
+		$(parent).scroll(_.bind(function(){
+			this._scrollListener();
 			
-			that._scrollListener();
-			
-		});
+		}, this));
 		
 	};
 	
@@ -104,34 +102,6 @@ var ScrollHandler;
 			return this._parent;
 		},
 		
-		/* deprecated 
-		getScreenRect : function(elem){
-			
-			var scrollTop = $(this._parent).scrollTop();
-			var scrollLeft = $(this._parent).scrollLeft();
-			var elemTop = $(elem).offset().top;
-			var elemLeft = $(elem).offset().left;
-			
-			return {
-				'top' : elemTop,
-				'bottom' : elemTop + $(elem).height(),
-				'height' : $(elem).height(),
-				'left' : elemLeft,
-				'right' : elemLeft + $(elem).width(),
-				'width' : $(elem).width()
-			};
-		},
-		
-		resetFrames : function(){
-			
-			console.log('reset all div animation frames');
-			
-			$(this._parent).find('.widget')
-				.data('frame', 0);
-			
-		},
-		*/
-
 		getElemLists : function(){
 			
 			var onScreenList = [];

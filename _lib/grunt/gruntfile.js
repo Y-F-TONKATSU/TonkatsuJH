@@ -39,6 +39,8 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/lib/scroll-handler.js',
 		'../../_dev/assets/script/lib/hash.js',
 		'../../_dev/assets/script/ui/display/display-util.js',
+		'../../_dev/assets/script/ui/display/shadow-handler.js',
+		'../../_dev/assets/script/ui/display/cjs-handler.js',
 		'../../_dev/assets/script/ui/display/dom-handler.js',        
 		'../../_dev/assets/script/ui/display/background-handler.js',
 		'../../_dev/assets/script/ui/animators/cjs_animator.js',
