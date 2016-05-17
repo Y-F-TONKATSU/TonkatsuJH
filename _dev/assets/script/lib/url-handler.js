@@ -4,7 +4,8 @@ var UrlHandler;
 	
 	UrlHandler = function(hash){
 		this._currentHash = undefined;
-		this._chagePageListener = function(){};
+		this._chagePageListeners = [];
+		this._chageOptionListeners = [];
 		if(!_.isEmpty(hash)){
 			this.setCurrentHash(hash);
 		}
@@ -12,8 +13,20 @@ var UrlHandler;
 	
 	UrlHandler.prototype = {
 		
-		setChangePageListener:function(f){
-			this._chagePageListener = f;
+		clearChangePageListener:function(){
+			this._chagePageListeners = [];
+		},
+		
+		addChangePageListener:function(f){
+			this._chagePageListeners.push(f);
+		},
+		
+		clearChangeOptionListener:function(){
+			this._chageOptionListeners = [];
+		},
+		
+		addChangeOptionListener:function(f){
+			this._chageOptionListeners.push(f);
 		},
 		
 		getCurrentHash:function(){
@@ -49,6 +62,10 @@ var UrlHandler;
 			return this._currentHash.id;
 		},
 	
+		getCurrentOption:function(){
+			return this._currentHash.option;
+		},
+	
 		validateHash:function(hash){
 			
 			if(_.isEmpty(hash)){
@@ -63,7 +80,8 @@ var UrlHandler;
 			} else if (typeof hash === 'object'){
 				return (
 					Hash.CATEGORY_REGEXP.test(hash.category) &&
-					Hash.ID_REGEXP.test(hash.id)
+					Hash.ID_REGEXP.test(hash.id) &&
+					(_.isEmpty(hash.option) || Hash.OPTION_REGEXP.test(hash.option))
 				);
 			} else {
 				return false;
@@ -71,7 +89,7 @@ var UrlHandler;
 			
 		},
 	
-		isSameHash:function(hash){
+		isSameHash:function(hash, optionOnly){
 			
 			if(_.isEmpty(this._currentHash)){
 				return false;
@@ -89,13 +107,22 @@ var UrlHandler;
 			
 			} else {
 				
+				console.log('URL Validation Failed');
 				obj = Hash.getDefaultHashObject();
 				
 			}
 			
-			return obj.category === this.getCurrentCategory() &&
-				obj.id === this.getCurrentId();	
+			if(optionOnly === true){
+				return obj.option === this.getCurrentOption();	
+			} else {
+				return obj.category === this.getCurrentCategory() &&
+					obj.id === this.getCurrentId();				
+			}
 						
+		},
+		
+		isSameOption:function(hash){
+			this.isSameHash(hash, true);
 		},
 		
 		processHashString:function(hash){
@@ -112,6 +139,7 @@ var UrlHandler;
 					
 					idObj.category = hash.slice(0, value.length);
 					idObj.id = hash.slice(value.length , value.length + Hash.ID_FIGURES);
+					idObj.option = hash.slice(value.length + Hash.ID_FIGURES);
 					
 				}
 				
@@ -123,7 +151,17 @@ var UrlHandler;
 		
 		changeToCurrentHashPage:function(){
 			
-			this._chagePageListener(this._currentHash);
+			_.each(this._chagePageListeners, _.bind(function(listener){
+				listener(this._currentHash);
+			}, this));
+			
+		},
+	
+		changeToCurrentOption:function(){
+			
+			_.each(this._chageOptionListeners, _.bind(function(listener){
+				listener(this.getCurrentOption().slice(1));
+			}, this));
 			
 		},
 	
@@ -132,6 +170,10 @@ var UrlHandler;
 			if(!this.isSameHash(hash)){
 				this.setCurrentHash(hash);
 				this.changeToCurrentHashPage();
+			} else {
+				console.log('same hash');
+				this.setCurrentHash(hash);
+				this.changeToCurrentOption();
 			}
 			
 		}

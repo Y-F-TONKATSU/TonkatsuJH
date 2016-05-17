@@ -69,6 +69,31 @@ var testUrlHandler = function(){
 				category:'image',
 				id:'?0000?',
 			}), false, "特殊文字?を弾く");
+			assert.strictEqual(uh.validateHash('kinema000001_tonkatsu'), true, "オプション付きハッシュを認識する");
+			assert.strictEqual(uh.validateHash('kinema000001_tonk^atsu'), false, "特殊文字の入ったオプションを弾く");
+			assert.strictEqual(uh.validateHash('kinema000001_aaaaaaaaaaaaaaaaaaaaaa'), false, "長過ぎるオプションを弾く");
+			assert.strictEqual(uh.validateHash('kinema000001tonkatsu'), false, "アンダースコアのないオプションを弾く");
+			assert.strictEqual(uh.validateHash({
+				category:'kinema',
+				id:'123456',
+				option:'_curry'
+			}), true, "オプション _curry を受け入れる");
+			assert.strictEqual(uh.validateHash({
+				category:'kinema',
+				id:'123456',
+				option:'_cu?rry'
+			}), false, "オプション _cu?rry を受け入れない");
+			assert.strictEqual(uh.validateHash({
+				category:'kinema',
+				id:'123456',
+				option:'_aaaaaaaaaaaaaaaaaaaaaa'
+			}), false, "長過ぎるオプションを受け入れない");
+			assert.strictEqual(uh.validateHash({
+				category:'kinema',
+				id:'123456',
+				option:'aaa'
+			}), false, "アンダースコアのないオプションを受け入れない");
+			
 		});
 				
 		test("processHashString()", function() {
@@ -165,11 +190,11 @@ var testUrlHandler = function(){
 			
 		});
 				
-		test("changeTo()/setChangePageListener()", function() {
+		test("changeTo()/addChangePageListener()", function() {
 			
 			var x = 1;
 			
-			uh.setChangePageListener(function(){
+			uh.addChangePageListener(function(){
 				x += 1;		
 			});
 			
@@ -183,23 +208,28 @@ var testUrlHandler = function(){
 			
 			assert.strictEqual(x, 2, "同じ ID で changeTo を呼び出してもリスナーは呼ばれない");
 			
-			uh.setChangePageListener(function(){
-				x *= 2;		
+			uh.addChangePageListener(function(){
+				x += 5;		
 			});
 			
 			uh.changeTo('image024681');
 			
-			assert.strictEqual(x, 4, "リスナーを上書きできる");
+			assert.strictEqual(x, 8, "リスナーを追加できる");
 			
-			uh.setChangePageListener(function(e){
-				console.log(e);
-				x = e;		
-			});
+			uh.clearChangePageListener();
 			
 			uh.changeTo('image024682');
 			
+			assert.strictEqual(x, 8, "リスナーを全削除できる");
+			
+			uh.addChangePageListener(function(e){
+				x = e;		
+			});
+			
+			uh.changeTo('image024683');
+			
 			assert.strictEqual(x.category, 'image', "ハッシュオブジェクトがリスナーの引数として渡される");
-			assert.strictEqual(x.id, '024682', "ハッシュオブジェクトがリスナーの引数として渡される");
+			assert.strictEqual(x.id, '024683', "ハッシュオブジェクトがリスナーの引数として渡される");
 		});
 				
 	});

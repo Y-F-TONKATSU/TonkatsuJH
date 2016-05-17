@@ -15,15 +15,17 @@ var Hash;
 	});
 	
 	var idFigures = 6;
+	var MAX_OPTION_LENGTH = 21;
 	
 	Hash = {
 		
-		MAX_HASH_LENGTH:30,
+		MAX_HASH_LENGTH:40,
 		
 		CATEGORY_LIST:catList,
-		HASH_REGEXP:new RegExp('^' + modePattern + '\\d{' + idFigures + '}$'),
+		HASH_REGEXP:new RegExp('^' + modePattern + '\\d{' + idFigures + '}(_\\w{0,' + MAX_OPTION_LENGTH + '})?$'),
 		CATEGORY_REGEXP:new RegExp('^' + modePattern + '$'),
 		ID_REGEXP:new RegExp('^\\d{' + idFigures + '}$'),
+		OPTION_REGEXP:new RegExp('^(_\\w{0,' + MAX_OPTION_LENGTH + '})?$'),
 		
 		ID_FIGURES:idFigures,
 		

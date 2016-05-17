@@ -76,7 +76,68 @@ var DisplayUtil;
 		
 		getScreenRatio:function(){
 			return	DisplayUtil.getHeight() / DisplayUtil.getWidth();
-		}
+		},
+		
+		getStageRect:function(){
+			
+			var ratio = DisplayUtil.getRatio();
+			
+			var w, h, t, l;
+			
+			if(DisplayUtil.isLandscape()){
+				if(DisplayUtil.isOverRatio()){
+					h = DisplayUtil.getHeight();
+					w = h * DisplayUtil.getInvertedRatio();
+					l = (DisplayUtil.getWidth() - w) * 0.5
+					t = 0;					
+				} else {
+					w = DisplayUtil.getWidth();
+					h = w * DisplayUtil.getRatio();
+					t = (DisplayUtil.getHeight() - h) * 0.5
+					l = 0;
+				}
+			} else {
+				if(DisplayUtil.isOverRatio()){
+					w = DisplayUtil.getWidth();
+					h = w * DisplayUtil.getInvertedRatio();
+					t = (DisplayUtil.getHeight() - h) * 0.5
+					l = 0;
+				} else {
+					h = DisplayUtil.getHeight();
+					w = h * DisplayUtil.getRatio();
+					l = (DisplayUtil.getWidth() - w) * 0.5
+					t = 0;					
+				}
+			}
+			
+			return {
+				'width':w,
+				'height':h,
+				'top':t,
+				'left':l,
+			}
+
+		},
+		
+		getObjectRect:function(rect){
+			
+			var stageRect = DisplayUtil.getStageRect();
+			
+			var xr = stageRect.width / DisplayUtil.RATIO_X;
+			var yr = stageRect.height / DisplayUtil.RATIO_Y;
+			
+			var w = rect.width * xr;
+			var h = rect.height * yr;
+			var l = stageRect.left + rect.left * xr;
+			var t = stageRect.top + rect.top * yr;
+			
+			return {
+				'width':w,
+				'height':h,
+				'left':l,
+				'top':t,
+			}
+		},
 		
 	};
 	

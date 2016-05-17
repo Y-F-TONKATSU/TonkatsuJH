@@ -21,7 +21,6 @@ var DomHandler;
 			var type = $(newDoc).find('article').attr('data-doc-type');
 			var loader = $(newDoc).find('article').attr('data-loader-type');
 			var root = $(newDoc).find('article').attr('data-cjs-root');
-			console.log(processDoc);
 			processDoc[type](newDoc, loader, root);
 			
 		});
@@ -82,12 +81,35 @@ var DomHandler;
 	
 	DomHandler.prototype = {
 		
+		initDoc:function(doc){
+			var rect = DisplayUtil.getStageRect();
+			$(doc).css({
+				'width': rect.width,
+				'height': rect.height,
+				'top': rect.top,
+				'left': rect.left,
+			});
+		},
+		
 		changeTo:function(hash){
 			
 			if(hash.category === 'top'){
 				setIndexMode();
 			} else {
 				setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
+			}
+		
+		},
+		
+		changeOption:function(option){
+			$('section').each(function(){
+				console.log($(this).offset());
+			});
+			var target = $('article').find('[data-cjs-scene=' + option + ']').get(0);
+			if(target){
+				var t = $(target).offset().top + $('article').scrollTop() - DisplayUtil.getHeight() * 0.5;
+				$('article').scrollTop(t);
+
 			}
 		
 		},

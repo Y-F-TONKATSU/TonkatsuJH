@@ -22,6 +22,10 @@ var CanvasHandler;
 		
 	CanvasHandler.prototype = {
 		
+		destrunct:function(){
+			
+		},
+		
 		getCenterX:function(){
 			return this.getCanvasWidth() / 2;
 		},
@@ -82,45 +86,17 @@ var CanvasHandler;
 		
 		fitCanvas:function(){
 			
-			var ratio = DisplayUtil.getRatio();
-			
-			var w, h, t, l;
-			
-			if(DisplayUtil.isLandscape()){
-				if(DisplayUtil.isOverRatio()){
-					h = DisplayUtil.getHeight();
-					w = h * DisplayUtil.getInvertedRatio();
-					l = (DisplayUtil.getWidth() - w) * 0.5
-					t = 0;					
-				} else {
-					w = DisplayUtil.getWidth();
-					h = w * DisplayUtil.getRatio();
-					t = (DisplayUtil.getHeight() - h) * 0.5
-					l = 0;
-				}
-			} else {
-				if(DisplayUtil.isOverRatio()){
-					w = DisplayUtil.getWidth();
-					h = w * DisplayUtil.getInvertedRatio();
-					t = (DisplayUtil.getHeight() - h) * 0.5
-					l = 0;
-				} else {
-					h = DisplayUtil.getHeight();
-					w = h * DisplayUtil.getRatio();
-					l = (DisplayUtil.getWidth() - w) * 0.5
-					t = 0;					
-				}
-			}
+			var pos = DisplayUtil.getStageRect();
 			
 			$(this._canvas).attr({
 				'width': DisplayUtil.RATIO_X,
 				'height': DisplayUtil.RATIO_Y
 			}).css({
 				'position':'fixed',
-				'width': w,
-				'height': h,
-				'top':t,
-				'left':l
+				'width': pos.width,
+				'height': pos.height,
+				'top': pos.top,
+				'left': pos.left
 			});
 	
 		},

@@ -13,11 +13,20 @@ Tonkatsu.init = function(){
 	
 	urlHandler = new UrlHandler();
 	domHandler = new DomHandler();
+	domHandler.initDoc('#mainDoc');
+	domHandler.initDoc('#indexContainer');
 	scrollHandler = new ScrollHandler($('#mainDoc'));
 	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
 	bgHandler.putShadow();
+	bgHandler.putNavigationButtons({
+		'onHomeClick':function(e){
+			urlHandler.changeTo('index');
+		},
+	});
 	
-	urlHandler.setChangePageListener(domHandler.changeTo);
+	urlHandler.addChangePageListener(domHandler.changeTo);
+	urlHandler.addChangePageListener(bgHandler.setNavigationButtonState);
+	urlHandler.addChangeOptionListener(domHandler.changeOption);
 	
 	bgHandler.startAnimationLoop();
 	

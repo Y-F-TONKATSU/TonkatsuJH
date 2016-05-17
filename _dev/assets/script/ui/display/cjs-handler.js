@@ -4,7 +4,7 @@ var CjsHandler;
 
 	var cjsLoader = {
 		
-		'crouton':function(fch, bch, root, onComplete){
+		'crouton':function(root, onComplete){
 			
 			var loader = new createjs.LoadQueue(false);
 			
@@ -24,8 +24,8 @@ var CjsHandler;
 				
 				console.log('Cjs Image Loading Complete');
 				
-				var bCanvas = bch.getCanvas();
-				var fCanvas = fch.getCanvas();
+				var bCanvas = this.backCanvas.getCanvas();
+				var fCanvas = this.foreCanvas.getCanvas();
 				
 				this.foreMc = new cjsLib[root]().foreground;
 				this.backMc = new cjsLib[root]().background;				
@@ -76,14 +76,15 @@ var CjsHandler;
 		}
 	};
 		
-	CjsHandler = function(){
-		
+	CjsHandler = function(fch, bch){
+		this.foreCanvas = fch;
+		this.backCanvas = bch;
 	};
 	
 	CjsHandler.prototype = {
 		
-		startLoading:function(loaderType, fch, bch, root, onComplete){
-			cjsLoader[loaderType].call(this, fch, bch, root, onComplete);
+		startLoading:function(loaderType, root, onComplete){
+			cjsLoader[loaderType].call(this, root, onComplete);
 		},
 		
 	}

@@ -4,6 +4,7 @@ var BackgroundHandler;
 	
 	var shadowHandler;
 	var cjsHandler;
+	var navigationHandler;
 	var frameAnimationHandler;
 	
 	BackgroundHandler = function(fdiv, bdiv){
@@ -13,7 +14,6 @@ var BackgroundHandler;
 		this.animationTaskList = [];
 		
 		shadowHandler = new ShadowHandler();
-		
 	};
 	
 	var _getNewFittedCanvasHandler = function(div){
@@ -28,9 +28,6 @@ var BackgroundHandler;
 	}
 	
 	var cjsLoop = function(events){
-		
-		console.log(this);
-		console.log('||');
 		
 		this.mainElem;
 		
@@ -82,8 +79,8 @@ var BackgroundHandler;
 			var fch = _getNewFittedCanvasHandler(this.foreDiv);
 			var bch = _getNewFittedCanvasHandler(this.backDiv);
 			
-			cjsHandler = new CjsHandler();
-			cjsHandler.startLoading(loaderType, fch, bch, root, _.bind(cjsLoop, this));
+			cjsHandler = new CjsHandler(fch, bch);
+			cjsHandler.startLoading(loaderType, root, _.bind(cjsLoop, this));
 			
 		},
 		
@@ -96,7 +93,23 @@ var BackgroundHandler;
 			var ch = _getNewFittedCanvasHandler(this.foreDiv);
 			shadowHandler.putShadow(ch);
 
-		}
+		},
+		
+		putNavigationButtons:function(events){
+			
+			var ch = _getNewFittedCanvasHandler(this.foreDiv);
+			navigationHandler = new NavigationHandler(events);
+			navigationHandler.putButtons(ch);
+
+		},
+		
+		setNavigationButtonState:function(hash){
+			if(hash.category === 'top'){
+				navigationHandler.hideHomeButton();
+			} else {
+				navigationHandler.showHomeButton();
+			}
+		},
 		
 	};
 	
