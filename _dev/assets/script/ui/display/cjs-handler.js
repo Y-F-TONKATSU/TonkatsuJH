@@ -4,10 +4,12 @@ var CjsHandler;
 
 	var cjsLoader = {
 		
-		'crouton':function(root, onComplete){
+		'crouton':function(root, onProgress ,onComplete){
 			
 			var loader = new createjs.LoadQueue(false);
 			
+			loader.addEventListener('progress', onProgress);
+						
 			loader.addEventListener("fileload", function(evt) {
 				
 				console.log('A Cjs Image Loaded');
@@ -42,6 +44,7 @@ var CjsHandler;
 				createjs.Ticker.addEventListener("tick", this.fStage);
 				createjs.Ticker.addEventListener("tick", this.bStage);
 				createjs.Ticker.addEventListener("tick", _.bind(function(e){
+					
 					var label = this.foreMc.currentLabel;
 					if(currentLabel !== label){
 						if(cjsEvents.labelOut[currentLabel]){
@@ -83,9 +86,30 @@ var CjsHandler;
 	
 	CjsHandler.prototype = {
 		
-		startLoading:function(loaderType, root, onComplete){
-			cjsLoader[loaderType].call(this, root, onComplete);
+		startLoading:function(loaderType, root, onProgress, onComplete){
+			cjsLoader[loaderType].call(this, root, onProgress, onComplete);
 		},
+		
+		clear:function(){
+			
+			if(this.foreMc) {
+				this.foreMc.stop();
+			}
+			if(this.backMc) {
+				this.backMc.stop();
+			}
+			
+			if(this.fStage){
+				this.fStage.removeAllChildren();
+			}
+			if(this.bStage){
+				this.bStage.removeAllChildren();
+			}
+			
+			if(createjs){
+				createjs.Ticker.removeEventListener('tick');	
+			}
+		}
 		
 	}
 	

@@ -127,11 +127,43 @@ var testCanvasHandler = function(){
 			});
 		});
 		
+		test("setStrokeSyle()/setFillStyle()/setWidth()/drawShape()/getLiners", function() {
+			ch = new CanvasHandler($('.canvas8').get(0));
+			ch.setStrokeStyle(255, 0, 0, 1);
+			ch.drawShape(function(ctx){
+				ctx.arc(ch.getCenterX(), ch.getCenterY(), ch.getCenterY() / 2, 0, Math.PI * 2);
+			}, true, false);
+			ch = new CanvasHandler($('.canvas9').get(0));
+			ch.setFillStyle(0, 0, 255, 1);
+			ch.drawShape(function(ctx){
+				ctx.arc(ch.getCenterX(), ch.getCenterY(), ch.getCenterY() / 2, 0, Math.PI * 2);
+			}, false, true);
+			ch = new CanvasHandler($('.canvas10').get(0));
+			ch.setStrokeStyle(0, 255, 0, 0.5);
+			ch.drawShape(function(ctx){
+				ctx.arc(ch.getCenterX(), ch.getCenterY(), ch.getCenterY() / 2, 0, Math.PI * 2);
+			});
+			ch = new CanvasHandler($('.canvas11').get(0));
+			ch.setStrokeStyle(0, 255, 0, 0.8);
+			ch.setWidth(20);
+			ch.drawShape(function(ctx){
+				ctx.arc(ch.getCenterX(), ch.getCenterY(), ch.getCenterY() / 2, 0, Math.PI * 2);
+			});
+			ch = new CanvasHandler($('.canvas12').get(0));
+			ch.setStrokeStyle(0, 255, 0, 1);
+			ch.setWidth(5);
+			var cx = ch.getCanvasWidth();
+			var cy = ch.getCanvasHeight();
+			ch.drawShape(ch.getLiner([cx * 0.2, cy * 0.3, cx * 0.4, cy * 0.28, cx * 0.5, cy * 0.1, 
+				cx * 0.6, cy * 0.28, cx * 0.8, cy * 0.3, cx * 0.6, cy * 0.48, cx * 0.75, cy * 0.75,
+				cx * 0.5, cy * 0.6, cx * 0.25, cy * 0.75, cx * 0.4, cy * 0.48, cx * 0.2, cy * 0.3]));
+		});
+		
 				
 	});
 	
 	$(function(){
-		console.log('!');
+
 		mocha.run();
 		
 		$(window).resize(function(){

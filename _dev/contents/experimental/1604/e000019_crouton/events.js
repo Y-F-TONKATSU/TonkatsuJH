@@ -5,10 +5,10 @@ var cjsEvents = {
 			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation'));
 			
 			cjsEvents.hitAreaHandler.setHitArea('crouton', {
-				width:500,
-				height:500,
-				left:300,
-				top:40
+				width:180,
+				height:100,
+				left:460,
+				top:500
 			}, '#experimental000019_Scene005');
 
 		},

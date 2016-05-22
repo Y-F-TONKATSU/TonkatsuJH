@@ -2,11 +2,18 @@ var CanvasHandler;
 
 (function(){
 	
+	var pad = function (num, size, fill) {
+		if(_.isEmpty(fill)){fill = '0';}
+		var str = num + '';
+		while (str.length < size) str = fill.toString() + str;
+		return str;
+	}
 	
 	CanvasHandler = function(canvas){
 		
 		this._canvas = {};
 		this._context = {};
+		this._surface = {};
 		this._frame = 0;
 		
 		if(!canvas){
@@ -20,9 +27,80 @@ var CanvasHandler;
 		
 	}
 		
+	var destructors = {
+		'simple':function(onComplete){
+			
+			var frame = 0;
+			
+			var draw = _.bind(function(){
+				
+				var ctx = this._context;
+				
+				ctx.save();
+				
+				ctx.beginPath();
+				
+				var numStrip = 6;
+				var w = this.getCanvasWidth();
+				var h = this.getCanvasHeight();
+				
+				_.times(numStrip, function(n){
+					var odd = n % 2;
+					ctx.rect(w / numStrip * n, h * odd, w / numStrip, h * frame);
+				})
+				
+				ctx.clip();
+				ctx.clearRect(0, 0, w, h);
+				
+				ctx.restore();
+				
+				frame += 0.0001;
+				
+				console.log(frame);
+				
+				if(frame >= 1){
+					onComplete();
+				} else {				
+					requestAnimationFrame(draw);
+				}
+					
+			}, this);
+			
+			requestAnimationFrame(draw);
+			
+		},
+	}
+		
 	CanvasHandler.prototype = {
 		
-		destrunct:function(){
+		getRandomColorHexString:function(minR, maxR, minG, maxG, minB, maxB){
+			
+			return this.getColorHexString(
+				Math.floor(Math.random() * (maxR - minR) + minR),
+				Math.floor(Math.random() * (maxG - minG) + minG),
+				Math.floor(Math.random() * (maxB - minB) + minB)
+			);
+			
+		},
+		
+		getColorHexString:function(r, g, b){
+			
+			var c = '#';
+			c += pad(r.toString(16), 2);
+			c += pad(g.toString(16), 2);
+			c += pad(b.toString(16), 2);
+			return c;
+			
+		},
+		
+		
+		destruct:function(type){
+			
+			_.bind(destructors[type], this)(_.bind(function(){
+				console.log('destructed');
+				$(this._canvas).remove();
+				this._canvas = null;
+			}, this));
 			
 		},
 		
@@ -64,13 +142,25 @@ var CanvasHandler;
 		},
 		
 		clear:function(){
-			this._context.clearRect(0, 0, this.getCanvasWidth(), this.getCanvasHeight())
+			this._context.clearRect(0, 0, this.getCanvasWidth(), this.getCanvasHeight());
 		},
 			
 		rgbas:function(r, g, b, a){
 			a = a.toString();
 			if(a.length > 10){a = a.slice(0, 10);}
-			return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')'
+			return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+		},
+			
+		setFillStyle:function(r, g, b, a){
+			return this._context.fillStyle = this.rgbas(r, g, b, a);
+		},
+			
+		setStrokeStyle:function(r, g, b, a){
+			return this._context.strokeStyle = this.rgbas(r, g, b, a);
+		},
+			
+		setWidth:function(w){
+			return this._context.lineWidth = w;
 		},
 			
 		toImg:function(img){
@@ -100,8 +190,19 @@ var CanvasHandler;
 			});
 	
 		},
-	
 		
+		saveSurface:function(){
+			
+			this._surface = this._context.getImageData(0, 0, this.getCanvasWidth(), this.getCanvasHeight());
+			
+		},
+			
+		loadSurface:function(){
+			
+			this._context.putImageData(this._surface, 0, 0);
+			
+		},
+			
 		saveFrame:function(){
 			
 			var url = this._canvas.toDataURL();
@@ -121,6 +222,47 @@ var CanvasHandler;
 			
 			this._frame = 0;
 	
+		},
+		
+		drawShape:function(f, stroke, fill, clip){
+			
+			if(stroke === undefined){
+				stroke = true;
+			}
+			
+			var ctx = this._context;
+			
+			ctx.beginPath();
+			f(ctx);
+			
+			if(stroke){
+				ctx.stroke();
+			}
+			if(fill){
+				ctx.fill();
+			}
+	
+		},
+		
+		getLiner:function(points){
+			
+			return function(ctx){
+				
+				var y = points.pop();	
+				var x = points.pop();
+				
+				ctx.moveTo(x, y);
+						
+				while(points.length > 0){
+					var dy = points.pop();	
+					var dx = points.pop();
+					ctx.lineTo(dx, dy);
+					console.log(dx, dy);
+					x = dx;
+					y = dy;
+				}
+			}
+			
 		}
 		
 	}

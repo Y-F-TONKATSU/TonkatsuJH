@@ -13,6 +13,10 @@ var BackgroundHandler;
 		this.backDiv = bdiv;
 		this.animationTaskList = [];
 		
+		this.loadingCh = null;
+		this.mainFore = null;
+		this.mainBack = null;
+		
 		shadowHandler = new ShadowHandler();
 	};
 	
@@ -29,6 +33,9 @@ var BackgroundHandler;
 	
 	var cjsLoop = function(events){
 		
+		this.loadingCh.destruct('simple');
+		this.loadingCh = null;
+			
 		this.mainElem;
 		
 		scrollHandler.setScrollListener(_.bind(function(){
@@ -56,6 +63,19 @@ var BackgroundHandler;
 		
 	BackgroundHandler.prototype = {
 		
+		loadingAnims:{
+			'crouton':function(e){
+				if(!this.loadingCh){
+					this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv);			
+				}
+				this.loadingCh.setStrokeStyle(255, 0, 0, 1);
+				this.loadingCh.setWidth(30);
+				this.loadingCh.drawShape(_.bind(function(ctx){
+					ctx.arc(this.loadingCh.getCenterX(), this.loadingCh.getCenterY(), this.loadingCh.getCanvasHeight() * 0.4, 0, Math.PI * e.loaded);
+				}, this));
+			}
+		},
+			
 		startAnimationLoop:function(){
 			
 			console.log('Start Animation Loop');
@@ -76,16 +96,31 @@ var BackgroundHandler;
 		
 		setCjs:function(cjsLib, cjsImages, loaderType, root){
 			
-			var fch = _getNewFittedCanvasHandler(this.foreDiv);
-			var bch = _getNewFittedCanvasHandler(this.backDiv);
+			this.clearMain();
 			
-			cjsHandler = new CjsHandler(fch, bch);
-			cjsHandler.startLoading(loaderType, root, _.bind(cjsLoop, this));
+			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv);
+			this.mainBack = _getNewFittedCanvasHandler(this.backDiv);
+						
+			cjsHandler = new CjsHandler(this.mainFore, this.mainBack);
+			cjsHandler.startLoading(loaderType, root, _.bind(this.loadingAnims[loaderType], this), _.bind(cjsLoop, this));
 			
 		},
 		
-		clearCjs:function(){
+		clearMain:function(){
 			
+			if(this.mainFore){
+				this.mainFore.destruct('simple');
+				this.mainFore = null;
+			}			
+			if(this.mainBack){
+				this.mainBack.destruct('simple');
+				this.mainBack = null;
+			}
+			
+			this.animationTaskList = [];
+			
+			if(cjsHandler){cjsHandler.clear();}
+								
 		},
 		
 		putShadow:function(){

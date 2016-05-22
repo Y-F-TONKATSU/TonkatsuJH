@@ -26,6 +26,7 @@ Tonkatsu.init = function(){
 	
 	urlHandler.addChangePageListener(domHandler.changeTo);
 	urlHandler.addChangePageListener(bgHandler.setNavigationButtonState);
+	urlHandler.addChangePageListener(bgHandler.clearMain);
 	urlHandler.addChangeOptionListener(domHandler.changeOption);
 	
 	bgHandler.startAnimationLoop();

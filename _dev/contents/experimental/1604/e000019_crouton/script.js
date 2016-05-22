@@ -8,7 +8,7 @@ lib.properties = {
 	width: 1920,
 	height: 1200,
 	fps: 24,
-	color: "#CCCCCC",
+	color: "#000000",
 	webfonts: {},
 	manifest: [
 		{src:"images/bagguet.png", id:"bagguet"},
@@ -457,7 +457,7 @@ p.nominalBounds = new cjs.Rectangle(12,13.8,65.4,64.2);
 
 	// レイヤー 1
 	this.shape = new cjs.Shape();
-	this.shape.graphics.f("rgba(51,51,51,0.4)").s().p("Ekr/C7fMAAAl2+MJX+AAAMAAAF2+gEhjOhKfQlnFmAAH7QAAH6FnFmQFlFmH7AAQH6AAFmlmQFnlmAAn6QAAn7lnlmQlmlmn6AAQn7AAllFmg");
+	this.shape.graphics.f("rgba(56,56,56,0.6)").s().p("Ekr/C7fMAAAl2+MJX+AAAMAAAF2+gEhjOhKfQlnFmAAH7QAAH6FnFmQFlFmH7AAQH6AAFmlmQFnlmAAn6QAAn7lnlmQlmlmn6AAQn7AAllFmg");
 	this.shape.setTransform(1920,1200);
 
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
@@ -4754,21 +4754,21 @@ p.nominalBounds = new cjs.Rectangle(-962.5,-602.5,3845,2405);
 
 	// Logo
 	this.instance_8 = new lib.UnkoPadLogo_Appear("synched",0,false);
-	this.instance_8.setTransform(342.1,593.2,1.3,1.3,0,0,0,260.1,57.5);
+	this.instance_8.setTransform(631.2,605.8,1.3,1.3,0,0,0,260.1,57.5);
 	this.instance_8._off = true;
 
 	this.instance_9 = new lib.UnkoPadLogo("synched",0);
-	this.instance_9.setTransform(490,586.1,0.954,0.954,0,0,0,260.1,57.6);
+	this.instance_9.setTransform(541.2,586.1,0.954,0.954,0,0,0,260.1,57.6);
 	this.instance_9._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_8).wait(12).to({_off:false},0).to({_off:true,regY:57.6,scaleX:0.95,scaleY:0.95,x:490,y:586.1},63).wait(580));
+	this.timeline.addTween(cjs.Tween.get(this.instance_8).wait(12).to({_off:false},0).to({_off:true,regY:57.6,scaleX:0.95,scaleY:0.95,x:541.2,y:586.1},63).wait(580));
 	this.timeline.addTween(cjs.Tween.get(this.instance_9).wait(12).to({_off:false},63).to({regX:259.6,regY:57.5,scaleX:1,scaleY:1,x:290.7,y:80.8},6).to({_off:true},573).wait(1));
 
 	// Box
 	this.instance_10 = new lib.WhiteBox("synched",0);
 	this.instance_10.setTransform(960,600,1,1.111,0,0,0,960,540);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_10).to({scaleX:0.63,x:1040},6).wait(2).to({scaleX:0.54,x:960},0).to({regX:960.1,scaleX:0.44,scaleY:0.6,y:598.9},4).to({scaleX:0.51,scaleY:0.22,x:492.1,y:600},3).wait(60).to({startPosition:0},0).to({regX:960,scaleX:0.36,scaleY:0.22,x:348,y:117.2},6).wait(4).to({startPosition:0},0).to({scaleX:1,scaleY:0.14,x:960,y:77.1},7).to({_off:true},562).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_10).to({scaleX:0.63,x:1040},6).wait(2).to({scaleX:0.54,x:960},0).to({regX:960.1,scaleX:0.44,scaleY:0.6,y:598.9},4).to({scaleX:0.51,scaleY:0.22,x:754.5,y:600},3).wait(60).to({startPosition:0},0).to({regX:960,scaleX:0.36,scaleY:0.22,x:348,y:117.2},5).wait(4).to({startPosition:0},0).to({scaleX:1,scaleY:0.14,x:960,y:77.1},7).to({_off:true},562).wait(2));
 
 	// Grass
 	this.instance_11 = new lib.ForeImage();
@@ -5093,38 +5093,38 @@ p.nominalBounds = new cjs.Rectangle(-3842.5,-2402.5,9605,7205);
 	this.instance.setTransform(848.8,871.4,1,1,0,0,0,169.9,78.9);
 
 	this.instance_1 = new lib.RingPopupAndFill("synched",0,false);
-	this.instance_1.setTransform(376.6,745.1,1,1,0,0,0,960,540);
+	this.instance_1.setTransform(496.6,745.1,1,1,0,0,0,960,540);
 
 	this.instance_2 = new lib.RingPopupAndAway("synched",0,false);
-	this.instance_2.setTransform(376.6,745.1,1,1,0,0,0,960,540);
+	this.instance_2.setTransform(496.6,745.1,1,1,0,0,0,960,540);
 
 	this.instance_3 = new lib.Butt_rattle();
-	this.instance_3.setTransform(172.9,140.8,1,1,0,0,0,887.5,972);
+	this.instance_3.setTransform(292.9,140.8,1,1,0,0,0,887.5,972);
 	this.instance_3._off = true;
 
 	this.instance_4 = new lib.Nobuteru_Back_upper();
-	this.instance_4.setTransform(363.5,647.6,1.091,1.091,-5.2,0,0,224.2,506.1);
+	this.instance_4.setTransform(567.5,647.6,1.091,1.091,-5.2,0,0,224.2,506.1);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape_50},{t:this.shape_49},{t:this.shape_48},{t:this.shape_47},{t:this.shape_46},{t:this.shape_45},{t:this.shape_44},{t:this.shape_43},{t:this.shape_42},{t:this.shape_41},{t:this.shape_40},{t:this.shape_39},{t:this.shape_38},{t:this.shape_37},{t:this.shape_36},{t:this.shape_35},{t:this.shape_34},{t:this.shape_33},{t:this.shape_32},{t:this.shape_31},{t:this.shape_30},{t:this.shape_29},{t:this.shape_28},{t:this.shape_27},{t:this.shape_26},{t:this.shape_25},{t:this.shape_24},{t:this.shape_23},{t:this.shape_22},{t:this.shape_21},{t:this.shape_20},{t:this.shape_19},{t:this.shape_18},{t:this.shape_17},{t:this.shape_16},{t:this.shape_15},{t:this.shape_14},{t:this.shape_13},{t:this.shape_12},{t:this.shape_11},{t:this.shape_10},{t:this.shape_9},{t:this.shape_8},{t:this.shape_7},{t:this.shape_6},{t:this.shape_5},{t:this.shape_4},{t:this.shape_3},{t:this.shape_2},{t:this.shape_1},{t:this.shape}]},156).to({state:[]},20).to({state:[{t:this.instance}]},15).to({state:[]},13).to({state:[{t:this.instance_1}]},140).to({state:[{t:this.instance_2}]},40).to({state:[]},4).to({state:[{t:this.instance_3}]},67).to({state:[{t:this.instance_3}]},17).to({state:[{t:this.instance_3}]},11).to({state:[]},1).to({state:[{t:this.instance_4}]},80).to({state:[]},59).wait(32));
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(455).to({_off:false},0).wait(17).to({x:-735.9,y:115.2},11).to({_off:true},1).wait(171));
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(455).to({_off:false},0).wait(17).to({x:-615.9,y:115.2},11).to({_off:true},1).wait(171));
 
 	// ex2
 	this.instance_5 = new lib.Nobuteru_Back_upper();
-	this.instance_5.setTransform(363.5,647.6,1.091,1.091,-5.2,0,0,224.2,506.1);
+	this.instance_5.setTransform(483.5,647.6,1.091,1.091,-5.2,0,0,224.2,506.1);
 
 	this.instance_6 = new lib.CroutonShowers("synched",0,false);
-	this.instance_6.setTransform(468.6,216.5,1,1,0,0,0,45.1,45.3);
+	this.instance_6.setTransform(588.6,216.5,1,1,0,0,0,45.1,45.3);
 	this.instance_6._off = true;
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_5}]},222).to({state:[]},107).to({state:[{t:this.instance_6}]},126).to({state:[{t:this.instance_6}]},30).to({state:[{t:this.instance_6}]},13).to({state:[{t:this.instance_6}]},10).to({state:[{t:this.instance_6}]},9).to({state:[]},1).wait(137));
-	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(455).to({_off:false},0).wait(30).to({startPosition:30},0).to({x:263.8,y:-52.3},13).wait(10).to({startPosition:29},0).to({x:-798.6},9).to({_off:true},1).wait(137));
+	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(455).to({_off:false},0).wait(30).to({startPosition:30},0).to({x:467.8,y:-52.3},13).wait(10).to({startPosition:29},0).to({x:-594.6},9).to({_off:true},1).wait(137));
 
 	// Cup
 	this.instance_7 = new lib.Cup();
-	this.instance_7.setTransform(2259.2,780.8,1,1,0,0,0,261.5,224);
+	this.instance_7.setTransform(2379.2,780.8,1,1,0,0,0,261.5,224);
 	this.instance_7._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(453).to({_off:false},0).to({x:710.4},6).wait(26).to({x:505.6,y:518.4},13).wait(10).to({x:-556.8},9).to({_off:true},1).wait(137));
+	this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(453).to({_off:false},0).to({x:830.4},6).wait(26).to({x:709.6,y:518.4},13).wait(10).to({x:-352.8},9).to({_off:true},1).wait(137));
 
 	// Bagguet
 	this.instance_8 = new lib.Bagguet("synched",0);
@@ -5148,17 +5148,17 @@ p.nominalBounds = new cjs.Rectangle(-3842.5,-2402.5,9605,7205);
 	this.instance_11._off = true;
 
 	this.instance_12 = new lib.Hemajiro_Banzai_a("synched",0);
-	this.instance_12.setTransform(856.8,1082,0.243,0.35,0,0,-2.4,336.2,258);
+	this.instance_12.setTransform(976.8,1082,0.243,0.35,0,0,-2.4,336.2,258);
 	this.instance_12._off = true;
 
 	this.instance_13 = new lib.Hemajiro_Banzai("synched",0);
-	this.instance_13.setTransform(856.8,1082,0.243,0.35,0,0,-2.4,336.2,258);
+	this.instance_13.setTransform(976.8,1082,0.243,0.35,0,0,-2.4,336.2,258);
 	this.instance_13._off = true;
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_10).wait(111).to({_off:false},0).to({regX:336,scaleY:1,skewX:0,x:1000.2},9,cjs.Ease.get(1)).wait(25).to({regY:258,y:843.3,mode:"synched",startPosition:3},0).to({x:970.2,y:1549.9,startPosition:2},6,cjs.Ease.get(1)).wait(25).to({x:-530.3,y:759.7,startPosition:5},0).to({x:2316.3,y:747.5,startPosition:4},6).wait(2).to({startPosition:6},0).to({_off:true,regX:336.1,regY:258.1,scaleX:1.11,scaleY:1.11,skewY:-1.6,x:427.2,y:820.1,mode:"independent"},7).wait(464));
-	this.timeline.addTween(cjs.Tween.get(this.instance_11).wait(184).to({_off:false},7).wait(13).to({x:407.2},0).to({_off:true,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:856.8,y:1082,mode:"synched",startPosition:0},18).wait(297).to({_off:false,regX:336.1,regY:258.1,scaleX:1.11,scaleY:1.11,skewY:-1.6,x:-468.2,y:679.6,mode:"independent"},0).to({_off:true,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:856.8,y:1082,mode:"synched",startPosition:0},18).wait(118));
-	this.timeline.addTween(cjs.Tween.get(this.instance_12).wait(204).to({_off:false},18).to({_off:true},32).wait(231).to({_off:false,regX:357.3,regY:268.9,scaleX:0.54,scaleY:0.81,skewY:0,x:863.8,y:530.1,mode:"independent"},13).wait(10).to({x:908.6,y:1643.7},9).to({_off:true},1).wait(1).to({_off:false,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:856.8,y:1082,mode:"synched",startPosition:0},18).to({_off:true},27).wait(91));
-	this.timeline.addTween(cjs.Tween.get(this.instance_13).wait(254).to({_off:false},0).wait(16).to({startPosition:16},0).to({regY:258.1,scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:524.9,y:1088.2,startPosition:23},10).to({regX:336.3,scaleX:0.34,scaleY:0.45,skewX:8.2,skewY:3.8,x:516,y:1083.6,startPosition:24},13).to({regX:336.2,scaleX:0.46,scaleY:0.45,skewX:11,skewY:2.8,x:697.7,y:1078.5,startPosition:25},5).to({scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:2159.6,y:989,startPosition:16},18).to({_off:true},47).wait(122).to({_off:false,regX:357.3,regY:268.8,scaleX:1,scaleY:1,skewX:0,skewY:0,x:1164.6,y:1643.6,startPosition:0},0).to({_off:true,regY:268.9,scaleX:0.54,scaleY:0.81,x:863.8,y:530.1,mode:"independent"},13).wait(66).to({_off:false,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:856.8,y:1082,mode:"synched",startPosition:16},0).to({regY:258.1,scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:524.9,y:1088.2,startPosition:23},10).to({regX:336.3,scaleX:0.34,scaleY:0.45,skewX:8.2,skewY:3.8,x:516,y:1083.6,startPosition:24},13).to({regX:336.2,scaleX:0.46,scaleY:0.45,skewX:11,skewY:2.8,x:697.7,y:1078.5,startPosition:25},5).to({scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:2159.6,y:989,startPosition:16},18).wait(45));
+	this.timeline.addTween(cjs.Tween.get(this.instance_11).wait(184).to({_off:false},7).wait(13).to({x:407.2},0).to({_off:true,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:976.8,y:1082,mode:"synched",startPosition:0},18).wait(297).to({_off:false,regX:336.1,regY:258.1,scaleX:1.11,scaleY:1.11,skewY:-1.6,x:-396.7,y:683.6,mode:"independent"},0).to({_off:true,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:1060.8,y:1082,mode:"synched",startPosition:0},18).wait(118));
+	this.timeline.addTween(cjs.Tween.get(this.instance_12).wait(204).to({_off:false},18).to({_off:true},32).wait(231).to({_off:false,regX:357.3,regY:268.9,scaleX:0.54,scaleY:0.81,skewY:0,x:1067.8,y:530.1,mode:"independent"},13).wait(10).to({x:1112.6,y:1643.7},9).to({_off:true},1).wait(1).to({_off:false,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:1060.8,y:1082,mode:"synched",startPosition:0},18).to({_off:true},27).wait(91));
+	this.timeline.addTween(cjs.Tween.get(this.instance_13).wait(254).to({_off:false},0).wait(16).to({startPosition:16},0).to({regY:258.1,scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:644.9,y:1088.2,startPosition:23},10).to({regX:336.3,scaleX:0.34,scaleY:0.45,skewX:8.2,skewY:3.8,x:636,y:1083.6,startPosition:24},13).to({regX:336.2,scaleX:0.46,scaleY:0.45,skewX:11,skewY:2.8,x:817.7,y:1078.5,startPosition:25},5).to({scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:2279.6,y:989,startPosition:16},18).to({_off:true},47).wait(122).to({_off:false,regX:357.3,regY:268.8,scaleX:1,scaleY:1,skewX:0,skewY:0,x:1284.6,y:1643.6,startPosition:0},0).to({_off:true,regY:268.9,scaleX:0.54,scaleY:0.81,x:1067.8,y:530.1,mode:"independent"},13).wait(66).to({_off:false,regX:336.2,regY:258,scaleX:0.24,scaleY:0.35,skewY:-2.4,x:1060.8,y:1082,mode:"synched",startPosition:16},0).to({regY:258.1,scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:728.9,y:1088.2,startPosition:23},10).to({regX:336.3,scaleX:0.34,scaleY:0.45,skewX:8.2,skewY:3.8,x:720,y:1083.6,startPosition:24},13).to({regX:336.2,scaleX:0.46,scaleY:0.45,skewX:11,skewY:2.8,x:901.7,y:1078.5,startPosition:25},5).to({scaleX:0.43,scaleY:0.45,skewX:10.4,skewY:3.2,x:2363.6,y:989,startPosition:16},18).wait(45));
 
 	// Tuna
 	this.instance_14 = new lib.Tuna();
@@ -5170,42 +5170,42 @@ p.nominalBounds = new cjs.Rectangle(-3842.5,-2402.5,9605,7205);
 	this.instance_15._off = true;
 
 	this.instance_16 = new lib.Tuna_spring("synched",1);
-	this.instance_16.setTransform(899.2,918.9,0.537,0.687,0,3.3,6.8,360.1,219.5);
+	this.instance_16.setTransform(1019.2,918.9,0.537,0.687,0,3.3,6.8,360.1,219.5);
 
 	this.instance_17 = new lib.Tuna_spring_attack("synched",1);
-	this.instance_17.setTransform(899.2,918.9,0.537,0.687,0,3.3,6.8,360.1,219.5);
+	this.instance_17.setTransform(1019.2,918.9,0.537,0.687,0,3.3,6.8,360.1,219.5);
 	this.instance_17._off = true;
 
 	this.instance_18 = new lib.Tuna_spring_stuck("synched",0);
-	this.instance_18.setTransform(581.6,892.8,0.933,0.896,0,14.8,10,304,236.8);
+	this.instance_18.setTransform(701.6,892.8,0.933,0.896,0,14.8,10,304,236.8);
 	this.instance_18._off = true;
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_14}]},145).to({state:[{t:this.instance_15}]},11).to({state:[{t:this.instance_15}]},20).to({state:[{t:this.instance_15}]},8).to({state:[]},1).to({state:[{t:this.instance_15}]},19).to({state:[{t:this.instance_15}]},8).to({state:[{t:this.instance_16}]},10).to({state:[{t:this.instance_17}]},32).to({state:[{t:this.instance_17}]},16).to({state:[{t:this.instance_18}]},10).to({state:[{t:this.instance_18}]},13).to({state:[{t:this.instance_18}]},5).to({state:[{t:this.instance_18}]},18).to({state:[]},47).to({state:[{t:this.instance_15}]},156).to({state:[{t:this.instance_15}]},8).to({state:[{t:this.instance_16}]},10).to({state:[{t:this.instance_17}]},27).to({state:[{t:this.instance_18}]},10).to({state:[{t:this.instance_18}]},13).to({state:[{t:this.instance_18}]},5).to({state:[{t:this.instance_18}]},18).wait(45));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_14}]},145).to({state:[{t:this.instance_15}]},11).to({state:[{t:this.instance_15}]},20).to({state:[{t:this.instance_15}]},8).to({state:[]},1).to({state:[{t:this.instance_15}]},19).to({state:[{t:this.instance_15}]},8).to({state:[{t:this.instance_16,p:{x:1019.2}}]},10).to({state:[{t:this.instance_17}]},32).to({state:[{t:this.instance_17}]},16).to({state:[{t:this.instance_18}]},10).to({state:[{t:this.instance_18}]},13).to({state:[{t:this.instance_18}]},5).to({state:[{t:this.instance_18}]},18).to({state:[]},47).to({state:[{t:this.instance_15}]},156).to({state:[{t:this.instance_15}]},8).to({state:[{t:this.instance_16,p:{x:1103.2}}]},10).to({state:[{t:this.instance_17}]},27).to({state:[{t:this.instance_18}]},10).to({state:[{t:this.instance_18}]},13).to({state:[{t:this.instance_18}]},5).to({state:[{t:this.instance_18}]},18).wait(45));
 	this.timeline.addTween(cjs.Tween.get(this.instance_14).wait(145).to({_off:false},0).to({_off:true,regX:360,scaleX:0.66,x:1653.3,y:887.7},11).wait(499));
-	this.timeline.addTween(cjs.Tween.get(this.instance_15).wait(145).to({_off:false},11).wait(20).to({y:899.7},0).to({regY:219.6,scaleX:0.63,scaleY:0.56,x:-226.7,y:797.4},8).to({_off:true},1).wait(19).to({_off:false,regY:219.5,scaleX:1,scaleY:1,x:2361,y:-252},0).to({regX:359.9,scaleX:0.8,scaleY:0.78,skewX:1.5,skewY:-178.5,x:655,y:412.2},8,cjs.Ease.get(1)).to({_off:true,regX:360.1,scaleX:0.54,scaleY:0.69,skewX:3.3,skewY:-353.2,x:899.2,y:918.9,mode:"synched",startPosition:1},10,cjs.Ease.get(-1)).wait(297).to({_off:false,regX:360,scaleX:1,scaleY:1,skewX:0,skewY:-360,x:2361,y:-252,mode:"independent"},0).to({regX:359.9,scaleX:0.8,scaleY:0.78,skewX:1.5,skewY:-538.5,x:655,y:412.2},8,cjs.Ease.get(1)).to({_off:true,regX:360.1,scaleX:0.54,scaleY:0.69,skewX:3.3,skewY:-713.2,x:899.2,y:918.9,mode:"synched",startPosition:1},10,cjs.Ease.get(-1)).wait(118));
-	this.timeline.addTween(cjs.Tween.get(this.instance_17).wait(254).to({_off:false},0).wait(16).to({startPosition:17},0).to({_off:true,regX:304,regY:236.8,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:581.6,y:892.8,startPosition:0},10).wait(284).to({_off:false,regX:360.1,regY:219.5,scaleX:0.54,scaleY:0.69,skewX:3.3,skewY:6.8,x:899.2,y:918.9,startPosition:17},0).to({_off:true,regX:304,regY:236.8,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:581.6,y:892.8,startPosition:0},10).wait(81));
-	this.timeline.addTween(cjs.Tween.get(this.instance_18).wait(270).to({_off:false},10).to({regX:303.9,scaleX:0.75,scaleY:0.88,skewX:11.8,skewY:12.3,x:561,y:888.3,startPosition:1},13,cjs.Ease.get(1)).to({scaleX:1,scaleY:0.9,skewX:15.6,skewY:9.1,x:758.2,y:883.2,startPosition:2},5).to({regX:304,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:2216.3,y:793.6,startPosition:4},18).to({_off:true},47).wait(201).to({_off:false,x:581.6,y:892.8,startPosition:0},10).to({regX:303.9,scaleX:0.75,scaleY:0.88,skewX:11.8,skewY:12.3,x:561,y:888.3,startPosition:1},13,cjs.Ease.get(1)).to({scaleX:1,scaleY:0.9,skewX:15.6,skewY:9.1,x:758.2,y:883.2,startPosition:2},5).to({regX:304,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:2216.3,y:793.6,startPosition:4},18).wait(45));
+	this.timeline.addTween(cjs.Tween.get(this.instance_15).wait(145).to({_off:false},11).wait(20).to({y:899.7},0).to({regY:219.6,scaleX:0.63,scaleY:0.56,x:-226.7,y:797.4},8).to({_off:true},1).wait(19).to({_off:false,regY:219.5,scaleX:1,scaleY:1,x:2361,y:-252},0).to({regX:359.9,scaleX:0.8,scaleY:0.78,skewX:1.5,skewY:-178.5,x:655,y:412.2},8,cjs.Ease.get(1)).to({_off:true,regX:360.1,scaleX:0.54,scaleY:0.69,skewX:3.3,skewY:-353.2,x:1019.2,y:918.9,mode:"synched",startPosition:1},10,cjs.Ease.get(-1)).wait(297).to({_off:false,regX:360,scaleX:1,scaleY:1,skewX:0,skewY:-360,x:2565,y:-252,mode:"independent"},0).to({regX:359.9,scaleX:0.8,scaleY:0.78,skewX:1.5,skewY:-538.5,x:859,y:412.2},8,cjs.Ease.get(1)).to({_off:true,regX:360.1,scaleX:0.54,scaleY:0.69,skewX:3.3,skewY:-713.2,x:1103.2,y:918.9,mode:"synched",startPosition:1},10,cjs.Ease.get(-1)).wait(118));
+	this.timeline.addTween(cjs.Tween.get(this.instance_17).wait(254).to({_off:false},0).wait(16).to({startPosition:17},0).to({_off:true,regX:304,regY:236.8,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:701.6,y:892.8,startPosition:0},10).wait(284).to({_off:false,regX:360.1,regY:219.5,scaleX:0.54,scaleY:0.69,skewX:3.3,skewY:6.8,x:1103.2,y:918.9,startPosition:17},0).to({_off:true,regX:304,regY:236.8,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:785.6,y:892.8,startPosition:0},10).wait(81));
+	this.timeline.addTween(cjs.Tween.get(this.instance_18).wait(270).to({_off:false},10).to({regX:303.9,scaleX:0.75,scaleY:0.88,skewX:11.8,skewY:12.3,x:681,y:888.3,startPosition:1},13,cjs.Ease.get(1)).to({scaleX:1,scaleY:0.9,skewX:15.6,skewY:9.1,x:878.2,y:883.2,startPosition:2},5).to({regX:304,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:2336.3,y:793.6,startPosition:4},18).to({_off:true},47).wait(201).to({_off:false,x:785.6,y:892.8,startPosition:0},10).to({regX:303.9,scaleX:0.75,scaleY:0.88,skewX:11.8,skewY:12.3,x:765,y:888.3,startPosition:1},13,cjs.Ease.get(1)).to({scaleX:1,scaleY:0.9,skewX:15.6,skewY:9.1,x:962.2,y:883.2,startPosition:2},5).to({regX:304,scaleX:0.93,scaleY:0.9,skewX:14.8,skewY:10,x:2420.3,y:793.6,startPosition:4},18).wait(45));
 
 	// Panel
 	this.instance_19 = new lib.Panel("synched",0,false);
-	this.instance_19.setTransform(384.1,747.2,1,1.003,0,-19.4,-15,52.9,83);
+	this.instance_19.setTransform(504.1,747.2,1,1.003,0,-19.4,-15,52.9,83);
 	this.instance_19._off = true;
 
 	this.instance_20 = new lib.Nobuter_panel("synched",0,false);
-	this.instance_20.setTransform(263.2,372.3,1,1,0,0,0,1010.9,1784.1);
+	this.instance_20.setTransform(383.2,372.3,1,1,0,0,0,1010.9,1784.1);
 
 	this.instance_21 = new lib.Nobuter_panel_rattle("synched",0);
-	this.instance_21.setTransform(263.2,372.3,1,1,0,0,0,1010.9,1784.1);
+	this.instance_21.setTransform(383.2,372.3,1,1,0,0,0,1010.9,1784.1);
 	this.instance_21._off = true;
 
 	this.instance_22 = new lib.Panel_share("synched",0,false);
-	this.instance_22.setTransform(384.1,747.2,1,1.003,0,-19.4,-15,52.9,83);
+	this.instance_22.setTransform(588.1,747.2,1,1.003,0,-19.4,-15,52.9,83);
 	this.instance_22._off = true;
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_19}]},280).to({state:[{t:this.instance_19}]},49).to({state:[{t:this.instance_19}]},15).to({state:[{t:this.instance_20}]},40).to({state:[{t:this.instance_21}]},19).to({state:[{t:this.instance_21}]},40).to({state:[{t:this.instance_21}]},12).to({state:[{t:this.instance_21}]},17).to({state:[{t:this.instance_21}]},11).to({state:[]},1).to({state:[{t:this.instance_22}]},90).to({state:[{t:this.instance_22}]},49).to({state:[{t:this.instance_22}]},15).wait(17));
-	this.timeline.addTween(cjs.Tween.get(this.instance_19).wait(280).to({_off:false},0).wait(49).to({startPosition:19},0).to({regX:52.8,scaleX:3.8,scaleY:3.81,x:406,y:700.4},15).to({_off:true},40).wait(271));
-	this.timeline.addTween(cjs.Tween.get(this.instance_21).wait(403).to({_off:false},0).wait(40).to({startPosition:1},0).to({x:62.4,y:-646.6,mode:"independent"},12).wait(17).to({x:-846.4,y:-672.2},11).to({_off:true},1).wait(171));
-	this.timeline.addTween(cjs.Tween.get(this.instance_22).wait(574).to({_off:false},0).wait(49).to({startPosition:19},0).to({regX:52.8,scaleX:7.54,scaleY:6.71,skewX:0.1,skewY:-9,x:639.3,y:754.7},15).wait(17));
+	this.timeline.addTween(cjs.Tween.get(this.instance_19).wait(280).to({_off:false},0).wait(49).to({startPosition:19},0).to({regX:52.8,scaleX:3.8,scaleY:3.81,x:526,y:700.4},15).to({_off:true},40).wait(271));
+	this.timeline.addTween(cjs.Tween.get(this.instance_21).wait(403).to({_off:false},0).wait(40).to({startPosition:1},0).to({x:182.4,y:-646.6,mode:"independent"},12).wait(17).to({x:-726.4,y:-672.2},11).to({_off:true},1).wait(171));
+	this.timeline.addTween(cjs.Tween.get(this.instance_22).wait(574).to({_off:false},0).wait(49).to({startPosition:19},0).to({regX:52.8,scaleX:8.71,scaleY:7.76,skewX:0.1,skewY:-9,x:669,y:851.2},15).wait(17));
 
 	// Nobuteru
 	this.instance_23 = new lib.Nobuteru_Appear();
@@ -5221,20 +5221,20 @@ p.nominalBounds = new cjs.Rectangle(-3842.5,-2402.5,9605,7205);
 	this.instance_25._off = true;
 
 	this.instance_26 = new lib.Nobuteru_Back_swing("single",0);
-	this.instance_26.setTransform(363.6,647.6,1.091,1.091,-5.2,0,0,224.3,506.1);
+	this.instance_26.setTransform(483.6,647.6,1.091,1.091,-5.2,0,0,224.3,506.1);
 
 	this.instance_27 = new lib.Nobuteru_Back_shock("synched",0);
-	this.instance_27.setTransform(363.6,647.6,1.091,1.091,-5.2,0,0,224.3,506.1);
+	this.instance_27.setTransform(483.6,647.6,1.091,1.091,-5.2,0,0,224.3,506.1);
 
 	this.instance_28 = new lib.Nobuteruru_rolling();
-	this.instance_28.setTransform(363.6,647.7,1.091,1.091,-5.2,0,0,224.3,506.2);
+	this.instance_28.setTransform(483.6,647.7,1.091,1.091,-5.2,0,0,224.3,506.2);
 	this.instance_28._off = true;
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_23}]},115).to({state:[{t:this.instance_23}]},9).to({state:[{t:this.instance_23}]},4).to({state:[{t:this.instance_23}]},17).to({state:[{t:this.instance_23}]},6).to({state:[{t:this.instance_23}]},25).to({state:[{t:this.instance_23}]},4).to({state:[{t:this.instance_23}]},4).to({state:[{t:this.instance_24}]},7).to({state:[{t:this.instance_24}]},13).to({state:[{t:this.instance_25}]},8).to({state:[{t:this.instance_25}]},3).to({state:[{t:this.instance_26}]},7).to({state:[{t:this.instance_27}]},58).to({state:[{t:this.instance_28}]},18).to({state:[{t:this.instance_28}]},31).to({state:[{t:this.instance_28}]},15).to({state:[]},40).to({state:[{t:this.instance_25}]},143).to({state:[{t:this.instance_25}]},3).to({state:[{t:this.instance_26}]},7).to({state:[{t:this.instance_26}]},27).to({state:[{t:this.instance_27}]},10).to({state:[{t:this.instance_28}]},18).to({state:[{t:this.instance_28}]},31).to({state:[{t:this.instance_28}]},15).wait(17));
-	this.timeline.addTween(cjs.Tween.get(this.instance_23).wait(115).to({_off:false},0).to({regY:937.4,scaleY:1,skewX:0,x:390.4,y:1225},9,cjs.Ease.get(1)).wait(21).to({regX:224.2,regY:506.1,scaleX:0.42,scaleY:0.42,rotation:-43.2,x:1717,y:373.6},6).wait(25).to({regY:505.9,scaleX:0.54,scaleY:0.54,x:1345.1,y:513.2,mode:"synched",startPosition:0},0).to({x:2263.3,y:387.2,startPosition:3},4).wait(4).to({startPosition:7},0).to({_off:true,regX:224.1,regY:506,scaleX:0.79,scaleY:0.79,rotation:-5.2,x:849,y:793.4,mode:"independent"},7).wait(464));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_23}]},115).to({state:[{t:this.instance_23}]},9).to({state:[{t:this.instance_23}]},4).to({state:[{t:this.instance_23}]},17).to({state:[{t:this.instance_23}]},6).to({state:[{t:this.instance_23}]},25).to({state:[{t:this.instance_23}]},4).to({state:[{t:this.instance_23}]},4).to({state:[{t:this.instance_24}]},7).to({state:[{t:this.instance_24}]},13).to({state:[{t:this.instance_25}]},8).to({state:[{t:this.instance_25}]},3).to({state:[{t:this.instance_26,p:{x:483.6}}]},7).to({state:[{t:this.instance_27,p:{x:483.6}}]},58).to({state:[{t:this.instance_28}]},18).to({state:[{t:this.instance_28}]},31).to({state:[{t:this.instance_28}]},15).to({state:[]},40).to({state:[{t:this.instance_25}]},143).to({state:[{t:this.instance_25}]},3).to({state:[{t:this.instance_26,p:{x:567.6}}]},7).to({state:[{t:this.instance_26,p:{x:567.6}}]},27).to({state:[{t:this.instance_27,p:{x:567.6}}]},10).to({state:[{t:this.instance_28}]},18).to({state:[{t:this.instance_28}]},31).to({state:[{t:this.instance_28}]},15).wait(17));
+	this.timeline.addTween(cjs.Tween.get(this.instance_23).wait(115).to({_off:false},0).to({regY:937.4,scaleY:1,skewX:0,x:490.4,y:1225},9,cjs.Ease.get(1)).wait(21).to({regX:224.2,regY:506.1,scaleX:0.42,scaleY:0.42,rotation:-43.2,x:1717,y:373.6},6).wait(25).to({regY:505.9,scaleX:0.54,scaleY:0.54,x:1345.1,y:513.2,mode:"synched",startPosition:0},0).to({x:2263.3,y:387.2,startPosition:3},4).wait(4).to({startPosition:7},0).to({_off:true,regX:224.1,regY:506,scaleX:0.79,scaleY:0.79,rotation:-5.2,x:849,y:793.4,mode:"independent"},7).wait(464));
 	this.timeline.addTween(cjs.Tween.get(this.instance_24).wait(184).to({_off:false},7).wait(13).to({rotation:-5.2},0).to({_off:true,x:-203.3,y:567.7},8).wait(443));
-	this.timeline.addTween(cjs.Tween.get(this.instance_25).wait(204).to({_off:false},8).wait(3).to({_off:true,regX:224.3,regY:506.1,scaleX:1.09,scaleY:1.09,x:363.6,y:647.6,mode:"single",startPosition:0},7).wait(305).to({_off:false,regX:224.1,regY:506,scaleX:0.79,scaleY:0.79,x:-203.3,y:567.7,mode:"independent"},0).wait(3).to({_off:true,regX:224.3,regY:506.1,scaleX:1.09,scaleY:1.09,x:363.6,y:647.6,mode:"single",startPosition:0},7).wait(118));
-	this.timeline.addTween(cjs.Tween.get(this.instance_28).wait(298).to({_off:false},0).wait(31).to({regY:506.1,scaleX:4.14,scaleY:4.14,x:328.4,y:322.3},15).to({_off:true},40).wait(208).to({_off:false,regY:506.2,scaleX:1.09,scaleY:1.09,x:363.6,y:647.7},0).wait(31).to({regY:506.1,scaleX:7.89,scaleY:7.79,rotation:0,skewX:14.9,skewY:-0.1,x:742.8,y:57},15).wait(17));
+	this.timeline.addTween(cjs.Tween.get(this.instance_25).wait(204).to({_off:false},8).wait(3).to({_off:true,regX:224.3,regY:506.1,scaleX:1.09,scaleY:1.09,x:483.6,y:647.6,mode:"single",startPosition:0},7).wait(305).to({_off:false,regX:224.1,regY:506,scaleX:0.79,scaleY:0.79,x:-188,y:547.6,mode:"independent"},0).wait(3).to({x:0.7,y:567.7},0).to({_off:true,regX:224.3,regY:506.1,scaleX:1.09,scaleY:1.09,x:567.6,y:647.6,mode:"single",startPosition:0},7).wait(118));
+	this.timeline.addTween(cjs.Tween.get(this.instance_28).wait(298).to({_off:false},0).wait(31).to({regY:506.1,scaleX:4.14,scaleY:4.14,x:448.4,y:322.3},15).to({_off:true},40).wait(208).to({_off:false,regY:506.2,scaleX:1.09,scaleY:1.09,x:567.6,y:647.7},0).wait(31).to({regY:506.1,scaleX:9.12,scaleY:9.01,rotation:0,skewX:14.9,skewY:-0.1,x:788.6,y:44.7},15).wait(17));
 
 	// dameo.png
 	this.instance_29 = new lib.Dameo_Swing();
@@ -5245,17 +5245,17 @@ p.nominalBounds = new cjs.Rectangle(-3842.5,-2402.5,9605,7205);
 	this.instance_30.setTransform(857.9,934.3,0.955,0.955,0,0,0,285.5,232);
 
 	this.instance_31 = new lib.Dameo_Banzai("synched",0);
-	this.instance_31.setTransform(949.1,1099,0.224,0.323,0,0,0,285.4,232.1);
+	this.instance_31.setTransform(1069.1,1099,0.224,0.323,0,0,0,285.4,232.1);
 	this.instance_31._off = true;
 
 	this.instance_32 = new lib.Dameo_Banzai_attack("synched",0);
-	this.instance_32.setTransform(949.1,1099,0.224,0.323,0,0,0,285.4,232.1);
+	this.instance_32.setTransform(1069.1,1099,0.224,0.323,0,0,0,285.4,232.1);
 	this.instance_32._off = true;
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_29}]},107).to({state:[{t:this.instance_29}]},10).to({state:[{t:this.instance_29}]},11).to({state:[{t:this.instance_29}]},17).to({state:[{t:this.instance_29}]},6).to({state:[{t:this.instance_29}]},25).to({state:[{t:this.instance_29}]},6).to({state:[{t:this.instance_29}]},2).to({state:[{t:this.instance_30}]},7).to({state:[{t:this.instance_29}]},13).to({state:[{t:this.instance_31}]},18).to({state:[{t:this.instance_32}]},32).to({state:[{t:this.instance_32}]},16).to({state:[{t:this.instance_32}]},10).to({state:[{t:this.instance_32}]},13).to({state:[{t:this.instance_32}]},5).to({state:[{t:this.instance_32}]},18).to({state:[]},47).to({state:[{t:this.instance_31}]},122).to({state:[{t:this.instance_31}]},13).to({state:[{t:this.instance_31}]},10).to({state:[{t:this.instance_31}]},9).to({state:[]},1).to({state:[{t:this.instance_29}]},1).to({state:[{t:this.instance_31}]},18).to({state:[{t:this.instance_32}]},27).to({state:[{t:this.instance_32}]},10).to({state:[{t:this.instance_32}]},13).to({state:[{t:this.instance_32}]},5).to({state:[{t:this.instance_32}]},18).wait(45));
-	this.timeline.addTween(cjs.Tween.get(this.instance_29).wait(107).to({_off:false},0).to({regX:285.5,regY:463.8,scaleY:1,skewX:0,x:1619.4},10,cjs.Ease.get(1)).wait(28).to({regY:232,x:365.7,y:869.3,mode:"synched",startPosition:3},0).to({x:-204.3,y:1430.3,startPosition:2},6,cjs.Ease.get(1)).wait(25).to({x:-330.3,y:536.2,startPosition:5},0).to({x:2247.5,y:478.1,startPosition:4},6).wait(2).to({startPosition:6},0).to({_off:true,scaleX:0.96,scaleY:0.96,x:857.9,y:934.3,mode:"independent"},7).wait(13).to({_off:false},0).to({_off:true,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,x:949.1,y:1099,mode:"synched",startPosition:0},18).wait(297).to({_off:false,regX:285.5,regY:232,scaleX:0.96,scaleY:0.96,x:2219.2,y:669.3,mode:"independent"},0).to({_off:true,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,x:949.1,y:1099,mode:"synched",startPosition:0},18).wait(118));
-	this.timeline.addTween(cjs.Tween.get(this.instance_31).wait(204).to({_off:false},18).to({_off:true},32).wait(231).to({_off:false,regX:266.1,regY:220.5,scaleX:1,scaleY:1,x:231.2,y:-319.9},0).to({scaleX:0.63,scaleY:0.79,x:135.2,y:505.7,mode:"independent"},13).wait(10).to({y:-230.3},9).to({_off:true},1).wait(1).to({_off:false,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,x:949.1,y:1099,mode:"synched",startPosition:0},18).to({_off:true},27).wait(91));
-	this.timeline.addTween(cjs.Tween.get(this.instance_32).wait(254).to({_off:false},0).wait(16).to({startPosition:16},0).to({regX:285.3,regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:682.5,y:1123.7,startPosition:20},10).to({scaleX:0.4,scaleY:0.42,skewX:10.3,skewY:1.5,x:652.7,y:1095.9,startPosition:21},13).to({regY:232.1,scaleX:0.53,scaleY:0.42,skewX:13.6,skewY:1.2,x:881.3,y:1092,startPosition:22},5).to({regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:2317.2,y:1024.5,startPosition:12},18).to({_off:true},47).wait(201).to({_off:false,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,skewX:0,skewY:0,x:949.1,y:1099,startPosition:16},0).to({regX:285.3,regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:682.5,y:1123.7,startPosition:20},10).to({scaleX:0.4,scaleY:0.42,skewX:10.3,skewY:1.5,x:652.7,y:1095.9,startPosition:21},13).to({regY:232.1,scaleX:0.53,scaleY:0.42,skewX:13.6,skewY:1.2,x:881.3,y:1092,startPosition:22},5).to({regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:2317.2,y:1024.5,startPosition:12},18).wait(45));
+	this.timeline.addTween(cjs.Tween.get(this.instance_29).wait(107).to({_off:false},0).to({regX:285.5,regY:463.8,scaleY:1,skewX:0,x:1619.4},10,cjs.Ease.get(1)).wait(28).to({regY:232,x:365.7,y:869.3,mode:"synched",startPosition:3},0).to({x:-204.3,y:1430.3,startPosition:2},6,cjs.Ease.get(1)).wait(25).to({x:-330.3,y:536.2,startPosition:5},0).to({x:2247.5,y:478.1,startPosition:4},6).wait(2).to({startPosition:6},0).to({_off:true,scaleX:0.96,scaleY:0.96,x:857.9,y:934.3,mode:"independent"},7).wait(13).to({_off:false},0).to({_off:true,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,x:1069.1,y:1099,mode:"synched",startPosition:0},18).wait(297).to({_off:false,regX:285.5,regY:232,scaleX:0.96,scaleY:0.96,x:2423.2,y:669.3,mode:"independent"},0).to({_off:true,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,x:1153.1,y:1099,mode:"synched",startPosition:0},18).wait(118));
+	this.timeline.addTween(cjs.Tween.get(this.instance_31).wait(204).to({_off:false},18).to({_off:true},32).wait(231).to({_off:false,regX:266.1,regY:220.5,scaleX:1,scaleY:1,x:351.2,y:-319.9},0).to({scaleX:0.63,scaleY:0.79,x:339.2,y:505.7,mode:"independent"},13).wait(10).to({y:-230.3},9).to({_off:true},1).wait(1).to({_off:false,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,x:1153.1,y:1099,mode:"synched",startPosition:0},18).to({_off:true},27).wait(91));
+	this.timeline.addTween(cjs.Tween.get(this.instance_32).wait(254).to({_off:false},0).wait(16).to({startPosition:16},0).to({regX:285.3,regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:802.5,y:1123.7,startPosition:20},10).to({scaleX:0.4,scaleY:0.42,skewX:10.3,skewY:1.5,x:772.7,y:1095.9,startPosition:21},13).to({regY:232.1,scaleX:0.53,scaleY:0.42,skewX:13.6,skewY:1.2,x:1001.3,y:1092,startPosition:22},5).to({regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:2437.2,y:1024.5,startPosition:12},18).to({_off:true},47).wait(201).to({_off:false,regX:285.4,regY:232.1,scaleX:0.22,scaleY:0.32,skewX:0,skewY:0,x:1153.1,y:1099,startPosition:16},0).to({regX:285.3,regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:886.5,y:1123.7,startPosition:20},10).to({scaleX:0.4,scaleY:0.42,skewX:10.3,skewY:1.5,x:856.7,y:1095.9,startPosition:21},13).to({regY:232.1,scaleX:0.53,scaleY:0.42,skewX:13.6,skewY:1.2,x:1085.3,y:1092,startPosition:22},5).to({regY:232,scaleX:0.39,scaleY:0.42,skewX:10.4,skewY:4.9,x:2521.2,y:1024.5,startPosition:12},18).wait(45));
 
 	// ex3
 	this.instance_33 = new lib.Circle_anim_multiExtensions("synched",0);
