@@ -11,13 +11,14 @@ var BackgroundHandler;
 		
 		this.foreDiv = fdiv;
 		this.backDiv = bdiv;
-		this.animationTaskList = [];
 		
 		this.loadingCh = null;
 		this.mainFore = null;
 		this.mainBack = null;
 		
 		shadowHandler = new ShadowHandler();
+		frameAnimationHandler = new FrameAnimationHandler();
+		frameAnimationHandler.init();
 	};
 	
 	var _getNewFittedCanvasHandler = function(div){
@@ -33,9 +34,8 @@ var BackgroundHandler;
 	
 	var cjsLoop = function(events){
 		
-		this.loadingCh.destruct('simple');
-		this.loadingCh = null;
-			
+		//Destruct Loader Here
+					
 		this.mainElem;
 		
 		scrollHandler.setScrollListener(_.bind(function(){
@@ -46,7 +46,7 @@ var BackgroundHandler;
 		
 		var currentScene;
 		
-		this.animationTaskList.push(_.bind(function(){
+		frameAnimationHandler.setCjsTask(_.bind(function(){
 								
 			if(this.mainElem){
 				var scene = $(this.mainElem).attr('data-cjs-scene');
@@ -68,35 +68,12 @@ var BackgroundHandler;
 				if(!this.loadingCh){
 					this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv);			
 				}
-				this.loadingCh.setStrokeStyle(255, 0, 0, 1);
-				this.loadingCh.setWidth(30);
-				this.loadingCh.drawShape(_.bind(function(ctx){
-					ctx.arc(this.loadingCh.getCenterX(), this.loadingCh.getCenterY(), this.loadingCh.getCanvasHeight() * 0.4, 0, Math.PI * e.loaded);
-				}, this));
+				//Define Loading Anim Here
+				
 			}
 		},
 			
-		startAnimationLoop:function(){
-			
-			console.log('Start Animation Loop');
-			
-			this.animationLoop = _.bind(function(){
-				
-				_.map(this.animationTaskList, function(task){
-					task();
-				});
-				
-				window.requestAnimationFrame(this.animationLoop);
-				
-			}, this);
-				
-			window.requestAnimationFrame(this.animationLoop);
-			
-		},
-		
 		setCjs:function(cjsLib, cjsImages, loaderType, root){
-			
-			this.clearMain();
 			
 			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv);
 			this.mainBack = _getNewFittedCanvasHandler(this.backDiv);
@@ -109,18 +86,83 @@ var BackgroundHandler;
 		clearMain:function(){
 			
 			if(this.mainFore){
-				this.mainFore.destruct('simple');
-				this.mainFore = null;
-			}			
-			if(this.mainBack){
-				this.mainBack.destruct('simple');
-				this.mainBack = null;
+				frameAnimationHandler.setTask({
+					'id':'mainFore',
+					'ch': this.mainFore,
+					'update':function(progress){
+						var ch = this.ch;
+						var ctx = ch.getContext();
+						ch.setWidth(10);
+						ch.setFillStyle(200, 200, 100, 1);
+						var w = ch.getCanvasWidth();
+						var h = ch.getCanvasHeight();
+						
+						ch.drawShape(function(ctx){
+							ctx.rect(w * 0.5 * (1 - progress * 2), h * 0.5 * (1 - progress * 2), w * progress * 2, h * progress * 2);
+						}, false, true);
+						
+						ctx.save();
+						
+						ctx.beginPath();
+						ctx.rect(w * 0.5 * (1 - progress), h * 0.5 * (1 - progress), w * progress, h * progress);
+						ctx.clip();
+						ch.clear();
+						
+						ctx.restore();
+						
+					},
+					'tweener':function(delta){
+						if(this.currentFrame === undefined){this.currentFrame = 0;}
+						this.currentFrame += delta;
+						return Math.pow(this.currentFrame / this.duration, 2);
+					},
+					'duration': 1200,
+					'onComplete':function(){
+						console.log('Anim Comp');
+						this.ch.destruct();
+						if(cjsHandler){cjsHandler.clear();}
+					}
+				});
+				
 			}
-			
-			this.animationTaskList = [];
-			
-			if(cjsHandler){cjsHandler.clear();}
-								
+				
+			if(this.mainBack){
+				
+				frameAnimationHandler.setTask({
+					'id':'mainBack',
+					'ch': this.mainBack,
+					'update':function(progress){
+						var ch = this.ch;
+						var ctx = ch.getContext();
+						
+						var w = ch.getCanvasWidth();
+						var h = ch.getCanvasHeight();
+						
+						ctx.save();
+						
+						ctx.beginPath();
+						ctx.rect(w * 0.5 * (1 - progress), h * 0.5 * (1 - progress), w * progress, h * progress);
+						ctx.clip();
+						ch.clear();
+						
+						ctx.restore();
+						
+					},
+					'tweener':function(delta){
+						if(this.currentFrame === undefined){this.currentFrame = 0;}
+						this.currentFrame += delta;
+						return Math.pow(this.currentFrame / this.duration, 2);
+					},
+					'duration': 1200,
+					'onComplete':function(){
+						console.log('Anim Comp');
+						this.ch.destruct();
+						if(cjsHandler){cjsHandler.clear();}
+					}
+				});
+
+			}
+											
 		},
 		
 		putShadow:function(){
@@ -130,12 +172,49 @@ var BackgroundHandler;
 
 		},
 		
+		putTestAnimation:function(){
+			
+			var ch = _getNewFittedCanvasHandler(this.foreDiv);
+			frameAnimationHandler.setTask({
+				'id':'testAnim',
+				'ch': ch,
+				'update':function(progress){
+					var ch = this.ch;
+					var ctx = ch.getContext();
+					ch.clear();
+					ch.setWidth(10);
+					ch.setStrokeStyle(100, 200, 100, 1);
+					var w = ch.getCanvasWidth();
+					var h = ch.getCanvasHeight();
+					ch.drawShape(function(ctx){
+						ctx.rect(w * 0.3 * progress, h * 0.3 * progress, w * progress, h * progress);
+					});
+				},
+				'tweener':function(delta){
+					if(this.currentFrame === undefined){this.currentFrame = 0;}
+					this.currentFrame += delta;
+					return Math.pow(this.currentFrame / this.duration, 2);
+				},
+				'duration': 10000,
+				'onComplete':function(){
+					console.log('Anim Comp');
+					ch.destruct();
+				}
+			});
+
+		},
+		
 		putNavigationButtons:function(events){
 			
 			var ch = _getNewFittedCanvasHandler(this.foreDiv);
 			navigationHandler = new NavigationHandler(events);
 			navigationHandler.putButtons(ch);
 
+		},
+		
+		changeTo:function(hash){
+			this.setNavigationButtonState(hash);
+			this.clearMain();
 		},
 		
 		setNavigationButtonState:function(hash){

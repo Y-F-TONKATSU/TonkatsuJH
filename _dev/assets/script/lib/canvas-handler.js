@@ -27,50 +27,6 @@ var CanvasHandler;
 		
 	}
 		
-	var destructors = {
-		'simple':function(onComplete){
-			
-			var frame = 0;
-			
-			var draw = _.bind(function(){
-				
-				var ctx = this._context;
-				
-				ctx.save();
-				
-				ctx.beginPath();
-				
-				var numStrip = 6;
-				var w = this.getCanvasWidth();
-				var h = this.getCanvasHeight();
-				
-				_.times(numStrip, function(n){
-					var odd = n % 2;
-					ctx.rect(w / numStrip * n, h * odd, w / numStrip, h * frame);
-				})
-				
-				ctx.clip();
-				ctx.clearRect(0, 0, w, h);
-				
-				ctx.restore();
-				
-				frame += 0.0001;
-				
-				console.log(frame);
-				
-				if(frame >= 1){
-					onComplete();
-				} else {				
-					requestAnimationFrame(draw);
-				}
-					
-			}, this);
-			
-			requestAnimationFrame(draw);
-			
-		},
-	}
-		
 	CanvasHandler.prototype = {
 		
 		getRandomColorHexString:function(minR, maxR, minG, maxG, minB, maxB){
@@ -96,12 +52,9 @@ var CanvasHandler;
 		
 		destruct:function(type){
 			
-			_.bind(destructors[type], this)(_.bind(function(){
-				console.log('destructed');
-				$(this._canvas).remove();
-				this._canvas = null;
-			}, this));
-			
+			$(this._canvas).remove();
+			this._canvas = null;
+		
 		},
 		
 		getCenterX:function(){

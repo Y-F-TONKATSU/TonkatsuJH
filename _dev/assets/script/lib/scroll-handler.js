@@ -20,6 +20,10 @@ var ScrollHandler;
 			this._scrollListener = f;
 		},
 		
+		removeScrollListener : function(){
+			this._scrollListener = function(){};
+		},
+		
 		triggerScroll : function(){
 			this._scrollListener();
 		},

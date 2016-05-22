@@ -65,10 +65,10 @@ var DomHandler;
 	var setMainDocMode = function(url){
 			
 		$('#indexContainer').hide();
-		$('#mainDoc').show();
+		$('#mainDoc').show().scrollTop(0);
 		
 		loadDoc(url);
-			
+		
 	};
 	
 	var setIndexMode = function(){
@@ -102,9 +102,7 @@ var DomHandler;
 		},
 		
 		changeOption:function(option){
-			$('section').each(function(){
-				console.log($(this).offset());
-			});
+			
 			var target = $('article').find('[data-cjs-scene=' + option + ']').get(0);
 			if(target){
 				var t = $(target).offset().top + $('article').scrollTop() - DisplayUtil.getHeight() * 0.5;

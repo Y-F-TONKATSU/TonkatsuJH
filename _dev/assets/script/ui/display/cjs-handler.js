@@ -90,6 +90,18 @@ var CjsHandler;
 			cjsLoader[loaderType].call(this, root, onProgress, onComplete);
 		},
 		
+		stop:function(){
+			
+			if(this.foreMc) {
+				this.foreMc.stop();
+			}
+			if(this.backMc) {
+				this.backMc.stop();
+			}
+			
+			createjs.Ticker.removeEventListener('tick');	
+		},
+		
 		clear:function(){
 			
 			if(this.foreMc) {

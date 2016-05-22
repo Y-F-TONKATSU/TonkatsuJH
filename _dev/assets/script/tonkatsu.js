@@ -24,12 +24,10 @@ Tonkatsu.init = function(){
 		},
 	});
 	
-	urlHandler.addChangePageListener(domHandler.changeTo);
-	urlHandler.addChangePageListener(bgHandler.setNavigationButtonState);
-	urlHandler.addChangePageListener(bgHandler.clearMain);
-	urlHandler.addChangeOptionListener(domHandler.changeOption);
-	
-	bgHandler.startAnimationLoop();
+	urlHandler.addChangePageListener(_.bind(domHandler.changeTo, domHandler));
+	urlHandler.addChangePageListener(_.bind(bgHandler.setNavigationButtonState, bgHandler));
+	urlHandler.addChangePageListener(_.bind(bgHandler.changeTo, bgHandler));
+	urlHandler.addChangeOptionListener(_.bind(domHandler.changeOption, domHandler));
 	
 	console.log('Init Complete');
 	
