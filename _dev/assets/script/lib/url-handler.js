@@ -150,7 +150,6 @@ var UrlHandler;
 		},
 		
 		changeToCurrentHashPage:function(){
-			
 			_.each(this._chagePageListeners, _.bind(function(listener){
 				listener(this._currentHash);
 			}, this));

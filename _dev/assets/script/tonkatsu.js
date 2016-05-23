@@ -6,6 +6,7 @@ var scrollHandler;
 var bgHandler;
 
 var Animators = {};
+var Tweeners = {};
 
 Tonkatsu.init = function(){
 	

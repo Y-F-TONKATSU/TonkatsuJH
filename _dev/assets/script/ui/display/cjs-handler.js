@@ -40,11 +40,8 @@ var CjsHandler;
 				this.fStage.addChild(this.foreMc);
 				this.fStage.update();
 				
-				createjs.Ticker.setFPS(cjsLib.properties.fps);
-				createjs.Ticker.addEventListener("tick", this.fStage);
-				createjs.Ticker.addEventListener("tick", this.bStage);
-				createjs.Ticker.addEventListener("tick", _.bind(function(e){
-					
+				this.mainTickListener = _.bind(function(e){
+					console.log(this.mainTickListener);
 					var label = this.foreMc.currentLabel;
 					if(currentLabel !== label){
 						if(cjsEvents.labelOut[currentLabel]){
@@ -62,7 +59,12 @@ var CjsHandler;
 					if(this.backMc.currentLabel.indexOf('_stop') >= 0){
 						this.backMc.stop();
 					}
-				}, this));
+				}, this);
+				
+				createjs.Ticker.setFPS(cjsLib.properties.fps);
+				createjs.Ticker.addEventListener("tick", this.fStage);
+				createjs.Ticker.addEventListener("tick", this.bStage);
+				createjs.Ticker.addEventListener("tick", this.mainTickListener);
 				
 				onComplete({
 					'onSceneChanged':_.bind(function(scene){
@@ -99,7 +101,10 @@ var CjsHandler;
 				this.backMc.stop();
 			}
 			
-			createjs.Ticker.removeEventListener('tick');	
+			createjs.Ticker.removeEventListener("tick", this.fStage);
+			createjs.Ticker.removeEventListener("tick", this.bStage);
+			createjs.Ticker.removeEventListener("tick", this.mainTickListener);
+			
 		},
 		
 		clear:function(){
@@ -118,9 +123,7 @@ var CjsHandler;
 				this.bStage.removeAllChildren();
 			}
 			
-			if(createjs){
-				createjs.Ticker.removeEventListener('tick');	
-			}
+			
 		}
 		
 	}

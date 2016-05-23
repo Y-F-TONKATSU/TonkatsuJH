@@ -47,8 +47,8 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/ui/display/cjs-handler.js',
 		'../../_dev/assets/script/ui/display/background-handler.js',
 		'../../_dev/assets/script/ui/display/cjs/navigation.js',
-		'../../_dev/assets/script/ui/animators/cjs_animator.js',
-		'../../_dev/assets/script/ui/animators/draw_rec_animator.js',
+		'../../_dev/assets/script/ui/animators/animator_basic.js',
+		'../../_dev/assets/script/ui/animators/tweener_basic.js',
 		'../../_dev/assets/script/cjs/cjs-loader.js',
 		'../../_dev/assets/script/cjs/abs/abs_cjs.js'
 	];
