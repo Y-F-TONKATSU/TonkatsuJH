@@ -35,7 +35,9 @@ Tonkatsu.init = function(){
 };
 
 Tonkatsu.onHashChanged = function(e){
-
+	
+	console.log('Hash Change Event Triggerrd');
+	
 	var hash = String(location.hash).substring(1);
 	urlHandler.changeTo(hash);
 

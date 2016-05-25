@@ -14,13 +14,14 @@ var DomHandler;
 			'dataType':'html',
 		}).done(function(result) {
 			
-			console.log('New Doc Loaded by Ajax');
-			
 			var newDoc = $('<div></div>');
 			newDoc.html(result);
 			var type = $(newDoc).find('article').attr('data-doc-type');
 			var loader = $(newDoc).find('article').attr('data-loader-type');
 			var root = $(newDoc).find('article').attr('data-cjs-root');
+			
+			console.log('New Doc Loaded by Ajax');
+			console.log('type: ' + type + ', loader:' + loader + ', root:' + root);
 			processDoc[type](newDoc, loader, root);
 			
 		});
@@ -37,7 +38,7 @@ var DomHandler;
 				'position':'relative',
 				'marginTop': h * 0.2,
 				'marginBottom': h * 0.5,
-				'marginLeft':'10%',
+				'marginLeft':'15%',
 				'backgroundColor':'yellow',
 				'width':'30%',
 				'box-shadow': '2px 2px 12px 4px #888888',

@@ -31,13 +31,9 @@ var BackgroundHandler;
 		return ch;
 	}
 	
-	var destructLoader = function(){
-		
-	}
-	
 	var cjsLoop = function(events){
 		
-		destructLoader();
+		this.destructLoader();
 					
 		this.mainElem;
 		
@@ -69,26 +65,67 @@ var BackgroundHandler;
 	BackgroundHandler.prototype = {
 		
 		loadingAnims:{
-			'crouton':function(e){
-				if(!this.loadingCh){
-					this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv, 'loading');			
-				}
-				//Define Loading Anim Here
+			'crouton_init':function(e){
 				
+				var ch = this.loadingCh;
+				
+				ch.setFillStyle(200, 200, 100, 0.5);
+				var w = ch.getCanvasWidth();
+				var h = ch.getCanvasHeight();
+				
+				ch.drawShape(function(ctx){
+					ctx.rect(0, 0, w, h);
+				}, false, true);
+				
+				this.frameAnimationHandler.setTask({
+					'id':'loading',
+					'ch': this.loadingCh,
+					'color': ch.getColorHexString(247, 244, 232),
+					'update':Animators.basic.loader_circle,
+					'tweener':Tweeners.basic.progress,
+					'progress':0,
+					'duration': 2000,
+					'onComplete':function(){
+					}
+				});
+				
+			},
+			'crouton':function(e){
+				this.frameAnimationHandler.setParams('loading', {
+					'progress': e.progress
+				});
+				
+								
 			}
 		},
 			
+		destructLoader:function(){
+			
+			this.frameAnimationHandler.removeTask('loading');
+			this.loadingCh.destruct();
+			this.loadingCh = null;
+			
+		},
+	
 		setCjs:function(cjsLib, cjsImages, loaderType, root){
 			
 			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv, 'mainFore');
 			this.mainBack = _getNewFittedCanvasHandler(this.backDiv, 'mainBack');
 						
 			this.mainCjsHandler = new CjsHandler(this.mainFore, this.mainBack);
+			
+			if(!this.loadingCh){
+				this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv, 'loading');			
+			}
+			_.bind(this.loadingAnims[loaderType + '_init'], this)();
+			
 			this.mainCjsHandler.startLoading(loaderType, root, _.bind(this.loadingAnims[loaderType], this), _.bind(cjsLoop, this));
 			
 		},
 		
 		clearMain:function(){
+			
+			if(this.loadingCh){this.destructLoader();}
 			
 			var endingFore = this.mainFore;
 			var endingBack = this.mainBack;
@@ -98,6 +135,7 @@ var BackgroundHandler;
 			i++;
 			
 			if(endingFore){
+				
 				this.frameAnimationHandler.setTask({
 					'id':'endingFore' + i,
 					'ch': endingFore,

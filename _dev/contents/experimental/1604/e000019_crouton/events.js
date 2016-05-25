@@ -9,7 +9,10 @@ var cjsEvents = {
 				height:100,
 				left:460,
 				top:500
-			}, '#experimental000019_Scene005');
+			}, '#experimental000019_Scene005',
+			function(){
+				Tonkatsu.onHashChanged();
+			});
 
 		},
 		'Scene006_stop':function(){

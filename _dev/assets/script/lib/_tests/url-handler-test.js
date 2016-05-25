@@ -170,13 +170,13 @@ var testUrlHandler = function(){
 			
 		});
 				
-		test("isSameHash", function() {
+		test("isSameCont", function() {
 			
-			assert(!uh.isSameHash('image024680'), "何もセットしていないと isSameHash は false を返す");
+			assert(!uh.isSameCont('image024680'), "何もセットしていないと isSameCont は false を返す");
 			
 			uh.setCurrentHash('image024680');
 			
-			assert(uh.isSameHash('image024680'), "image024680 をセットして isSameHash に image024680 を渡すと true が返る");
+			assert(uh.isSameCont('image024680'), "image024680 をセットして isSameCont に image024680 を渡すと true が返る");
 			
 			uh.changeTo({
 				category:'image',
@@ -184,9 +184,9 @@ var testUrlHandler = function(){
 				option:''
 			});
 			
-			assert(uh.isSameHash('image024680'), "ID オブジェクトと文字列を isSameHash で比較できる");
-			assert(!uh.isSameHash('image024681'), "ID が違うと false");
-			assert(!uh.isSameHash('apps024680'), "カテゴリが違うと false");
+			assert(uh.isSameCont('image024680'), "ID オブジェクトと文字列を isSameHash で比較できる");
+			assert(!uh.isSameCont('image024681'), "ID が違うと false");
+			assert(!uh.isSameCont('apps024680'), "カテゴリが違うと false");
 			
 		});
 				
@@ -216,7 +216,7 @@ var testUrlHandler = function(){
 			
 			assert.strictEqual(x, 8, "リスナーを追加できる");
 			
-			uh.clearChangePageListener();
+			uh.clearChangePageListeners();
 			
 			uh.changeTo('image024682');
 			

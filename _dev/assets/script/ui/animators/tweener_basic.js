@@ -1,8 +1,14 @@
 Tweeners.basic = {
 	
+	'progress':function(delta){
+		return this.progress;
+	},
+	
+	'normal':function(delta){
+		return this.currentFrame / this.duration;
+	},
+	
 	'easeIn':function(delta){
-		if(this.currentFrame === undefined){this.currentFrame = 0;}
-		this.currentFrame += delta;
 		return Math.pow(this.currentFrame / this.duration, 2);
 	}
 	

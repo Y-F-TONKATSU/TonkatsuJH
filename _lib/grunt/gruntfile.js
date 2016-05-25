@@ -95,11 +95,13 @@ module.exports = function(grunt) {
 		var i;
 		var items = contents.rss.channel.item;
 		for (var j in items){
+			console.log(j);
 			if(items[j].category == category && items[j].id == id){
 				i = j;
 			}
 		}
 	
+		
 		var description = escapeText(items[i].description);
 		var title = escapeText(items[i].title);
 		var keywords = escapeText(items[i].tags);

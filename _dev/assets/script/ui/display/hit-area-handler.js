@@ -11,7 +11,7 @@ var HitAreaHandler;
 	
 	HitAreaHandler.prototype = {
 		
-		setHitArea:function(id, rect, ref, events){
+		setHitArea:function(id, rect, ref, callBack){
 					
 			var hitArea = $('<a id="hitArea_' + id + '" href="' + ref + '"></a>');
 			
@@ -25,6 +25,8 @@ var HitAreaHandler;
 				'left': objRect.left,
 				'pointerEvents':'auto',
 			});
+			
+			$(hitArea).click(callBack);
 			
 			$(this.div).append(hitArea);
 			

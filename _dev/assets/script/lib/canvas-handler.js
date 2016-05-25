@@ -210,7 +210,6 @@ var CanvasHandler;
 					var dy = points.pop();	
 					var dx = points.pop();
 					ctx.lineTo(dx, dy);
-					console.log(dx, dy);
 					x = dx;
 					y = dy;
 				}

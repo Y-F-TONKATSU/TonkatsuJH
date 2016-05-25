@@ -41,7 +41,6 @@ var CjsHandler;
 				this.fStage.update();
 				
 				this.mainTickListener = _.bind(function(e){
-					console.log(this.mainTickListener);
 					var label = this.foreMc.currentLabel;
 					if(currentLabel !== label){
 						if(cjsEvents.labelOut[currentLabel]){

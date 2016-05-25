@@ -23,7 +23,10 @@ var FrameAnimationHandler;
 					
 				_.each(this._taskList, function(task){
 					
-					var progress = task.tweener(delta);
+					if(task.currentFrame === undefined){task.currentFrame = 0;}
+					task.currentFrame += delta;
+					
+					var progress = task.tweener();
 					if(progress <= 1){
 						task.update(progress);
 					} else {
@@ -46,6 +49,14 @@ var FrameAnimationHandler;
 			}, this);
 	
 			requestAnimationFrame(draw);
+			
+		},
+		
+		setParams:function(id, params){
+			var task = this._taskList[id];
+			_.each(params, function(v, k){
+				task[k] = v;
+			});
 			
 		},
 		

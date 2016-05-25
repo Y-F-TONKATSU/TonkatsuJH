@@ -13,7 +13,7 @@ var UrlHandler;
 	
 	UrlHandler.prototype = {
 		
-		clearChangePageListener:function(){
+		clearChangePageListeners:function(){
 			this._chagePageListeners = [];
 		},
 		
@@ -89,9 +89,9 @@ var UrlHandler;
 			
 		},
 	
-		isSameHash:function(hash, optionOnly){
+		isSameHash:function(hash, predicate){
 			
-			if(_.isEmpty(this._currentHash)){
+			if(!this._currentHash){
 				return false;
 			}
 			
@@ -112,17 +112,21 @@ var UrlHandler;
 				
 			}
 			
-			if(optionOnly === true){
-				return obj.option === this.getCurrentOption();	
-			} else {
-				return obj.category === this.getCurrentCategory() &&
-					obj.id === this.getCurrentId();				
-			}
+			return _.bind(predicate, this)(obj);	
 						
 		},
 		
+		isSameCont:function(hash){
+			return this.isSameHash(hash, function(obj){
+				return obj.category === this.getCurrentCategory() &&
+				obj.id === this.getCurrentId();				
+			});
+		},
+		
 		isSameOption:function(hash){
-			this.isSameHash(hash, true);
+			return this.isSameHash(hash, function(obj){
+				return 	obj.option === this.getCurrentOption();
+			});
 		},
 		
 		processHashString:function(hash){
@@ -166,7 +170,7 @@ var UrlHandler;
 	
 		changeTo:function(hash){
 			console.log('Hash Changed from:' + this.getCurrentHashString() + ' to:' + hash);
-			if(!this.isSameHash(hash)){
+			if(!this.isSameCont(hash)){
 				this.setCurrentHash(hash);
 				this.changeToCurrentHashPage();
 			} else {
