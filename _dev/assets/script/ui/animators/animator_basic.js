@@ -48,11 +48,14 @@ Animators.basic = {
 		var rad = w * 0.4;
 		if(h < w){rad = h * 0.4;}
 		
-		ch.setFillStyle(160, 160, 255, inprogress);
+		ctx.fillStyle = this.color;
+		ctx.save();
+		ctx.gloabalAlpha = inprogress;
 		ch.drawShape(_.bind(function(ctx){
 			ctx.arc(cx, cy, rad * progress , 0 , Math.PI * 2);
 		}, this), false, true);
-			
+		ctx.restore();
+		
 		var s = Math.PI * 0.1;
 		
 		var r = 200;
@@ -64,22 +67,30 @@ Animators.basic = {
 					
 			ch.setWidth(4 + n % 3);
 			
-			if(n % 3 == 0){
-				r = 255;
-				g = 240;
-				b = 0;
+			if(n % 5 == 0){
+				r = 230;
+				g = 0;
+				b = 18;
 			} else if (n % 4 == 1) {
-				r = 30;
-				g = 30;
-				b = 240;
-			} else if (n % 2 == 1) {
-				r = 255;
-				g = 20;
-				b = 20;
-			} else {
-				r = 180;
-				g = n * 25;
+				r = 235;
+				g = 97;
 				b = 0;
+			} else if (n % 3 == 1) {
+				r = 234;
+				g = 210;
+				b = 47;
+			} else if (n % 3 == 0) {
+				r = 0;
+				g = 154;
+				b = 62;
+			} else if (n % 2 == 1) {
+				r = 126;
+				g = 49;
+				b = 122;
+			} else {
+				r = 11;
+				g = 49;
+				b = 143;
 			}
 			
 			ch.setStrokeStyle(r, g, b, a * 0.2);
