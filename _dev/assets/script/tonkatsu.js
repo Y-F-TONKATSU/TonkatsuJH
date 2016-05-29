@@ -50,10 +50,15 @@ Tonkatsu.onHashChanged = function(e){
 
 };
 
+Tonkatsu.onResize = function(e){
+	location.reload();
+};
+
 $(window).load(function(){
 	Tonkatsu.init();
 	Tonkatsu.onHashChanged();
 	
 });
 
+$(window).resize(Tonkatsu.onResize);
 $(window).on('hashchange', Tonkatsu.onHashChanged);

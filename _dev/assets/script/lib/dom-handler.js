@@ -28,12 +28,26 @@ var DomHandler;
 		
 	}
 	
+	var mobileAdaption = function(doc){
+		
+		if(DisplayUtil.getSize() !== 'large'){
+			$(doc).find('br').remove();
+			$(doc).find('section').css({
+				fontSize: '80%'
+			});
+		}
+		
+	};
+	
 	var processDoc = {
 		
 		'cjsLabeled':function(doc, loader, root){
 			
 			var h = DisplayUtil.getHeight();
-		
+			console.log(DisplayUtil.getSize());
+			
+			mobileAdaption(doc);
+				
 			$(doc).find('section').css({
 				'position':'relative',
 				'marginTop': h * 0.2,
@@ -44,8 +58,13 @@ var DomHandler;
 				'box-shadow': '2px 2px 12px 4px #888888',
 				'padding':'2%',
 				'transform': 'rotate(2deg)',
-			}).end().find('.right').css({
-				'marginLeft':'60%',
+			}).end().find('.ad').find('table').css({
+				'width':'100%',
+				'maxWidth':'300px'
+			}).end().end().find('.right').css({
+				'marginLeft':'60%'
+			}).end().find('.short').css({
+				'marginBottom':h * 0.2
 			}).end().find('section').first()
 			.css({
 				'marginTop': h * 0.3
@@ -182,6 +201,8 @@ var DomHandler;
 			
 			this.hideMenu();
 			this.hideShare();
+			
+			$('.contElem').remove();
 			
 			if(hash.category === 'top'){
 				setIndexMode();

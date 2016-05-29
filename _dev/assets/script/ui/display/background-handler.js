@@ -64,6 +64,9 @@ var BackgroundHandler;
 	
 	BackgroundHandler.prototype = {
 		
+		onResize:function(){
+		},
+		
 		loadingAnims:{
 			'crouton_init':function(e){
 				
