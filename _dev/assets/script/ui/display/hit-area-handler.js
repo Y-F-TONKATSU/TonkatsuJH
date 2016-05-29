@@ -12,8 +12,15 @@ var HitAreaHandler;
 	HitAreaHandler.prototype = {
 		
 		setHitArea:function(id, rect, ref, callBack){
-					
-			var hitArea = $('<a id="hitArea_' + id + '" href="' + ref + '"></a>');
+			
+			if(_.isFunction(ref)){
+				callBack = ref;
+				ref = '';
+			} else {
+				ref = ' href="' + ref + '"';
+			}
+			
+			var hitArea = $('<a id="hitArea_' + id + '"' + ref + '></a>');
 			
 			var objRect = DisplayUtil.getObjectRect(rect);
 			
@@ -24,6 +31,7 @@ var HitAreaHandler;
 				'top': objRect.top,
 				'left': objRect.left,
 				'pointerEvents':'auto',
+				'cursor':'pointer'
 			});
 			
 			$(hitArea).click(callBack);

@@ -9,12 +9,11 @@ var CjsHandler;
 			var loader = new createjs.LoadQueue(false);
 			
 			loader.addEventListener('progress', onProgress);
-						
+			
 			loader.addEventListener("fileload", function(evt) {
 				
-				console.log('A Cjs Image Loaded');
-						
 				if (evt.item.type == "image") { 
+					console.log('A Cjs Image Loaded');
 					cjsImages[evt.item.id] = evt.result;
 				}
 				
@@ -25,6 +24,9 @@ var CjsHandler;
 			loader.addEventListener("complete", _.bind(function (evt) {
 				
 				console.log('Cjs Image Loading Complete');
+				
+				var queue = evt.target;
+				ss["script_atlas_"] = queue.getResult("script_atlas_");
 				
 				var bCanvas = this.backCanvas.getCanvas();
 				var fCanvas = this.foreCanvas.getCanvas();
@@ -74,6 +76,8 @@ var CjsHandler;
 				
 			}, this));
 			
+						
+			//loader.loadFile({src:"contents/experimental/1604/e000019_crouton/images/script_atlas_.json?1464411112955", type:"spritesheet", id:"script_atlas_"}, true);
 			loader.loadManifest(cjsLib.properties.manifest);
 			
 			

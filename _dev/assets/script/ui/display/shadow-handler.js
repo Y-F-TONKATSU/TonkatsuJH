@@ -63,7 +63,7 @@ var ShadowHandler;
 			
 			var w = ch.getCanvasWidth();
 			var h = ch.getCanvasHeight();
-			var shadowWidth = w * 0.05;
+			var shadowWidth = w * 0.01;
 			
 			if(DisplayUtil.isLandscape()){
 				if(DisplayUtil.isOverRatio()){

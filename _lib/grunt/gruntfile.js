@@ -218,8 +218,13 @@ module.exports = function(grunt) {
 		
 		//Fix Image Path
 		var r = script.replace(/{src:"/g, '{src:"' + imagePath);
-		
 		var tag = '<script>' + r + events + '</script>';
+		
+		//Fix Image Path in json
+		/*var imageAtlas = items[i].cjsImageAtlas;
+		var atlas = grunt.file.read('../../_processing/' + imageAtlas);
+		var atlasFixed = atlas.replace('{"images": ["images/', '{"images": ["' + imagePath + 'images/');
+		grunt.file.write('../../_processing/' + imageAtlas, atlasFixed);*/
 
 		return tag;
 		

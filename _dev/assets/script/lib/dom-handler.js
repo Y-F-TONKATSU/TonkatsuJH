@@ -63,10 +63,46 @@ var DomHandler;
 		
 	};
 	
-	var setMainDocMode = function(url){
+	var frameIn = {
+		
+		'fromLeft':function(elem, duration, callBack){
 			
-		$('#indexContainer').hide();
-		$('#mainDoc').show().scrollTop(0);
+			$(elem).show().scrollTop(0).css({
+				'left': -DisplayUtil.getWidth(),
+			}).animate({
+				'left':DisplayUtil.getStageRect().left
+			}, duration, callBack)
+			.data({
+				'state':'visible'
+			});
+		
+		}
+	}
+	
+	var frameOut = {
+		
+		'fromLeft':function(elem, duration, callBack){
+			
+			$(elem).show().scrollTop(0).css({
+				'left':DisplayUtil.getStageRect().left,
+			}).animate({
+				'left': -DisplayUtil.getWidth()
+			}, duration, callBack)
+			.data({
+				'state':'hidden'
+			});
+		}
+	}
+	
+	var setMainDocMode = function(url){
+		
+		frameIn.fromLeft($('#mainDoc'), 1000, function(){
+		});
+		
+		if($('#indexContainer').data('state') === 'visible'){
+			frameOut.fromLeft($('#indexContainer'), 1000, function(){
+			});
+		}
 		
 		loadDoc(url);
 		
@@ -74,8 +110,13 @@ var DomHandler;
 	
 	var setIndexMode = function(){
 		
-		$('#indexContainer').show();
-		$('#mainDoc').hide();
+		frameIn.fromLeft($('#indexContainer'), 1000, function(){
+		});
+		
+		if($('#mainDoc').data('state') === 'visible'){
+			frameOut.fromLeft($('#mainDoc'), 1000, function(){
+			});
+		}
 		
 	};
 	
@@ -83,16 +124,64 @@ var DomHandler;
 	DomHandler.prototype = {
 		
 		initDoc:function(doc){
+			
 			var rect = DisplayUtil.getStageRect();
 			$(doc).css({
-				'width': rect.width,
+				'width': rect.width * 0.99,
 				'height': rect.height,
 				'top': rect.top,
-				'left': rect.left,
+				'left': -DisplayUtil.getWidth(),
+			}).data({
+				'state':'hidden'
 			});
+
+			
+		},
+		
+		showMenu:function(){
+			
+			this.hideShare();
+			
+			if($('#menu').data('state') === 'hidden'){
+				frameIn.fromLeft($('#menu'), 1000, function(){
+				});
+			}
+			
+		},
+		
+		showShare:function(){
+			
+			this.hideMenu();
+			
+			if($('#share').data('state') === 'hidden'){
+				frameIn.fromLeft($('#share'), 1000, function(){
+				});
+			}
+			
+		},
+		
+		hideMenu:function(){
+			
+			if($('#menu').data('state') === 'hidden'){return;}
+			
+			frameOut.fromLeft($('#menu'), 1000, function(){
+			});
+			
+		},
+		
+		hideShare:function(){
+			
+			if($('#share').data('state') === 'hidden'){return;}
+			
+			frameOut.fromLeft($('#share'), 1000, function(){
+			});
+			
 		},
 		
 		changeTo:function(hash){
+			
+			this.hideMenu();
+			this.hideShare();
 			
 			if(hash.category === 'top'){
 				setIndexMode();

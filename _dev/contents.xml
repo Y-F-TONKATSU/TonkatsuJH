@@ -12,6 +12,7 @@
 			<cjs>contents/experimental/1604/e000019_crouton/script.js</cjs>
 			<cjsEvents>contents/experimental/1604/e000019_crouton/events.js</cjsEvents>
 			<cjsImages>contents/experimental/1604/e000019_crouton/</cjsImages>
+			<cjsImageAtlas>contents/experimental/1604/e000019_crouton/images/script_atlas_.json</cjsImageAtlas>
 			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>
 			<pubDate>Mon, 21 Mar 2016 22:00:00 +0900</pubDate>
 			<category>experimental</category>

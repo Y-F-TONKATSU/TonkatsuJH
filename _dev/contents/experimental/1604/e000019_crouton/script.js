@@ -73,7 +73,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,185,505);
 (lib.cooking_hdr = function() {
 	this.initialize(img.cooking_hdr);
 }).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,1920,1200);
+p.nominalBounds = new cjs.Rectangle(0,0,960,213);
 
 
 (lib.cup_soup = function() {
@@ -1150,15 +1150,16 @@ p.nominalBounds = new cjs.Rectangle(-62.1,-92.8,124.2,185.7);
 
 
 (lib.ForeImage = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
 	// レイヤー 1
 	this.instance = new lib.cooking_hdr();
+	this.instance.setTransform(0,716.7,2,2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,1920,1200);
+p.nominalBounds = new cjs.Rectangle(0,716.7,1920,426);
 
 
 (lib.UnkoPadSub = function(mode,startPosition,loop) {
@@ -4777,7 +4778,7 @@ p.nominalBounds = new cjs.Rectangle(-962.5,-602.5,3845,2405);
 	this.timeline.addTween(cjs.Tween.get(this.instance_11).to({y:781.6},81).wait(95).to({y:820},0).to({y:724},8).wait(20).to({y:980},7).wait(173).to({y:602.4},11).wait(113).to({y:922.9},8).to({_off:true},138).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,1920,1596.1);
+p.nominalBounds = new cjs.Rectangle(0,0,1920,1538.8);
 
 
 (lib.Circle_anim_multiExtensions = function(mode,startPosition,loop) {
@@ -5279,7 +5280,7 @@ p.nominalBounds = new cjs.Rectangle(-3842.6,-2402.5,9605,7205);
 
 
 (lib.crouton_v006 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
 	// foreground
 	this.foreground = new lib.Foreground();

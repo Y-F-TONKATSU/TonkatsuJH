@@ -7,11 +7,13 @@ var NavigationHandler;
 	NavigationHandler = function(events){
 		this.buttons = [];
 		this.hitAreaHandler = new HitAreaHandler($('#navigation'));
-
+		this.onHomeClickedListener = events.onHomeClicked;
+		this.onMenuClickedListener = events.onMenuClicked;
+		this.onShareClickedListener = events.onShareClicked;
 	};
 	
 	NavigationHandler.prototype = {
-		
+			
 		putButtons:function(ch){
 			
 			var canvas = ch.getCanvas();
@@ -56,7 +58,7 @@ var NavigationHandler;
 				height:200,
 				left:20,
 				top:300
-			}, '#top000000');
+			}, '#', this.onHomeClickedListener);
 				
 		},
 		
@@ -69,7 +71,7 @@ var NavigationHandler;
 				height:200,
 				left:20,
 				top:520
-			}, '#top');
+			}, this.onMenuClickedListener);
 				
 		},
 		
@@ -82,7 +84,7 @@ var NavigationHandler;
 				height:200,
 				left:20,
 				top:740
-			}, 'index.html');
+			}, this.onShareClickedListener);
 				
 				
 		},

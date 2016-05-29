@@ -49,8 +49,13 @@ var CanvasHandler;
 			
 		},
 		
-		
-		destruct:function(type){
+		rgbas:function(r, g, b, a){
+			a = a.toString();
+			if(a.length > 10){a = a.slice(0, 10);}
+			return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+		},
+					
+		destruct:function(){
 			
 			$(this._canvas).remove();
 			this._canvas = null;
@@ -96,12 +101,6 @@ var CanvasHandler;
 		
 		clear:function(){
 			this._context.clearRect(0, 0, this.getCanvasWidth(), this.getCanvasHeight());
-		},
-			
-		rgbas:function(r, g, b, a){
-			a = a.toString();
-			if(a.length > 10){a = a.slice(0, 10);}
-			return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
 		},
 			
 		setFillStyle:function(r, g, b, a){

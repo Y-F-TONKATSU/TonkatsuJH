@@ -14,14 +14,21 @@ Tonkatsu.init = function(){
 	
 	urlHandler = new UrlHandler();
 	domHandler = new DomHandler();
+	domHandler.initDoc('#share');
+	domHandler.initDoc('#menu');
 	domHandler.initDoc('#mainDoc');
 	domHandler.initDoc('#indexContainer');
 	scrollHandler = new ScrollHandler($('#mainDoc'));
 	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
 	bgHandler.putShadow();
 	bgHandler.putNavigationButtons({
-		'onHomeClick':function(e){
-			urlHandler.changeTo('index');
+		'onHomeClicked':function(){
+		},
+		'onMenuClicked':function(){
+			domHandler.showMenu();
+		},
+		'onShareClicked':function(){
+			domHandler.showShare();
 		},
 	});
 	
