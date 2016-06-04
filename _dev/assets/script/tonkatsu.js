@@ -14,8 +14,7 @@ Tonkatsu.init = function(){
 	
 	urlHandler = new UrlHandler();
 	domHandler = new DomHandler();
-	domHandler.initDoc('#share');
-	domHandler.initDoc('#menu');
+	domHandler.init();
 	domHandler.initDoc('#mainDoc');
 	domHandler.initDoc('#indexContainer');
 	scrollHandler = new ScrollHandler($('#mainDoc'));

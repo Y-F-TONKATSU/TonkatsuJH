@@ -5,8 +5,12 @@ var testDisplayUtil = function(){
 	suite('DisplayUtil', function() {
 		
 		test('getWidth()/getHeight()', function() {
-			$('#width').text(DisplayUtil.getWidth())
-			$('#height').text(DisplayUtil.getHeight())
+			$('#width').text(DisplayUtil.getWidth());
+			$('#height').text(DisplayUtil.getHeight());
+		});
+		
+		test('longer()', function() {
+			$('#longer').text(DisplayUtil.getLonger());
 		});
 		
 		test('getOrientation()', function() {

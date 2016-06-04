@@ -50,6 +50,12 @@ var DisplayUtil;
 			return	window.innerHeight;
 		},
 		
+		getLonger:function(){
+			var w = this.getWidth();
+			var h = this.getHeight();
+			return	w > h ? w : h;
+		},
+		
 		isOverRatio:function(){
 			if(DisplayUtil.isLandscape()){
 				return DisplayUtil.getScreenRatio() < DisplayUtil.getRatio();
@@ -76,6 +82,19 @@ var DisplayUtil;
 		
 		getScreenRatio:function(){
 			return	DisplayUtil.getHeight() / DisplayUtil.getWidth();
+		},
+		
+		setRect:function(elem, l, t, w, h){
+			
+			var rect = DisplayUtil.getStageRect();
+			
+			$(elem).css({
+				'width':rect.width * w,
+				'height':rect.height * h,
+				'left':rect.left + rect.width * l,
+				'top':rect.top + rect.height * t,
+			});
+			
 		},
 		
 		getStageRect:function(){

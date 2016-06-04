@@ -16,17 +16,16 @@ var cjsEvents = {
 
 		},
 		'Scene006_stop':function(){
-			var shareDiv = ShareUtil.getAllTags('http://ton-katsu.net/public/contents/experimental/1604/e000019_crouton/main.html', 'クルトンの作り方');
+			var shareDiv = ShareUtil.getAllTags('http://ton-katsu.net/contents/experimental/1604/e000019_crouton/main.html', 'クルトンの作り方');
 
 			$(shareDiv).addClass('share_crouton').addClass('contElem').css({
 				'position':'fixed',
-				'width':'25%',
-				'height':'32%',
-				'top':'31%',
-				'left':'18%',
 				'overflowY':'auto',
-				'backgroundColor':'red'
+				'pointerEvents':'auto'
 			});
+			
+			DisplayUtil.setRect(shareDiv, 0.15, 0.23, 0.36, 0.44);
+			
 			$('#foreground').append(shareDiv);
 			
 			ShareUtil.render();

@@ -5,8 +5,9 @@
 @ZI_BG:0;
 @ZI_MAIN:1;
 @ZI_FG:2;
-@ZI_MENU:3;
-@ZI_NAV:4;
+@ZI_MENU_CANCELER:3;
+@ZI_MENU:4;
+@ZI_NAV:5;
 
 .full{
 	position:fixed;
@@ -51,7 +52,17 @@
 }
 
 #menu, #share{
+	position:fixed;
 	z-index:@ZI_MENU;
+}
+
+#menuCanceler{
+	position:fixed;
+	z-index:@ZI_MENU_CANCELER;
+}
+
+#menuDoc, #shareDoc{
+	position:fixed;
 }
 
 #foreground{

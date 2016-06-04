@@ -6,6 +6,7 @@ var BackgroundHandler;
 		
 		this.foreDiv = fdiv;
 		this.backDiv = bdiv;
+		this.backgroundDiv = bdiv;
 		
 		this.loadingCh = null;
 		this.mainFore = null;
@@ -126,6 +127,22 @@ var BackgroundHandler;
 			
 		},
 		
+		setBackground:function(cjsLib, cjsImages, loaderType, root){
+			
+			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv, 'mainFore');
+			this.mainBack = _getNewFittedCanvasHandler(this.backDiv, 'mainBack');
+						
+			this.mainCjsHandler = new CjsHandler(this.mainFore, this.mainBack);
+			
+			if(!this.loadingCh){
+				this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv, 'loading');			
+			}
+			_.bind(this.loadingAnims[loaderType + '_init'], this)();
+			
+			this.mainCjsHandler.startLoading(loaderType, root, _.bind(this.loadingAnims[loaderType], this), _.bind(cjsLoop, this));
+			
+		},
+		
 		clearMain:function(){
 			
 			if(this.loadingCh){this.destructLoader();}
@@ -142,7 +159,7 @@ var BackgroundHandler;
 				this.frameAnimationHandler.setTask({
 					'id':'endingFore' + i,
 					'ch': endingFore,
-					'update':Animators.basic.wipe_square,
+					'update':Animators.basic.wipe_circle,
 					'tweener':Tweeners.basic.easeIn,
 					'duration': 1200,
 					'onComplete':function(){
@@ -159,7 +176,7 @@ var BackgroundHandler;
 				this.frameAnimationHandler.setTask({
 					'id':'endingBack' + i,
 					'ch': endingBack,
-					'update':Animators.basic.wipe_square,
+					'update':Animators.basic.wipe_circle,
 					'tweener':Tweeners.basic.easeIn,
 					'duration': 1200,
 					'onComplete':function(){

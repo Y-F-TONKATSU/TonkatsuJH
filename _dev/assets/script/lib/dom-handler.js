@@ -4,6 +4,9 @@ var DomHandler;
 	
 	DomHandler = function(){
 		
+		this._url = 'http://ton-katsu.net/';
+		this._title = 'とんかつひろば';
+		
 	};
 	
 	
@@ -53,7 +56,7 @@ var DomHandler;
 				'marginTop': h * 0.2,
 				'marginBottom': h * 0.5,
 				'marginLeft':'15%',
-				'backgroundColor':'yellow',
+				'backgroundColor':'#F7F4E8',
 				'width':'30%',
 				'box-shadow': '2px 2px 12px 4px #888888',
 				'padding':'2%',
@@ -61,8 +64,7 @@ var DomHandler;
 			}).end().find('.ad').find('table').css({
 				'width':'100%',
 				'maxWidth':'300px'
-			}).end().end().find('.right').css({
-				'marginLeft':'60%'
+			}).end().end().find('.right').css({				'marginLeft':'60%'
 			}).end().find('.short').css({
 				'marginBottom':h * 0.2
 			}).end().find('section').first()
@@ -84,12 +86,18 @@ var DomHandler;
 	
 	var frameIn = {
 		
-		'fromLeft':function(elem, duration, callBack){
+		'fromLeft':function(elem, duration, left, callBack){
+			
+			if(_.isFunction(left)){
+				callBack = left;
+				left = DisplayUtil.getStageRect().left;
+			}
+			console.log(left);
 			
 			$(elem).show().scrollTop(0).css({
 				'left': -DisplayUtil.getWidth(),
 			}).animate({
-				'left':DisplayUtil.getStageRect().left
+				'left': left
 			}, duration, callBack)
 			.data({
 				'state':'visible'
@@ -100,10 +108,15 @@ var DomHandler;
 	
 	var frameOut = {
 		
-		'fromLeft':function(elem, duration, callBack){
+		'fromLeft':function(elem, duration, left, callBack){
+			
+			if(_.isFunction(left)){
+				callBack = left;
+				left = DisplayUtil.getStageRect().left;
+			}
 			
 			$(elem).show().scrollTop(0).css({
-				'left':DisplayUtil.getStageRect().left,
+				'left':left,
 			}).animate({
 				'left': -DisplayUtil.getWidth()
 			}, duration, callBack)
@@ -139,12 +152,39 @@ var DomHandler;
 		
 	};
 	
+	var getMenuLeft = function(){
+		
+		var rect = DisplayUtil.getStageRect();
+		
+		return rect.left + rect.width * 0.1;
+			
+	}
 	
 	DomHandler.prototype = {
+		
+		init:function(){
+			
+			var rect = DisplayUtil.getStageRect();
+			
+			$('#menu, #share').css({
+				left:-rect.width,
+				top:rect.height * 0.04,
+				width:rect.width * 0.80,
+				height:rect.height * 0.92,
+			}).data({
+				'state':'hidden'
+			});
+			
+			$('#menuCanceler').hide().data({
+				'state':'hidden'
+			});
+			
+		},
 		
 		initDoc:function(doc){
 			
 			var rect = DisplayUtil.getStageRect();
+			
 			$(doc).css({
 				'width': rect.width * 0.99,
 				'height': rect.height,
@@ -160,40 +200,69 @@ var DomHandler;
 		showMenu:function(){
 			
 			this.hideShare();
+			this.showMenuCanceler();
+			$('#menuCanceler').click(_.bind(this.hideMenu, this));
 			
 			if($('#menu').data('state') === 'hidden'){
-				frameIn.fromLeft($('#menu'), 1000, function(){
+				frameIn.fromLeft($('#menu'), 1000, getMenuLeft(), function(){
 				});
 			}
 			
 		},
 		
-		showShare:function(){
+		showShare:function(url, title){
 			
 			this.hideMenu();
+			this.showMenuCanceler();
+			$('#menuCanceler').click(_.bind(this.hideShare, this));
 			
 			if($('#share').data('state') === 'hidden'){
-				frameIn.fromLeft($('#share'), 1000, function(){
-				});
+				frameIn.fromLeft($('#share'), 1000, getMenuLeft(), _.bind(function(){
+					
+					var shareDiv = ShareUtil.getAllTags(this._url, this._title);
+
+					$('#share').empty().append(shareDiv);
+
+					ShareUtil.render();
+					
+				}, this));
+			}
+			
+		},
+		
+		showMenuCanceler:function(){
+			
+			if($('#menuCanceler').data('state') === 'hidden'){
+				$('#menuCanceler').show().data('state', 'visible');
 			}
 			
 		},
 		
 		hideMenu:function(){
 			
+			this.hideMenuCanceler();
 			if($('#menu').data('state') === 'hidden'){return;}
 			
-			frameOut.fromLeft($('#menu'), 1000, function(){
+			frameOut.fromLeft($('#menu'), 1000, getMenuLeft(), function(){
 			});
 			
 		},
 		
 		hideShare:function(){
 			
+			this.hideMenuCanceler();
 			if($('#share').data('state') === 'hidden'){return;}
 			
-			frameOut.fromLeft($('#share'), 1000, function(){
+			frameOut.fromLeft($('#share'), 1000, getMenuLeft(), function(){
 			});
+			
+		},
+		
+		hideMenuCanceler:function(){
+			
+			if($('#menuCanceler').data('state') === 'hidden'){return;}
+			
+			$('#menuCanceler').hide().data('state', 'hidden');
 			
 		},
 		
