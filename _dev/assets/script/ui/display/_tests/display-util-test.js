@@ -9,7 +9,7 @@ var testDisplayUtil = function(){
 			$('#height').text(DisplayUtil.getHeight());
 		});
 		
-		test('longer()', function() {
+		test('getLonger()', function() {
 			$('#longer').text(DisplayUtil.getLonger());
 		});
 		
@@ -65,6 +65,53 @@ var testDisplayUtil = function(){
 				str = '長過ぎない'
 			}
 			$('#over').text(str);
+		});
+		
+		test('getStageRect()', function() {
+			
+			var rect = DisplayUtil.getStageRect();
+			
+			$('#stage').css({
+				'backgroundColor':'yellow',
+				'opacity':0.2,
+				'position':'fixed',
+			});
+			
+			DisplayUtil.rectToCss(rect, $('#stage'));
+			
+		});
+		
+		test('getObjectRect()', function() {
+			
+			var rect = DisplayUtil.getObjectRect({
+				left:480,
+				top:300,
+				width:960,
+				height:600
+			});
+			
+			$('#object').css({
+				'backgroundColor':'red',
+				'opacity':0.2,
+				'position':'fixed',
+			});
+			
+			DisplayUtil.rectToCss(rect, $('#object'));
+			
+		});
+		
+		test('getElemRect()', function() {
+			
+			var rect = DisplayUtil.getElemRect($('#elem'));
+			
+			$('#elem').css({
+				'backgroundColor':'blue',
+				'opacity':0.2,
+				'position':'fixed',
+			});
+			
+			DisplayUtil.rectToCss(rect, $('#elem'));
+			
 		});
 		
 	});

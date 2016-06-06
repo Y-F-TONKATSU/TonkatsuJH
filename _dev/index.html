@@ -48,15 +48,36 @@
 	
 		<div id='main' class='full'>
 		
-			<div id='subBackground' class='fullLayer'></div>
-			<div id='background' class='fullLayer'></div>
+			<div 
+            	id='background'
+                class='stage disabled autoInit'
+                data-layout-width='1'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
+            </div>
 			
-			<article id='mainDoc' class='full'></article>
+			<article 
+            	id='mainDoc' 
+            	class='narrowStage autoInit'
+                data-layout-state='hidden'
+                data-layout-width='0.99'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
+            </article>
 			
 			
-			<nav id='indexContainer' class='full'>
+			<nav 
+            	id='indexContainer'
+                class='narrowStage autoInit'
+                data-layout-state='hidden'
+                data-layout-width='0.99'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
 				
-				<h1 id='indexMainTitle'>TONKATSU</h1>
+				<h1 id='indexMainTitle'>コンテンツ</h1>
 				
 				<ul id='indexList'>
 					
@@ -66,16 +87,45 @@
 				
 			</nav>
 			
-			<div id='foreground' class='fullLayer'></div>
-            
-			<div id='navigation' class='navigationLayer'></div>
-            
-			<div id='menuCanceler' class='full'></div>
-            
-            <div id='menu'>
+			<div 
+            	id='foreground'
+                class='stage disabled autoInit'
+                data-layout-width='1'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
             </div>
             
-            <div id='share'>
+			<div 
+            	id='navigation'
+                class='navigationLayer'
+			>
+            </div>
+            
+			<div
+            	id='menuCanceler'
+                class='full'
+			>
+            </div>
+            
+            <div 
+            	id='menu'
+                class='popupMenu autoInit'
+                data-layout-state='hidden'
+                data-layout-width='0.80'
+                data-layout-height='0.92'
+                data-layout-left='0.10'
+                data-layout-top='0.04'>
+            </div>
+            
+            <div 
+            	id='share'
+                class='popupMenu autoInit'
+                data-layout-state='hidden'
+                data-layout-width='0.80'
+                data-layout-height='0.92'
+                data-layout-left='0.10'
+                data-layout-top='0.04'>
             </div>
 			
 		</div>

@@ -4,6 +4,9 @@ var BackgroundHandler;
 	
 	BackgroundHandler = function(fdiv, bdiv){
 		
+		this._currentDocId = 'index';
+		this._taskList = [];
+		
 		this.foreDiv = fdiv;
 		this.backDiv = bdiv;
 		this.backgroundDiv = bdiv;
@@ -19,7 +22,29 @@ var BackgroundHandler;
 		this.frameAnimationHandler = new FrameAnimationHandler();
 		this.frameAnimationHandler.init();
 		this.navigationHandler = null;
+		
 	};
+	
+	var init = function(){
+		
+		setTask({
+			'id':'loading',
+			'docId':'ex000018',
+			'ch': this.loadingCh,
+			'options': {
+				'color':ch.getColorHexString(247, 244, 232),
+			},
+			'tweener':Tweeners.basic.progress,
+			'progress':0,
+			'currentTime':0,
+			'duration': 2000,
+			'ender':function(){return false;},
+			'onTicked':Animators.basic.loader_circle,
+			'onComplete':function(){
+			}
+		});
+		
+	}
 	
 	var _getNewFittedCanvasHandler = function(div, id){
 		
@@ -216,37 +241,6 @@ var BackgroundHandler;
 			}
 		},
 		
-		putTestAnimation:function(){
-			
-			var ch = _getNewFittedCanvasHandler(this.foreDiv, 'testAnim');
-			this.frameAnimationHandler.setTask({
-				'id':'testAnim',
-				'ch': ch,
-				'update':function(progress){
-					var ch = this.ch;
-					var ctx = ch.getContext();
-					ch.clear();
-					ch.setWidth(10);
-					ch.setStrokeStyle(100, 200, 100, 1);
-					var w = ch.getCanvasWidth();
-					var h = ch.getCanvasHeight();
-					ch.drawShape(function(ctx){
-						ctx.rect(w * 0.3 * progress, h * 0.3 * progress, w * progress, h * progress);
-					});
-				},
-				'tweener':function(delta){
-					if(this.currentFrame === undefined){this.currentFrame = 0;}
-					this.currentFrame += delta;
-					return Math.pow(this.currentFrame / this.duration, 2);
-				},
-				'duration': 10000,
-				'onComplete':function(){
-					console.log('Anim Comp');
-					ch.destruct();
-				}
-			});
-
-		},
 		
 	};
 	

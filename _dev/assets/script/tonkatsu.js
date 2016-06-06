@@ -14,9 +14,7 @@ Tonkatsu.init = function(){
 	
 	urlHandler = new UrlHandler();
 	domHandler = new DomHandler();
-	domHandler.init();
-	domHandler.initDoc('#mainDoc');
-	domHandler.initDoc('#indexContainer');
+	domHandler.initElems($('.autoInit'));
 	scrollHandler = new ScrollHandler($('#mainDoc'));
 	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
 	bgHandler.putShadow();

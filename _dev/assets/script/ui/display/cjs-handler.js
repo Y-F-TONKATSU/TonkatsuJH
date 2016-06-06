@@ -10,11 +10,11 @@ var CjsHandler;
 			
 			loader.addEventListener('progress', onProgress);
 			
-			loader.addEventListener("fileload", function(evt) {
+			loader.addEventListener("fileload", function(e) {
 				
-				if (evt.item.type == "image") { 
-					console.log('A Cjs Image Loaded');
-					cjsImages[evt.item.id] = evt.result;
+				if (e.item.type == "image") { 
+					//console.log('A Cjs Image Loaded:' + e.item.id);
+					cjsImages[e.item.id] = e.result;
 				}
 				
 			});
@@ -62,11 +62,22 @@ var CjsHandler;
 					}
 				}, this);
 				
-				createjs.Ticker.setFPS(cjsLib.properties.fps);
-				createjs.Ticker.addEventListener("tick", this.fStage);
-				createjs.Ticker.addEventListener("tick", this.bStage);
-				createjs.Ticker.addEventListener("tick", this.mainTickListener);
+				this.fStage.autoClear = false;
+				this.bStage.autoClear = false;
 				
+				createjs.Ticker.setFPS(cjsLib.properties.fps);
+				createjs.Ticker.addEventListener("tick", _.bind(function(){
+					this.fStage.clear();
+					this.fStage.update();
+					this.bStage.update();
+					var ctx = bCanvas.getContext('2d');
+					ctx.strokeStyle = 'yellow';
+					ctx.moveTo(0,0);
+					ctx.lineTo(1000,500);
+					ctx.stroke();
+					this.mainTickListener();
+				}, this));
+								
 				onComplete({
 					'onSceneChanged':_.bind(function(scene){
 						this.foreMc.gotoAndPlay(scene + '_start');

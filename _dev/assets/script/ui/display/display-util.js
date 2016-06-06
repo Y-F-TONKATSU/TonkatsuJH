@@ -158,6 +158,40 @@ var DisplayUtil;
 			}
 		},
 		
+		getElemRect:function(elem){
+			
+			var rect = DisplayUtil.getStageRect();
+			
+			var w = rect.width * parseFloat($(elem).attr('data-layout-width'));
+			var h = rect.height * parseFloat($(elem).attr('data-layout-height'));
+			var l = rect.left + rect.width * parseFloat($(elem).attr('data-layout-left'));
+			var t = rect.top + rect.height * parseFloat($(elem).attr('data-layout-top'));
+			
+			return {
+				'left':l,
+				'top':t,
+				'width':w,
+				'height':h,
+			}
+		},
+		
+		setStageRect:function(elem){
+			
+			this.rectToCss(DisplayUtil.getStageRect(), elem);
+						
+		},
+		
+		rectToCss:function(rect, elem){
+			
+			$(elem).css({
+				'left': rect.left,
+				'top': rect.top,
+				'width': rect.width,
+				'height': rect.height
+			});
+			
+		},
+		
 	};
 	
 })();
