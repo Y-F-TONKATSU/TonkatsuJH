@@ -45,11 +45,28 @@ var testAnimationHandler = function(){
 						
 		test('addTask()', function() {
 			
-			var ch = ah._getNewCanvasHandler('fore', 'foreTest');
-			
 			ah.init();
 			
-						
+			ah.addTask({
+				'id':'testTask',
+				'docId':'ex000018',
+				'containerId': 'fore',
+				'options': {
+				},
+				'tweener':function(){return this.currentTime / this.duration},
+				'progress':0,
+				'currentTime':0,
+				'duration': 1000,
+				'ender':function(){return false;},
+				'onTicked':function(){
+					$('#loopTest').html('ちゃんとループしてるよ！');
+				},
+				'onComplete':function(){
+					$('#completeTest').html('ちゃんとタスク完了したよ！');
+				}
+			});
+			
+			assert.strictEqual(1, ah._taskList.length, 'タスクリストにタスクが追加された');
 		});
 						
 						

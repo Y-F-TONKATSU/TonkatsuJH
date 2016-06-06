@@ -103,26 +103,17 @@ var AnimationHandler;
 
 				_.each(this._taskList, function(task){
 					
-					if(task.currentFrame === undefined){task.currentFrame = 0;}
-					task.currentFrame += delta;
+					if(task.currentTime === undefined){task.currentTime = 0;}
+					task.currentTime += delta;
 					
 					var progress = task.tweener();
-					if(progress <= 1){
-						task.update(progress);
-					} else {
+					task.onTicked(progress);
+					if(progress >= 1){
 						task.onComplete();
-						if(!removes){removes = []}
-						removes.push(task.id);
 					}
 				});				
 				
-				if(removes){this.removeTasks(removes);}
-				
 				lastTime = time;
-				
-				if(this._cjsTask){
-					this._cjsTask();
-				}
 				
 				requestAnimationFrame(draw);
 				
@@ -133,6 +124,8 @@ var AnimationHandler;
 		},
 		
 		addTask:function(task){
+			
+			this._taskList.push(task);
 			
 		},
 		
