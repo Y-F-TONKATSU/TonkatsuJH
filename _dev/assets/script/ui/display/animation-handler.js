@@ -4,15 +4,34 @@ var AnimationHandler;
 	
 	AnimationHandler = function(containers){
 		
-		this._containers = containers;
+		this._containerList = containers;
+		this._chList = {};
+		
+		_.each(this._containerList, _.bind(function(v, k){
+			var ch = _getNewCanvasHandler(v, k);
+			this._chList[k] = ch;
+		}, this));
 		
 		this._currentDocId = 'index';
 		this._taskList = [];
 		
 		this._navigationHandler = null;
 		
+		this._stopped = false;
 	};
 	
+	var _getNewCanvasHandler = function(container, containerId){
+		
+		var canvas = $('<canvas id="' + containerId + '_canvas"></canvas>').get(0);
+		$(container).append(canvas);
+		
+		var ch = new CanvasHandler(canvas);
+		ch.fitCanvas();
+		
+		return ch;
+		
+	};
+		
 	var init = function(){
 		
 		setTask({
@@ -69,22 +88,11 @@ var AnimationHandler;
 	
 	AnimationHandler.prototype = {
 			
-		_getNewCanvasHandler:function(containerId, canvasId){
-			
-			if(!this._containers[containerId]){return null;}
-			
-			var canvas = $('<canvas id="' + canvasId + '"></canvas>').get(0);
-			$(this._containers[containerId]).append(canvas);
-			
-			var ch = new CanvasHandler(canvas);
-			ch.fitCanvas();
-			
-			return ch;
-			
-		},
-		
 		_processTask:{
 			'frameAnim':function(){
+			
+			},
+			'cjs_labeled':function(){
 			
 			},
 			'cjs':function(){
@@ -92,30 +100,41 @@ var AnimationHandler;
 			},
 		},
 		
+		_clearAllCanvas:function(task){
+			
+			_.each(this._chList, function(v, k){
+				v.clear();
+			})
+			
+		},
+		
 		init:function(){
 			
-			var draw = _.bind(function(){
+			lastTime = new Date().getTime();
+			
+			draw = _.bind(function(){
+				
+				this._clearAllCanvas();
 				
 				var time = new Date().getTime();
-				if(lastTime === undefined){lastTime = time}
 				
 				var delta = time - lastTime;
-
+				
 				_.each(this._taskList, function(task){
-					
-					if(task.currentTime === undefined){task.currentTime = 0;}
 					task.currentTime += delta;
 					
 					var progress = task.tweener();
-					task.onTicked(progress);
+					task.progress = progress;
+					task.onTicked();
 					if(progress >= 1){
 						task.onComplete();
 					}
 				});				
-				
 				lastTime = time;
 				
-				requestAnimationFrame(draw);
+				if(!this._stopped){
+					requestAnimationFrame(draw);
+				}
 				
 			}, this);
 	
@@ -123,15 +142,45 @@ var AnimationHandler;
 			
 		},
 		
+		stop:function(){
+			this._stopped = true;
+		},
+		
 		addTask:function(task){
 			
-			this._taskList.push(task);
+			task.ch = this._chList[task.containerId];
+			task.ctx = task.ch.getContext();
+			if(task.currentTime === undefined){task.currentTime = 0;}
+			
+			var i = _.findIndex(this._taskList, function(t){
+				return task.id === t.id;
+			});
+			
+			if(i > -1){
+				this._taskList[i] = task;
+			} else {
+				this._taskList.push(task);
+			}
+			
+			
+			
+		},
+		
+		removeTask:function(id){
+			
+			var i = _.findIndex(this._taskList, function(task){
+				return task.id === id;
+			});
+			
+			if(i > -1){
+				this._taskList.splice(i, 1);
+			}
 			
 		},
 		
 		/*loadCjs:function(containerId, cjsLib, cjsImages, loaderType, root){
 			
-			this.loadingCh = _getNewFittedCanvasHandler(this._containers[containerId], 'loading');			
+			this.loadingCh = _getNewFittedCanvasHandler(this._containerList[containerId], 'loading');			
 			
 			_.bind(this.loadingAnims[loaderType + '_init'], this)();
 			
