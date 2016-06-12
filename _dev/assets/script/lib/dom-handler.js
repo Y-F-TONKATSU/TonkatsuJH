@@ -6,64 +6,69 @@ var DomHandler;
 		
 		this._url = 'http://ton-katsu.net/';
 		this._title = 'とんかつひろば';
-		
-	};
-	
-	var loadDoc = function(url){
-		
-		$.ajax({
-			'url': url,
-			'dataType':'html',
-		}).done(function(result) {
-			
-			var newDoc = $('<div></div>');
-			newDoc.html(result);
-			
-			if(DisplayUtil.getSize() !== 'large'){
-				DocProcessor.mobileAdaption(newDoc);				
-			}
-
-			var type = $(newDoc).find('article').attr('data-doc-type');
-			var loader = $(newDoc).find('article').attr('data-loader-type');
-			var root = $(newDoc).find('article').attr('data-cjs-root');
-			
-			console.log('New Doc Loaded by Ajax');
-			console.log('type: ' + type + ', loader:' + loader + ', root:' + root);
-			DocProcessor[type](newDoc);
-			
-			bgHandler.setCjs(cjsLib, cjsImages, loader, root);
-			
-		});
-		
-	}
-	
-	var setMainDocMode = function(url){
-		
-		DocAnimator.frameIn.fromLeft($('#mainDoc'), 1000, function(){
-		});
-		
-		if($('#indexContainer').data('state') === 'visible'){
-			DocAnimator.frameOut.fromLeft($('#indexContainer'), 1000, function(){
-			});
-		}
-		
-		loadDoc(url);
-		
-	};
-	
-	var setIndexMode = function(){
-		
-		DocAnimator.frameIn.fromLeft($('#indexContainer'), 1000, function(){
-		});
-		
-		if($('#mainDoc').data('state') === 'visible'){
-			DocAnimator.frameOut.fromLeft($('#mainDoc'), 1000, function(){
-			});
-		}
+		this._loadCompleteListener = null;
 		
 	};
 	
 	DomHandler.prototype = {
+		
+		_setMainDocMode:function(url){
+			
+			DocAnimator.frameIn.fromLeft($('#mainDoc'), 1000, function(){
+			});
+			
+			if($('#indexContainer').data('state') === 'visible'){
+				DocAnimator.frameOut.fromLeft($('#indexContainer'), 1000, function(){
+				});
+			}
+			
+			this._loadDoc(url);
+			
+		},
+		
+		_setIndexMode:function(){
+			
+			DocAnimator.frameIn.fromLeft($('#indexContainer'), 1000, function(){
+			});
+			
+			if($('#mainDoc').data('state') === 'visible'){
+				DocAnimator.frameOut.fromLeft($('#mainDoc'), 1000, function(){
+				});
+			}
+			
+		},
+	
+		_loadDoc:function(url){
+			
+			$.ajax({
+				'url': url,
+				'dataType':'html',
+			}).done(_.bind(function(result) {
+				
+				var newDoc = $('<div></div>');
+				newDoc.html(result);
+				
+				if(DisplayUtil.getSize() !== 'large'){
+					DocProcessor.mobileAdaption(newDoc);				
+				}
+	
+				var type = $(newDoc).find('article').attr('data-doc-type');
+				var loader = $(newDoc).find('article').attr('data-loader-type');
+				var root = $(newDoc).find('article').attr('data-cjs-root');
+				
+				console.log('New Doc Loaded by Ajax');
+				console.log('type: ' + type + ', loader:' + loader + ', root:' + root);
+				DocProcessor[type](newDoc);
+				
+				this._loadCompleteListener(cjsOptions);
+				
+			}, this));
+			
+		},
+	
+		setLoadCompleteListener:function(f){
+			this._loadCompleteListener = f;
+		},
 		
 		initElems:function(elems){
 			
@@ -156,9 +161,9 @@ var DomHandler;
 			$('.contElem').remove();
 			
 			if(hash.category === 'top'){
-				setIndexMode();
+				this._setIndexMode();
 			} else {
-				setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
+				this._setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
 			}
 		
 		},
@@ -166,12 +171,15 @@ var DomHandler;
 		changeOption:function(option){
 			
 			var target = $('article').find('[data-cjs-scene=' + option + ']').get(0);
+			var top;
+			
 			if(target){
-				var t = $(target).offset().top + $('article').scrollTop() - DisplayUtil.getHeight() * 0.5;
-				$('article').scrollTop(t);
-
+				top = $(target).offset().top + $('article').scrollTop() - DisplayUtil.getHeight() * 0.5;
+			} else {
+				top = 0;
 			}
-		
+			
+			$('article').scrollTop(top);
 		},
 		
 		

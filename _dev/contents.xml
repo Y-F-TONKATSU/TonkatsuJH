@@ -10,7 +10,7 @@
 			<title>クルトンの作り方</title>
 			<link>http://ton-katsu.net/contents/experimental/1604/e000019_crouton/main.html</link>
 			<cjs>contents/experimental/1604/e000019_crouton/script.js</cjs>
-			<cjsEvents>contents/experimental/1604/e000019_crouton/events.js</cjsEvents>
+			<cjsOptions>contents/experimental/1604/e000019_crouton/options.js</cjsOptions>
 			<cjsImages>contents/experimental/1604/e000019_crouton/</cjsImages>
 			<cjsImageAtlas>contents/experimental/1604/e000019_crouton/images/script_atlas_.json</cjsImageAtlas>
 			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>

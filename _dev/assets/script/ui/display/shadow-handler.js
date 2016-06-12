@@ -65,6 +65,9 @@ var ShadowHandler;
 			var h = ch.getCanvasHeight();
 			var shadowWidth = w * 0.01;
 			
+			putShadowLandscape(ch, ctx, shadowWidth, w, h);
+			putShadowPortrait(ch, ctx, shadowWidth, w, h);
+			
 			if(DisplayUtil.isLandscape()){
 				if(DisplayUtil.isOverRatio()){
 					putShadowLandscape(ch, ctx, shadowWidth, w, h);

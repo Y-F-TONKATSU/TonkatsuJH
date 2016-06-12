@@ -1,3 +1,22 @@
+var cjsOptions = {
+	'movieOptions':{
+		'mcList':[{
+			'containerId': 'fore',
+			'root': 'foreground'
+		},{
+			'containerId': 'back',
+			'root': 'background'
+		},],
+		'docId':'experimental000019',
+		'root':'crouton_v006',
+	},
+	'loaderOptions':{
+		'containerId':'fore',
+		'animator':Animators.basic.loader_circle,
+		'tweener':Tweeners.basic.progress,
+	}
+};
+
 var cjsEvents = {
 	'label':{
 		'Scene004_stop':function(){

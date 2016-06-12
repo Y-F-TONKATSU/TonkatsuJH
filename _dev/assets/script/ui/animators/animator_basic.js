@@ -1,7 +1,11 @@
+if(!Animators){var Animators = {};}
+
 Animators.basic = {
 	
-	'white':function(progress){
+	'white':function(){
 		
+		var progress = this.progress;
+			
 		var ch = this.ch;
 		var ctx = ch.getContext();
 		
@@ -15,8 +19,10 @@ Animators.basic = {
 		
 	},
 	
-	'wipe_square':function(progress){
+	'wipe_square':function(){
 		
+		var progress = this.progress;
+			
 		var ch = this.ch;
 		var ctx = ch.getContext();
 		
@@ -40,8 +46,10 @@ Animators.basic = {
 		
 	},
 	
-	'wipe_circle':function(progress){
+	'wipe_circle':function(){
 		
+		var progress = this.progress;
+			
 		var ch = this.ch;
 		var ctx = ch.getContext();
 		
@@ -76,8 +84,10 @@ Animators.basic = {
 		
 	},
 	
-	'loader_circle':function(progress){
+	'loader_circle':function(){
 		
+		var progress = this.progress;
+			
 		var ch = this.ch;
 		var ctx = ch.getContext();
 		
@@ -87,9 +97,13 @@ Animators.basic = {
 		var cx = w * 0.5;
 		var cy = h * 0.5;
 		var inprogress = (1 - progress);
-		
 		var f = (this.currentFrame % this.duration  + 1) / this.duration;
 		
+		ch.setFillStyle(200, 200, 100, 0.5);
+		ch.drawShape(function(ctx){
+			ctx.rect(0, 0, w, h);
+		}, false, true);
+
 		ctx.fillStyle = ch.rgbas(247, 244, 232, progress);
 		
 		ch.drawShape(_.bind(function(ctx){
@@ -168,7 +182,7 @@ Animators.basic = {
 		ctx.textAlign = 'center';
 		ch.setFillStyle(20, 20, 250, 1);
 		ctx.fillText(Math.floor(progress * 100) + '%', cx, cy);
-				
+			
 	},
 	
 }

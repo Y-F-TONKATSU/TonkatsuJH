@@ -40,19 +40,15 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/lib/dom-handler.js',        
 		'../../_dev/assets/script/lib/scroll-handler.js',
 		'../../_dev/assets/script/lib/hash.js',
-		  '../../_dev/assets/script/ui/display/display-util.js',
+		'../../_dev/assets/script/ui/display/display-util.js',
 		'../../_dev/assets/script/ui/display/doc-animator.js',
 		'../../_dev/assets/script/ui/display/shadow-handler.js',
-		'../../_dev/assets/script/ui/display/frame-animation-handler.js',
+		'../../_dev/assets/script/ui/display/animation-handler.js',
 		'../../_dev/assets/script/ui/display/navigation-handler.js',
 		'../../_dev/assets/script/ui/display/hit-area-handler.js',
-		'../../_dev/assets/script/ui/display/cjs-handler.js',
-		'../../_dev/assets/script/ui/display/background-handler.js',
 		'../../_dev/assets/script/ui/display/cjs/navigation.js',
 		'../../_dev/assets/script/ui/animators/animator_basic.js',
 		'../../_dev/assets/script/ui/animators/tweener_basic.js',
-		'../../_dev/assets/script/cjs/cjs-loader.js',
-		'../../_dev/assets/script/cjs/abs/abs_cjs.js'
 	];
 	
 	/* Util Funcs */
@@ -212,21 +208,23 @@ module.exports = function(grunt) {
 		}
 		
 		var path = items[i].cjs;
-		var eventsPath = items[i].cjsEvents;
+		var cjsOptionsPath = items[i].cjsOptions;
 		var imagePath = items[i].cjsImages;
 		
 		var script = grunt.file.read('../../_processing/' + path);
-		var events = grunt.file.read('../../_processing/' + eventsPath);
+		var cjsOptions = grunt.file.read('../../_processing/' + cjsOptionsPath);
 		
 		//Fix Image Path
 		var r = script.replace(/{src:"/g, '{src:"' + imagePath);
-		var tag = '<script>' + r + events + '</script>';
+		var tag = '<script>' + r + cjsOptions + '</script>';
 		
 		//Fix Image Path in json
-		/*var imageAtlas = items[i].cjsImageAtlas;
+		/*
+		var imageAtlas = items[i].cjsImageAtlas;
 		var atlas = grunt.file.read('../../_processing/' + imageAtlas);
 		var atlasFixed = atlas.replace('{"images": ["images/', '{"images": ["' + imagePath + 'images/');
-		grunt.file.write('../../_processing/' + imageAtlas, atlasFixed);*/
+		grunt.file.write('../../_processing/' + imageAtlas, atlasFixed);
+		*/
 
 		return tag;
 		

@@ -1,10 +1,11 @@
+var ah;
+
 var testAnimationHandler = function(){
 	
 	mochaSetup();
 	
 	suite('AnimationHandler', function() {
 		
-		var ah;
 		
 		setup(function(){
 			
@@ -44,7 +45,7 @@ var testAnimationHandler = function(){
 					
 		test('addTask()/removeTask()', function() {
 			
-			ah.init();
+			ah.init(24, $('#main'));
 			
 			ah.addTask({
 				'id':'testTask',
@@ -56,7 +57,6 @@ var testAnimationHandler = function(){
 				'progress':0,
 				'currentTime':0,
 				'duration': 1000,
-				'ender':function(){return false;},
 				'onTicked':function(){
 				},
 				'onComplete':function(){
@@ -77,7 +77,6 @@ var testAnimationHandler = function(){
 				'progress':0,
 				'currentTime':0,
 				'duration': 1000,
-				'ender':function(){return false;},
 				'onTicked':function(){
 				},
 				'onComplete':function(){
@@ -96,12 +95,12 @@ var testAnimationHandler = function(){
 				'progress':0,
 				'currentTime':0,
 				'duration': 1000,
-				'ender':function(){return false;},
 				'onTicked':function(){
 					$('#loopTest').html('ちゃんとループしてるよ！');
 				},
 				'onComplete':function(){
 					$('#completeTest').html('ちゃんとタスク完了したよ！');
+					ah.removeTask('testTask2');
 				}
 			});
 			
@@ -118,8 +117,6 @@ var testAnimationHandler = function(){
 			
 		test('animation', function() {
 			
-			ah.init();
-			
 			ah.addTask({
 				'id':'testAnim',
 				'docId':'ex000018',
@@ -129,8 +126,8 @@ var testAnimationHandler = function(){
 				'tweener':function(){return this.currentTime / this.duration},
 				'progress':0,
 				'currentTime':0,
-				'duration': 1000,
-				'ender':function(){return false;},
+				'duration': 10000,
+				'tIndex':20,
 				'onTicked':function(){
 					var ctx = this.ctx;
 					ctx.beginPath();
@@ -143,6 +140,45 @@ var testAnimationHandler = function(){
 				}
 			});
 			
+			
+		});
+						
+		test('cjsAnimation', function() {
+			
+			ah.loadCjs({
+				'movieOptions':{
+					'mcList':[{
+						'containerId': 'fore',
+						'root': 'foreground'
+					},{
+						'containerId': 'back',
+						'root': 'background'
+					},],
+					'docId':'experimental000018',
+					'root':'test',
+				},
+				'loaderOptions':{
+					'containerId':'fore',
+					'animator':Animators.basic.loader_circle,
+					'tweener':Tweeners.basic.progress,
+				}
+			});
+			
+			var scrollHandler = new ScrollHandler($('#main'));
+			
+			var triggerScroll = function(){
+				var activeElem = scrollHandler.getActiveSection();
+				ah.setActiveElem(activeElem);
+			}
+			
+			scrollHandler.setScrollListener(triggerScroll);
+			ah.setOnCjsInitListener(triggerScroll);
+			
+		});
+						
+		test('putShadow()', function() {
+			
+			ah.putShadow($('#shadow'));
 			
 		});
 						

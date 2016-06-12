@@ -13,9 +13,12 @@ var AnimationHandler;
 		}, this));
 		
 		this._currentDocId = 'index';
+		this._activeElem = null;
 		this._taskList = [];
+		this._cjsStages = [];
 		
 		this._navigationHandler = null;
+		this._shadowHandler = new ShadowHandler();
 		
 		this._stopped = false;
 	};
@@ -32,58 +35,6 @@ var AnimationHandler;
 		
 	};
 		
-	var init = function(){
-		
-		setTask({
-			'id':'loading',
-			'docId':'ex000018',
-			'ch': this.loadingCh,
-			'options': {
-				'color':ch.getColorHexString(247, 244, 232),
-			},
-			'tweener':Tweeners.basic.progress,
-			'progress':0,
-			'currentTime':0,
-			'duration': 2000,
-			'ender':function(){return false;},
-			'onTicked':Animators.basic.loader_circle,
-			'onComplete':function(){
-			}
-		});
-		
-	}
-	
-	/*
-	var cjsLoop = function(events){
-		
-		this.destructLoader();
-					
-		this.mainElem;
-		
-		scrollHandler.setScrollListener(_.bind(function(){
-			this.mainElem = scrollHandler.getActiveSection();
-		}, this));
-		
-		scrollHandler.triggerScroll();
-		
-		var currentScene;
-		
-		this.frameAnimationHandler.setCjsTask(_.bind(function(){
-								
-			if(this.mainElem){
-				var scene = $(this.mainElem).attr('data-cjs-scene');
-				if(scene !== currentScene){
-					events.onSceneChanged(scene);
-					currentScene = scene;
-				}
-			}
-							
-		}, this));
-	
-		
-	};
-	*/
-	
 	var lastTime;
 	
 	AnimationHandler.prototype = {
@@ -108,53 +59,179 @@ var AnimationHandler;
 			
 		},
 		
-		init:function(){
+		_findTaskIndex:function(id){
 			
-			lastTime = new Date().getTime();
+			return _.findIndex(this._taskList, function(task){
+				return task.id === id;
+			});
 			
-			draw = _.bind(function(){
+		},
+		
+		_findDocIndex:function(id){
+			
+			return _.findIndex(this._taskList, function(task){
+				return task.docId === id;
+			});
+			
+		},
+		
+		_findCjsTaskIndex:function(){
+			
+			return _.findIndex(this._taskList, function(task){
+				return task.id.indexOf('mainCjs_') > -1;
+			});
+			
+		},
+		
+		_setCjsTask:function(movieOptions){
+			
+			var currentScene;
+			
+			var that = this;
+			
+			this._cjsStages = _.map(movieOptions.mcList, _.bind(function(mc){
+			
+				var cjsStage = {};
 				
+				cjsStage.ch = this._chList[mc.containerId];
+				cjsStage.canvas = cjsStage.ch.getCanvas();
+				cjsStage.root = new cjsLib[movieOptions.root]()[mc.root];	
+				cjsStage.stage = new createjs.Stage(cjsStage.canvas);
+				cjsStage.stage.addChild(cjsStage.root);
+				cjsStage.stage.autoClear = false;
+				cjsStage.stage.update();
+				
+				this.addTask({
+					'id':'mainCjs_' + mc.root,
+					'docId':movieOptions.docId,
+					'containerId': mc.containerId,
+					'progress':0,
+					'currentTime':0,
+					'duration': 0,
+					'waitTime': 0,
+					'ender':function(){return false},
+					'tweener':function(){return 0},
+					'currentScene': '',
+					'currentLabel': '',
+					'onTicked': function(e){
+						
+						that.onCjsInitListener();
+						
+						cjsStage.stage.update(e);
+						
+						if(that._activeElem){
+							
+							var scene = $(that._activeElem).attr('data-cjs-scene');
+							
+							if(scene !== this.currentScene){
+								cjsStage.root.gotoAndPlay(scene + '_start');
+								this.currentScene = scene;
+							}
+						}
+											
+						var label = cjsStage.root.currentLabel;
+						if(this.currentLabel !== label){
+							if(cjsEvents.labelOut[this.currentLabel]){
+								cjsEvents.labelOut[this.currentLabel].call(this);
+							}
+							if(cjsEvents.label[label]){
+								cjsEvents.label[label].call(this);
+							}
+						}
+						this.currentLabel = label;
+						if(label.indexOf('_stop') >= 0){
+							cjsStage.root.stop();
+							
+						}
+						
+					},
+					'onComplete':function(){
+					}
+				});
+			
+				return cjsStage;
+				
+			}, this));
+			
+		},
+		
+		setOnCjsInitListener:function(f){
+			this.onCjsInitListener = f;
+		},
+		
+		setActiveElem:function(elem){
+			this._activeElem = elem;	
+		},
+		
+		getActiveElem:function(){
+			return this._activeElem;	
+		},
+		
+		init:function(frameRate){
+			
+			createjs.Ticker.setFPS(frameRate);
+			
+			createjs.Ticker.addEventListener('tick', _.bind(function(e){
+					
 				this._clearAllCanvas();
 				
-				var time = new Date().getTime();
-				
-				var delta = time - lastTime;
+				var delta = e.delta;
 				
 				_.each(this._taskList, function(task){
-					task.currentTime += delta;
 					
-					var progress = task.tweener();
-					task.progress = progress;
-					task.onTicked();
-					if(progress >= 1){
-						task.onComplete();
+					if(task){
+						
+						var ctx = task.ch.getContext();
+						ctx.save();
+						
+						task.currentTime += delta;
+						
+						var progress = task.tweener();
+						task.progress = progress;
+						if(progress >= 1 && task.waitTime){
+							task.waitTime -= delta;
+						}
+						task.onTicked(e);
+						if(task.ender()){
+							task.onComplete();
+						}
+						
+						ctx.restore();
+						
 					}
+					
 				});				
-				lastTime = time;
 				
-				if(!this._stopped){
-					requestAnimationFrame(draw);
-				}
-				
-			}, this);
-	
-			requestAnimationFrame(draw);
+			}, this));
+		
+		},
+			
+		stop:function(){
 			
 		},
-		
-		stop:function(){
-			this._stopped = true;
-		},
-		
+			
 		addTask:function(task){
 			
 			task.ch = this._chList[task.containerId];
 			task.ctx = task.ch.getContext();
-			if(task.currentTime === undefined){task.currentTime = 0;}
 			
-			var i = _.findIndex(this._taskList, function(t){
-				return task.id === t.id;
-			});
+			if(task.currentTime === undefined){
+				task.currentTime = 0;
+			}
+			
+			if(task.ender === undefined){
+				if(task.waitTime){
+					task.ender = function(){
+						return this.progress >= 1 && this.waitTime <= 0;
+					};
+				} else {
+					task.ender = function(){
+						return this.progress >= 1;
+					};
+				}
+			}
+			
+			var i = this._findTaskIndex(task.id);
 			
 			if(i > -1){
 				this._taskList[i] = task;
@@ -162,15 +239,17 @@ var AnimationHandler;
 				this._taskList.push(task);
 			}
 			
+			if(task.onInit){
+				task.onInit();
+			}
 			
+			this._taskList = _.sortBy(this._taskList, function(task){return task.tIndex || 0});
 			
 		},
 		
 		removeTask:function(id){
 			
-			var i = _.findIndex(this._taskList, function(task){
-				return task.id === id;
-			});
+			var i = this._findTaskIndex(id);
 			
 			if(i > -1){
 				this._taskList.splice(i, 1);
@@ -178,149 +257,129 @@ var AnimationHandler;
 			
 		},
 		
-		/*loadCjs:function(containerId, cjsLib, cjsImages, loaderType, root){
+		removeCjsTasks:function(){
 			
-			this.loadingCh = _getNewFittedCanvasHandler(this._containerList[containerId], 'loading');			
+			var i = this._findCjsTaskIndex();
 			
-			_.bind(this.loadingAnims[loaderType + '_init'], this)();
-			
-			this.mainCjsHandler.startLoading(loaderType, root, _.bind(this.loadingAnims[loaderType], this), _.bind(cjsLoop, this));
+			while(i > -1){
+				
+				this._taskList.splice(i, 1);
+				i = this._findCjsTaskIndex();
+				
+			}
 			
 		},
 		
-		setCjs:function(cjsLib, cjsImages, loaderType, root){
+		removeDocTasks:function(docId){
 			
-			this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv, 'loading');			
+			var i = this._findDocIndex(id);
 			
-			_.bind(this.loadingAnims[loaderType + '_init'], this)();
-			
-			this.mainCjsHandler.startLoading(loaderType, root, _.bind(this.loadingAnims[loaderType], this), _.bind(cjsLoop, this));
+			while(i > -1){
+				
+				this._taskList.splice(i, 1);
+				i = this._findDocIndex(id);
+				
+			}
 			
 		},
 		
-		loadingAnims:{
-			'crouton_init':function(e){
-				
-				var ch = this.loadingCh;
-				
-				ch.setFillStyle(200, 200, 100, 0.5);
-				var w = ch.getCanvasWidth();
-				var h = ch.getCanvasHeight();
-				
-				ch.drawShape(function(ctx){
-					ctx.rect(0, 0, w, h);
-				}, false, true);
-				
-				this.frameAnimationHandler.setTask({
-					'id':'loading',
-					'ch': this.loadingCh,
-					'color': ch.getColorHexString(247, 244, 232),
-					'update':Animators.basic.loader_circle,
-					'tweener':Tweeners.basic.progress,
-					'progress':0,
-					'duration': 2000,
-					'onComplete':function(){
-					}
-				});
-				
-			},
-			'crouton':function(e){
-				this.frameAnimationHandler.setParams('loading', {
-					'progress': e.progress
-				});
-				
-								
-			}
-		},
+		removeAllTasks:function(){
 			
-		destructLoader:function(){
-			
-			this.frameAnimationHandler.removeTask('loading');
-			this.loadingCh.destruct();
-			this.loadingCh = null;
-			
-		},
-	
-		setBackground:function(cjsLib, cjsImages, loaderType, root){
-			
-			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv, 'mainFore');
-			this.mainBack = _getNewFittedCanvasHandler(this.backDiv, 'mainBack');
-						
-			this.mainCjsHandler = new CjsHandler(this.mainFore, this.mainBack);
-			
-			if(!this.loadingCh){
-				this.loadingCh = _getNewFittedCanvasHandler(this.foreDiv, 'loading');			
-			}
-			_.bind(this.loadingAnims[loaderType + '_init'], this)();
-			
-			this.mainCjsHandler.startLoading(loaderType, root, _.bind(this.loadingAnims[loaderType], this), _.bind(cjsLoop, this));
+			this._taskList = [];
 			
 		},
 		
-		clearMain:function(){
-
+		setTaskProgress:function(id, progress){
 			
-			if(this.loadingCh){this.destructLoader();}
+			var i = this._findTaskIndex(id);
 			
-			var endingFore = this.mainFore;
-			var endingBack = this.mainBack;
-			var endingCjsHandler = this.mainCjsHandler;
-			if(endingCjsHandler){endingCjsHandler.stop();}
-			
-			i++;
-			
-			if(endingFore){
-				
-				this.frameAnimationHandler.setTask({
-					'id':'endingFore' + i,
-					'ch': endingFore,
-					'update':Animators.basic.wipe_circle,
-					'tweener':Tweeners.basic.easeIn,
-					'duration': 1200,
-					'onComplete':function(){
-						console.log('Anim Comp');
-						endingFore.destruct();
-						endingCjsHandler.clear();
-					}
-				});
-				
+			if(i > -1){
+				this._taskList[i].progress = progress;
 			}
+		
+			
+		},
+			
+		loadCjs:function(options){
+			
+			var loaderOptions = options.loaderOptions;
+			var movieOptions = options.movieOptions;
+		
+			console.log('Start Loading a Cjs Doc');
+			
+			var loader = new createjs.LoadQueue(false);
+			
+			loader.addEventListener('progress', _.bind(function(e){
+				this.setTaskProgress('loadingCjs', e.progress);
+			}, this));
+			
+			loader.addEventListener("fileload", function(e) {
 				
-			if(endingBack){
+				if (e.item.type == "image") { 
+					//console.log('A Cjs Image Loaded:' + e.item.id);
+					cjsImages[e.item.id] = e.result;
+				}
 				
-				this.frameAnimationHandler.setTask({
-					'id':'endingBack' + i,
-					'ch': endingBack,
-					'update':Animators.basic.wipe_circle,
-					'tweener':Tweeners.basic.easeIn,
-					'duration': 1200,
-					'onComplete':function(){
-						endingBack.destruct();
-					}
-				});
-
-			}
-											
+			});
+			
+			var that = this;
+			this.addTask({
+				'id':'loadingCjs',
+				'docId': movieOptions.docId,
+				'containerId': loaderOptions.containerId,
+				'progress':0,
+				'currentTime':0,
+				'duration': 0,
+				'waitTime': 500,
+				'tIndex':10,
+				'tweener':loaderOptions.tweener,
+				'onTicked': loaderOptions.animator,
+				'onComplete':function(){
+					console.log('Loading Cjs Complete');
+					that.removeTask('loadingCjs');
+					that._setCjsTask(movieOptions);
+				}
+			});
+			
+			loader.loadManifest(cjsLib.properties.manifest);
+			
 		},
 		
-		putShadow:function(){
+		stopCjs:function(){
 			
-			var ch = _getNewFittedCanvasHandler(this.foreDiv, 'shadow');
-			this.shadowHandler.putShadow(ch);
+			this.removeCjsTasks();
+			
+			_.each(this._cjsStages, function(cjsStage){
+				
+				cjsStage.root.stop();
+				cjsStage.stage.removeAllChildren();
+				cjsStage.stage = null;
+				
+			});
+			
+			this._cjsStages = [];
+			
+		},
+		
+		changeTo:function(hash){
+			//this.setNavigationButtonState(hash);
+			this.stopCjs();
+		},
+		
+		putShadow:function(div){
+			
+			var ch = _getNewCanvasHandler(div, 'shadow')
+			this._shadowHandler.putShadow(ch);
 
 		},
 		
+		/*
 		putNavigationButtons:function(events){
 			
 			var ch = _getNewFittedCanvasHandler(this.foreDiv, 'navigationButtons');
 			this.navigationHandler = new NavigationHandler(events);
 			this.navigationHandler.putButtons(ch);
 
-		},
-		
-		changeTo:function(hash){
-			this.setNavigationButtonState(hash);
-			this.clearMain();
 		},
 		
 		setNavigationButtonState:function(hash){

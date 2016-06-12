@@ -1,15 +1,17 @@
+if(!Tweeners){var Tweeners = {};}
+
 Tweeners.basic = {
 	
-	'progress':function(delta){
+	'progress':function(){
 		return this.progress;
 	},
 	
-	'normal':function(delta){
-		return this.currentFrame / this.duration;
+	'normal':function(){
+		return this.currentTime / this.duration;
 	},
 	
-	'easeIn':function(delta){
-		return Math.pow(this.currentFrame / this.duration, 2);
+	'easeIn':function(){
+		return Math.pow(this.currentTime / this.duration, 2);
 	}
 	
 }

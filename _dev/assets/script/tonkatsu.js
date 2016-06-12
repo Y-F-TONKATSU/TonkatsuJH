@@ -3,10 +3,9 @@ var Tonkatsu = {};
 var urlHandler;
 var domHandler;
 var scrollHandler;
-var bgHandler;
+var animationHandler;
 
-var Animators = {};
-var Tweeners = {};
+var FPS = 24;
 
 Tonkatsu.init = function(){
 	
@@ -15,24 +14,30 @@ Tonkatsu.init = function(){
 	urlHandler = new UrlHandler();
 	domHandler = new DomHandler();
 	domHandler.initElems($('.autoInit'));
+	animationHandler = new AnimationHandler({
+		'fore':$('#foreground'),
+		'back':$('#background'),
+	});
+	animationHandler.init(FPS)
 	scrollHandler = new ScrollHandler($('#mainDoc'));
-	bgHandler = new BackgroundHandler($('#foreground'), $('#background'));
-	bgHandler.putShadow();
-	bgHandler.putNavigationButtons({
-		'onHomeClicked':function(){
-		},
-		'onMenuClicked':function(){
-			domHandler.showMenu();
-		},
-		'onShareClicked':function(){
-			domHandler.showShare();
-		},
+	
+	var triggerScroll = function(){
+		var activeElem = scrollHandler.getActiveSection();
+		animationHandler.setActiveElem(activeElem);
+	}
+	
+	scrollHandler.setScrollListener(triggerScroll);
+	animationHandler.setOnCjsInitListener(triggerScroll);
+	animationHandler.putShadow($('#shadow'));
+	
+	domHandler.setLoadCompleteListener(function(options){
+		animationHandler.loadCjs(options);
+		Tonkatsu.onHashChanged();
 	});
 	
 	urlHandler.addChangePageListener(_.bind(domHandler.changeTo, domHandler));
-	urlHandler.addChangePageListener(_.bind(bgHandler.setNavigationButtonState, bgHandler));
-	urlHandler.addChangePageListener(_.bind(bgHandler.changeTo, bgHandler));
 	urlHandler.addChangeOptionListener(_.bind(domHandler.changeOption, domHandler));
+	urlHandler.addChangePageListener(_.bind(animationHandler.changeTo, animationHandler));
 	
 	console.log('Init Complete');
 	

@@ -154,6 +154,7 @@ var UrlHandler;
 		},
 		
 		changeToCurrentHashPage:function(){
+			
 			_.each(this._chagePageListeners, _.bind(function(listener){
 				listener(this._currentHash);
 			}, this));
@@ -162,8 +163,9 @@ var UrlHandler;
 	
 		changeToCurrentOption:function(){
 			
+			var option = this.getCurrentOption().slice(1);
 			_.each(this._chageOptionListeners, _.bind(function(listener){
-				listener(this.getCurrentOption().slice(1));
+				listener(option);
 			}, this));
 			
 		},
@@ -173,6 +175,7 @@ var UrlHandler;
 			if(!this.isSameCont(hash)){
 				this.setCurrentHash(hash);
 				this.changeToCurrentHashPage();
+				this.changeToCurrentOption();
 			} else {
 				console.log('same hash');
 				this.setCurrentHash(hash);
