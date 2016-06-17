@@ -77,7 +77,45 @@ var ShareUtil;
 			
 		},
 		
+		getFaceBookButtonTag:function(url){
+			
+			return $('<a href="https://www.facebook.com/sharer/sharer.php?u=http://' + url + '" target="_blank" class="faceBookButton"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="いいね"/></a>');
+			
+		},
+		
+		getTwitterButtonTag:function(url, title){
+			
+			var option = encodeURI('url=http://' + url) + '&' + encodeURI('text=' + title);
+			
+			return $('<a href="https://twitter.com/share?' + option + '" target="_blank" class="twitterButton"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="ツイート"/></a>');
+			
+		},
+		
+		getGooglePlusButtonTag:function(url){
+	
+			return $('<a href="https://plus.google.com/share?url=' + url + '"  target="_blank" class="googlePlusButton"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="GooglePlus で +1 する"></a>');
+			
+		},
+		
+		getHatenaButtonTag:function(url){
+			
+			return $('<a href="http://b.hatena.ne.jp/entry/' + url + '" target="_blank" class="hatenaButton"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加"/></a>');
+			
+		},
+		
 		getAllTags:function(url, title){
+			
+			var shareDiv = $('<div class="share"></div>');
+			$(shareDiv)
+				.append(ShareUtil.getFaceBookButtonTag(url))
+				.append(ShareUtil.getTwitterButtonTag(url, title))
+				.append(ShareUtil.getGooglePlusButtonTag(url))
+				.append(ShareUtil.getHatenaButtonTag(url));
+				
+			return shareDiv;
+		},
+		
+		getAllTagsWithBr:function(url, title){
 			
 			var shareDiv = $('<div class="share"></div>');
 			$(shareDiv).append(ShareUtil.getFbLikeTag(url))

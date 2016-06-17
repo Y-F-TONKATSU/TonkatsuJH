@@ -91,7 +91,7 @@ Animators.basic = {
 		var ch = this.ch;
 		var ctx = ch.getContext();
 		
-		ch.setWidth(10);
+		ch.setWidth(4);
 		var w = ch.getCanvasWidth();
 		var h = ch.getCanvasHeight();
 		var cx = w * 0.5;
@@ -130,7 +130,7 @@ Animators.basic = {
 		
 		_.times(3 + Math.floor(10 * progress), _.bind(function(n){
 					
-			ch.setWidth(4 + n % 3);
+			ch.setWidth(1 + n % 3);
 			
 			if(n % 5 == 0){
 				r = 230;
@@ -160,7 +160,7 @@ Animators.basic = {
 			
 			ch.setStrokeStyle(r, g, b, a * 0.2);
 			
-			rad -= 20;
+			rad -= 8;
 			s += n * 0.01 + n % 2 * progress * 0.1;
 			
 			var y = (n * w * 0.35 + this.currentFrame * 0.1) % this.duration + Math.random() * 10;
@@ -178,7 +178,7 @@ Animators.basic = {
 			
 		}, this));
 		
-		ctx.font="50px Georgia";
+		ctx.font="24px Georgia";
 		ctx.textAlign = 'center';
 		ch.setFillStyle(20, 20, 250, 1);
 		ctx.fillText(Math.floor(progress * 100) + '%', cx, cy);

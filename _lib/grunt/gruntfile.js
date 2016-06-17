@@ -34,6 +34,7 @@ module.exports = function(grunt) {
 	var jsList = [
 		'../../_dev/assets/script/tonkatsu.js',
 		'../../_dev/assets/script/contents/share-util.js',
+		'../../_dev/assets/script/contents/contents-util.js',
 		'../../_dev/assets/script/contents/doc-processor.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
 		'../../_dev/assets/script/lib/url-handler.js',
@@ -242,6 +243,7 @@ module.exports = function(grunt) {
 			
 			var category = items[i].category;
 			var id = items[i].id;
+			var url = items[i].link;
 			
 			var subCategory;
 			if (!items[i].subCategory){
@@ -286,7 +288,7 @@ module.exports = function(grunt) {
 			var month = d.getUTCMonth() + 1;
 			var date = year + '年 ' + month + '月';
 	
-			list += "<li class='widget' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-layout-mode='" + layout + "'>\n\n" + 
+			list += "<li class='widget' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-layout-mode='" + layout + "'>\n\n" + 
 			"\t\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
 			"\t\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 			"\t\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +

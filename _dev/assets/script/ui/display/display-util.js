@@ -4,8 +4,8 @@ var DisplayUtil;
 	
 	DisplayUtil = {
 		
-		RATIO_X: 1920,
-		RATIO_Y: 1200,
+		RATIO_X: 768,
+		RATIO_Y: 480,
 		
 		getRatio:function(){
 			return DisplayUtil.RATIO_Y / DisplayUtil.RATIO_X;
@@ -130,10 +130,10 @@ var DisplayUtil;
 			}
 			
 			return {
+				'left':l,
+				'top':t,
 				'width':w,
 				'height':h,
-				'top':t,
-				'left':l,
 			}
 
 		},
@@ -151,10 +151,10 @@ var DisplayUtil;
 			var t = stageRect.top + rect.top * yr;
 			
 			return {
-				'width':w,
-				'height':h,
 				'left':l,
 				'top':t,
+				'width':w,
+				'height':h,
 			}
 		},
 		

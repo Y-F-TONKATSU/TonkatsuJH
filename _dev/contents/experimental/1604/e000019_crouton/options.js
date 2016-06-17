@@ -23,11 +23,13 @@ var cjsEvents = {
 			
 			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation'));
 			
+			if($(cjsEvents.hitAreaHandler.getHitArea('crouton')).length > 0){return;}
+			
 			cjsEvents.hitAreaHandler.setHitArea('crouton', {
-				width:180,
-				height:100,
-				left:460,
-				top:500
+				left:460 * 0.4,
+				top:500 * 0.4,
+				width:180 * 0.4,
+				height:100 * 0.4
 			}, '#experimental000019_Scene005',
 			function(){
 				Tonkatsu.onHashChanged();
@@ -35,7 +37,10 @@ var cjsEvents = {
 
 		},
 		'Scene006_stop':function(){
-			var shareDiv = ShareUtil.getAllTags('http://ton-katsu.net/contents/experimental/1604/e000019_crouton/main.html', 'クルトンの作り方');
+			
+			if($('.share_crouton').length > 0){return;}
+			
+			var shareDiv = ShareUtil.getAllTags('ton-katsu.net/', 'クルトンの作り方');
 
 			$(shareDiv).addClass('share_crouton').addClass('contElem').css({
 				'position':'fixed',
@@ -47,7 +52,7 @@ var cjsEvents = {
 			
 			$('#foreground').append(shareDiv);
 			
-			ShareUtil.render();
+			//ShareUtil.render();
 		}
 	},
 	'labelOut':{

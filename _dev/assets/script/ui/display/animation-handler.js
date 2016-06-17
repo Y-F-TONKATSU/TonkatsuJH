@@ -373,10 +373,9 @@ var AnimationHandler;
 
 		},
 		
-		/*
-		putNavigationButtons:function(events){
+		putNavigationButtons:function(div, events){
 			
-			var ch = _getNewFittedCanvasHandler(this.foreDiv, 'navigationButtons');
+			var ch = _getNewCanvasHandler(div, 'navigationButtons');
 			this.navigationHandler = new NavigationHandler(events);
 			this.navigationHandler.putButtons(ch);
 
@@ -389,7 +388,6 @@ var AnimationHandler;
 				this.navigationHandler.showHomeButton();
 			}
 		},
-		*/
 		
 	};
 	

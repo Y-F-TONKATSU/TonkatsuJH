@@ -163,7 +163,7 @@ var DomHandler;
 			if(hash.category === 'top'){
 				this._setIndexMode();
 			} else {
-				this._setMainDocMode('contents/experimental/1604/e000019_crouton/main.html');
+				this._setMainDocMode(ContentsUtil.getContUrl(hash));
 			}
 		
 		},

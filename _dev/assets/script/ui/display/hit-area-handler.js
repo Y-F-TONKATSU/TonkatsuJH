@@ -46,6 +46,12 @@ var HitAreaHandler;
 			
 			$('#hitArea_' + id).remove();
 			
+		},
+		
+		getHitArea:function(id){
+			
+			return $('#hitArea_' + id);
+			
 		}
 	}
 

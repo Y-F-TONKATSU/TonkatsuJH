@@ -2,14 +2,31 @@ var NavigationHandler;
 
 (function(){
 	
-	var ZI_NAVIGATION = 2000;
-	
 	NavigationHandler = function(events){
 		this.buttons = [];
 		this.hitAreaHandler = new HitAreaHandler($('#navigation'));
+		
 		this.onHomeClickedListener = events.onHomeClicked;
 		this.onMenuClickedListener = events.onMenuClicked;
 		this.onShareClickedListener = events.onShareClicked;
+		
+		this.state = {
+			'home':{
+				'r':255,
+				'g':255,
+				'b':255,
+			},
+			'menu':{
+				'r':255,
+				'g':255,
+				'b':255,
+			},
+			'share':{
+				'r':255,
+				'g':255,
+				'b':255,
+			},
+		}
 	};
 	
 	NavigationHandler.prototype = {
@@ -17,9 +34,6 @@ var NavigationHandler;
 		putButtons:function(ch){
 			
 			var canvas = ch.getCanvas();
-			$(canvas).css({
-				'zIndex': ZI_NAVIGATION
-			});
 			
 			this.homeButton = new cjsNavigationLib.navigation().homeButton;
 			this.shareButton = new cjsNavigationLib.navigation().shareButton;
@@ -49,28 +63,36 @@ var NavigationHandler;
 			
 		},
 		
+		_setState:function(key, value){
+			
+			state[key] = value;
+			
+		}
+		
 		showHomeButton:function(){
 			
 			this.homeButton.gotoAndPlay('start');
 			
 			this.hitAreaHandler.setHitArea('home', {
-				width:200,
-				height:200,
-				left:20,
-				top:300
+				width:80,
+				height:80,
+				left:8,
+				top:120
 			}, '#', this.onHomeClickedListener);
+			
+			this._setState('', '');
 				
 		},
 		
 		showMenuButton:function(){
 			
 			this.menuButton.gotoAndPlay('start');
-			
+
 			this.hitAreaHandler.setHitArea('menu', {
-				width:200,
-				height:200,
-				left:20,
-				top:520
+				width:80,
+				height:80,
+				left:8,
+				top:208
 			}, this.onMenuClickedListener);
 				
 		},
@@ -80,10 +102,10 @@ var NavigationHandler;
 			this.shareButton.gotoAndPlay('start');
 			
 			this.hitAreaHandler.setHitArea('share', {
-				width:200,
-				height:200,
-				left:20,
-				top:740
+				width:80,
+				height:80,
+				left:8,
+				top:296
 			}, this.onShareClickedListener);
 				
 				

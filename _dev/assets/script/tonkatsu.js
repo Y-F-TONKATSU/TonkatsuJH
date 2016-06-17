@@ -12,23 +12,35 @@ Tonkatsu.init = function(){
 	ShareUtil.init();
 	
 	urlHandler = new UrlHandler();
+	
 	domHandler = new DomHandler();
 	domHandler.initElems($('.autoInit'));
+	
 	animationHandler = new AnimationHandler({
 		'fore':$('#foreground'),
 		'back':$('#background'),
 	});
-	animationHandler.init(FPS)
-	scrollHandler = new ScrollHandler($('#mainDoc'));
+	animationHandler.init(FPS);
+	animationHandler.putShadow($('#shadow'));
+	animationHandler.putNavigationButtons($('#navigationButtonContainer'), {
+		'onHomeClicked':function(){
+		},
+		'onMenuClicked':function(){
+			domHandler.showMenu();
+		},
+		'onShareClicked':function(){
+			domHandler.showShare();
+		},
+	});
 	
+	scrollHandler = new ScrollHandler($('#mainDoc'));
 	var triggerScroll = function(){
 		var activeElem = scrollHandler.getActiveSection();
 		animationHandler.setActiveElem(activeElem);
 	}
-	
 	scrollHandler.setScrollListener(triggerScroll);
+	
 	animationHandler.setOnCjsInitListener(triggerScroll);
-	animationHandler.putShadow($('#shadow'));
 	
 	domHandler.setLoadCompleteListener(function(options){
 		animationHandler.loadCjs(options);
