@@ -4,6 +4,8 @@ var AnimationHandler;
 	
 	AnimationHandler = function(containers){
 		
+		this._forgetRate = 0;
+		
 		this._containerList = containers;
 		this._chList = {};
 		
@@ -21,6 +23,7 @@ var AnimationHandler;
 		this._shadowHandler = new ShadowHandler();
 		
 		this._stopped = false;
+		
 	};
 	
 	var _getNewCanvasHandler = function(container, containerId){
@@ -155,6 +158,11 @@ var AnimationHandler;
 			
 		},
 		
+		setForgetRate:function(v){
+			this._forgetRate = v;
+			this.navigationHandler.setForgetRate(v);
+		},
+		
 		setOnCjsInitListener:function(f){
 			this.onCjsInitListener = f;
 		},
@@ -172,8 +180,10 @@ var AnimationHandler;
 			createjs.Ticker.setFPS(frameRate);
 			
 			createjs.Ticker.addEventListener('tick', _.bind(function(e){
-					
-				this._clearAllCanvas();
+				
+				if(Math.random() > this._forgetRate){
+					this._clearAllCanvas();
+				}
 				
 				var delta = e.delta;
 				
@@ -182,6 +192,7 @@ var AnimationHandler;
 					if(task){
 						
 						var ctx = task.ch.getContext();
+						
 						ctx.save();
 						
 						task.currentTime += delta;
@@ -200,7 +211,9 @@ var AnimationHandler;
 						
 					}
 					
-				});				
+				});
+				
+				this.navigationHandler.draw(e);			
 				
 			}, this));
 		
@@ -302,6 +315,10 @@ var AnimationHandler;
 			
 		loadCjs:function(options){
 			
+			if(this.navigationHandler){
+				this.navigationHandler.setButtonColors(options.movieOptions.buttonColor);
+			}
+			
 			var loaderOptions = options.loaderOptions;
 			var movieOptions = options.movieOptions;
 		
@@ -347,6 +364,8 @@ var AnimationHandler;
 		
 		stopCjs:function(){
 			
+			$('.eventHitArea').remove();
+			
 			this.removeCjsTasks();
 			
 			_.each(this._cjsStages, function(cjsStage){
@@ -361,8 +380,51 @@ var AnimationHandler;
 			
 		},
 		
+		indexMode:function(containerId, animator){
+			
+			if(this.navigationHandler){
+				this.navigationHandler.setButtonColors({
+					'r':255,
+					'g':255,
+					'b':255
+				});
+			}
+			
+			var that = this;
+			
+			this.addTask({
+				'id':'index',
+				'docId': 'index',
+				'containerId': containerId,
+				'progress':0,
+				'currentTime':0,
+				'duration': 0,
+				'waitTime': 0,
+				'tIndex':10,
+				'tweener':function(){return 0;},
+				'ender':function(){return false;},
+				'onInit':function(){
+						
+				},
+				'onTicked': function(){
+					var scene = 'default';
+					if(that._activeElem){
+						scene = $(that._activeElem).attr('data-animation');
+					}
+					
+					_.bind(animator[scene], this)();
+				},
+				'onComplete':function(){
+				}
+			});
+			
+		},
+		
+		exitIndexMode:function(){
+			this.removeTask('index');
+		},
+		
 		changeTo:function(hash){
-			//this.setNavigationButtonState(hash);
 			this.stopCjs();
 		},
 		
@@ -379,14 +441,6 @@ var AnimationHandler;
 			this.navigationHandler = new NavigationHandler(events);
 			this.navigationHandler.putButtons(ch);
 
-		},
-		
-		setNavigationButtonState:function(hash){
-			if(hash.category === 'top'){
-				this.navigationHandler.hideHomeButton();
-			} else {
-				this.navigationHandler.showHomeButton();
-			}
 		},
 		
 	};

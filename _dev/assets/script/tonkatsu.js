@@ -9,8 +9,6 @@ var FPS = 24;
 
 Tonkatsu.init = function(){
 	
-	ShareUtil.init();
-	
 	urlHandler = new UrlHandler();
 	
 	domHandler = new DomHandler();
@@ -32,19 +30,32 @@ Tonkatsu.init = function(){
 			domHandler.showShare();
 		},
 	});
+	animationHandler.setForgetRate(0);
 	
 	scrollHandler = new ScrollHandler($('#mainDoc'));
+	indexScrollHandler = new ScrollHandler($('#indexContainer'));
 	var triggerScroll = function(){
 		var activeElem = scrollHandler.getActiveSection();
 		animationHandler.setActiveElem(activeElem);
 	}
+	var indexTriggerScroll = function(){
+		var activeElem = indexScrollHandler.getActiveSection();
+		animationHandler.setActiveElem(activeElem);
+	}
 	scrollHandler.setScrollListener(triggerScroll);
+	indexScrollHandler.setScrollListener(indexTriggerScroll);
 	
 	animationHandler.setOnCjsInitListener(triggerScroll);
 	
 	domHandler.setLoadCompleteListener(function(options){
-		animationHandler.loadCjs(options);
-		Tonkatsu.onHashChanged();
+		if(options === 'index'){
+			indexTriggerScroll();
+			animationHandler.indexMode('back', Animators.index);
+		} else {
+			animationHandler.exitIndexMode();
+			animationHandler.loadCjs(options);
+			Tonkatsu.onHashChanged();
+		}
 	});
 	
 	urlHandler.addChangePageListener(_.bind(domHandler.changeTo, domHandler));

@@ -42,13 +42,13 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/lib/scroll-handler.js',
 		'../../_dev/assets/script/lib/hash.js',
 		'../../_dev/assets/script/ui/display/display-util.js',
-		'../../_dev/assets/script/ui/display/doc-animator.js',
 		'../../_dev/assets/script/ui/display/shadow-handler.js',
 		'../../_dev/assets/script/ui/display/animation-handler.js',
 		'../../_dev/assets/script/ui/display/navigation-handler.js',
 		'../../_dev/assets/script/ui/display/hit-area-handler.js',
 		'../../_dev/assets/script/ui/display/cjs/navigation.js',
 		'../../_dev/assets/script/ui/animators/animator_basic.js',
+		'../../_dev/assets/script/ui/animators/animator_index.js',
 		'../../_dev/assets/script/ui/animators/tweener_basic.js',
 	];
 	
@@ -259,7 +259,7 @@ module.exports = function(grunt) {
 				series = escapeText(items[i].series);
 			}
 			
-			var layout = items[i].layout;
+			var animation = items[i].animation;
 			var hash = '#' + category + id;
 			var title = escapeText(items[i].title);
 			var description = escapeText(items[i].description);
@@ -274,11 +274,11 @@ module.exports = function(grunt) {
 			var thumbs = "";
 			if(items[i].thumb){
 				if(typeof items[i].thumb === 'string'){
-					thumbs += "\t\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb + "'>\n";
+					thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb + "'>\n";
 				} else {
 					var j = 0;
 					for (j in items[i].thumb){
-						thumbs += "\t\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb[j] + "'>\n";
+						thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb[j] + "'>\n";
 					}
 				}
 			}
@@ -288,15 +288,15 @@ module.exports = function(grunt) {
 			var month = d.getUTCMonth() + 1;
 			var date = year + '年 ' + month + '月';
 	
-			list += "<li class='widget' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-layout-mode='" + layout + "'>\n\n" + 
-			"\t\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
-			"\t\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
-			"\t\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
-			"\t\t\t\t\t\t\t<div class='widget_date'>" + date + "</div>\n" +
-			"\t\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
+			list += "<section class='widget' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
+			"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
+			"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
+			"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
+			"\t\t\t\t\t\t<div class='widget_date'>" + date + "</div>\n" +
+			"\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
 			thumbs + "\n" +
-			"\t\t\t\t\t\t</a>\n\n" + 
-			"\t\t\t\t\t</li>\n\n\t\t\t\t\t";
+			"\t\t\t\t\t</a>\n\n" + 
+			"\t\t\t\t</section>\n\n\t\t\t\t";
 
 		}
 		

@@ -8,11 +8,11 @@ var ShadowHandler;
 		
 		var grad  = ctx.createLinearGradient(0, 0, shadowWidth, 0);
 		grad.addColorStop(1.0,ch.rgbas(0, 0, 0, 0));
-		grad.addColorStop(0.6,ch.rgbas(0, 0, 0, 0.5));
+		grad.addColorStop(0.8,ch.rgbas(0, 0, 0, 0.3));
 		grad.addColorStop(0.0,ch.rgbas(0, 0, 0, 1));
 		var grad2  = ctx.createLinearGradient(w - shadowWidth, 0, w, 0);
 		grad2.addColorStop(1.0,ch.rgbas(0, 0, 0, 1));
-		grad2.addColorStop(0.6,ch.rgbas(0, 0, 0, 0.5));
+		grad2.addColorStop(0.8,ch.rgbas(0, 0, 0, 0.3));
 		grad2.addColorStop(0.0,ch.rgbas(0, 0, 0, 0));
 			
 		ctx.beginPath();
@@ -30,11 +30,11 @@ var ShadowHandler;
 		
 		var grad  = ctx.createLinearGradient(0, 0, 0, shadowWidth);
 		grad.addColorStop(1.0,ch.rgbas(0, 0, 0, 0));
-		grad.addColorStop(0.6,ch.rgbas(0, 0, 0, 0.5));
+		grad.addColorStop(0.8,ch.rgbas(0, 0, 0, 0.3));
 		grad.addColorStop(0.0,ch.rgbas(0, 0, 0, 1));
 		var grad2  = ctx.createLinearGradient(0, h - shadowWidth, 0, h);
 		grad2.addColorStop(1.0,ch.rgbas(0, 0, 0, 1));
-		grad2.addColorStop(0.6,ch.rgbas(0, 0, 0, 0.5));
+		grad2.addColorStop(0.8,ch.rgbas(0, 0, 0, 0.3));
 		grad2.addColorStop(0.0,ch.rgbas(0, 0, 0, 0));
 		
 		ctx.beginPath();

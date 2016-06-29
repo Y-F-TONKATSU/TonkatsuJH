@@ -75,7 +75,6 @@ var ScrollHandler;
 			
 		},
 		
-		/* NT */
 		getOnScreenState : function(elem, handlers){
 			
 			var rect = this.getElemRect(elem);
@@ -156,7 +155,7 @@ var ScrollHandler;
 				if(that.isCenter(rect)){
 					active = this;
 				};
-			})
+			});
 			
 			return active;
 			

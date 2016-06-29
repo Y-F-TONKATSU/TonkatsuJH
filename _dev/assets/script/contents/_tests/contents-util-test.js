@@ -1,24 +1,34 @@
-var testContentsManager = function(){
+var testContentsUtil = function(){
 	
 	mochaSetup();
 	
-	suite('ContentsManager', function() {
-		
-		var cm;
+	suite('ContentsUtil', function() {
 		
 		setup(function(){
-			cm = new ContentsManager();
 		});
 		
-		test('ContentsManager()', function() {
-			assert.strictEqual('function', typeof ContentsManager, 'コンストラクタ関数 ContentsManager() が存在する。');
+		test('ContentsUtil()', function() {
+			assert(_.isObject(ContentsUtil), 'オブジェクト ContentsUtil が存在する。');
 		});
 		
 		test('getWidget()', function() {
-			assert.strictEqual('CSS Tips - z-index 等 CSS のハマりやすい罠のまとめ',
-			$(cm.getWidget('writing000001')).find('.widget_title').text(), 'ハッシュ writing000001 のウィジェットを取得できる');
-			assert.strictEqual(18,
-			$(cm.getWidget('experimental')).length, '複数のウィジェットを取得できる');
+			var el = ContentsUtil.getWidget('experimental000019');
+			assert.strictEqual('クルトンの作り方', $(el).find('.widget_title').text(), 'ウィジェットを取得した');
+			var el2 = ContentsUtil.getWidget({
+				'category':'experimental',
+				'id':'000019'
+			});
+			assert.strictEqual('クルトンの作り方', $(el2).find('.widget_title').text(), 'オブジェクトを渡してウィジェットを取得した');
+		});
+		
+		test('getTitle()', function() {
+			var title = ContentsUtil.getTitle('experimental000019');
+			assert.strictEqual('クルトンの作り方', title, 'タイトルを取得した');
+		});
+		
+		test('getUrl()', function() {
+			var url = ContentsUtil.getUrl('experimental000019');
+			assert.strictEqual('contents/experimental/1604/e000019_crouton/main.html', url, 'URL を取得した');
 		});
 		
 	});

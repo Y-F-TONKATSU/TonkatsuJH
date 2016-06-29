@@ -5,10 +5,11 @@
 @ZI_BG:0;
 @ZI_MAIN:1;
 @ZI_FG:2;
-@ZI_SHADOW:3;
-@ZI_NAV:4;
-@ZI_MENU_CANCELER:5;
-@ZI_MENU:6;
+@ZI_NAV_BUTTON:3;
+@ZI_SHADOW:4;
+@ZI_NAV:5;
+@ZI_MENU_CANCELER:6;
+@ZI_MENU:7;
 
 .full{
 	position:fixed;
@@ -65,6 +66,10 @@
 
 #background{
 	z-index:@ZI_BG;
+}
+
+#navigationButtonContainer{
+	z-index:@ZI_NAV_BUTTON;
 }
 
 #shadow{

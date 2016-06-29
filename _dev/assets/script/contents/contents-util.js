@@ -16,7 +16,14 @@ var ContentsUtil = {
 		
 	},
 
-	getContUrl:function(hash){
+	getTitle:function(hash){
+		
+		return $(ContentsUtil.getWidget(hash)).find('.widget_title').text();
+		
+	},
+
+	getUrl:function(hash){
+		
 		return $(ContentsUtil.getWidget(hash)).attr('data-url');
 			
 	}

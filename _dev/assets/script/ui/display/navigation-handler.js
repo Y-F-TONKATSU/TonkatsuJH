@@ -2,59 +2,209 @@ var NavigationHandler;
 
 (function(){
 	
+	var BUTTON_SIZE = 80;
+	var PADDING = 8;
+	var MARGIN_TOP = 120;
+	
+	var NavigationButton = function(clickListener, mc){
+		this.onClick = clickListener;
+		this.mc = mc;
+	}
+	
+	var buttonAnimator = function(ch, button, delta){
+		
+		var comp = true;
+		
+		var ctx = ch.getContext();
+		
+		ctx.save();
+		
+		ch.setWidth(5);
+		
+		_.each(button.color, function(v, k){
+			
+			var goal = button.colorGoal[k];
+			
+			if(Math.abs(goal - v) < 1){
+				button.color[k] = goal;
+			} else if(goal > v){
+				button.color[k] += delta / 100;
+				comp =false;
+			} else if(goal < v){
+				button.color[k] -= delta / 100;
+				comp =false;
+			}
+			
+		});
+		
+		_.each(button.shape, function(v, k){
+			
+			var goal = button.shapeGoal;
+			
+			if(goal === k){
+				if(button.shape[k] < 1){
+					button.shape[k] += delta / 10000;
+					comp = false;
+				} else {
+					button.shape[k] = 1;
+				}
+			} else {
+				if(button.shape[k] > 0){
+					button.shape[k] -= delta / 10000;
+					comp = false;
+				} else {
+					button.shape[k] = 0;
+				}
+			}
+			
+			ch.setFillStyle(button.color);
+			
+			if(button.shape[k] > 0){
+				
+				if(k === 'circle'){
+					ch.drawShape(function(ctx){
+						ctx.arc(button.centerX, button.centerY, button.shape[k] * BUTTON_SIZE * 0.5, 0, Math.PI * 2);
+					}, true, true);
+				} else if (k === 'rect'){
+					var pad = (1 - button.shape[k]) * BUTTON_SIZE * 0.5;
+					ch.drawShape(function(ctx){
+						ctx.rect(button.x + pad , button.y + pad, button.shape[k] * BUTTON_SIZE, button.shape[k] * BUTTON_SIZE);
+					}, true, true);
+				}
+			}
+			
+		});
+		
+		
+		ctx.restore();
+		
+		return comp;
+		
+	}
+	
+	NavigationButton.prototype = {
+		'duration':1000,
+		'color':{
+			'r':255,
+			'g':255,
+			'b':255,
+		},
+		'colorGoal':{
+			'r':255,
+			'g':255,
+			'b':255,
+		},
+		'shape':{
+			'circle':0,
+			'rect':1,
+		},
+		shapeGoal:'circle',
+		'state':'stop',
+		'x':0,
+		'y':0,
+		'centerX':0,
+		'centerY':0,
+	}
+	
 	NavigationHandler = function(events){
+		
+		this._ch = null;
+		this._forgetRate = 0;
+		
+		this.inactivate();
+		
 		this.buttons = [];
 		this.hitAreaHandler = new HitAreaHandler($('#navigation'));
 		
-		this.onHomeClickedListener = events.onHomeClicked;
-		this.onMenuClickedListener = events.onMenuClicked;
-		this.onShareClickedListener = events.onShareClicked;
+		this.homeButton = new NavigationButton(events.onHomeClicked, new cjsNavigationLib.navigation().homeButton);
+		this.menuButton = new NavigationButton(events.onMenuClicked, new cjsNavigationLib.navigation().menuButton);
+		this.shareButton = new NavigationButton(events.onShareClicked, new cjsNavigationLib.navigation().shareButton);
 		
-		this.state = {
-			'home':{
-				'r':255,
-				'g':255,
-				'b':255,
-			},
-			'menu':{
-				'r':255,
-				'g':255,
-				'b':255,
-			},
-			'share':{
-				'r':255,
-				'g':255,
-				'b':255,
-			},
-		}
+		this.homeButton.x = PADDING;
+		this.menuButton.x = PADDING;
+		this.shareButton.x = PADDING;
+		
+		this.homeButton.centerX = PADDING + BUTTON_SIZE / 2;
+		this.menuButton.centerX = PADDING + BUTTON_SIZE / 2;
+		this.shareButton.centerX = PADDING + BUTTON_SIZE / 2;
+		
+		this.homeButton.y = MARGIN_TOP;
+		this.menuButton.y = MARGIN_TOP + PADDING + BUTTON_SIZE;
+		this.shareButton.y = MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2;
+		
+		this.homeButton.centerY = MARGIN_TOP + BUTTON_SIZE / 2;
+		this.menuButton.centerY = MARGIN_TOP + PADDING + BUTTON_SIZE + BUTTON_SIZE / 2;
+		this.shareButton.centerY = MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2 + BUTTON_SIZE / 2;
+		
+		this.buttons.push(this.homeButton, this.shareButton, this.menuButton);		
+		
 	};
 	
 	NavigationHandler.prototype = {
+		
+		activate:function(){
+			this.isAactive = true;
+		},
+		
+		inactivate:function(){
+			this.isAactive = false;
+		},
+		
+		setForgetRate:function(v){
+			this._forgetRate = v;
+		},
+		
+		setButtonColors:function(color){
 			
+			_.each(this.buttons, _.bind(function(button){
+				
+				button.colorGoal = color;
+				
+			}, this));
+			
+			this.activate();
+			
+		},
+		
+		draw:function(e){
+			
+			if(!this.isAactive){return;}
+			
+			this.inactivate();
+			
+			if(Math.random() > this._forgetRate){
+				this._ch.clear();
+			}
+			
+			_.each(this.buttons, _.bind(function(button){
+				
+				var complete = buttonAnimator(this._ch, button, e.delta);
+				
+				if(!complete){this.activate();}
+				
+				var label = button.mc.currentLabel;
+				if(label.indexOf('stop') >= 0){
+					button.mc.stop();
+					button.state = 'stop';
+				} else {
+					this.activate();				
+				}
+			}, this));
+					
+ 			this.stage.update(e);
+			
+		},
+		
 		putButtons:function(ch){
 			
+			this._ch = ch
 			var canvas = ch.getCanvas();
 			
-			this.homeButton = new cjsNavigationLib.navigation().homeButton;
-			this.shareButton = new cjsNavigationLib.navigation().shareButton;
-			this.menuButton = new cjsNavigationLib.navigation().menuButton;
-			
-			this.buttons.push(this.homeButton, this.shareButton, this.menuButton);		
 			this.stage = new createjs.Stage(canvas);
-			_.each(this.buttons, _.bind(function(button){
-				this.stage.addChild(button);
-			}, this));
-			this.stage.update();
+			this.stage.autoClear = false;
 			
-			createjs.Ticker.setFPS(cjsNavigationLib.properties.fps);
-			createjs.Ticker.addEventListener("tick", this.stage);
-			createjs.Ticker.addEventListener("tick", _.bind(function(e){
-				_.each(this.buttons, function(button){
-					var label = button.currentLabel;
-					if(label.indexOf('stop') >= 0){
-						button.stop();
-					}
-				});
+			_.each(this.buttons, _.bind(function(button){
+				this.stage.addChild(button.mc);
 			}, this));
 			
 			this.showHomeButton();
@@ -63,73 +213,76 @@ var NavigationHandler;
 			
 		},
 		
-		_setState:function(key, value){
-			
-			state[key] = value;
-			
-		}
-		
 		showHomeButton:function(){
 			
-			this.homeButton.gotoAndPlay('start');
+			this.homeButton.mc.gotoAndPlay('start');
 			
 			this.hitAreaHandler.setHitArea('home', {
-				width:80,
-				height:80,
-				left:8,
-				top:120
-			}, '#', this.onHomeClickedListener);
+				width:BUTTON_SIZE,
+				height:BUTTON_SIZE,
+				left:PADDING,
+				top:MARGIN_TOP
+			}, '#', this.homeButton.onClick);
+							
+			this.activate();
 			
-			this._setState('', '');
-				
 		},
 		
 		showMenuButton:function(){
 			
-			this.menuButton.gotoAndPlay('start');
+			this.menuButton.mc.gotoAndPlay('start');
 
 			this.hitAreaHandler.setHitArea('menu', {
-				width:80,
-				height:80,
-				left:8,
-				top:208
-			}, this.onMenuClickedListener);
-				
+				width:BUTTON_SIZE,
+				height:BUTTON_SIZE,
+				left:PADDING,
+				top:MARGIN_TOP + PADDING + BUTTON_SIZE
+			}, this.menuButton.onClick);
+							
+			this.activate();
+			
 		},
 		
 		showShareButton:function(){
 			
-			this.shareButton.gotoAndPlay('start');
+			this.shareButton.mc.gotoAndPlay('start');
 			
 			this.hitAreaHandler.setHitArea('share', {
-				width:80,
-				height:80,
-				left:8,
-				top:296
-			}, this.onShareClickedListener);
-				
+				width:BUTTON_SIZE,
+				height:BUTTON_SIZE,
+				left:PADDING,
+				top:MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2
+			}, this.shareButton.onClick);
+							
+			this.activate();
 				
 		},
 		
 		hideHomeButton:function(){
 			
-			this.homeButton.gotoAndPlay('end');
+			this.homeButton.mc.gotoAndPlay('end');
 			this.hitAreaHandler.removeHitArea('home');
-						
+							
+			this.activate();
+			
 		},
 		
 		hideMenuButton:function(){
 			
-			this.menuButton.gotoAndPlay('end');
+			this.menuButton.mc.gotoAndPlay('end');
 			this.hitAreaHandler.removeHitArea('menu');
-						
+							
+			this.activate();
+			
 		},
 		
 		hideShareButton:function(){
 			
-			this.shareButton.gotoAndPlay('end');
+			this.shareButton.mc.gotoAndPlay('end');
 			this.hitAreaHandler.removeHitArea('share');
-						
+							
+			this.activate();
+			
 		}
 		
 		

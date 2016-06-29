@@ -26,20 +26,6 @@ lib.webfontAvailable = function(family) {
 
 
 
-(lib.Line = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// レイヤー 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("#FF0000").ss(6,1,1).p("AAAjlIAAHL");
-	this.shape.setTransform(0,23);
-
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-3,-3,6,52.1);
-
-
 (lib.TextShare_in_a = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -388,154 +374,7 @@ p.nominalBounds = new cjs.Rectangle(49,19.1,30.3,12);
 p.nominalBounds = new cjs.Rectangle(62.1,-4,21.1,120.7);
 
 
-(lib.OuterCircle = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// レイヤー 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("#000000").ss(8,1,1).p("APoAAQAAGekmEkQkkEmmeAAQmdAAklkmQklkkAAmeQAAmdElklQElklGdAAQGeAAEkElQEmElAAGdg");
-	this.shape.setTransform(100,100);
-
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-4,-4,208,208);
-
-
-(lib.InnerCircle = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// レイヤー 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#FF0000").s().p("ArCLDQklklAAmeQAAmdElklQElklGdAAQGeAAElElQEkElAAGdQAAGekkElQklEkmeAAQmdAAklkkg");
-	this.shape.setTransform(100,100);
-
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,200,200);
-
-
-(lib.Line_in_out = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// レイヤー 1
-	this.instance = new lib.Line();
-	this.instance.setTransform(0,67.8,1,0.099,0,0,0,0,22.8);
-	this.instance.alpha = 0;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).to({regY:23,scaleY:1,y:23,alpha:1},3,cjs.Ease.get(1)).to({regY:22.9,scaleY:0.2,rotation:-2,x:0.2,y:-13,alpha:0},3,cjs.Ease.get(1)).wait(1));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-3,65.2,6,5.1);
-
-
-(lib.ButtonBase_in_a = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// Line_in_out
-	this.instance = new lib.Line_in_out("synched",0,false);
-	this.instance.setTransform(100.6,102.1,1,1,-30,0,0,4,171.1);
-	this.instance._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_1 = new lib.Line_in_out("synched",0,false);
-	this.instance_1.setTransform(100.7,102.1,1,1,-60,0,0,4,171.1);
-	this.instance_1._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_2 = new lib.Line_in_out("synched",0,false);
-	this.instance_2.setTransform(100.7,102,1,1,-90,0,0,4,171.1);
-	this.instance_2._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_3 = new lib.Line_in_out("synched",0,false);
-	this.instance_3.setTransform(100.7,102.1,1,1,-120,0,0,4,171.1);
-	this.instance_3._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_4 = new lib.Line_in_out("synched",0,false);
-	this.instance_4.setTransform(100.7,102.1,1,1,-150,0,0,4,171.1);
-	this.instance_4._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_5 = new lib.Line_in_out("synched",0,false);
-	this.instance_5.setTransform(100.7,102.1,1,1,180,0,0,4,171);
-	this.instance_5._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_6 = new lib.Line_in_out("synched",0,false);
-	this.instance_6.setTransform(100.7,102,1,1,150,0,0,4,171.1);
-	this.instance_6._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_7 = new lib.Line_in_out("synched",0,false);
-	this.instance_7.setTransform(100.7,102,1,1,120,0,0,4,171.1);
-	this.instance_7._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_8 = new lib.Line_in_out("synched",0,false);
-	this.instance_8.setTransform(100.7,102,1,1,90,0,0,4,171);
-	this.instance_8._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_8).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_9 = new lib.Line_in_out("synched",0,false);
-	this.instance_9.setTransform(100.6,102,1,1,60,0,0,4,171.1);
-	this.instance_9._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_9).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_10 = new lib.Line_in_out("synched",0,false);
-	this.instance_10.setTransform(100.6,102.1,1,1,30,0,0,4,171.1);
-	this.instance_10._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_10).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// Line_in_out
-	this.instance_11 = new lib.Line_in_out("synched",0,false);
-	this.instance_11.setTransform(100.7,102.1,1,1,0,0,0,4,171.1);
-	this.instance_11._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_11).wait(6).to({_off:false},0).to({_off:true},6).wait(1));
-
-	// レイヤー 1
-	this.instance_12 = new lib.OuterCircle();
-	this.instance_12.setTransform(100,100,2.141,2.141,0,0,0,100,100);
-	this.instance_12.alpha = 0;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_12).to({scaleX:1,scaleY:1,alpha:1},11,cjs.Ease.get(1)).wait(2));
-
-	// レイヤー 3
-	this.instance_13 = new lib.InnerCircle();
-	this.instance_13.setTransform(100,100,0.12,0.12,0,0,0,100,100);
-	this.instance_13.alpha = 0;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_13).to({scaleX:1,scaleY:1,alpha:1},11,cjs.Ease.get(0.99)).wait(2));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
-
-
-(lib.ButtonShare_in_a = function(mode,startPosition,loop) {
+(lib.ButtonShare_in_no_base = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{start:0,stop:12});
 
 	// TextShare
@@ -550,17 +389,11 @@ p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(13));
 
-	// ButtonBase
-	this.instance_2 = new lib.ButtonBase_in_a("synched",0,false);
-	this.instance_2.setTransform(100,100,1,1,0,0,0,100,100);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(13));
-
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
+p.nominalBounds = new cjs.Rectangle(123.5,104,4.8,6.6);
 
 
-(lib.ButtonMenu = function(mode,startPosition,loop) {
+(lib.ButtonMenu_no_base = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{"start":0,"stop":12});
 
 	// TextMenu
@@ -575,17 +408,11 @@ p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(13));
 
-	// ButtonBase
-	this.instance_2 = new lib.ButtonBase_in_a("synched",0,false);
-	this.instance_2.setTransform(100,100,1,1,0,0,0,100,100);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(13));
-
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
+p.nominalBounds = new cjs.Rectangle(48,39.9,127.5,126.6);
 
 
-(lib.ButtonHome_in_a = function(mode,startPosition,loop) {
+(lib.ButtonHome_in_no_base = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{"start":0,start_stop:12,end:17,end_stop:25});
 
 	// TextHome_in
@@ -600,14 +427,8 @@ p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(17).to({startPosition:9},0).to({x:-138.3},8,cjs.Ease.get(-1)).wait(1));
 
-	// ButtonBase
-	this.instance_2 = new lib.ButtonBase_in_a("synched",0,false);
-	this.instance_2.setTransform(100,100,1,1,0,0,0,100,100);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(17).to({startPosition:12},0).to({x:-140},8,cjs.Ease.get(-1)).wait(1));
-
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
+p.nominalBounds = new cjs.Rectangle(58.3,16.8,57.8,155);
 
 
 // stage content:
@@ -618,25 +439,25 @@ p.nominalBounds = new cjs.Rectangle(-122.6,-122.6,445.2,445.2);
 	this.initialize(mode,startPosition,loop,{});
 
 	// ButtonHome
-	this.homeButton = new lib.ButtonHome_in_a();
+	this.homeButton = new lib.ButtonHome_in_no_base();
 	this.homeButton.setTransform(48,160,0.4,0.4,0,0,0,100,100);
 
 	this.timeline.addTween(cjs.Tween.get(this.homeButton).wait(2));
 
 	// ButtonMenu
-	this.menuButton = new lib.ButtonMenu();
+	this.menuButton = new lib.ButtonMenu_no_base();
 	this.menuButton.setTransform(48,248,0.4,0.4,0,0,0,100,100);
 
 	this.timeline.addTween(cjs.Tween.get(this.menuButton).wait(2));
 
 	// ButtonShare
-	this.shareButton = new lib.ButtonShare_in_a();
+	this.shareButton = new lib.ButtonShare_in_no_base();
 	this.shareButton.setTransform(48,336,0.4,0.4,0,0,0,100,100);
 
 	this.timeline.addTween(cjs.Tween.get(this.shareButton).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(343,311,178.1,354.1);
+p.nominalBounds = new cjs.Rectangle(410.6,366.7,51.7,223.4);
 
 })(cjsNavigationLib = cjsNavigationLib||{}, cjsNavigationImages = cjsNavigationImages||{}, createjs = createjs||{}, ss = ss||{});
 var cjsNavigationLib, cjsNavigationImages, createjs, ss;

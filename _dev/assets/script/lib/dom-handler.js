@@ -14,11 +14,11 @@ var DomHandler;
 		
 		_setMainDocMode:function(url){
 			
-			DocAnimator.frameIn.fromLeft($('#mainDoc'), 1000, function(){
+			DocProcessor.frameIn.fromLeft($('#mainDoc'), 1000, function(){
 			});
 			
 			if($('#indexContainer').data('state') === 'visible'){
-				DocAnimator.frameOut.fromLeft($('#indexContainer'), 1000, function(){
+				DocProcessor.frameOut.fromLeft($('#indexContainer'), 1000, function(){
 				});
 			}
 			
@@ -28,13 +28,15 @@ var DomHandler;
 		
 		_setIndexMode:function(){
 			
-			DocAnimator.frameIn.fromLeft($('#indexContainer'), 1000, function(){
+			DocProcessor.frameIn.fromLeft($('#indexContainer'), 1000, function(){
 			});
 			
 			if($('#mainDoc').data('state') === 'visible'){
-				DocAnimator.frameOut.fromLeft($('#mainDoc'), 1000, function(){
+				DocProcessor.frameOut.fromLeft($('#mainDoc'), 1000, function(){
 				});
 			}
+			
+			this._loadCompleteListener('index');
 			
 		},
 	
@@ -95,7 +97,7 @@ var DomHandler;
 			$('#menuCanceler').click(_.bind(this.hideMenu, this));
 			
 			if($('#menu').data('state') === 'hidden'){
-				DocAnimator.frameIn.fromLeft($('#menu'), 1000, function(){
+				DocProcessor.frameIn.fromLeft($('#menu'), 1000, function(){
 				});
 			}
 			
@@ -108,7 +110,7 @@ var DomHandler;
 			$('#menuCanceler').click(_.bind(this.hideShare, this));
 			
 			if($('#share').data('state') === 'hidden'){
-				DocAnimator.frameIn.fromLeft($('#share'), 1000, _.bind(function(){
+				DocProcessor.frameIn.fromLeft($('#share'), 1000, _.bind(function(){
 					
 					var shareDiv = ShareUtil.getAllTags(this._url, this._title);
 
@@ -123,7 +125,7 @@ var DomHandler;
 		
 		showMenuCanceler:function(){
 			
-			$('#menuCanceler').show().css('opacity', 0.2);
+			$('#menuCanceler').show().css('opacity', 0.6);
 			
 		},
 		
@@ -132,7 +134,7 @@ var DomHandler;
 			this.hideMenuCanceler();
 			if($('#menu').data('state') === 'hidden'){return;}
 			
-			DocAnimator.frameOut.fromLeft($('#menu'), 1000, function(){
+			DocProcessor.frameOut.fromLeft($('#menu'), 1000, function(){
 			});
 			
 		},
@@ -142,7 +144,7 @@ var DomHandler;
 			this.hideMenuCanceler();
 			if($('#share').data('state') === 'hidden'){return;}
 			
-			DocAnimator.frameOut.fromLeft($('#share'), 1000, function(){
+			DocProcessor.frameOut.fromLeft($('#share'), 1000, function(){
 			});
 			
 		},
@@ -163,7 +165,7 @@ var DomHandler;
 			if(hash.category === 'top'){
 				this._setIndexMode();
 			} else {
-				this._setMainDocMode(ContentsUtil.getContUrl(hash));
+				this._setMainDocMode(ContentsUtil.getUrl(hash));
 			}
 		
 		},

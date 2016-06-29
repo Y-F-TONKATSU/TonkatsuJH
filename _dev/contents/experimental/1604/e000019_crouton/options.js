@@ -1,12 +1,19 @@
 var cjsOptions = {
 	'movieOptions':{
-		'mcList':[{
-			'containerId': 'fore',
-			'root': 'foreground'
-		},{
-			'containerId': 'back',
-			'root': 'background'
-		},],
+		'mcList':[
+			{
+				'containerId': 'fore',
+				'root': 'foreground'
+			},{
+				'containerId': 'back',
+				'root': 'background'
+			},
+		],
+		'buttonColor':{
+			'r': 0,
+			'g': 189,
+			'b': 16,
+		},
 		'docId':'experimental000019',
 		'root':'crouton_v006',
 	},
@@ -25,7 +32,7 @@ var cjsEvents = {
 			
 			if($(cjsEvents.hitAreaHandler.getHitArea('crouton')).length > 0){return;}
 			
-			cjsEvents.hitAreaHandler.setHitArea('crouton', {
+			cjsEvents.hitAreaHandler.setEventHitArea('crouton', {
 				left:460 * 0.4,
 				top:500 * 0.4,
 				width:180 * 0.4,
@@ -40,19 +47,38 @@ var cjsEvents = {
 			
 			if($('.share_crouton').length > 0){return;}
 			
-			var shareDiv = ShareUtil.getAllTags('ton-katsu.net/', 'クルトンの作り方');
-
-			$(shareDiv).addClass('share_crouton').addClass('contElem').css({
-				'position':'fixed',
-				'overflowY':'auto',
-				'pointerEvents':'auto'
-			});
+			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation'));
 			
-			DisplayUtil.setRect(shareDiv, 0.15, 0.23, 0.36, 0.44);
+			if($(cjsEvents.hitAreaHandler.getHitArea('crouton_fb')).length > 0){return;}
 			
-			$('#foreground').append(shareDiv);
+			cjsEvents.hitAreaHandler.setEventHitArea('crouton_fb', {
+				left:285 * 0.4,
+				top:275 * 0.4,
+				width:320 * 0.4,
+				height:255 * 0.4
+			}, ShareUtil.getFaceBookLink('ton-katsu.net/'));
 			
-			//ShareUtil.render();
+			cjsEvents.hitAreaHandler.setEventHitArea('crouton_tw', {
+				left:606 * 0.4,
+				top:275 * 0.4,
+				width:320 * 0.4,
+				height:255 * 0.4
+			}, ShareUtil.getTwitterLink('ton-katsu.net/', 'クルトンの作り方 - とんかつひろば'));
+			
+			cjsEvents.hitAreaHandler.setEventHitArea('crouton_gp', {
+				left:390 * 0.4,
+				top:543 * 0.4,
+				width:320 * 0.4,
+				height:255 * 0.4
+			}, ShareUtil.getGooglePlusLink('ton-katsu.net/'));
+			
+			cjsEvents.hitAreaHandler.setEventHitArea('crouton_hb', {
+				left:676 * 0.4,
+				top:543 * 0.4,
+				width:320 * 0.4,
+				height:255 * 0.4
+			}, ShareUtil.getHatenaLink('ton-katsu.net/'));
+			
 		}
 	},
 	'labelOut':{
@@ -60,7 +86,10 @@ var cjsEvents = {
 			cjsEvents.hitAreaHandler.removeHitArea('crouton');
 		},
 		'Scene006_stop':function(){
-			$('.share_crouton').remove();
+			cjsEvents.hitAreaHandler.removeHitArea('crouton_fb');
+			cjsEvents.hitAreaHandler.removeHitArea('crouton_tw');
+			cjsEvents.hitAreaHandler.removeHitArea('crouton_gp');
+			cjsEvents.hitAreaHandler.removeHitArea('crouton_hb');
 		}
 	}
 	

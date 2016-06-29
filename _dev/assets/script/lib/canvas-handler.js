@@ -50,9 +50,13 @@ var CanvasHandler;
 		},
 		
 		rgbas:function(r, g, b, a){
-			a = a.toString();
-			if(a.length > 10){a = a.slice(0, 10);}
-			return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a + ')';
+			if(!_.isUndefined(a)){
+				a = a.toString();
+				if(a.length > 10){a = a.slice(0, 10);}
+			} else {
+				a = 1;
+			}
+			return 'rgba(' + Math.floor(r) + ', ' + Math.floor(g) + ', ' + Math.floor(b) + ', ' + a + ')';
 		},
 					
 		destruct:function(){
@@ -103,7 +107,19 @@ var CanvasHandler;
 			this._context.clearRect(0, 0, this.getCanvasWidth(), this.getCanvasHeight());
 		},
 			
-		setFillStyle:function(r, g, b, a){
+		setFillStyle:function(color, g, b, a){
+			
+			var r;
+			
+			if(_.isObject(color)){
+				r = color.r;
+				g = color.g;
+				b = color.b;
+				if(color.a) {a = color.a;}
+			} else {
+				r = color;
+			}
+			
 			return this._context.fillStyle = this.rgbas(r, g, b, a);
 		},
 			

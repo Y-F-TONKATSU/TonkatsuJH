@@ -84,10 +84,10 @@ var testDisplayUtil = function(){
 		test('getObjectRect()', function() {
 			
 			var rect = DisplayUtil.getObjectRect({
-				left:480,
-				top:300,
-				width:960,
-				height:600
+				left:480 * 0.4,
+				top:300 * 0.4,
+				width:960 * 0.4,
+				height:600 * 0.4
 			});
 			
 			$('#object').css({
