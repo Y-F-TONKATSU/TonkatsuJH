@@ -47,6 +47,7 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/ui/display/navigation-handler.js',
 		'../../_dev/assets/script/ui/display/hit-area-handler.js',
 		'../../_dev/assets/script/ui/display/cjs/navigation.js',
+		'../../_dev/assets/script/ui/display/cjs/widget.js',
 		'../../_dev/assets/script/ui/animators/animator_basic.js',
 		'../../_dev/assets/script/ui/animators/animator_index.js',
 		'../../_dev/assets/script/ui/animators/tweener_basic.js',
@@ -292,7 +293,7 @@ module.exports = function(grunt) {
 			"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
 			"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 			"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
-			"\t\t\t\t\t\t<div class='widget_date'>" + date + "</div>\n" +
+			"\t\t\t\t\t\t<div class='widget_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 			"\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
 			thumbs + "\n" +
 			"\t\t\t\t\t</a>\n\n" + 
