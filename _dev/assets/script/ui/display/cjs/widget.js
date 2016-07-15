@@ -1,7 +1,6 @@
 (function (lib, img, cjs, ss) {
 
 var p; // shortcut to reference prototypes
-lib.webFontTxtFilters = {}; 
 
 // library properties:
 lib.properties = {
@@ -10,9 +9,8 @@ lib.properties = {
 	fps: 24,
 	color: "#FFFFFF",
 	opacity: 1.00,
-	webfonts: {},
 	manifest: [
-		{src:"images/widget_crouton.png", id:"widget_crouton"}
+		{src:"assets/images/widget_crouton.png?1467622305148", id:"widget_crouton"}
 	]
 };
 
@@ -21,13 +19,6 @@ lib.properties = {
 lib.ssMetadata = [];
 
 
-lib.webfontAvailable = function(family) { 
-	lib.properties.webfonts[family] = true;
-	var txtFilters = lib.webFontTxtFilters && lib.webFontTxtFilters[family] || [];
-	for(var f = 0; f < txtFilters.length; ++f) {
-		txtFilters[f].updateCache();
-	}
-};
 // symbols:
 
 

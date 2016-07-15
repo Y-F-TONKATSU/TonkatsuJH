@@ -6,6 +6,8 @@ var scrollHandler;
 var animationHandler;
 
 var FPS = 24;
+var BASE_TITLE = 'とんかつ中学のホームページ';
+var BASE_URL = 'ton-katsu.net/';
 
 Tonkatsu.init = function(){
 	
@@ -15,19 +17,44 @@ Tonkatsu.init = function(){
 	domHandler.initElems($('.autoInit'));
 	
 	animationHandler = new AnimationHandler({
+		'popup':$('#popup'),
 		'fore':$('#foreground'),
 		'back':$('#background'),
-	});
+		'lower':$('#lowerBackground'),
+	}, $('#navigation'), $('#navigation_popup'));
 	animationHandler.init(FPS);
 	animationHandler.putShadow($('#shadow'));
 	animationHandler.putNavigationButtons($('#navigationButtonContainer'), {
 		'onHomeClicked':function(){
+			domHandler.resetIndex();
 		},
 		'onMenuClicked':function(){
-			domHandler.showMenu();
+			domHandler.showMenu(function(){
+				//onHideListenr
+				animationHandler.exitMenuMode();
+			});
+			animationHandler.menuMode('popup');
 		},
 		'onShareClicked':function(){
-			domHandler.showShare();
+			
+			domHandler.showShare('', '', function(){
+				//onHideListenr
+				animationHandler.exitShareMode();
+			});
+			
+			var url = ContentsUtil.getUrl(urlHandler.getCurrentHashString());
+			if(!url){
+				url = BASE_URL;
+			} else {
+				url = BASE_URL + url;
+			}
+			
+			var title = ContentsUtil.getTitle(urlHandler.getCurrentHashString());
+			if(!title){
+				title = BASE_TITLE;
+			}
+			
+			animationHandler.shareMode('popup', url, title);
 		},
 	});
 	animationHandler.setForgetRate(0);
@@ -50,7 +77,7 @@ Tonkatsu.init = function(){
 	domHandler.setLoadCompleteListener(function(options){
 		if(options === 'index'){
 			indexTriggerScroll();
-			animationHandler.indexMode('back', Animators.index);
+			animationHandler.indexMode('lower', 'back', 'fore', Animators.index);
 		} else {
 			animationHandler.exitIndexMode();
 			animationHandler.loadCjs(options);

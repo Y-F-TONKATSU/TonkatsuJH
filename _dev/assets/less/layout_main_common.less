@@ -2,14 +2,17 @@
 @sidebarRatio:100% * @ratio;
 @mainRatio:100% - @sidebarRatio;
 
-@ZI_BG:0;
-@ZI_MAIN:1;
-@ZI_FG:2;
-@ZI_NAV_BUTTON:3;
-@ZI_SHADOW:4;
-@ZI_NAV:5;
-@ZI_MENU_CANCELER:6;
-@ZI_MENU:7;
+@ZI_LOWER_BG:1;
+@ZI_BG:2;
+@ZI_MAIN:3;
+@ZI_FG:4;
+@ZI_NAV_BUTTON:5;
+@ZI_SHADOW:6;
+@ZI_NAV:7;
+@ZI_MENU_CANCELER:8;
+@ZI_MENU:9;
+@ZI_POPUP:10;
+@ZI_NAV_POPUP:11;
 
 .full{
 	position:fixed;
@@ -35,10 +38,6 @@
 	height:100%;
 }
 
-.disabled{
-	pointer-events:none;
-}
-
 .navigationLayer{
 	position:fixed;
 	pointer-events:auto;
@@ -48,6 +47,14 @@
 	height:0%;
 	overflow:visible;
 	z-index:@ZI_NAV;
+}
+
+#navigation{
+	z-index:@ZI_NAV;
+}
+
+#navigation_popup{
+	z-index:@ZI_NAV_POPUP;
 }
 
 #mainDoc{
@@ -62,6 +69,14 @@
 
 #foreground{
 	z-index:@ZI_FG;
+}
+
+#popup{
+	z-index:@ZI_POPUP;
+}
+
+#lowerBackground{
+	z-index:@ZI_LOWER_BG;
 }
 
 #background{

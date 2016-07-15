@@ -31,6 +31,10 @@ var testContentsUtil = function(){
 			assert.strictEqual('contents/experimental/1604/e000019_crouton/main.html', url, 'URL を取得した');
 		});
 		
+		test('getRandomAphorism()', function() {
+			$('#aphorism').append(ContentsUtil.getRandomAphorism());
+		});
+		
 	});
 	
 	$(function(){

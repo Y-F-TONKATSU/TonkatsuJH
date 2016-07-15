@@ -7,6 +7,7 @@ var DomHandler;
 		this._url = 'http://ton-katsu.net/';
 		this._title = 'とんかつひろば';
 		this._loadCompleteListener = null;
+		this._onHideListener = function(){};
 		
 	};
 	
@@ -27,6 +28,8 @@ var DomHandler;
 		},
 		
 		_setIndexMode:function(){
+			
+			DocProcessor.initIndex($('#indexContainer'));
 			
 			DocProcessor.frameIn.fromLeft($('#indexContainer'), 1000, function(){
 			});
@@ -67,7 +70,12 @@ var DomHandler;
 			}, this));
 			
 		},
-	
+		
+		resetIndex:function(){
+			$('#indexContainer').scrollLeft(0)
+				.scrollTop(0);
+		},
+			
 		setLoadCompleteListener:function(f){
 			this._loadCompleteListener = f;
 		},
@@ -88,9 +96,11 @@ var DomHandler;
 				DisplayUtil.rectToCss(rect, elem);
 			})
 			
-		},
+		},		
 		
-		showMenu:function(){
+		showMenu:function(onHideListener){
+			
+			this._onHideListener = onHideListener;
 			
 			this.hideShare();
 			this.showMenuCanceler();
@@ -103,7 +113,9 @@ var DomHandler;
 			
 		},
 		
-		showShare:function(url, title){
+		showShare:function(url, title, onHideListener){
+			
+			this._onHideListener = onHideListener;
 			
 			this.hideMenu();
 			this.showMenuCanceler();
@@ -112,11 +124,8 @@ var DomHandler;
 			if($('#share').data('state') === 'hidden'){
 				DocProcessor.frameIn.fromLeft($('#share'), 1000, _.bind(function(){
 					
-					var shareDiv = ShareUtil.getAllTags(this._url, this._title);
+					//var shareDiv = ShareUtil.getAllTags(this._url, this._title);
 
-					$('#share').empty().append(shareDiv);
-
-					ShareUtil.render();
 					
 				}, this));
 			}
@@ -131,6 +140,8 @@ var DomHandler;
 		
 		hideMenu:function(){
 			
+			this._onHideListener();
+			
 			this.hideMenuCanceler();
 			if($('#menu').data('state') === 'hidden'){return;}
 			
@@ -140,6 +151,8 @@ var DomHandler;
 		},
 		
 		hideShare:function(){
+			
+			this._onHideListener();
 			
 			this.hideMenuCanceler();
 			if($('#share').data('state') === 'hidden'){return;}

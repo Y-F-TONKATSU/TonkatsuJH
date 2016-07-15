@@ -35,8 +35,8 @@ if(!Animators){var Animators = {};}
 			ctx.lineTo(this.getDx(), this.getDy());
 			ctx.stroke();
 			if(image){
-				var sizeX = 37 * this.level * 0.5 * grow;
-				var sizeY = 53 * this.level * 0.5 * grow;
+				var sizeX = 37 * (this.level + 1) * 0.4 * grow;
+				var sizeY = 53 * (this.level + 1) * 0.4 * grow;
 				ctx.save();
 				ctx.translate(this.getDx(), this.getDy());
 				ctx.rotate(Math.PI * 2 * this.rotation);
@@ -89,8 +89,9 @@ if(!Animators){var Animators = {};}
 		'nobuteru':function(){
 			
 			var ctx = this.ch.getContext();
-			
-			if(!this.vars){
+				
+			if(!this.vars.tree){
+				console.log('init');
 				this.vars = {
 					'imageLoaded':false,
 					'image':new Image(),
@@ -103,16 +104,52 @@ if(!Animators){var Animators = {};}
 					this.vars.imageLoaded = true;
 				}, this);
 			}
-			var v = this.vars;
 			
-			v.tree.update();
-			if(v.imageLoaded){
-				if(v.grow < 1){
-					v.grow += 0.01;
+			this.vars.tree.update();
+			if(this.vars.imageLoaded){
+				if(this.vars.grow < 1){
+					this.vars.grow += 0.001;
 				}
-				v.tree.draw(this.ch, ctx, v.image, v.grow);		
+				this.vars.tree.draw(this.ch, ctx, this.vars.image, this.vars.grow);		
 			} else {
-				v.tree.draw(this.ch, ctx);		
+				this.vars.tree.draw(this.ch, ctx);		
+			}
+			
+		},
+			
+		'nobuteru_fore':function(){
+			
+			if(!this.vars.stage){
+				
+				this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+				
+				var loader = new createjs.LoadQueue(false);
+				
+				loader.addEventListener("fileload", function (evt) {	
+					if (evt.item.type == "image") { cjsWidgetImages[evt.item.id] = evt.result; }	
+				});
+				
+				loader.addEventListener("complete", _.bind(function(){
+					this.vars.root = new cjsWidgetLib.widget();	
+					this.vars.stage.addChild(this.vars.root);
+					this.vars.stage.autoClear = false;
+					this.vars.stage.update();
+				}, this));
+				
+				loader.loadManifest( [
+					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
+				]);
+				
+			} else {
+				
+				if(this.vars.root){
+					if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+						this.vars.root.stop();
+					}
+					this.vars.stage.update();
+				}
+									
+				
 			}
 			
 		},

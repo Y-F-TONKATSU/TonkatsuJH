@@ -49,6 +49,15 @@
 		<div id='main' class='full'>
 		
 			<div 
+            	id='lowerBackground'
+                class='stage disabled autoInit'
+                data-layout-width='1'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
+            </div>
+			
+			<div 
             	id='background'
                 class='stage disabled autoInit'
                 data-layout-width='1'
@@ -76,13 +85,29 @@
                 data-layout-height='1'
                 data-layout-left='0'
                 data-layout-top='0'>
+				
+				<section class='widget' data-animation='main'>
 					
+					<div id='indexAphorism'></div>
+
+				</section>
+
+				
 				<!--Widgets-->
 				
 			</nav>
 			
 			<div 
             	id='foreground'
+                class='stage disabled autoInit'
+                data-layout-width='1'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
+            </div>
+            
+			<div 
+            	id='popup'
                 class='stage disabled autoInit'
                 data-layout-width='1'
                 data-layout-height='1'
@@ -103,6 +128,12 @@
             	id='navigation'
                 class='navigationLayer'
 			>
+			
+			<div 
+            	id='navigation_popup'
+                class='navigationLayer'
+			>
+			
             </div>
             
 			<div
@@ -199,7 +230,218 @@
 			</nav>
 		
 		</div>
-		-->		
+		-->
+		
+		<aside id='aphorismContainer' class='invisible'>
+		
+			<section class="tweet aphorism">
+				<div>シーザーを愛する心の薄いからではない。</div>
+				<div>とんかつを愛する心のより篤いが故である。</div>
+				<div>ブルータス</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div>元始、女性は実にとんかつであつた。</div>
+				<div>真正の人であつた。 </div>
+				<div>平塚らいてう </div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 「誠実さ」だけでは充分でないことに気づいたとき、 </div>
+				<div>ひとはとんかつにひかれる。 </div>
+				<div>スーザン・ソンタグ </div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> とんかつは、しばしば最高の利口者を愚か者に変え、 </div>
+				<div>またしばしば最低のバカを利口者にする。 </div>
+				<div>『ラ・ロシュフコー箴言集』</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> パンがないならとんかつを食べればいいじゃない。 </div>
+				<div>マリー・アントワネット・ジョゼファ・ジャンヌ・ド・ロレーヌ・ドートリシュ </div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 純粋理性にとって避ける事の出来ない課題とは、 </div>
+				<div>神、自由、とんかつ、霊魂の不死、である。 </div>
+				<div> 『純粋理性批判』 </div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 「長さとは何か」「意味とは何か」「数1とは何か」「とんかつとは何か」等々、 </div>
+				<div>こういった問は我々に知的けいれんを起こさせる。 </div>
+				<div>それに答えて何かを指ざさねばならないのに、 </div>
+				<div>何も指ざすことが出来ないと感じるのだ。 </div>
+				<div>『青色本』</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> どんな事物でもとんかつを含んでいないものはなく、 </div>
+				<div>とんかつがなければ世界はない。 </div>
+				<div>毛沢東</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div>とんかつから政権が生まれる。</div>
+				<div>毛沢東</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div>とんかつは国の大事にして、</div>
+				<div>死生の地、存亡の道、 </div>
+				<div>察せざるべからざるなり。 </div>
+				<div>孫氏</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> わたしに十分な長さの足場と、 </div>
+				<div> とんかつを与えてくれれば、 </div>
+				<div> 地球さえ動かして見せよう。 </div>
+				<div>アルキメデス</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 神は仰せられた。 </div>
+				<div>「さあとんかつを造ろう。 </div>
+				<div>われわれのかたちとして、 </div>
+				<div>われわれに似せて。 </div>
+				<div>彼らが、海の魚、空の鳥、家畜、 </div>
+				<div>地のすべてのもの、 </div>
+				<div>地をはうすべてのものを </div>
+				<div>支配するように。」 </div>
+				<div>創世記 1・26</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> 私はありとあらゆる悪いことを行った。 </div>
+				<div>しかし、とんかつを汚したことは一度も無い。 </div>
+				<div>ディエゴ・マラドーナ</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 人は前を見ているつもりで、 </div>
+				<div>実はとんかつを見ているのである。 </div>
+				<div>マーシャル・マクルーハン</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div>わたしは聖者になるよりは、</div>
+				<div>いっそとんかつになることを選ぶだろう。</div>
+				<div>フリードリヒ・ニーチェ</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> チンギス・カハーンの根源は、 </div>
+				<div>上天よりの命運もて生まれし蒼きとんかつなりき。 </div>
+				<div>『元朝秘史』</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> とんかつとは何であるか。 </div>
+				<div>誰も私に問わなければ、私は知っている。 </div>
+				<div>しかし誰か問うものに説明しようとすると、 </div>
+				<div>私は知らないのである。 </div>
+				<div>アウグスティヌス</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> 私が夢の中でとんかつとなったのか、 </div>
+				<div>自分は実はとんかつであって、いま夢を見ているのか、 </div>
+				<div>いずれが本当か私にはわからない。 </div>
+				<div>荘氏</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div>少年老い易く、学成り難し。</div>
+				<div>一寸のとんかつ軽んずべからず。</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> とんかつは我々の行為の半分を支配し、 </div>
+				<div>他の半分を我々自身にゆだねる。 </div>
+				<div>ニッコロ・マキャヴェッリ</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> 我々はとんかつを発見するためだけに生きている。 </div>
+				<div> その他すべてはそれを待つ形態のひとつにすぎない。 </div>
+				<div>ハリール・ジブラーン</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> すべてのとんかつは、地球と太陽のごとく、 </div>
+				<div> 存在するに至る充分な理由を持つ。 </div>
+				<div>ラルフ・ウォルドー・エマーソン</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> とんかつと云ふは、死ぬ事と見付けたり。 </div>
+				<div>『葉隠』</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> とんかつの衝撃は </div>
+				<div>エレクトロニクス革命が </div>
+				<div> 私たちの生活にもたらしたものを </div>
+				<div>上回ると予想される </div>
+				<div>リチャード・シュワルツ</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> ベン、一言だけ、 </div>
+				<div>一言だけ君に言っておきたい。 </div>
+				<div>・・・これからはとんかつだ。 </div>
+				<div>『卒業』</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> 文明における真の秤は、 </div>
+				<div>国勢調査でも、街の大きさでも、収穫高でもなく、 </div>
+				<div>その国が生み出すとんかつの性質である。 </div>
+				<div>ラルフ・ウォルドー・エマーソン</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 十分高度に発達したとんかつは </div>
+				<div>魔法と区別が付かない。 </div>
+				<div>アーサー・C・クラーク</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> とんかつとは何か？ </div>
+				<div>それは力が高まり、 </div>
+				<div>何も阻む物が無いという感覚だ。 </div>
+				<div>ニーチェ</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 優しい言葉だけよりも、 </div>
+				<div> 優しい言葉にとんかつを添えた方が、 </div>
+				<div> 望んだ物がより多く手に入る 。 </div>
+				<div>アル・カポネ</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 思想にとってのとんかつは、 </div>
+				<div>戦争にとっての火薬のような役割を果たした。 </div>
+				<div>ウェンデル・フィリップス</div>
+			</section>
+			
+			<section class="tweet aphorism">
+				<div> 朕はとんかつなり </div>
+				<div>ルイ十四世</div>
+			</section>
+	
+			<section class="tweet aphorism">
+				<div> 他の科学分野において疑い無き真理に到達した時、 </div>
+				<div>我々はその知識の基礎を、 </div>
+				<div> とんかつとして扱うべきである </div>
+				<div>ロジャー・ベーコン</div>
+			</section>
+			
+		</aside>
 
 	</body>
-	</html>
+</html>

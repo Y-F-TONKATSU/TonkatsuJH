@@ -106,37 +106,37 @@ var NavigationHandler;
 		'centerY':0,
 	}
 	
-	NavigationHandler = function(events){
+	NavigationHandler = function(events, hitAreaHandler){
 		
 		this._ch = null;
 		this._forgetRate = 0;
 		
 		this.inactivate();
 		
-		this.buttons = [];
-		this.hitAreaHandler = new HitAreaHandler($('#navigation'));
+		this._buttons = [];
+		this._hitAreaHandler = hitAreaHandler;
 		
-		this.homeButton = new NavigationButton(events.onHomeClicked, new cjsNavigationLib.navigation().homeButton);
-		this.menuButton = new NavigationButton(events.onMenuClicked, new cjsNavigationLib.navigation().menuButton);
-		this.shareButton = new NavigationButton(events.onShareClicked, new cjsNavigationLib.navigation().shareButton);
+		this._homeButton = new NavigationButton(events.onHomeClicked, new cjsNavigationLib.navigation().homeButton);
+		this._menuButton = new NavigationButton(events.onMenuClicked, new cjsNavigationLib.navigation().menuButton);
+		this._shareButton = new NavigationButton(events.onShareClicked, new cjsNavigationLib.navigation().shareButton);
 		
-		this.homeButton.x = PADDING;
-		this.menuButton.x = PADDING;
-		this.shareButton.x = PADDING;
+		this._homeButton.x = PADDING;
+		this._menuButton.x = PADDING;
+		this._shareButton.x = PADDING;
 		
-		this.homeButton.centerX = PADDING + BUTTON_SIZE / 2;
-		this.menuButton.centerX = PADDING + BUTTON_SIZE / 2;
-		this.shareButton.centerX = PADDING + BUTTON_SIZE / 2;
+		this._homeButton.centerX = PADDING + BUTTON_SIZE / 2;
+		this._menuButton.centerX = PADDING + BUTTON_SIZE / 2;
+		this._shareButton.centerX = PADDING + BUTTON_SIZE / 2;
 		
-		this.homeButton.y = MARGIN_TOP;
-		this.menuButton.y = MARGIN_TOP + PADDING + BUTTON_SIZE;
-		this.shareButton.y = MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2;
+		this._homeButton.y = MARGIN_TOP;
+		this._menuButton.y = MARGIN_TOP + PADDING + BUTTON_SIZE;
+		this._shareButton.y = MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2;
 		
-		this.homeButton.centerY = MARGIN_TOP + BUTTON_SIZE / 2;
-		this.menuButton.centerY = MARGIN_TOP + PADDING + BUTTON_SIZE + BUTTON_SIZE / 2;
-		this.shareButton.centerY = MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2 + BUTTON_SIZE / 2;
+		this._homeButton.centerY = MARGIN_TOP + BUTTON_SIZE / 2;
+		this._menuButton.centerY = MARGIN_TOP + PADDING + BUTTON_SIZE + BUTTON_SIZE / 2;
+		this._shareButton.centerY = MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2 + BUTTON_SIZE / 2;
 		
-		this.buttons.push(this.homeButton, this.shareButton, this.menuButton);		
+		this._buttons.push(this._homeButton, this._shareButton, this._menuButton);		
 		
 	};
 	
@@ -156,7 +156,7 @@ var NavigationHandler;
 		
 		setButtonColors:function(color){
 			
-			_.each(this.buttons, _.bind(function(button){
+			_.each(this._buttons, _.bind(function(button){
 				
 				button.colorGoal = color;
 				
@@ -176,7 +176,7 @@ var NavigationHandler;
 				this._ch.clear();
 			}
 			
-			_.each(this.buttons, _.bind(function(button){
+			_.each(this._buttons, _.bind(function(button){
 				
 				var complete = buttonAnimator(this._ch, button, e.delta);
 				
@@ -203,7 +203,7 @@ var NavigationHandler;
 			this.stage = new createjs.Stage(canvas);
 			this.stage.autoClear = false;
 			
-			_.each(this.buttons, _.bind(function(button){
+			_.each(this._buttons, _.bind(function(button){
 				this.stage.addChild(button.mc);
 			}, this));
 			
@@ -215,14 +215,14 @@ var NavigationHandler;
 		
 		showHomeButton:function(){
 			
-			this.homeButton.mc.gotoAndPlay('start');
+			this._homeButton.mc.gotoAndPlay('start');
 			
-			this.hitAreaHandler.setHitArea('home', {
+			this._hitAreaHandler.setHitArea('home', {
 				width:BUTTON_SIZE,
 				height:BUTTON_SIZE,
 				left:PADDING,
 				top:MARGIN_TOP
-			}, '#', this.homeButton.onClick);
+			}, '#', this._homeButton.onClick);
 							
 			this.activate();
 			
@@ -230,14 +230,14 @@ var NavigationHandler;
 		
 		showMenuButton:function(){
 			
-			this.menuButton.mc.gotoAndPlay('start');
+			this._menuButton.mc.gotoAndPlay('start');
 
-			this.hitAreaHandler.setHitArea('menu', {
+			this._hitAreaHandler.setHitArea('menu', {
 				width:BUTTON_SIZE,
 				height:BUTTON_SIZE,
 				left:PADDING,
 				top:MARGIN_TOP + PADDING + BUTTON_SIZE
-			}, this.menuButton.onClick);
+			}, this._menuButton.onClick);
 							
 			this.activate();
 			
@@ -245,14 +245,14 @@ var NavigationHandler;
 		
 		showShareButton:function(){
 			
-			this.shareButton.mc.gotoAndPlay('start');
+			this._shareButton.mc.gotoAndPlay('start');
 			
-			this.hitAreaHandler.setHitArea('share', {
+			this._hitAreaHandler.setHitArea('share', {
 				width:BUTTON_SIZE,
 				height:BUTTON_SIZE,
 				left:PADDING,
 				top:MARGIN_TOP + (PADDING + BUTTON_SIZE) * 2
-			}, this.shareButton.onClick);
+			}, this._shareButton.onClick);
 							
 			this.activate();
 				
@@ -260,8 +260,8 @@ var NavigationHandler;
 		
 		hideHomeButton:function(){
 			
-			this.homeButton.mc.gotoAndPlay('end');
-			this.hitAreaHandler.removeHitArea('home');
+			this._homeButton.mc.gotoAndPlay('end');
+			this._hitAreaHandler.removeHitArea('home');
 							
 			this.activate();
 			
@@ -269,8 +269,8 @@ var NavigationHandler;
 		
 		hideMenuButton:function(){
 			
-			this.menuButton.mc.gotoAndPlay('end');
-			this.hitAreaHandler.removeHitArea('menu');
+			this._menuButton.mc.gotoAndPlay('end');
+			this._hitAreaHandler.removeHitArea('menu');
 							
 			this.activate();
 			
@@ -278,8 +278,8 @@ var NavigationHandler;
 		
 		hideShareButton:function(){
 			
-			this.shareButton.mc.gotoAndPlay('end');
-			this.hitAreaHandler.removeHitArea('share');
+			this._shareButton.mc.gotoAndPlay('end');
+			this._hitAreaHandler.removeHitArea('share');
 							
 			this.activate();
 			
