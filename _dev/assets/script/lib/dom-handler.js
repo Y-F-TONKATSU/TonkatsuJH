@@ -31,6 +31,10 @@ var DomHandler;
 			
 			DocProcessor.initIndex($('#indexContainer'));
 			
+			if(DisplayUtil.getSize() !== 'large'){
+				DocProcessor.mobileAdaption($('#indexContainer'));				
+			}
+			
 			DocProcessor.frameIn.fromLeft($('#indexContainer'), 1000, function(){
 			});
 			
@@ -121,14 +125,7 @@ var DomHandler;
 			this.showMenuCanceler();
 			$('#menuCanceler').click(_.bind(this.hideShare, this));
 			
-			if($('#share').data('state') === 'hidden'){
-				DocProcessor.frameIn.fromLeft($('#share'), 1000, _.bind(function(){
-					
-					//var shareDiv = ShareUtil.getAllTags(this._url, this._title);
-
-					
-				}, this));
-			}
+			$('#share_title').html('『' + title + '』をシェア').show();
 			
 		},
 		
@@ -143,10 +140,6 @@ var DomHandler;
 			this._onHideListener();
 			
 			this.hideMenuCanceler();
-			if($('#menu').data('state') === 'hidden'){return;}
-			
-			DocProcessor.frameOut.fromLeft($('#menu'), 1000, function(){
-			});
 			
 		},
 		
@@ -155,10 +148,7 @@ var DomHandler;
 			this._onHideListener();
 			
 			this.hideMenuCanceler();
-			if($('#share').data('state') === 'hidden'){return;}
-			
-			DocProcessor.frameOut.fromLeft($('#share'), 1000, function(){
-			});
+			$('#share_title').hide();
 			
 		},
 		

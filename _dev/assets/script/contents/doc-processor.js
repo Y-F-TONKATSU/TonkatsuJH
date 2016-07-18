@@ -81,8 +81,30 @@ var DocProcessor = {
 			.html($(doc).find('article').html())
 			.scrollTop(0)
 			.scrollLeft(0);
-			
-		$(doc).find('#indexAphorism').html(ContentsUtil.getRandomAphorism());
+		
+		$('#indexMainTitle').css({
+			'transform': 'rotate(0deg)',
+			'marginBottom': h * 0.4,
+		});
+		
+		$('.news_mainThumb').width(100).height(100).css({
+			'float':'left'
+		});
+		
+		$('.news_date').css({
+			'fontSize':'60%',
+			'float':'left'
+		});
+		
+		$('.news_title').css({
+			'fontSize':'100%',
+		});
+		
+		$('.news_description').css({
+			'fontSize':'50%',
+		});
+		
+		//$(doc).find('#indexAphorism').html(ContentsUtil.getRandomAphorism());
 		
 	},
 	

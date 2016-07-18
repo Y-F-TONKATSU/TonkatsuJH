@@ -95,7 +95,6 @@ module.exports = function(grunt) {
 		var i;
 		var items = contents.rss.channel.item;
 		for (var j in items){
-			console.log(j);
 			if(items[j].category == category && items[j].id == id){
 				i = j;
 			}
@@ -239,66 +238,146 @@ module.exports = function(grunt) {
 		var list = '';
 		
 		var items = contents.rss.channel.item;
+				
 		var i = 0;
 		for (i in items){
 			
-			var category = items[i].category;
-			var id = items[i].id;
-			var url = items[i].link;
-			
-			var subCategory;
-			if (!items[i].subCategory){
-				subCategory = '';
-			} else {
-				subCategory = escapeText(items[i].subCategory);
-			}
-			
-			var series;
-			if (!items[i].series){
-				series = '';
-			} else {
-				series = escapeText(items[i].series);
-			}
-			
-			var animation = items[i].animation;
-			var hash = '#' + category + id;
-			var title = escapeText(items[i].title);
-			var description = escapeText(items[i].description);
-			
-			var mainThumb;
-			if (!items[i].mainThumb){
-				mainThumb = 'assets/images/common/og.jpg';
-			} else {
-				mainThumb = items[i].mainThumb;
-			}
-			
-			var thumbs = "";
-			if(items[i].thumb){
-				if(typeof items[i].thumb === 'string'){
-					thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb + "'>\n";
+			if(!(items[i].type === 'dummy')){
+				
+				var category = items[i].category;
+				var id = items[i].id;
+				var url = items[i].link;
+				
+				var subCategory;
+				if (!items[i].subCategory){
+					subCategory = '';
 				} else {
-					var j = 0;
-					for (j in items[i].thumb){
-						thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb[j] + "'>\n";
+					subCategory = escapeText(items[i].subCategory);
+				}
+				
+				var series;
+				if (!items[i].series){
+					series = '';
+				} else {
+					series = escapeText(items[i].series);
+				}
+				
+				var animation = items[i].animation;
+				var hash = '#' + category + id;
+				var title = escapeText(items[i].title);
+				var description = escapeText(items[i].description);
+				
+				var mainThumb;
+				if (!items[i].mainThumb){
+					mainThumb = 'assets/images/common/og.jpg';
+				} else {
+					mainThumb = items[i].mainThumb;
+				}
+				
+				var thumbs = "";
+				if(items[i].thumb){
+					if(typeof items[i].thumb === 'string'){
+						thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb + "'>\n";
+					} else {
+						var j = 0;
+						for (j in items[i].thumb){
+							thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb[j] + "'>\n";
+						}
 					}
 				}
+				
+				var d = new Date(items[i].pubDate);
+				var year = d.getFullYear();
+				var month = d.getUTCMonth() + 1;
+				var date = year + '年 ' + month + '月';
+		
+				list += "<section class='widget' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
+				"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
+				"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
+				"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
+				"\t\t\t\t\t\t<div class='widget_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
+				"\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
+				thumbs + "\n" +
+				"\t\t\t\t\t</a>\n\n" + 
+				"\t\t\t\t</section>\n\n\t\t\t\t";
+				
 			}
-			
-			var d = new Date(items[i].pubDate);
-			var year = d.getFullYear();
-			var month = d.getUTCMonth() + 1;
-			var date = year + '年 ' + month + '月';
+		}
+		
+		return list;
+				
+	};	
 	
-			list += "<section class='widget' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
-			"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
-			"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
-			"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
-			"\t\t\t\t\t\t<div class='widget_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
-			"\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
-			thumbs + "\n" +
-			"\t\t\t\t\t</a>\n\n" + 
-			"\t\t\t\t</section>\n\n\t\t\t\t";
-
+	var getNews = function(){
+		
+		var MAX_NUM = 3;
+		
+		var contents = getContents();
+		
+		var list = '';
+		
+		var items = contents.rss.channel.item;
+		var i = 0;
+		for (var i = 0; i < MAX_NUM && i < items.length; i++){
+			
+			if(!(items[i].type === 'dummy')){
+				
+				var category = items[i].category;
+				var id = items[i].id;
+				var url = items[i].link;
+				
+				var subCategory;
+				if (!items[i].subCategory){
+					subCategory = '';
+				} else {
+					subCategory = escapeText(items[i].subCategory);
+				}
+				
+				var series;
+				if (!items[i].series){
+					series = '';
+				} else {
+					series = escapeText(items[i].series);
+				}
+				
+				var animation = items[i].animation;
+				var hash = '#' + category + id;
+				var title = escapeText(items[i].title);
+				var description = escapeText(items[i].description);
+				
+				var mainThumb;
+				if (!items[i].mainThumb){
+					mainThumb = 'assets/images/common/og.jpg';
+				} else {
+					mainThumb = items[i].mainThumb;
+				}
+				
+				var thumbs = "";
+				if(items[i].thumb){
+					if(typeof items[i].thumb === 'string'){
+						thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb + "'>\n";
+					} else {
+						var j = 0;
+						for (j in items[i].thumb){
+							thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb[j] + "'>\n";
+						}
+					}
+				}
+				
+				var d = new Date(items[i].pubDate);
+				var year = d.getFullYear();
+				var month = d.getUTCMonth() + 1;
+				var date = year + '年 ' + month + '月';
+		
+				list += "<a class='news' href='" + hash + "' data-news-category='" + category + "' data-news-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
+				"\t\t\t\t\t\t<div class='news_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
+				"\t\t\t\t\t\t<h3 class='news_title'>" + title + "</h3>\n" + 
+				"\t\t\t\t\t\t<img class='news_mainThumb' src='" + mainThumb + "'>\n" + 
+				"\t\t\t\t\t\t<div class='news_description'>" + description + "</div>\n" +
+				thumbs + "\n" +
+				"\t\t\t\t</a><br>\n\n\t\t\t\t";
+	
+			}
 		}
 		
 		return list;
@@ -436,7 +515,7 @@ module.exports = function(grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'../../_processing/docs/index_widgets_min.html': '../../_processing/docs/index_widgets.html'
+					'../../_processing/docs/index_widgets_news_min.html': '../../_processing/docs/index_widgets_news.html'
 				}
 			},
 			contents: {
@@ -470,7 +549,7 @@ module.exports = function(grunt) {
 				dest: '../../public/assets/images'
 			},
 			main: {
-				src: '../../_processing/docs/index_widgets_min.html',
+				src: '../../_processing/docs/index_widgets_news_min.html',
 				dest: '../../public/index.html'
 			},
 			favicon: {
@@ -525,6 +604,16 @@ module.exports = function(grunt) {
 					from: '<!--Widgets-->', 
 					to: function(matchword){
 						return getWidgets();
+					}
+				}]
+			},
+			news: {
+				src: ['../../_processing/docs/index_widgets.html'],
+				dest: '../../_processing/docs/index_widgets_news.html',
+				replacements: [{
+					from: '<!--news-->', 
+					to: function(matchword){
+						return getNews();
 					}
 				}]
 			},
@@ -611,7 +700,7 @@ module.exports = function(grunt) {
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
 	var cssTasks = ['concat:less_landscape', 'concat:less_portrait', 'less:css_main', 'less:css_landscape', 'less:css_portrait', 'autoprefixer:css_main', 'autoprefixer:css_landscape', 'autoprefixer:css_portrait', 'cssmin:css_main', 'cssmin:css_landscape', 'cssmin:css_portrait'];
-	var htmlTasks = ['replace:main', 'htmlmin:main', 'copy:main', 'copy:favicon'];
+	var htmlTasks = ['replace:main', 'replace:news', 'htmlmin:main', 'copy:main', 'copy:favicon'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
 	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);

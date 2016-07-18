@@ -37,11 +37,6 @@ Tonkatsu.init = function(){
 		},
 		'onShareClicked':function(){
 			
-			domHandler.showShare('', '', function(){
-				//onHideListenr
-				animationHandler.exitShareMode();
-			});
-			
 			var url = ContentsUtil.getUrl(urlHandler.getCurrentHashString());
 			if(!url){
 				url = BASE_URL;
@@ -54,7 +49,13 @@ Tonkatsu.init = function(){
 				title = BASE_TITLE;
 			}
 			
+			domHandler.showShare(url, title, function(){
+				//onHideListenr
+				animationHandler.exitShareMode();
+			});
+			
 			animationHandler.shareMode('popup', url, title);
+			
 		},
 	});
 	animationHandler.setForgetRate(0);
@@ -62,12 +63,16 @@ Tonkatsu.init = function(){
 	scrollHandler = new ScrollHandler($('#mainDoc'));
 	indexScrollHandler = new ScrollHandler($('#indexContainer'));
 	var triggerScroll = function(){
-		var activeElem = scrollHandler.getActiveSection();
-		animationHandler.setActiveElem(activeElem);
+		if(!(urlHandler.getCurrentCategory() === 'top')){
+			var activeElem = scrollHandler.getActiveSection();
+			animationHandler.setActiveElem(activeElem);
+		}
 	}
 	var indexTriggerScroll = function(){
-		var activeElem = indexScrollHandler.getActiveSection();
-		animationHandler.setActiveElem(activeElem);
+		if(urlHandler.getCurrentCategory() === 'top'){
+			var activeElem = indexScrollHandler.getActiveSection();
+			animationHandler.setActiveElem(activeElem);
+		}
 	}
 	scrollHandler.setScrollListener(triggerScroll);
 	indexScrollHandler.setScrollListener(indexTriggerScroll);

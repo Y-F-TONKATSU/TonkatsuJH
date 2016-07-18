@@ -10,9 +10,9 @@
 @ZI_SHADOW:6;
 @ZI_NAV:7;
 @ZI_MENU_CANCELER:8;
-@ZI_MENU:9;
 @ZI_POPUP:10;
-@ZI_NAV_POPUP:11;
+@ZI_MENU:11;
+@ZI_NAV_POPUP:12;
 
 .full{
 	position:fixed;
@@ -99,5 +99,16 @@
 #menuCanceler{
 	position:fixed;
 	z-index:@ZI_MENU_CANCELER;
+}
+
+#menu, #share {
+	z-index:@ZI_MENU;	
+}
+
+#share_title{
+	position:fixed;
+	left:35%;
+	width:53%;
+	top:10%;
 }
 

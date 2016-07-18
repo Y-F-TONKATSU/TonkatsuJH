@@ -86,7 +86,7 @@ if(!Animators){var Animators = {};}
 		'default':function(){
 		},
 		
-		'nobuteru':function(){
+		'nobuteru':function(e){
 			
 			var ctx = this.ch.getContext();
 				
@@ -117,7 +117,7 @@ if(!Animators){var Animators = {};}
 			
 		},
 			
-		'nobuteru_fore':function(){
+		'nobuteru_fore':function(e){
 			
 			if(!this.vars.stage){
 				
@@ -146,7 +146,53 @@ if(!Animators){var Animators = {};}
 					if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
 						this.vars.root.stop();
 					}
+					this.vars.stage.update(e);
+				}
+									
+				
+			}
+			
+		},
+		
+		'main':function(){
+						
+		},
+			
+		'main_fore':function(e){
+			
+			if(!this.vars.stage){
+				
+				this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+				
+				var loader = new createjs.LoadQueue(false);
+				
+				loader.addEventListener("fileload", function (evt) {	
+					if (evt.item.type == "image") { cjsNavigationImages[evt.item.id] = evt.result; }	
+				});
+				
+				loader.addEventListener("complete", _.bind(function(){
+					if($('#indexMainTitle').data('complete') === 'true'){
+						this.vars.root = new cjsNavigationLib.Tunnel_fore_complete();	
+					} else {
+						this.vars.root = new cjsNavigationLib.Tunnel_fore();	
+					}
+					this.vars.stage.addChild(this.vars.root);
+					this.vars.stage.autoClear = false;
 					this.vars.stage.update();
+				}, this));
+				
+				loader.loadManifest( [
+					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
+				]);
+				
+			} else {
+				
+				if(this.vars.root){
+					if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+						this.vars.root.stop();
+						$('#indexMainTitle').data('complete', 'true');
+					}
+					this.vars.stage.update(e);
 				}
 									
 				
