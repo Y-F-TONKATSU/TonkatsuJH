@@ -124,7 +124,7 @@ if(!Animators){var Animators = {};}
 			CjsUtil.load({
 				'images':cjsWidgetImages,
 				'manifest':	[
-					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
+					{src:"assets/images/thumb/ex000019.png", id:"widget_crouton"}
 				],
 				'completeListener':_.bind(function(){
 					this.vars.root = new cjsWidgetLib.widget();	
@@ -158,7 +158,7 @@ if(!Animators){var Animators = {};}
 			CjsUtil.load({
 				'images':cjsNavigationImages,
 				'manifest':	[
-					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
+					{src:"assets/images/thumb/ex000019.png", id:"widget_crouton"}
 				],
 				'completeListener':_.bind(function(){
 					if($('#indexMainTitle').data('complete') === 'true'){

@@ -143,6 +143,10 @@ var DocProcessor = {
 	
 	'initMenu':function(doc){
 		
+		_.each($(doc).find('.menu_thumb'), function(thumb){
+			$(thumb).attr('src', $(thumb).attr('data-src'))
+		});
+		
 	}
 	
 };

@@ -394,6 +394,80 @@ module.exports = function(grunt) {
 		return list;
 				
 	};
+	
+	var getMenu = function(){
+		
+		var contents = getContents();
+		
+		var list = '';
+		
+		var items = contents.rss.channel.item;
+		var i = 0;
+		for (var i = 0; i < items.length; i++){
+			
+			if(!(items[i].type === 'dummy')){
+				
+				var category = items[i].category;
+				var id = items[i].id;
+				var url = items[i].link;
+				
+				var subCategory;
+				if (!items[i].subCategory){
+					subCategory = '';
+				} else {
+					subCategory = escapeText(items[i].subCategory);
+				}
+				
+				var series;
+				if (!items[i].series){
+					series = '';
+				} else {
+					series = escapeText(items[i].series);
+				}
+				
+				var animation = items[i].animation;
+				var hash = '#' + category + id;
+				var title = escapeText(items[i].title);
+				var description = escapeText(items[i].description);
+				
+				var mainThumb;
+				if (!items[i].mainThumb){
+					mainThumb = 'assets/images/common/og.jpg';
+				} else {
+					mainThumb = items[i].minThumb;
+				}
+				
+				var thumbs = "";
+				if(items[i].thumb){
+					if(typeof items[i].thumb === 'string'){
+						thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb + "'>\n";
+					} else {
+						var j = 0;
+						for (j in items[i].thumb){
+							thumbs += "\t\t\t\t\t\t<img class='widget_thumb' data-src='" + items[i].thumb[j] + "'>\n";
+						}
+					}
+				}
+				
+				var d = new Date(items[i].pubDate);
+				var year = d.getFullYear();
+				var month = d.getUTCMonth() + 1;
+				var date = year + '年 ' + month + '月';
+		
+				list += "<a class='menuItem' href='" + hash + "' data-menu-category='" + category + "' data-menu-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
+				"\t\t\t\t\t\t<img class='menu_thumb' data-src='" + mainThumb + "'>\n" + 
+				"\t\t\t\t\t\t<div class='menu_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
+				"\t\t\t\t\t\t<h3 class='menu_title'>" + title + "</h3>\n" + 
+				"\t\t\t\t\t\t<div class='menu_description'>" + description + "</div>\n" +
+				thumbs + "\n" +
+				"\t\t\t\t</a><br>\n\n\t\t\t\t";
+	
+			}
+		}
+		
+		return list;
+				
+	};
 	/* Util Funcs End */
 	
 	//Init Task Options
@@ -526,7 +600,7 @@ module.exports = function(grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'../../_processing/docs/index_widgets_news_min.html': '../../_processing/docs/index_widgets_news.html'
+					'../../_processing/docs/index_widgets_menu_min.html': '../../_processing/docs/index_widgets_menu.html'
 				}
 			},
 			contents: {
@@ -560,7 +634,7 @@ module.exports = function(grunt) {
 				dest: '../../public/assets/images'
 			},
 			main: {
-				src: '../../_processing/docs/index_widgets_news_min.html',
+				src: '../../_processing/docs/index_widgets_menu_min.html',
 				dest: '../../public/index.html'
 			},
 			favicon: {
@@ -622,9 +696,19 @@ module.exports = function(grunt) {
 				src: ['../../_processing/docs/index_widgets.html'],
 				dest: '../../_processing/docs/index_widgets_news.html',
 				replacements: [{
-					from: '<!--news-->', 
+					from: '<!--News-->', 
 					to: function(matchword){
 						return getNews();
+					}
+				}]
+			},
+			menu: {
+				src: ['../../_processing/docs/index_widgets_news.html'],
+				dest: '../../_processing/docs/index_widgets_menu.html',
+				replacements: [{
+					from: '<!--Menu-->', 
+					to: function(matchword){
+						return getMenu();
 					}
 				}]
 			},
@@ -711,7 +795,7 @@ module.exports = function(grunt) {
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
 	var cssTasks = ['concat:less_landscape', 'concat:less_portrait', 'less:css_main', 'less:css_landscape', 'less:css_portrait', 'autoprefixer:css_main', 'autoprefixer:css_landscape', 'autoprefixer:css_portrait', 'cssmin:css_main', 'cssmin:css_landscape', 'cssmin:css_portrait'];
-	var htmlTasks = ['replace:main', 'replace:news', 'htmlmin:main', 'copy:main', 'copy:favicon'];
+	var htmlTasks = ['replace:main', 'replace:news', 'replace:menu', 'htmlmin:main', 'copy:main', 'copy:favicon'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
 	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
