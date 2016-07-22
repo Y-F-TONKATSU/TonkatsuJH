@@ -27,6 +27,8 @@ var AnimationHandler;
 		
 		this._stopped = false;
 		
+		this._isCjsCanceled = false;
+		
 	};
 	
 	var _getNewCanvasHandler = function(container, containerId){
@@ -315,9 +317,15 @@ var AnimationHandler;
 		
 			
 		},
-			
+		
+		cancelLoadingCjs:function(){
+			this._isCjsCanceled = true;
+		},
+		
 		loadCjs:function(options){
 			
+			this._isCjsCanceled = false;
+					
 			if(this.navigationHandler){
 				this.navigationHandler.setButtonColors(options.movieOptions.buttonColor);
 			}
@@ -327,22 +335,21 @@ var AnimationHandler;
 		
 			console.log('Start Loading a Cjs Doc');
 			
-			var loader = new createjs.LoadQueue(false);
-			
-			loader.addEventListener('progress', _.bind(function(e){
-				this.setTaskProgress('loadingCjs', e.progress);
-			}, this));
-			
-			loader.addEventListener("fileload", function(e) {
-				
-				if (e.item.type == "image") { 
-					//console.log('A Cjs Image Loaded:' + e.item.id);
-					cjsImages[e.item.id] = e.result;
-				}
-				
+			CjsUtil.load({
+				'images':cjsImages,
+				'manifest':	cjsLib.properties.manifest,
+				'completeListener':_.bind(function(){
+					console.log('Loading Cjs Complete');
+					this.removeTask('loadingCjs');
+					if(!this._isCjsCanceled){
+						this._setCjsTask(movieOptions);
+					}
+				}, this),
+				'progressListener':_.bind(function(e){
+					this.setTaskProgress('loadingCjs', e.progress);
+				}, this)
 			});
 			
-			var that = this;
 			this.addTask({
 				'id':'loadingCjs',
 				'docId': movieOptions.docId,
@@ -355,13 +362,8 @@ var AnimationHandler;
 				'tweener':loaderOptions.tweener,
 				'onTicked': loaderOptions.animator,
 				'onComplete':function(){
-					console.log('Loading Cjs Complete');
-					that.removeTask('loadingCjs');
-					that._setCjsTask(movieOptions);
 				}
 			});
-			
-			loader.loadManifest(cjsLib.properties.manifest);
 			
 		},
 		
@@ -389,7 +391,7 @@ var AnimationHandler;
 			
 			cjsStage.ch = this._chList[containerId];
 			cjsStage.canvas = cjsStage.ch.getCanvas();
-			cjsStage.root =  new cjsNavigationLib.navigation().SharePanel;	
+			cjsStage.root =  new cjsNavigationLib.MenuPanel;	
 			cjsStage.stage = new createjs.Stage(cjsStage.canvas);
 			cjsStage.stage.addChild(cjsStage.root);
 			cjsStage.stage.autoClear = false;
@@ -451,19 +453,7 @@ var AnimationHandler;
 				width:330 * 0.4,
 				height:350 * 0.4,
 			}, ShareUtil.getHatenaLink(url));
-					
-			var cjsStage = {};
-			
-			cjsStage.ch = this._chList[containerId];
-			cjsStage.canvas = cjsStage.ch.getCanvas();
-			cjsStage.root =  new cjsNavigationLib.navigation().SharePanel;	
-			cjsStage.stage = new createjs.Stage(cjsStage.canvas);
-			cjsStage.stage.addChild(cjsStage.root);
-			cjsStage.stage.autoClear = false;
-			cjsStage.stage.update();
-			
-			var that = this;
-			
+								
 			this.addTask({
 				'id':'share',
 				'docId': 'share',
@@ -478,18 +468,63 @@ var AnimationHandler;
 				'tweener':function(){return 0;},
 				'ender':function(){return false;},
 				'onInit':function(){
-						
+					
+					this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+					
+					CjsUtil.load({
+						'images':cjsNavigationImages,
+						'manifest':	[
+							{src:"contents/experimental/1604/e000019_crouton/images/face.png", id:"face"},
+							{src:"assets/images/share/nobuteru_clip.png", id:"nobuteru_clip"}
+						],
+						'completeListener':_.bind(function(){
+							this.vars.root = new cjsNavigationLib.SharePanel;	
+							this.vars.root.shareClips.visible = false;
+							this.vars.stage.addChild(this.vars.root);
+							this.vars.stage.autoClear = false;
+							this.vars.stage.update();
+							this.vars.root.shareClips.gotoAndStop(0);
+							_.each(this.vars.root.shareClips.children, function(clip){
+								clip.gotoAndStop(0);
+								clip.visible = false;
+							});
+						}, this)
+					});
 				},
 				'onTicked': function(e){
-					cjsStage.stage.update(e);
-					if(cjsStage.root.currentLabel === 'stop'){
-						cjsStage.root.stop();
+					
+					if(this.vars.root){
+						this.vars.stage.update(e);
+						if(this.vars.root.currentLabel === 'stop'){
+							this.vars.root.stop();
+							
+							//pickup ranodme clips
+							this.vars.root.shareClips.visible = true;
+							if(!this.vars.currentShareClip){
+								var num = Math.floor(Math.random() * this.vars.root.shareClips.numChildren);
+								this.vars.currentShareClip = this.vars.root.shareClips.getChildAt(num);
+								this.vars.currentShareClip.visible = true;
+								this.vars.currentShareClip.gotoAndPlay(0);
+							} else {
+								if(this.vars.currentShareClip.currentFrame === this.vars.currentShareClip.totalFrames){
+									this.vars.currentShareClip.gotoAndStop(0);
+									this.vars.currentShareClip.visible = false;
+									this.vars.currentShareClip = null;
+								}
+							}
+							
+						}
 					}
+					
 				},
 				'onComplete':function(){
 				}
 			});
 			
+		},
+		
+		clearIndexHitarea:function(){
+			this._hitAreaHandler.removeHitArea('indexLink');
 		},
 		
 		indexMode:function(lowerBackContainerId, backContainerId, foreContainerId, animator){
@@ -518,38 +553,31 @@ var AnimationHandler;
 				'tweener':function(){return 0;},
 				'ender':function(){return false;},
 				'onInit':function(){
-				},
-				'onTicked': function(e){
 					
-					if(this.vars.stage){
-						if(this.vars.root){
-							if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
-								this.vars.root.stop();
-							}
-							this.vars.stage.update(e);
-						}
-									
-					} else {
-						
-						this.vars.stage = new createjs.Stage(this.ch.getCanvas());
-						
-						var loader = new createjs.LoadQueue(false);
-						
-						loader.addEventListener("fileload", function (evt) {	
-							if (evt.item.type == "image") { cjsNavigationImages[evt.item.id] = evt.result; }	
-						});
-						
-						loader.addEventListener("complete", _.bind(function(){
+					this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+					
+					CjsUtil.load({
+						'images':cjsNavigationImages,
+						'manifest':	[
+							{src:"assets/images/index_bg/door_way.png", id:"door_way"},
+							{src:"assets/images/index_bg/tunnel.png", id:"tunnel"},
+						],
+						'completeListener':_.bind(function(e){
 							this.vars.root = new cjsNavigationLib.Tunnel();	
 							this.vars.stage.addChild(this.vars.root);
 							this.vars.stage.autoClear = false;
 							this.vars.stage.update(e);
-						}, this));
+						}, this)
+					});
 						
-						loader.loadManifest( [
-							{src:"assets/images/index_bg/door_way.png", id:"door_way"},
-							{src:"assets/images/index_bg/tunnel.png", id:"tunnel"},
-						]);
+				},
+				'onTicked': function(e){
+				
+					if(this.vars.root){
+						if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+							this.vars.root.stop();
+						}
+						this.vars.stage.update(e);
 					}
 					
 				},
@@ -573,19 +601,41 @@ var AnimationHandler;
 				'onInit':function(){
 						
 				},
-				'onTicked': function(){
+				'onTicked': function(e){
 					var currentScene = 'default';
 					if(that._activeElem){
 						currentScene = $(that._activeElem).attr('data-animation');
 					}
 					
 					if(!(this.scene === currentScene)){
+						
 						this.vars = {};
 						this.scene = currentScene;
+						var anim = animator[this.scene + '_init'];
+						if(anim) {_.bind(anim, this)(e);}
+						
+						that.clearIndexHitarea();
+						
+						_.each($(that._activeElem).find('.linkArea'), function(linkArea){
+							var cood = $(linkArea).attr('data-link-area').split(',');
+							var ref = $(linkArea).attr('href');
+							var rect = {
+								'left':cood[0],
+								'top':cood[1],
+								'width':cood[2],
+								'height':cood[3]
+							};
+							that._hitAreaHandler.setHitArea('indexLink', rect, ref, function(){
+								that.clearIndexHitarea();
+							});
+						});
+						
+					} else {
+												
+						var anim = animator[this.scene];
+						if(anim) {_.bind(anim, this)(e);}
+						
 					}
-					
-					var anim = animator[this.scene];
-					if(anim) {_.bind(anim, this)(this.vars);}
 					
 				},
 				'onComplete':function(){
@@ -608,19 +658,26 @@ var AnimationHandler;
 				'onInit':function(){
 						
 				},
-				'onTicked': function(){
+				'onTicked': function(e){
 					var currentScene = 'default';
 					if(that._activeElem){
 						currentScene = $(that._activeElem).attr('data-animation');
 					}
 					
 					if(!(this.scene === currentScene)){
+						
 						this.vars = {};
 						this.scene = currentScene;
+						var anim = animator[this.scene + '_fore_init'];
+						if(anim) {_.bind(anim, this)(e);}
+						
+					} else {
+						
+						var anim = animator[this.scene + '_fore'];
+						if(anim) {_.bind(anim, this)(e);}
+						
 					}
 					
-					var anim = animator[this.scene + '_fore'];
-					if(anim) {_.bind(anim, this)();}
 				},
 				'onComplete':function(){
 				}
@@ -629,6 +686,7 @@ var AnimationHandler;
 		},
 		
 		exitIndexMode:function(){
+			this.clearIndexHitarea();
 			this.removeDocTasks('index');
 		},
 		

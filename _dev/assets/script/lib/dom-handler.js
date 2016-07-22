@@ -110,6 +110,8 @@ var DomHandler;
 			this.showMenuCanceler();
 			$('#menuCanceler').click(_.bind(this.hideMenu, this));
 			
+			DocProcessor.initMenu($('#menu'));
+			
 			if($('#menu').data('state') === 'hidden'){
 				DocProcessor.frameIn.fromLeft($('#menu'), 1000, function(){
 				});
@@ -127,6 +129,12 @@ var DomHandler;
 			
 			$('#share_title').html('『' + title + '』をシェア').show();
 			
+			if($('#share').data('state') === 'hidden'){
+				DocProcessor.frameIn.fromLeft($('#share'), 3000, function(){
+				});
+			}
+			
+			
 		},
 		
 		showMenuCanceler:function(){
@@ -141,6 +149,11 @@ var DomHandler;
 			
 			this.hideMenuCanceler();
 			
+			if($('#menu').data('state') === 'visible'){
+				DocProcessor.frameOut.fromLeft($('#menu'), 1000, function(){
+				});
+			}
+			
 		},
 		
 		hideShare:function(){
@@ -148,7 +161,11 @@ var DomHandler;
 			this._onHideListener();
 			
 			this.hideMenuCanceler();
-			$('#share_title').hide();
+			
+			if($('#share').data('state') === 'visible'){
+				DocProcessor.frameOut.fromLeft($('#share'), 1000, function(){
+				});
+			}
 			
 		},
 		

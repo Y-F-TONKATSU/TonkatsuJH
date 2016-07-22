@@ -2,8 +2,6 @@ var HitAreaHandler;
 
 (function(){
 	
-	var hitAreaIds = [];
-	
 	HitAreaHandler = function(div){
 		if(!div){div = $('#navigation')}
 		this.div = div;
@@ -11,24 +9,24 @@ var HitAreaHandler;
 	
 	HitAreaHandler.prototype = {
 		
-		setEventHitArea:function(id, rect, ref, callBack){
-			this.setHitArea(id, rect, ref, callBack, true);
+		setEventHitArea:function(class, rect, ref, callBack){
+			this.setHitArea(class, rect, ref, callBack, true);
 		},
 		
-		setHitArea:function(id, rect, ref, callBack, isEvent){
+		setHitArea:function(class, rect, ref, callBack, isEvent){
 			
 			var hitArea;
 			
 			if(_.isFunction(ref)){
 				callBack = ref;
 				ref = '';
-				hitArea = $('<a id="hitArea_' + id + '"' + ref + '></a>');
+				hitArea = $('<a class="hitArea_' + class + '"' + ref + '></a>');
 			} else if(_.isObject(ref)){
 				hitArea = ref;
-				$(hitArea).attr('id', 'hitArea_' + id);
+				$(hitArea).attr('class', 'hitArea_' + class);
 			} else {
 				ref = ' href="' + ref + '"';
-				hitArea = $('<a id="hitArea_' + id + '"' + ref + '></a>');
+				hitArea = $('<a class="hitArea_' + class + '"' + ref + '></a>');
 				if(ref.indexOf('http') === 7){
 					$(hitArea).attr('target', '_blank')
 				}
@@ -56,19 +54,17 @@ var HitAreaHandler;
 			
 			$(this.div).append(hitArea);
 			
-			hitAreaIds.push(id);
-					
 		},
 		
-		removeHitArea:function(id){
+		removeHitArea:function(class){
 			
-			$('#hitArea_' + id).remove();
+			$('.hitArea_' + class).remove();
 			
 		},
 		
-		getHitArea:function(id){
+		getHitArea:function(class){
 			
-			return $('#hitArea_' + id);
+			return $('.hitArea_' + class);
 			
 		}
 	}

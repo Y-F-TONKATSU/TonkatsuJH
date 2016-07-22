@@ -17,14 +17,14 @@ Tonkatsu.init = function(){
 	domHandler.initElems($('.autoInit'));
 	
 	animationHandler = new AnimationHandler({
-		'popup':$('#popup'),
+		'menu':$('#menuCanvas'),
 		'fore':$('#foreground'),
 		'back':$('#background'),
 		'lower':$('#lowerBackground'),
-	}, $('#navigation'), $('#navigation_popup'));
+	}, $('#navigation_hitarea'), $('#menu_hitarea'));
 	animationHandler.init(FPS);
 	animationHandler.putShadow($('#shadow'));
-	animationHandler.putNavigationButtons($('#navigationButtonContainer'), {
+	animationHandler.putNavigationButtons($('#navigationCanvas'), {
 		'onHomeClicked':function(){
 			domHandler.resetIndex();
 		},
@@ -33,7 +33,7 @@ Tonkatsu.init = function(){
 				//onHideListenr
 				animationHandler.exitMenuMode();
 			});
-			animationHandler.menuMode('popup');
+			animationHandler.menuMode('menu');
 		},
 		'onShareClicked':function(){
 			
@@ -54,7 +54,7 @@ Tonkatsu.init = function(){
 				animationHandler.exitShareMode();
 			});
 			
-			animationHandler.shareMode('popup', url, title);
+			animationHandler.shareMode('menu', url, title);
 			
 		},
 	});
@@ -83,6 +83,7 @@ Tonkatsu.init = function(){
 		if(options === 'index'){
 			indexTriggerScroll();
 			animationHandler.indexMode('lower', 'back', 'fore', Animators.index);
+			animationHandler.cancelLoadingCjs();
 		} else {
 			animationHandler.exitIndexMode();
 			animationHandler.loadCjs(options);

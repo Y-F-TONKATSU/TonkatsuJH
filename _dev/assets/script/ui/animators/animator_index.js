@@ -91,7 +91,7 @@ if(!Animators){var Animators = {};}
 			var ctx = this.ch.getContext();
 				
 			if(!this.vars.tree){
-				console.log('init');
+				
 				this.vars = {
 					'imageLoaded':false,
 					'image':new Image(),
@@ -105,7 +105,7 @@ if(!Animators){var Animators = {};}
 				}, this);
 			}
 			
-			this.vars.tree.update();
+			this.vars.tree.update(e.delta);
 			if(this.vars.imageLoaded){
 				if(this.vars.grow < 1){
 					this.vars.grow += 0.001;
@@ -117,39 +117,32 @@ if(!Animators){var Animators = {};}
 			
 		},
 			
-		'nobuteru_fore':function(e){
+		'nobuteru_fore_init':function(e){
 			
-			if(!this.vars.stage){
-				
-				this.vars.stage = new createjs.Stage(this.ch.getCanvas());
-				
-				var loader = new createjs.LoadQueue(false);
-				
-				loader.addEventListener("fileload", function (evt) {	
-					if (evt.item.type == "image") { cjsWidgetImages[evt.item.id] = evt.result; }	
-				});
-				
-				loader.addEventListener("complete", _.bind(function(){
+			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+			
+			CjsUtil.load({
+				'images':cjsWidgetImages,
+				'manifest':	[
+					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
+				],
+				'completeListener':_.bind(function(){
 					this.vars.root = new cjsWidgetLib.widget();	
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();
-				}, this));
-				
-				loader.loadManifest( [
-					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
-				]);
-				
-			} else {
-				
-				if(this.vars.root){
-					if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
-						this.vars.root.stop();
-					}
-					this.vars.stage.update(e);
+				}, this)
+			});
+			
+		},
+		
+		'nobuteru_fore':function(e){
+			
+			if(this.vars.root){
+				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+					this.vars.root.stop();
 				}
-									
-				
+				this.vars.stage.update(e);
 			}
 			
 		},
@@ -157,20 +150,17 @@ if(!Animators){var Animators = {};}
 		'main':function(){
 						
 		},
+		
+		'main_fore_init':function(){
 			
-		'main_fore':function(e){
+			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
-			if(!this.vars.stage){
-				
-				this.vars.stage = new createjs.Stage(this.ch.getCanvas());
-				
-				var loader = new createjs.LoadQueue(false);
-				
-				loader.addEventListener("fileload", function (evt) {	
-					if (evt.item.type == "image") { cjsNavigationImages[evt.item.id] = evt.result; }	
-				});
-				
-				loader.addEventListener("complete", _.bind(function(){
+			CjsUtil.load({
+				'images':cjsNavigationImages,
+				'manifest':	[
+					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
+				],
+				'completeListener':_.bind(function(){
 					if($('#indexMainTitle').data('complete') === 'true'){
 						this.vars.root = new cjsNavigationLib.Tunnel_fore_complete();	
 					} else {
@@ -179,25 +169,21 @@ if(!Animators){var Animators = {};}
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();
-				}, this));
-				
-				loader.loadManifest( [
-					{src:"assets/images/widget/widget_crouton.png?1467622305148", id:"widget_crouton"}
-				]);
-				
-			} else {
-				
-				if(this.vars.root){
-					if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
-						this.vars.root.stop();
-						$('#indexMainTitle').data('complete', 'true');
-					}
-					this.vars.stage.update(e);
-				}
-									
-				
-			}
+				}, this)
+			});
 			
+		},
+		
+		'main_fore':function(e){
+			
+			if(this.vars.root){
+				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+					this.vars.root.stop();
+					$('#indexMainTitle').data('complete', 'true');
+				}
+				this.vars.stage.update(e);
+			}
+									
 		},
 			
 	};

@@ -1,18 +1,14 @@
-@ratio:3 / 16;
-@sidebarRatio:100% * @ratio;
-@mainRatio:100% - @sidebarRatio;
-
 @ZI_LOWER_BG:1;
 @ZI_BG:2;
 @ZI_MAIN:3;
 @ZI_FG:4;
-@ZI_NAV_BUTTON:5;
-@ZI_SHADOW:6;
-@ZI_NAV:7;
-@ZI_MENU_CANCELER:8;
-@ZI_POPUP:10;
-@ZI_MENU:11;
-@ZI_NAV_POPUP:12;
+@ZI_NAV_CANVAS:6;
+@ZI_NAV_HITAREA:7;
+@ZI_MENU_CANCELER:7;
+@ZI_MENU_CANVAS:8;
+@ZI_MENU:9;
+@ZI_MENU_HITAREA:10;
+@ZI_SHADOW:11;
 
 .full{
 	position:fixed;
@@ -46,15 +42,15 @@
 	width:0%;
 	height:0%;
 	overflow:visible;
-	z-index:@ZI_NAV;
+	z-index:@ZI_NAV_HITAREA;
 }
 
-#navigation{
-	z-index:@ZI_NAV;
+#navigation_hitarea{
+	z-index:@ZI_NAV_HITAREA;
 }
 
-#navigation_popup{
-	z-index:@ZI_NAV_POPUP;
+#menu_hitarea{
+	z-index:@ZI_MENU_HITAREA;
 }
 
 #mainDoc{
@@ -71,8 +67,8 @@
 	z-index:@ZI_FG;
 }
 
-#popup{
-	z-index:@ZI_POPUP;
+#menuCanvas{
+	z-index:@ZI_MENU_CANVAS;
 }
 
 #lowerBackground{
@@ -83,8 +79,8 @@
 	z-index:@ZI_BG;
 }
 
-#navigationButtonContainer{
-	z-index:@ZI_NAV_BUTTON;
+#navigationCanvas{
+	z-index:@ZI_NAV_CANVAS;
 }
 
 #shadow{
@@ -105,10 +101,17 @@
 	z-index:@ZI_MENU;	
 }
 
+#menuContainer{
+	padding-left:5%;
+	padding-right:5%;
+	padding-top:2%;
+	padding-bottom:2%;
+}
+
 #share_title{
-	position:fixed;
+	position:absolute;
 	left:35%;
-	width:53%;
+	width:50%;
 	top:10%;
 }
 

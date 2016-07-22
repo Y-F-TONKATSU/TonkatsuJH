@@ -28,7 +28,7 @@ var cjsEvents = {
 	'label':{
 		'Scene004_stop':function(){
 			
-			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation'));
+			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation_hitarea'));
 			
 			if($(cjsEvents.hitAreaHandler.getHitArea('crouton')).length > 0){return;}
 			
@@ -47,7 +47,7 @@ var cjsEvents = {
 			
 			if($('.share_crouton').length > 0){return;}
 			
-			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation'));
+			cjsEvents.hitAreaHandler = new HitAreaHandler($('#navigation_hitarea'));
 			
 			if($(cjsEvents.hitAreaHandler.getHitArea('crouton_fb')).length > 0){return;}
 			

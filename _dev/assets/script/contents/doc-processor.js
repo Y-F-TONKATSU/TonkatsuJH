@@ -51,13 +51,12 @@ var DocProcessor = {
 		$(doc).data('initCompleted', true);
 		
 		var h = DisplayUtil.getHeight();
-			
+		
 		$(doc).find('section').css({
 			'position':'relative',
 			'marginTop': h * 0.2,
 			'marginBottom': h * 0.5,
 			'marginLeft':'15%',
-			'backgroundColor':'#F7F4E8',
 			'width':'30%',
 			'box-shadow': '2px 2px 12px 4px #888888',
 			'padding':'2%',
@@ -139,6 +138,10 @@ var DocProcessor = {
 		
 		$('#mainDoc').empty()
 			.html($(doc).find('article').html());
+		
+	},
+	
+	'initMenu':function(doc){
 		
 	}
 	

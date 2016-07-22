@@ -48,23 +48,23 @@
 	
 		<div id='main' class='full'>
 		
-			<div 
+			<aside 
             	id='lowerBackground'
                 class='stage disabled autoInit'
                 data-layout-width='1'
                 data-layout-height='1'
                 data-layout-left='0'
                 data-layout-top='0'>
-            </div>
+            </aside>
 			
-			<div 
+			<aside 
             	id='background'
                 class='stage disabled autoInit'
                 data-layout-width='1'
                 data-layout-height='1'
                 data-layout-left='0'
                 data-layout-top='0'>
-            </div>
+            </aside>
 			
 			<article 
             	id='mainDoc' 
@@ -99,62 +99,53 @@
 				
 			</nav>
 			
-			<div 
+			<aside 
             	id='foreground'
                 class='stage disabled autoInit'
                 data-layout-width='1'
                 data-layout-height='1'
                 data-layout-left='0'
                 data-layout-top='0'>
-            </div>
+            </aside>
             
-			<div 
-            	id='popup'
-                class='stage disabled autoInit'
-                data-layout-width='1'
-                data-layout-height='1'
-                data-layout-left='0'
-                data-layout-top='0'>
-            </div>
-            
-			<div 
-            	id='shadow'
-                class='stage disabled autoInit'
-                data-layout-width='1'
-                data-layout-height='1'
-                data-layout-left='0'
-                data-layout-top='0'>
-            </div>
-            
-			<div 
-            	id='navigation'
+			<aside 
+            	id='navigation_hitarea'
                 class='navigationLayer'
 			>
-            </div>
+            </aside>
 			
-			<div 
-            	id='navigation_popup'
+			<aside 
+            	id='menu_hitarea'
                 class='navigationLayer'
 			>
 			
-            </div>
+            </aside>
             
-			<div
+			<aside
             	id='menuCanceler'
                 class='full'
 			>
-            </div>
+            </aside>
             
-			<div
-            	id='navigationButtonContainer'
+			<aside
+            	id='navigationCanvas'
                 class='stage disabled autoInit'
                 data-layout-width='1'
                 data-layout-height='1'
                 data-layout-left='0'
                 data-layout-top='0'>
-            </div>
+            </aside>
             
-            <div 
+			<aside 
+            	id='menuCanvas'
+                class='stage disabled autoInit'
+                data-layout-width='1'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
+            </aside>
+            
+            <nav 
             	id='menu'
                 class='popupMenu autoInit'
                 data-layout-state='hidden'
@@ -162,9 +153,18 @@
                 data-layout-height='0.92'
                 data-layout-left='0.10'
                 data-layout-top='0.04'>
-            </div>
+				
+				<div id='menuContainer'>
+					
+					<h2>コンテンツ</h2>
+					
+					<!--Menu-->
+					
+				</div>
+				
+            </nav>
             
-            <div 
+            <nav 
             	id='share'
                 class='popupMenu autoInit'
                 data-layout-state='hidden'
@@ -175,8 +175,17 @@
 				
 				<div id='share_title'></div>
 				
-            </div>
+            </nav>
 			
+			<aside 
+            	id='shadow'
+                class='stage disabled autoInit'
+                data-layout-width='1'
+                data-layout-height='1'
+                data-layout-left='0'
+                data-layout-top='0'>
+            </aside>
+            
 		</div>
 		
 		<!--

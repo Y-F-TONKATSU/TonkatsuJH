@@ -7,6 +7,11 @@
 @tonkatsuBlue:#0023F7;
 @tonkatsuPurple:#543099;
 
+@tonkatsuPlain:#F7F4E8;
+
+@tonkatsuBlack:#030303;
+@tonkatsuWhite:#fbfbfb;
+
 .disabled{
 	pointer-events:none;
 }
@@ -47,6 +52,8 @@ li{
 }
 
 section{
+	background-color:@tonkatsuPlain;
+	color:@tonkatsuBlack;
 	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:130%;
 }
@@ -98,8 +105,26 @@ section{
 	font-size:large;
 }
 
+.widget_categoryIcon{
+	position:relative;
+	left:-30px;
+	top:-30px;
+	float:left;
+}
+
 .widget_description{
-	font-size:130%;
+	font-size:120%;
+}
+
+.experimental{
+	background-color:@tonkatsuGreen;
+	color:@tonkatsuWhite;
+	
+	a:link { color: @tonkatsuWhite; }
+	a:visited { color: #724AFF; }
+	a:hover { color: #ffff00; }
+	a:active { color: #ff8000; }
+
 }
 
 .list_nobuteru{

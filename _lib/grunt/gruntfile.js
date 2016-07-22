@@ -37,6 +37,7 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/contents/contents-util.js',
 		'../../_dev/assets/script/contents/doc-processor.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
+		'../../_dev/assets/script/lib/cjs-util.js',
 		'../../_dev/assets/script/lib/url-handler.js',
 		'../../_dev/assets/script/lib/dom-handler.js',        
 		'../../_dev/assets/script/lib/scroll-handler.js',
@@ -290,11 +291,21 @@ module.exports = function(grunt) {
 				var year = d.getFullYear();
 				var month = d.getUTCMonth() + 1;
 				var date = year + '年 ' + month + '月';
+				
+				var links = items[i].linkArea;
+				var linkArea = "";
+				for(var j = 0; j < links.length; j++){
+					linkArea += "\t\t\t\t\t\t<a href='" + hash + "' class='linkArea' data-link-area='" + links[j] + "'></a>\n";
+				}
+				
+				var icon = "<img class='widget_categoryIcon' src='assets/images/category/category_" + category + "_min.png'>";
 		
-				list += "<section class='widget' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
+				list += "<section class='widget " + category + "' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
 				"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
 				"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
+				"\t\t\t\t\t\t" + icon + "\n" +
 				"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
+				linkArea + 
 				"\t\t\t\t\t\t<div class='widget_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 				"\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
 				thumbs + "\n" +
