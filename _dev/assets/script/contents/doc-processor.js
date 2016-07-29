@@ -100,8 +100,13 @@ var DocProcessor = {
 		});
 		
 		$('.news_description').css({
-			'fontSize':'50%',
+			'fontSize':'70%',
 		});
+		
+		if(DisplayUtil.getSize() !== 'large'){
+			
+			
+		}
 		
 		//$(doc).find('#indexAphorism').html(ContentsUtil.getRandomAphorism());
 		

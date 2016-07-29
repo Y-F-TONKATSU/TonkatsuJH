@@ -1,3 +1,5 @@
+console.log('Start Script');
+
 var Tonkatsu = {};
 
 var urlHandler;
@@ -6,10 +8,12 @@ var scrollHandler;
 var animationHandler;
 
 var FPS = 24;
-var BASE_TITLE = 'とんかつ中学のホームページ';
+var BASE_TITLE = 'とんかつ騎士団の公式ホームページ';
 var BASE_URL = 'ton-katsu.net/';
 
 Tonkatsu.init = function(){
+	
+	$('#splashScreen').remove();
 	
 	urlHandler = new UrlHandler();
 	
@@ -108,15 +112,27 @@ Tonkatsu.onHashChanged = function(e){
 
 };
 
+var windowWidth;
+var windowHeight;
+
 Tonkatsu.onResize = function(e){
-	location.reload();
+	if(Math.abs(windowWidth - window.innerWidth) > 10 ||
+		Math.abs(windowHeight - window.innerHeight) > 10){
+		location.reload();
+	}
 };
 
 $(window).load(function(){
-	Tonkatsu.init();
-	Tonkatsu.onHashChanged();
-	
+	console.log('Doc Load Complete');
+	windowWidth = window.innerWidth;
+	windowHeight = window.innerHeight;
+	setTimeout(function(){
+		windowWidth = window.innerWidth;
+		windowHeight = window.innerHeight;
+		Tonkatsu.init();
+		Tonkatsu.onHashChanged();
+		$(window).resize(Tonkatsu.onResize);
+		$(window).on('hashchange', Tonkatsu.onHashChanged);
+	}, 10);
 });
 
-$(window).resize(Tonkatsu.onResize);
-$(window).on('hashchange', Tonkatsu.onHashChanged);

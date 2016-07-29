@@ -113,6 +113,7 @@ var DomHandler;
 			DocProcessor.initMenu($('#menu'));
 			
 			if($('#menu').data('state') === 'hidden'){
+				$('#menu').css('display', 'block');
 				DocProcessor.frameIn.fromLeft($('#menu'), 1000, function(){
 				});
 			}

@@ -51,33 +51,35 @@ var cjsEvents = {
 			
 			if($(cjsEvents.hitAreaHandler.getHitArea('crouton_fb')).length > 0){return;}
 			
+			var URL = 'ton-katsu.net/contents/experimental/1604/e000019_crouton/main.html'
+						
 			cjsEvents.hitAreaHandler.setEventHitArea('crouton_fb', {
 				left:285 * 0.4,
 				top:275 * 0.4,
 				width:320 * 0.4,
 				height:255 * 0.4
-			}, ShareUtil.getFaceBookLink('ton-katsu.net/'));
+			}, ShareUtil.getFaceBookLink(URL));
 			
 			cjsEvents.hitAreaHandler.setEventHitArea('crouton_tw', {
 				left:606 * 0.4,
 				top:275 * 0.4,
 				width:320 * 0.4,
 				height:255 * 0.4
-			}, ShareUtil.getTwitterLink('ton-katsu.net/', 'クルトンの作り方 - とんかつひろば'));
+			}, ShareUtil.getTwitterLink(URL, 'クルトンの作り方 - とんかつひろば'));
 			
 			cjsEvents.hitAreaHandler.setEventHitArea('crouton_gp', {
 				left:390 * 0.4,
 				top:543 * 0.4,
 				width:320 * 0.4,
 				height:255 * 0.4
-			}, ShareUtil.getGooglePlusLink('ton-katsu.net/'));
+			}, ShareUtil.getGooglePlusLink(URL));
 			
 			cjsEvents.hitAreaHandler.setEventHitArea('crouton_hb', {
 				left:676 * 0.4,
 				top:543 * 0.4,
 				width:320 * 0.4,
 				height:255 * 0.4
-			}, ShareUtil.getHatenaLink('ton-katsu.net/'));
+			}, ShareUtil.getHatenaLink(URL));
 			
 		}
 	},

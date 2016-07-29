@@ -19,6 +19,15 @@
 .invisible{
 	display:none;
 }
+body{
+	font-family: "tbcinergothic-std", "Hiragino Kaku Gothic ProN","メイリオ", sans-serif;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  ::i-block-chrome, body {
+	font-family: "Hiragino Kaku Gothic ProN","メイリオ", sans-serif;
+  }
+}
 
 #main{
 	background-color:#000000;
@@ -30,48 +39,37 @@
 
 h1{
 	clear:both;
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:130%;
 }
 
 h2{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:120%;
 }
 
 h3{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:110%;
 }
 
 h4{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:105%;
 }
 
 h5{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:103%;
 }
 
 h6{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 	font-size:101%;
-}
-
-li{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
 }
 
 section{
 	background-color:@tonkatsuPlain;
 	color:@tonkatsuBlack;
-	font-family: "tbcinergothic-std", "MS Pゴシック";
-	font-size:130%;
+	font-size:120%;
 }
 
 .detail{
-	font-family: "a-otf-ud-reimin-pr6n", "MS P明朝";
+	font-family: "a-otf-ud-reimin-pr6n", "HiraKakuProN-W3", "MS P明朝";
 	font-size:90%;
 }
 
@@ -80,7 +78,7 @@ section{
 }
 
 #menu{
-	display:block;
+	display:none;
 }
 
 .menuContTitle{
@@ -139,13 +137,6 @@ section{
 	font-size:large;
 }
 
-.widget_categoryIcon{
-	position:relative;
-	left:-30px;
-	top:-30px;
-	float:left;
-}
-
 .widget_description{
 	font-size:120%;
 }
@@ -165,6 +156,6 @@ section{
 }
 
 #share_title{
-	font-family: "tbcinergothic-std", "MS Pゴシック";
+	font-family: "tbcinergothic-std", "HiraKakuProN-W3", "MS Pゴシック";
 	font-size:140%;
 }

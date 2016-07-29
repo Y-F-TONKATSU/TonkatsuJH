@@ -92,11 +92,16 @@ if(!Animators){var Animators = {};}
 				
 			if(!this.vars.tree){
 				
+				var max = 5;
+				if(DisplayUtil.getSize() !== 'large'){
+					max = 3;
+				}
+				
 				this.vars = {
 					'imageLoaded':false,
 					'image':new Image(),
-					'tree': new Branch(null, 5),
-					'MAX_BRANCH':4,
+					'tree': new Branch(null, max),
+					'MAX_BRANCH':max,
 					'grow':0
 				};
 				this.vars.image.src = 'contents/experimental/1604/e000019_crouton/images/face.png';
@@ -151,7 +156,7 @@ if(!Animators){var Animators = {};}
 						
 		},
 		
-		'main_fore_init':function(){
+		'main_fore_init':function(e){
 			
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
@@ -168,7 +173,7 @@ if(!Animators){var Animators = {};}
 					}
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
-					this.vars.stage.update();
+					this.vars.stage.update(e);
 				}, this)
 			});
 			
@@ -179,8 +184,8 @@ if(!Animators){var Animators = {};}
 			if(this.vars.root){
 				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
 					this.vars.root.stop();
-					$('#indexMainTitle').data('complete', 'true');
 				}
+				$('#indexMainTitle').data('complete', 'true');
 				this.vars.stage.update(e);
 			}
 									

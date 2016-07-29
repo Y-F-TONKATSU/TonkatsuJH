@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 	<channel>
-		<title>とんかつひろば</title>
+		<title>とんかつ騎士団の公式ホームページ</title>
 		<link>http://ton-katsu.net/</link>
-		<description>Web サイト『とんかつひろば』はあらゆるアイデアを詰め込む変幻自在の器を目指して設計されました。形式としては Web における表現の可能性を追求する要塞、内容は山田.F.とんかつの試行錯誤の跡です。アニメーションを多用した動的なUIは、哲学者イマニュエル・カントの心を満たしたという3つのもの、すなわち、頭上の星、内なる道徳律、目前のカレーへの賞賛を表しています。</description>
+		<description></description>
 		<lastBuildDate>Sun, 21 Jun 2015 22:10:00 +0900</lastBuildDate>
 
 		<item>
@@ -1006,7 +1006,7 @@
 		<item>
 			<title>キツくなったら会社を辞めればいいと思っている人たちにこれだけは言っておきたい:TONKATSU now Writing #003</title>
 			<link>http://ton-katsu.net/contents/writing/1412/b02_yuba.html</link>
-			<description>近頃の若い人の中には仕事がキツかったら、辞めてしまえばいいと安易に考えている人も多いらしい。そういう人にはこの話は教訓的なので、生ゆば君の許可を得て、とんかつひろばに掲載させてもらうことにした。</description>
+			<description>近頃の若い人の中には仕事がキツかったら、辞めてしまえばいいと安易に考えている人も多いらしい。そういう人にはこの話は教訓的なので、生ゆば君の許可を得て、とんかつ騎士団の公式ホームページに掲載させてもらうことにした。</description>
 			<pubDate>Tue, 09 Dec 2014 23:20:00 +0900</pubDate>
 			<category>writing</category>
 			<id>000015</id>
@@ -1019,9 +1019,9 @@
 		</item>
 
 		<item>
-			<title>とんかつひろばのイメージ - WHAT Is TONKATSU? #005</title>
+			<title>とんかつ騎士団の公式ホームページのイメージ - WHAT Is TONKATSU? #005</title>
 			<link>http://ton-katsu.net/contents/whats/w05_image/main.html</link>
-			<description>「とんかつひろば」のインターフェースを構成する CG イメージとその制作の経緯を記録する。新しい試みとして、現実の物の質感と CG の非現実性の共存をコンセプトに据えた。現実的な要求に沿う範囲内で、主流とは別の方向への進化の可能性を探るような気持ちで、Web サイトを作っている。</description>
+			<description>「とんかつ騎士団の公式ホームページ」のインターフェースを構成する CG イメージとその制作の経緯を記録する。新しい試みとして、現実の物の質感と CG の非現実性の共存をコンセプトに据えた。現実的な要求に沿う範囲内で、主流とは別の方向への進化の可能性を探るような気持ちで、Web サイトを作っている。</description>
 			<pubDate>Sun, 07 Dec 2014 00:09:30 +0900</pubDate>
 			<category>whats</category>
 			<id>000005</id>
@@ -1030,7 +1030,7 @@
 			<thumb>contents/whats/w05_image/_thumb/i001.jpg</thumb>
 			<thumb>contents/whats/w05_image/_thumb/i002.jpg</thumb>
 			<thumb>contents/whats/w05_image/_thumb/i003.jpg</thumb>
-			<tags>とんかつひろば TONKATSU now Making Web制作 CG LightWave3D HDR 伊敷トゥート トンネル 棚</tags>
+			<tags>とんかつ騎士団の公式ホームページ TONKATSU now Making Web制作 CG LightWave3D HDR 伊敷トゥート トンネル 棚</tags>
 			<layout>image_doc</layout>
 			<type>article</type>
 		</item>
@@ -1597,14 +1597,14 @@
 		</item>
 
 		<item>
-			<title>『とんかつひろば』のアートコンセプト - WHAT Is TONKATSU? #001</title>
+			<title>『とんかつ騎士団の公式ホームページ』のアートコンセプト - WHAT Is TONKATSU? #001</title>
 			<link>http://ton-katsu.net/contents/whats/w01_art.html</link>
-			<description>とんかつひろばの基礎を制作していた時期(2013年)に観たコンテンポラリーな創作物の中で、特に感動したのがレオス・カラックスの『ホーリー・モーターズ』、新国立美術館の『アンドレアス・グルスキー展』、島袋道浩『ヘペンチスタのペネイラ・エ・ソンニャドールにタコの作品のリミックスをお願いした』、の 3 つだった。3 つとも何に感動したのか説明しようと思うと難しい。</description>
+			<description>とんかつ騎士団の公式ホームページの基礎を制作していた時期(2013年)に観たコンテンポラリーな創作物の中で、特に感動したのがレオス・カラックスの『ホーリー・モーターズ』、新国立美術館の『アンドレアス・グルスキー展』、島袋道浩『ヘペンチスタのペネイラ・エ・ソンニャドールにタコの作品のリミックスをお願いした』、の 3 つだった。3 つとも何に感動したのか説明しようと思うと難しい。</description>
 			<pubDate>Sat, 20 Sep 2014 00:00:00 +0900</pubDate>
 			<category>whats</category>
 			<id>000001</id>
 			<mainThumb>assets/images/article_image/whats/thumb_01.jpg</mainThumb>
-			<tags>TONKATSU とんかつひろば アート 島袋道浩 ウィトゲンシュタイン</tags>
+			<tags>TONKATSU とんかつ騎士団の公式ホームページ アート 島袋道浩 ウィトゲンシュタイン</tags>
 			<layout>doc</layout>
 			<type>article</type>
 		</item>

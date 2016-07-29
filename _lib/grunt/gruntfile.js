@@ -112,7 +112,7 @@ module.exports = function(grunt) {
 		} else {
 			var thumb = items[i].mainThumb;
 		}
-		var siteName = 'とんかつひろば';
+		var siteName = 'とんかつ騎士団の公式ホームページ';
 		var index = "http://ton-katsu.net/#" + category + "000000";
 		var current = "http://ton-katsu.net/#" + category + id;
 		var prev = "http://ton-katsu.net/#" + category + fillDigits(parseInt(id) - 1);
@@ -123,8 +123,8 @@ module.exports = function(grunt) {
 		"\t\t<meta name='description' content='" + description + "' />\n" +
 		"\t\t<meta property='og:title' content='" + title + "' />\n" + 
 		"\t\t<meta property='og:type' content='" + type + "' />\n" +
-		"\t\t<meta property='og:url' content='" + url + "' />\n" +
-		"\t\t<meta property='og:image' content='" + thumb + "' />\n" +
+		"\t\t<meta property='og:url' content='http://ton-katsu.net/" + url + "' />\n" +
+		"\t\t<meta property='og:image' content='http://ton-katsu.net/" + thumb + "' />\n" +
 		"\t\t<meta property='og:site_name' content='" + siteName + "' />\n" +
 		"\t\t<meta property='og:description' content='" + description + "' />\n" +
 		"\t\t<meta property='fb:admins' content='100001501165698' />\n\n" +
@@ -292,11 +292,13 @@ module.exports = function(grunt) {
 				var month = d.getUTCMonth() + 1;
 				var date = year + '年 ' + month + '月';
 				
+				/*
 				var links = items[i].linkArea;
 				var linkArea = "";
 				for(var j = 0; j < links.length; j++){
 					linkArea += "\t\t\t\t\t\t<a href='" + hash + "' class='linkArea' data-link-area='" + links[j] + "'></a>\n";
 				}
+				*/
 				
 				var icon = "<img class='widget_categoryIcon' src='assets/images/category/category_" + category + "_min.png'>";
 		
@@ -305,7 +307,7 @@ module.exports = function(grunt) {
 				"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 				"\t\t\t\t\t\t" + icon + "\n" +
 				"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
-				linkArea + 
+				//linkArea + 
 				"\t\t\t\t\t\t<div class='widget_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 				"\t\t\t\t\t\t<img class='widget_mainThumb' src='" + mainThumb + "'>\n" + 
 				thumbs + "\n" +
@@ -481,13 +483,13 @@ module.exports = function(grunt) {
 				],
 				dest: testScriptDest
 			},
-			less_landscape:{
-				src: ['../../_dev/assets/less/layout_main_common.less', '../../_dev/assets/less/layout_main_landscape.less'],
-				dest:'../../_processing/assets/css/layout_main_landscape.less'
+			less_mobile:{
+				src: ['../../_dev/assets/less/layout_main_common.less', '../../_dev/assets/less/layout_main_mobile.less'],
+				dest:'../../_processing/assets/css/layout_main_mobile.less'
 			},
-			less_portrait:{
-				src: ['../../_dev/assets/less/layout_main_common.less', '../../_dev/assets/less/layout_main_portrait.less'],
-				dest:'../../_processing/assets/css/layout_main_portrait.less'
+			less_normal:{
+				src: ['../../_dev/assets/less/layout_main_common.less', '../../_dev/assets/less/layout_main_normal.less'],
+				dest:'../../_processing/assets/css/layout_main_normal.less'
 			},
 			js_main:{
 				src: jsList,
@@ -520,14 +522,14 @@ module.exports = function(grunt) {
 					'../../_processing/assets/css/base.css':['../../_dev/assets/less/base.less']
 				}
 			},
-			css_landscape: {
+			css_mobile: {
 				files: {
-					'../../_processing/assets/css/layout_main_landscape.css':['../../_processing/assets/css/layout_main_landscape.less']
+					'../../_processing/assets/css/layout_main_mobile.css':['../../_processing/assets/css/layout_main_mobile.less']
 				}
 			},
-			css_portrait: {
+			css_normal: {
 				files: {
-					'../../_processing/assets/css/layout_main_portrait.css':['../../_processing/assets/css/layout_main_portrait.less']
+					'../../_processing/assets/css/layout_main_normal.css':['../../_processing/assets/css/layout_main_normal.less']
 				}
 			}
 		},
@@ -539,13 +541,13 @@ module.exports = function(grunt) {
 				src: '../../_processing/assets/css/base.css',
 				dest: '../../_processing/assets/css/base-vender-fixed.css'
 			},
-			css_landscape:{
-				src: '../../_processing/assets/css/layout_main_landscape.css',
-				dest: '../../_processing/assets/css/layout_main_landscape-vender-fixed.css'
+			css_mobile:{
+				src: '../../_processing/assets/css/layout_main_mobile.css',
+				dest: '../../_processing/assets/css/layout_main_mobile-vender-fixed.css'
 			},
-			css_portrait:{
-				src: '../../_processing/assets/css/layout_main_portrait.css',
-				dest: '../../_processing/assets/css/layout_main_portrait-vender-fixed.css'
+			css_normal:{
+				src: '../../_processing/assets/css/layout_main_normal.css',
+				dest: '../../_processing/assets/css/layout_main_normal-vender-fixed.css'
 			}
 		},
 		
@@ -566,19 +568,19 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			css_landscape: {
+			css_mobile: {
 				files: [
 					{
-						src:'../../_processing/assets/css/layout_main_landscape-vender-fixed.css',
-						dest:'../../public/assets/css/layout_main_landscape-min.css'
+						src:'../../_processing/assets/css/layout_main_mobile-vender-fixed.css',
+						dest:'../../public/assets/css/layout_main_mobile-min.css'
 					}
 				]
 			},
-			css_portrait: {
+			css_normal: {
 				files: [
 					{
-						src:'../../_processing/assets/css/layout_main_portrait-vender-fixed.css',
-						dest:'../../public/assets/css/layout_main_portrait-min.css'
+						src:'../../_processing/assets/css/layout_main_normal-vender-fixed.css',
+						dest:'../../public/assets/css/layout_main_normal-min.css'
 					}
 				]
 			}
@@ -652,6 +654,12 @@ module.exports = function(grunt) {
 				cwd: '../../_processing/contents',
 				src: ['**'],
 				dest: '../../public/contents'
+			},
+			rss: {
+				expand:true,
+				cwd: '../../_dev/',
+				src: ['contents.xml'],
+				dest: '../../public'
 			},
 		},
 		
@@ -782,9 +790,20 @@ module.exports = function(grunt) {
 				src: ['../../_dev/contents.xml'],
 				dest: '../../_processing/docs/contents.json'
 			}
-		}
+		},
 		
-		
+		compress: {
+			main: {
+				options: {
+					mode: 'gzip'
+				},
+				expand: true,
+				cwd: '../../public/assets/script/',
+				src: ['tonkatsu.js'],
+				ext: '.gz',
+				dest: '../../public/assets/script/'
+			}
+		}		
 	});
 	
 	//Auto-Loading Tasks
@@ -794,8 +813,8 @@ module.exports = function(grunt) {
 	var baseTasks = ['convert'];
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
-	var cssTasks = ['concat:less_landscape', 'concat:less_portrait', 'less:css_main', 'less:css_landscape', 'less:css_portrait', 'autoprefixer:css_main', 'autoprefixer:css_landscape', 'autoprefixer:css_portrait', 'cssmin:css_main', 'cssmin:css_landscape', 'cssmin:css_portrait'];
-	var htmlTasks = ['replace:main', 'replace:news', 'replace:menu', 'htmlmin:main', 'copy:main', 'copy:favicon'];
+	var cssTasks = ['concat:less_mobile', 'concat:less_normal', 'less:css_main', 'less:css_mobile', 'less:css_normal', 'autoprefixer:css_main', 'autoprefixer:css_mobile', 'autoprefixer:css_normal', 'cssmin:css_main', 'cssmin:css_mobile', 'cssmin:css_normal'];
+	var htmlTasks = ['replace:main', 'replace:news', 'replace:menu', 'htmlmin:main', 'copy:main', 'copy:favicon', 'copy:rss'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
 	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);

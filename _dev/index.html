@@ -5,18 +5,18 @@
 	<head>
 	
 		<meta charset='utf-8'>
-		<title>とんかつひろば</title>
+		<title>とんかつ騎士団の公式ホームページ</title>
 		
 		<link rel="shortcut icon" href="favicon.ico" />
 
 		
 		<!--OG TAGS-->
-		<meta property='og:title' content='とんかつひろば' />
+		<meta property='og:title' content='とんかつ騎士団の公式ホームページ' />
 		<meta property='og:type' content='website' />
 		<meta property='og:url' content='http://ton-katsu.net/' />
 		<meta property='og:image' content='http://ton-katsu.net/assets/images/common/og.jpg' />
-		<meta property='og:site_name' content='とんかつひろば' />
-		<meta property='og:description' content='『とんかつひろば』は Web サイトの形式の自由を追求する実験場です。' />
+		<meta property='og:site_name' content='とんかつ騎士団の公式ホームページ' />
+		<meta property='og:description' content='『とんかつ騎士団の公式ホームページ』は Web サイトの形式の自由を追求する実験場です。' />
 		
 		<meta property='fb:admins' content='100001501165698' />
 		
@@ -27,8 +27,8 @@
         <link rel="stylesheet" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
 		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' >
 		<link rel='stylesheet' href='assets/css/base-min.css'>
-		<link rel='stylesheet' media='(orientation:landscape)' href='assets/css/layout_main_landscape-min.css'>
-		<link rel='stylesheet' media='(orientation:portrait)' href='assets/css/layout_main_portrait-min.css'>
+		<link rel='stylesheet' media='(max-width: 640px)' href='assets/css/layout_main_mobile-min.css'>
+		<link rel='stylesheet' media='(min-width: 640px)' href='assets/css/layout_main_normal-min.css'>
 		
         <!--TypeKit-->
         <script src="https://use.typekit.net/hsv2tkn.js"></script>
@@ -45,7 +45,11 @@
 	</head>
 
 	<body>
-	
+		
+		<div id='splashScreen' class='full'>
+			<p id='splashScreenText'>Loading..</p>
+		</div>
+		
 		<div id='main' class='full'>
 		
 			<aside 
@@ -245,7 +249,6 @@
 			</nav>
 		
 		</div>
-		-->
 		
 		<aside id='aphorismContainer' class='invisible'>
 		
@@ -457,6 +460,7 @@
 			</section>
 			
 		</aside>
+		-->
 
 	</body>
 </html>

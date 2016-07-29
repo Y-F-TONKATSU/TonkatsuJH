@@ -2,6 +2,41 @@ if(!Animators){var Animators = {};}
 
 Animators.basic = {
 	
+	'lines':function(){
+		
+		var progress = this.progress;
+			
+		var ch = this.ch;
+		var ctx = ch.getContext();
+		
+		ctx.save();
+		
+		ch.setStrokeStyle(200, 255, 200, Math.sin(Math.PI * progress));
+		var w = ch.getCanvasWidth();
+		var h = ch.getCanvasHeight();
+		h = (w > h ? w:h) * progress;
+		
+		var lines = this.vars.numLines;
+		var r = Math.PI * 2 / lines;
+		
+		var x = this.vars.x;
+		var y = this.vars.y;
+		var start = this.vars.start;
+		
+		ch.drawShape(function(ctx){
+			ctx.translate(x, y);
+			ctx.rotate(Math.PI * progress);
+			_.times(lines, function(n){
+				ctx.moveTo(0, start);
+				ctx.lineTo(0, h);
+				ctx.rotate(r);
+			});
+		}, true, false);
+		
+		ctx.restore();
+		
+	},
+	
 	'white':function(){
 		
 		var progress = this.progress;

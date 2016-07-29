@@ -432,13 +432,13 @@ var AnimationHandler;
 				width:330 * 0.4,
 				height:350 * 0.4,
 			}, ShareUtil.getFaceBookLink(url));
-					
+			
 			this._hitAreaHandler_popup.setHitArea('share_tw', {
 				left:617 * 0.4,
 				top:640 * 0.4,
 				width:330 * 0.4,
 				height:350 * 0.4,
-			}, ShareUtil.getTwitterLink(url. title));
+			}, ShareUtil.getTwitterLink(url, title));
 					
 			this._hitAreaHandler_popup.setHitArea('share_gp', {
 				left:980 * 0.4,
@@ -680,6 +680,32 @@ var AnimationHandler;
 					
 				},
 				'onComplete':function(){
+				}
+			});
+			
+			this.addTask({
+				'id':'indexLines',
+				'docId': 'index',
+				'containerId': backContainerId,
+				'progress':0,
+				'currentTime':0,
+				'duration': 100000,
+				'waitTime': 0,
+				'tIndex':10,
+				'vars':{
+					numLines:24,
+					x:676,
+					y:57,
+					start:30
+				},
+				'scene':'',
+				'tweener':Tweeners.basic.normal,
+				'onInit':function(){
+						
+				},
+				'onTicked': Animators.basic.lines,
+				'onComplete':function(){
+					that.removeTask('indexLines');
 				}
 			});
 			
