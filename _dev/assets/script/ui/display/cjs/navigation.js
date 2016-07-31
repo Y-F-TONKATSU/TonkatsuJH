@@ -14,6 +14,7 @@ lib.properties = {
 	manifest: [
 		{src:"images/door_way.jpg", id:"door_way"},
 		{src:"images/face.png", id:"face"},
+		{src:"images/lw.jpg", id:"lw"},
 		{src:"images/nobuteru_clip.png", id:"nobuteru_clip"},
 		{src:"images/tunnel.jpg", id:"tunnel"}
 	]
@@ -45,6 +46,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 	this.initialize(img.face);
 }).prototype = p = new cjs.Bitmap();
 p.nominalBounds = new cjs.Rectangle(0,0,37,53);
+
+
+(lib.lw = function() {
+	this.initialize(img.lw);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,145,170);
 
 
 (lib.nobuteru_clip = function() {
@@ -1499,6 +1506,19 @@ p.nominalBounds = new cjs.Rectangle(-96,-240,192.1,480);
 p.nominalBounds = new cjs.Rectangle(-95.9,-240,192,480);
 
 
+(lib.LW = function(mode,startPosition,loop) {
+if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
+
+	// レイヤー 1
+	this.instance = new lib.lw();
+	this.instance.setTransform(-80.5,0);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-80.5,0,145,170);
+
+
 (lib.Logo = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -2720,14 +2740,14 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 	this.instance_2._off = true;
 
 	this.instance_3 = new lib.ニーチェ_teal("synched",0);
-	this.instance_3.setTransform(403.7,401.2);
+	this.instance_3.setTransform(488.7,406.2);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_2}]},81).to({state:[{t:this.instance_2}]},5).to({state:[{t:this.instance_2}]},1).to({state:[{t:this.instance_2}]},4).to({state:[{t:this.instance_3}]},4).wait(1));
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(81).to({_off:false},0).to({scaleX:7.55,scaleY:7.55,rotation:6.6,x:-1243.2,y:-21.3},5).to({startPosition:0},1).to({regX:0.1,regY:0.1,scaleX:5.14,scaleY:5.14,rotation:13.2,x:-600.2,y:-60.1},4).to({_off:true,regX:0,regY:0,scaleX:1,scaleY:1,rotation:0,x:403.7,y:401.2},4,cjs.Ease.get(1)).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(81).to({_off:false},0).to({scaleX:7.55,scaleY:7.55,rotation:6.6,x:-1243.2,y:-21.3},5).to({startPosition:0},1).to({regX:0.1,regY:0.1,scaleX:5.14,scaleY:5.14,rotation:13.2,x:-600.2,y:-60.1},4).to({_off:true,regX:0,regY:0,scaleX:1,scaleY:1,rotation:0,x:488.7,y:406.2},4,cjs.Ease.get(1)).wait(1));
 
 	// 何も阻む物が無いという感覚だ。 
 	this.instance_4 = new lib.何も阻む物が無い("synched",0,false);
-	this.instance_4.setTransform(368,60,3.094,3.094,0,0,0,0,0.1);
+	this.instance_4.setTransform(458.4,67.5,3.014,3.014,0,0,0,0.1,0.2);
 	this.instance_4._off = true;
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(60).to({_off:false},0).wait(36));
@@ -2738,10 +2758,10 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 	this.instance_5._off = true;
 
 	this.instance_6 = new lib.Soreha_teal("single",0);
-	this.instance_6.setTransform(572.8,234.2,0.25,0.25,-3.7);
+	this.instance_6.setTransform(650.8,234.2,0.25,0.25,-3.7);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_5}]},47).to({state:[{t:this.instance_6}]},7).wait(42));
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(47).to({_off:false},0).to({_off:true,regY:0,scaleX:0.25,scaleY:0.25,rotation:-3.7,x:572.8,y:234.2},7,cjs.Ease.get(-0.99)).wait(42));
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(47).to({_off:false},0).to({_off:true,regY:0,scaleX:0.25,scaleY:0.25,rotation:-3.7,x:650.8,y:234.2},7,cjs.Ease.get(-0.99)).wait(42));
 
 	// レイヤー 4
 	this.instance_7 = new lib.LineShootAround("synched",0,false);
@@ -2762,23 +2782,29 @@ p.nominalBounds = new cjs.Rectangle(-207.5,-519,975.6,1391.2);
 (lib.Tunnel_fore_complete = function(mode,startPosition,loop) {
 if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
-	// MainText_in
-	this.instance = new lib.MainText_stay("synched",11,false);
-	this.instance.setTransform(384,54.5,1,1,0,0,0,384,54.5);
+	// レイヤー 2
+	this.instance = new lib.LW("synched",0);
+	this.instance.setTransform(463.6,292.5,1,1,2.7,0,0,0.1,94.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
-	// MainTitleText
-	this.instance_1 = new lib.MainTitleText("synched",0);
-	this.instance_1.setTransform(674.2,54.7,1,1,0,0,0,55.6,24.3);
+	// MainText_in
+	this.instance_1 = new lib.MainText_stay("synched",11,false);
+	this.instance_1.setTransform(384,54.5,1,1,0,0,0,384,54.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
 
-	// Aphorism_Nietzsche
-	this.instance_2 = new lib.Aphorism_Nietzsche("synched",95,false);
-	this.instance_2.setTransform(99.9,-1,1,1,0,0,0,99.9,-1);
+	// MainTitleText
+	this.instance_2 = new lib.MainTitleText("synched",0);
+	this.instance_2.setTransform(674.2,54.7,1,1,0,0,0,55.6,24.3);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1));
+
+	// Aphorism_Nietzsche
+	this.instance_3 = new lib.Aphorism_Nietzsche("synched",95,false);
+	this.instance_3.setTransform(99.9,-1,1,1,0,0,0,99.9,-1);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-1608.7,-123.6,2776.4,701.6);
@@ -2787,41 +2813,48 @@ p.nominalBounds = new cjs.Rectangle(-1608.7,-123.6,2776.4,701.6);
 (lib.Tunnel_fore = function(mode,startPosition,loop) {
 if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
-	// Wave
-	this.instance = new lib.Polar_multi("synched",0);
-	this.instance.setTransform(419.9,255.5,0.017,0.009,21.9);
+	// レイヤー 2
+	this.instance = new lib.LW("synched",0);
+	this.instance.setTransform(442.5,289.6,0.055,0.055,-90,0,0,0,95);
 	this.instance._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(26).to({_off:false},0).to({scaleX:0.38,scaleY:0.21,rotation:21.8,x:419.8,y:255.8,alpha:0.68,startPosition:16},16,cjs.Ease.get(1)).to({scaleX:0.47,scaleY:0.26,y:255.9,alpha:0.602,startPosition:29},13).to({regX:0.3,regY:0.4,scaleX:0.48,scaleY:0.26,rotation:22,y:255.8,alpha:0,startPosition:33},4,cjs.Ease.get(-1)).to({_off:true},40).wait(18));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(105).to({_off:false},0).to({regX:0.1,regY:94.5,scaleX:1,scaleY:1,rotation:2.7,x:463.6,y:292.5},11,cjs.Ease.get(1)).wait(1));
+
+	// Wave
+	this.instance_1 = new lib.Polar_multi("synched",0);
+	this.instance_1.setTransform(419.9,255.5,0.017,0.009,21.9);
+	this.instance_1._off = true;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(26).to({_off:false},0).to({scaleX:0.38,scaleY:0.21,rotation:21.8,x:419.8,y:255.8,alpha:0.68,startPosition:16},16,cjs.Ease.get(1)).to({scaleX:0.47,scaleY:0.26,y:255.9,alpha:0.602,startPosition:29},13).to({regX:0.3,regY:0.4,scaleX:0.48,scaleY:0.26,rotation:22,y:255.8,alpha:0,startPosition:33},4,cjs.Ease.get(-1)).to({_off:true},40).wait(18));
 
 	// MainText_in
-	this.instance_1 = new lib.MainText_in("synched",0,false);
-	this.instance_1.setTransform(384,54.5,1,1,0,0,0,384,54.5);
-
-	this.instance_2 = new lib.MainText_stay("synched",11,false);
+	this.instance_2 = new lib.MainText_in("synched",0,false);
 	this.instance_2.setTransform(384,54.5,1,1,0,0,0,384,54.5);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_1}]},95).to({state:[{t:this.instance_2}]},21).wait(1));
+	this.instance_3 = new lib.MainText_stay("synched",11,false);
+	this.instance_3.setTransform(384,54.5,1,1,0,0,0,384,54.5);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_2}]},95).to({state:[{t:this.instance_3}]},21).wait(1));
 
 	// レイヤー 3
-	this.instance_3 = new lib.ExtendBlurs("synched",0,false);
-	this.instance_3.setTransform(669.5,70.9,1,0.682,-48.5,0,0,0,15.1);
-	this.instance_3._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(98).to({_off:false},0).to({_off:true},18).wait(1));
-
-	// MainTitleText
-	this.instance_4 = new lib.MainTitleText("synched",0);
-	this.instance_4.setTransform(664.2,49.5,0.129,0.129,0,0,0,55.5,24.4);
+	this.instance_4 = new lib.ExtendBlurs("synched",0,false);
+	this.instance_4.setTransform(669.5,70.9,1,0.682,-48.5,0,0,0,15.1);
 	this.instance_4._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(105).to({_off:false},0).to({regX:55.6,regY:24.3,scaleX:1,scaleY:1},9,cjs.Ease.get(0.97)).wait(2).to({startPosition:0},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(98).to({_off:false},0).to({_off:true},18).wait(1));
+
+	// MainTitleText
+	this.instance_5 = new lib.MainTitleText("synched",0);
+	this.instance_5.setTransform(664.2,49.5,0.129,0.129,0,0,0,55.5,24.4);
+	this.instance_5._off = true;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(105).to({_off:false},0).to({regX:55.6,regY:24.3,scaleX:1,scaleY:1},9,cjs.Ease.get(0.97)).wait(2).to({startPosition:0},0).wait(1));
 
 	// Aphorism_Nietzsche
-	this.instance_5 = new lib.Aphorism_Nietzsche("synched",0,false);
-	this.instance_5.setTransform(99.9,-1,1,1,0,0,0,99.9,-1);
+	this.instance_6 = new lib.Aphorism_Nietzsche("synched",0,false);
+	this.instance_6.setTransform(99.9,-1,1,1,0,0,0,99.9,-1);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(116).to({startPosition:95},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(116).to({startPosition:95},0).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-207.5,-519,975.6,1391.2);

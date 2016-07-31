@@ -45,6 +45,11 @@
 	overflow:visible;
 }
 
+.popupMenu{
+	position:fixed;
+	z-index:@ZI_MENU;
+}
+
 #splashScreen{
 	background-color:black;
 	z-index:@ZI_SPLASH;
@@ -100,11 +105,6 @@
 	z-index:@ZI_SHADOW;
 }
 
-.popupMenu{
-	position:fixed;
-	z-index:@ZI_MENU;
-}
-
 #menuCanceler{
 	position:fixed;
 	z-index:@ZI_MENU_CANCELER;
@@ -126,11 +126,4 @@
 	left:35%;
 	width:50%;
 	top:6%;
-}
-
-.widget_categoryIcon{
-	position:relative;
-	left:-30px;
-	top:-30px;
-	float:left;
 }
