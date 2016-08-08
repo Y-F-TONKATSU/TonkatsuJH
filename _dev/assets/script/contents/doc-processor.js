@@ -91,8 +91,8 @@ var DocProcessor = {
 		});
 		
 		$('.news_date').css({
+			'marginTop':'10px',
 			'fontSize':'60%',
-			'float':'left'
 		});
 		
 		$('.news_title').css({
@@ -143,6 +143,61 @@ var DocProcessor = {
 		
 		$('#mainDoc').empty()
 			.html($(doc).find('article').html());
+		
+	},
+	
+	'cjsClips':function(doc){
+		
+		var h = DisplayUtil.getHeight();
+			
+		$(doc).find('section').css({
+			'position':'relative',
+			'marginTop': h * 0.2,
+			'marginBottom': h * 0.5,
+			'marginLeft':'15%',
+			'backgroundColor':'#F7F4E8',
+			'width':'30%',
+			'box-shadow': '2px 2px 12px 4px #888888',
+			'padding':'2%',
+			'transform': 'rotate(2deg)',
+		}).end().find('.ad').find('table').css({
+			'width':'100%',
+			'maxWidth':'300px'
+		}).end().end().find('.right').css({
+			'marginLeft':'60%'
+		}).end().find('.canvasExp').css({
+			'marginLeft':'76%',
+			'width':'19%',
+			'transform': 'rotate(0deg)'
+		}).end().find('.short').css({
+			'marginBottom':h * 0.2
+		}).end().find('section').first()
+		.css({
+			'marginTop': h * 0.3
+		}).end().last()
+		.css({
+			'marginBottom': h * 0.6,
+		});
+		
+		$('#mainDoc').empty()
+			.html($(doc).find('article').html());
+		
+		var canvas = $('#contMainCanvas');
+		$(canvas).css({
+			'position': 'fixed',
+			'left': (100 * 121 / 768) + '%',
+			'top': (100 * 18 / 480) + '%',
+			'width': (100 * 444 / 768) + '%',
+			'height': (100 * 439 / 480) + '%'
+		});
+		
+		$('.book').css({
+			'position': 'fixed',
+			'left': (100 * 121 / 768) + '%',
+			'top': (100 * 18 / 480) + '%',
+			'width': (100 * 444 / 768) + '%',
+			'height': (100 * 439 / 480) + '%'
+		});
 		
 	},
 	

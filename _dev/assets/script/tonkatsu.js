@@ -84,6 +84,7 @@ Tonkatsu.init = function(){
 	animationHandler.setOnCjsInitListener(triggerScroll);
 	
 	domHandler.setLoadCompleteListener(function(options){
+		
 		if(options === 'index'){
 			indexTriggerScroll();
 			animationHandler.indexMode('lower', 'back', 'fore', Animators.index);

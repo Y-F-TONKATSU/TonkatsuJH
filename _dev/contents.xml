@@ -9,10 +9,34 @@
 
 		<item>
 		
+			<title>JavaScript と Canvas で作る、アリのシミュレーション</title>
+			<link>contents/experimental/1608/e000020_ant/main.html</link>
+			<description>アリのエサ集め</description>
+			<pubDate>Tue, 2 Aug 2016 22:00:00 +0900</pubDate>
+			
+			<category>experimental</category>
+			<id>000020</id>
+			<subCategory>Canvas</subCategory>
+			<series>TONKATSU Experimental</series>
+			<mainThumb>assets/images/thumb/ex000020.png</mainThumb>
+			<minThumb>assets/images/thumb/ex000020_min.png</minThumb>
+			<tags>HTML5 Canvas JavaScript アリ 人工生命 シミュレーション ジェネラティブアート</tags>
+			<type>article</type>			
+			
+			<cjs>contents/experimental/1608/e000020_ant/script.js</cjs>
+			<cjsOptions>contents/experimental/1608/e000020_ant/options.js</cjsOptions>
+			<cjsImages>contents/experimental/1608/e000020_ant/</cjsImages>
+			
+			<animation>ant</animation>
+			
+		</item>
+		
+		<item>
+		
 			<title>クルトンの作り方</title>
 			<link>contents/experimental/1604/e000019_crouton/main.html</link>
 			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>
-			<pubDate>Mon, 21 Mar 2016 22:00:00 +0900</pubDate>
+			<pubDate>Sat, 30 Jul 2016 10:00:00 +0900</pubDate>
 			
 			<category>experimental</category>
 			<id>000019</id>

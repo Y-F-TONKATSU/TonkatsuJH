@@ -388,7 +388,7 @@ module.exports = function(grunt) {
 				"\t\t\t\t\t\t<img class='news_mainThumb' src='" + mainThumb + "'>\n" + 
 				"\t\t\t\t\t\t<div class='news_description'>" + description + "</div>\n" +
 				thumbs + "\n" +
-				"\t\t\t\t</a><br>\n\n\t\t\t\t";
+				"\t\t\t\t\t</a><br clear='all'>\n\n\t\t\t\t";
 	
 			}
 		}
@@ -494,6 +494,17 @@ module.exports = function(grunt) {
 			js_main:{
 				src: jsList,
 				dest:tonkatsuScriptDest
+			},
+			cont_e000020:{
+				src: [
+					'../../_dev/contents/experimental/1608/e000020_ant/cjs_ant-sim.js',
+					'../../_dev/contents/experimental/1608/e000020_ant/scripts/ant-sim.js',
+					'../../_dev/contents/experimental/1608/e000020_ant/scripts/ant.js',
+					'../../_dev/contents/experimental/1608/e000020_ant/scripts/food.js',
+					'../../_dev/contents/experimental/1608/e000020_ant/scripts/pheromone.js',
+					'../../_dev/contents/experimental/1608/e000020_ant/scripts/script.js',
+				],
+				dest: '../../_dev/contents/experimental/1608/e000020_ant/script.js'
 			}
 		},
 		
@@ -825,6 +836,8 @@ module.exports = function(grunt) {
 	
 	var testTasks = ['concat:test', 'uglify:test', 'cssmin:test'];
 	
+	var exContTask = ['concat:cont_e000020'];
+	
 	grunt.registerTask('default', mainTasks);
 	grunt.registerTask('cont', contTasks);	
 	grunt.registerTask('img', imageTasks);
@@ -834,6 +847,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('html', baseTasks.concat(htmlTasks));
 	
 	grunt.registerTask('test', testTasks);
+	
+	grunt.registerTask('e000020', exContTask);
+	
 	//grunt.registerTask('watch', ['watch']);
 	
 };

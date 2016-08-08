@@ -29,6 +29,22 @@ var CanvasHandler;
 		
 	CanvasHandler.prototype = {
 		
+		'dist':function(a, b){
+			return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+		},
+		
+		'distX':function(a, b){
+			return a.x - b.x;
+		},
+		
+		'distY':function(a, b){
+			return a.y - b.y;
+		},
+		
+		'mdist':function(a, b){
+			return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+		},
+	
 		getRandomColorHexString:function(minR, maxR, minG, maxG, minB, maxB){
 			
 			return this.getColorHexString(

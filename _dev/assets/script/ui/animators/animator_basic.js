@@ -2,6 +2,90 @@ if(!Animators){var Animators = {};}
 
 Animators.basic = {
 	
+	'cjsLabeled_init':function(cjsStage, movieOptions, mc){
+		console.log('init');
+		cjsStage.root = new cjsLib[movieOptions.root]()[mc.root];	
+		cjsStage.stage.addChild(cjsStage.root);
+
+	},
+	
+	'cjsLabeled':function(e, cjsStage, activeElem){
+		
+		cjsStage.stage.update(e);
+		
+		if(activeElem){
+			
+			var scene = $(activeElem).attr('data-cjs-scene');
+			
+			if(scene !== this.currentScene){
+				cjsStage.root.gotoAndPlay(scene + '_start');
+				this.currentScene = scene;
+			}
+		}
+							
+		var label = cjsStage.root.currentLabel;
+		if(this.currentLabel !== label){
+			if(cjsEvents.labelOut[this.currentLabel]){
+				cjsEvents.labelOut[this.currentLabel].call(this);
+			}
+			if(cjsEvents.label[label]){
+				cjsEvents.label[label].call(this);
+			}
+		}
+		this.currentLabel = label;
+		if(label.indexOf('_stop') >= 0){
+			cjsStage.root.stop();
+			
+		}
+		
+	},
+	
+	'cjsClips_init':function(cjsStage, movieOptions, mc){
+		
+	},
+	
+	
+	'cjsClips':function(e, cjsStage, activeElem){
+		
+		cjsStage.stage.update(e);
+		
+		if(activeElem){
+			
+			var scene = $(activeElem).attr('data-cjs-scene');
+			
+			if(scene !== this.currentScene){
+				cjsStage.stage.removeAllChildren();
+				cjsStage.currentClip = new cjsLib[scene]();
+				cjsStage.stage.addChild(cjsStage.currentClip);
+				this.currentScene = scene;
+			}
+		}
+		
+		if(cjsStage.currentClip){
+			
+			if(cjsStage.currentClip.currentFrame === cjsStage.currentClip.totalFrames - 1){
+				cjsStage.currentClip.stop();
+			}
+			
+			var label = cjsStage.currentClip.currentLabel;
+			if(this.currentLabel !== label){
+				console.log(cjsEvents);
+				if(cjsEvents.labelOut[this.currentLabel]){
+					cjsEvents.labelOut[this.currentLabel].call(this);
+				}
+				if(cjsEvents.label[label]){
+					cjsEvents.label[label].call(this);
+				}
+			}
+			this.currentLabel = label;
+			if(label && label.indexOf('_stop') >= 0){
+				cjsStage.root.stop();
+			}
+		}
+
+		
+	},
+	
 	'lines':function(){
 		
 		var progress = this.progress;

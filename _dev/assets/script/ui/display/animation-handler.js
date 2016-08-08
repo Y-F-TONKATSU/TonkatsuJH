@@ -90,7 +90,7 @@ var AnimationHandler;
 			});
 			
 		},
-		
+				
 		_setCjsTask:function(movieOptions){
 			
 			var currentScene;
@@ -103,11 +103,12 @@ var AnimationHandler;
 				
 				cjsStage.ch = this._chList[mc.containerId];
 				cjsStage.canvas = cjsStage.ch.getCanvas();
-				cjsStage.root = new cjsLib[movieOptions.root]()[mc.root];	
+				
 				cjsStage.stage = new createjs.Stage(cjsStage.canvas);
-				cjsStage.stage.addChild(cjsStage.root);
 				cjsStage.stage.autoClear = false;
-				cjsStage.stage.update();
+				
+				var animator = Animators.basic[movieOptions.type];
+				var init = Animators.basic[movieOptions.type + '_init'];
 				
 				this.addTask({
 					'id':'mainCjs_' + mc.root,
@@ -121,36 +122,14 @@ var AnimationHandler;
 					'tweener':function(){return 0},
 					'currentScene': '',
 					'currentLabel': '',
+					'onInit':function(){
+						that._onCjsInitListener();
+						if(init){
+							_.bind(init, this)(cjsStage, movieOptions, mc);
+						}
+					},
 					'onTicked': function(e){
-						
-						that.onCjsInitListener();
-						
-						cjsStage.stage.update(e);
-						
-						if(that._activeElem){
-							
-							var scene = $(that._activeElem).attr('data-cjs-scene');
-							
-							if(scene !== this.currentScene){
-								cjsStage.root.gotoAndPlay(scene + '_start');
-								this.currentScene = scene;
-							}
-						}
-											
-						var label = cjsStage.root.currentLabel;
-						if(this.currentLabel !== label){
-							if(cjsEvents.labelOut[this.currentLabel]){
-								cjsEvents.labelOut[this.currentLabel].call(this);
-							}
-							if(cjsEvents.label[label]){
-								cjsEvents.label[label].call(this);
-							}
-						}
-						this.currentLabel = label;
-						if(label.indexOf('_stop') >= 0){
-							cjsStage.root.stop();
-							
-						}
+						_.bind(animator, this)(e, cjsStage, that._activeElem);
 						
 					},
 					'onComplete':function(){
@@ -169,7 +148,7 @@ var AnimationHandler;
 		},
 		
 		setOnCjsInitListener:function(f){
-			this.onCjsInitListener = f;
+			this._onCjsInitListener = f;
 		},
 		
 		setActiveElem:function(elem){

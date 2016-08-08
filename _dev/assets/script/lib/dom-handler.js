@@ -4,8 +4,6 @@ var DomHandler;
 	
 	DomHandler = function(){
 		
-		this._url = 'http://ton-katsu.net/';
-		this._title = 'とんかつひろば';
 		this._loadCompleteListener = null;
 		this._onHideListener = function(){};
 		
@@ -62,12 +60,12 @@ var DomHandler;
 				}
 	
 				var type = $(newDoc).find('article').attr('data-doc-type');
-				var loader = $(newDoc).find('article').attr('data-loader-type');
-				var root = $(newDoc).find('article').attr('data-cjs-root');
 				
 				console.log('New Doc Loaded by Ajax');
-				console.log('type: ' + type + ', loader:' + loader + ', root:' + root);
+				console.log('type: ' + type);
+				
 				DocProcessor[type](newDoc);
+				cjsOptions.movieOptions.type = type;
 				
 				this._loadCompleteListener(cjsOptions);
 				

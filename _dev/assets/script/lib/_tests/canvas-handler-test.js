@@ -159,7 +159,21 @@ var testCanvasHandler = function(){
 				cx * 0.5, cy * 0.6, cx * 0.25, cy * 0.75, cx * 0.4, cy * 0.48, cx * 0.2, cy * 0.3]));
 		});
 		
-				
+		test("dist()/mdist", function() {
+			ch = new CanvasHandler($('.canvas7').get(0));
+			var a = {
+				'x': 1,
+				'y': 1,
+			};
+			var b = {
+				'x': 4,
+				'y': 5,
+			};
+			assert.strictEqual(5, ch.dist(a, b), "x方向に3, y方向に4 離れた2点間の距離は5");
+			assert.strictEqual(0, ch.dist(a, a), "同じ点同士の距離は0");
+			assert.strictEqual(7, ch.mdist(a, b), "x方向に3, y方向に4 離れた2点間のマンハッタン距離は7");
+		});
+		
 	});
 	
 	$(function(){

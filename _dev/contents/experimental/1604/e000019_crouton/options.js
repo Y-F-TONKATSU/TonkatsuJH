@@ -23,7 +23,7 @@ var cjsOptions = {
 		'tweener':Tweeners.basic.progress,
 	}
 };
-
+console.log(cjsOptions);
 var cjsEvents = {
 	'label':{
 		'Scene004_stop':function(){
