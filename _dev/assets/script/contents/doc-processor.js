@@ -159,7 +159,6 @@ var DocProcessor = {
 			'width':'30%',
 			'box-shadow': '2px 2px 12px 4px #888888',
 			'padding':'2%',
-			'transform': 'rotate(2deg)',
 		}).end().find('.ad').find('table').css({
 			'width':'100%',
 			'maxWidth':'300px'
@@ -188,16 +187,20 @@ var DocProcessor = {
 			'left': (100 * 121 / 768) + '%',
 			'top': (100 * 18 / 480) + '%',
 			'width': (100 * 444 / 768) + '%',
-			'height': (100 * 439 / 480) + '%'
+			'height': (100 * 439 / 480) + '%',
+			'pointerEvents':'none'
 		});
 		
 		$('.book').css({
 			'position': 'fixed',
-			'left': (100 * 121 / 768) + '%',
-			'top': (100 * 18 / 480) + '%',
-			'width': (100 * 444 / 768) + '%',
-			'height': (100 * 439 / 480) + '%'
+			'left': (100 * 462 / 768) + '%',
+			'top': (100 * 20 / 480) + '%',
+			'width': (100 * 220 / 768) + '%',
+			//'height': (100 * 420 / 480) + '%',
+			'backgroundColor':'#339933',
+			'padding':'20px',
 		});
+		
 		
 	},
 	

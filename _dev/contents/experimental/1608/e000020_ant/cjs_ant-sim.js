@@ -12,6 +12,7 @@ lib.properties = {
 	opacity: 1.00,
 	webfonts: {},
 	manifest: [
+		{src:"images/bg_2.jpg", id:"bg_2"},
 		{src:"images/bg_dark.jpg", id:"bg_dark"},
 		{src:"images/bg_frame_dark2.jpg", id:"bg_frame_dark2"}
 	]
@@ -31,6 +32,12 @@ lib.webfontAvailable = function(family) {
 };
 // symbols:
 
+
+
+(lib.bg_2 = function() {
+	this.initialize(img.bg_2);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 
 
 (lib.bg_dark = function() {
@@ -283,8 +290,33 @@ p.nominalBounds = new cjs.Rectangle(-1,-1,10.7,2);
 p.nominalBounds = new cjs.Rectangle(-14,204.6,28,28);
 
 
+(lib.Ex001 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{Ex001:0});
+
+	// レイヤー 5
+	this.instance = new lib.BgFrame("synched",0);
+	this.instance.setTransform(384,240,1,1,0,0,0,0,240);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({alpha:0},45).to({_off:true},1).wait(1));
+
+	// レイヤー 4
+	this.instance_1 = new lib.bg_2();
+	this.instance_1.setTransform(0,0,2,2);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(47));
+
+	// レイヤー 6
+	this.instance_2 = new lib.bg_dark();
+	this.instance_2.setTransform(0,0,2,2);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(47));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,768,480);
+
+
 (lib.Main = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+	this.initialize(mode,startPosition,loop,{Main_start:0,Main_load:39});
 
 	// レイヤー 12
 	this.instance = new lib.Frame_in("synched",0,false);
@@ -356,10 +388,15 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 (lib.Root = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// Main
-	this.instance = new lib.Main();
+	// ex001
+	this.ex001 = new lib.Ex001();
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.ex001).wait(1));
+
+	// Main
+	this.main = new lib.Main();
+
+	this.timeline.addTween(cjs.Tween.get(this.main).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(0,0,768,480);
@@ -370,10 +407,10 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 	this.initialize(mode,startPosition,loop,{});
 
 	// root
-	this.instance = new lib.Root();
-	this.instance.setTransform(384,240,1,1,0,0,0,384,240);
+	this.root = new lib.Root();
+	this.root.setTransform(384,240,1,1,0,0,0,384,240);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.root).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(384,240,768,480);

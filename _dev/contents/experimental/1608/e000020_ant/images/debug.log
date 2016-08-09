@@ -1,0 +1,2 @@
+[0809/012833:ERROR:gpu_process_transport_factory.cc(628)] Lost UI shared context.
+[0809/012833:ERROR:browser_gpu_channel_host_factory.cc(132)] Failed to launch GPU process.

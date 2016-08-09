@@ -23,7 +23,29 @@ var cjsOptions = {
 
 var cjsEvents = {
 	'label':{
+		'Main_load':function(){
+			$('#contMainCanvas').show();
+			E000020.resetAntSim();
+			$('#contBook').hide();
+		},
+		'Main_start':function(){
+			$('#contBook').hide();
+		},
+		'Ex001':function(){
+			$('#contMainCanvas').hide();
+			$('#contBook').show();
+		},
 	},
 	'labelOut':{
+		'Main_start':function(){
+			$('#contMainCanvas').hide();
+		},
+		'Main_load':function(){
+			$('#contMainCanvas').hide();
+			E000020.removeAntSim();
+		},
+		'Ex001':function(){
+			$('#contBook').hide();
+		},
 	}
 };
