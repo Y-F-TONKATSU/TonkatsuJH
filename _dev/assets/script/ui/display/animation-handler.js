@@ -348,18 +348,26 @@ var AnimationHandler;
 		
 		stopCjs:function(){
 			
+			if(_.isFunction(cjsEvents.end)){
+				cjsEvents.end();
+			};
+			cjsOptions = {};
+			cjsEvents = {};
+			
 			$('.eventHitArea').remove();
 			
 			this.removeCjsTasks();
 			
 			_.each(this._cjsStages, function(cjsStage){
 				
-				cjsStage.root.stop();
+				if(cjsStage.root){
+					cjsStage.root.stop();
+				}
 				cjsStage.stage.removeAllChildren();
 				cjsStage.stage = null;
 				
 			});
-			
+						
 			this._cjsStages = [];
 			
 		},

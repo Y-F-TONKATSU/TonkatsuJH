@@ -1,8 +1,8 @@
 var E000020 = {};
 
 E000020.resetAntSim = function(){
-	var ch = new CanvasHandler($('#contMainCanvas').get(0));
-	var antSim = new AntSim(ch);
+	this.ch = new CanvasHandler($('#contMainCanvas').get(0));
+	var antSim = new AntSim(this.ch);
 	
 	var lastTime;
 	
@@ -10,5 +10,8 @@ E000020.resetAntSim = function(){
 }
 
 E000020.removeAntSim = function(){
-	clearInterval(this.timer);
+	if(this.ch && this.timer){
+		this.ch.clear();
+		clearInterval(this.timer);
+	}
 }

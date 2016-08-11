@@ -69,7 +69,6 @@ Animators.basic = {
 			
 			var label = cjsStage.currentClip.currentLabel;
 			if(this.currentLabel !== label){
-				console.log(cjsEvents);
 				if(cjsEvents.labelOut[this.currentLabel]){
 					cjsEvents.labelOut[this.currentLabel].call(this);
 				}

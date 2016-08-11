@@ -5,14 +5,14 @@
 		<title>とんかつ騎士団の公式ホームページ</title>
 		<link>http://ton-katsu.net/</link>
 		<description>『とんかつ騎士団の公式ホームページ』は Web サイトの形式の自由を追求する実験場です。</description>
-		<lastBuildDate>Fri, 22 Jul 2017 22:00:00 +0900</lastBuildDate>
+		<lastBuildDate>Thu, 11 Aug 2016 10:00:00 +0900</lastBuildDate>
 
 		<item>
 		
-			<title>JavaScript と Canvas で作る、アリのシミュレーション</title>
+			<title>JavaScript と Canvas で作る、アリの行動シミュレータ</title>
 			<link>contents/experimental/1608/e000020_ant/main.html</link>
-			<description>アリのエサ集め</description>
-			<pubDate>Tue, 2 Aug 2016 22:00:00 +0900</pubDate>
+			<description>フェロモンで仲間にエサの位置を知らせるアリの集団行動モデル(フェロモン・トレイルモデル) を、 JavaScript と HTML5 の新要素 Canvas でシミュレートします。</description>
+			<pubDate>Wed, 10 Aug 2016 22:00:00 +0900</pubDate>
 			
 			<category>experimental</category>
 			<id>000020</id>
@@ -20,14 +20,15 @@
 			<series>TONKATSU Experimental</series>
 			<mainThumb>assets/images/thumb/ex000020.png</mainThumb>
 			<minThumb>assets/images/thumb/ex000020_min.png</minThumb>
-			<tags>HTML5 Canvas JavaScript アリ 人工生命 シミュレーション ジェネラティブアート</tags>
+			<tags>HTML5 Canvas JavaScript アリ 人工生命 シミュレーション ジェネラティブアート 経路探索 フェロモン・トレイルモデル ICO</tags>
 			<type>article</type>			
 			
 			<cjs>contents/experimental/1608/e000020_ant/script.js</cjs>
 			<cjsOptions>contents/experimental/1608/e000020_ant/options.js</cjsOptions>
 			<cjsImages>contents/experimental/1608/e000020_ant/</cjsImages>
 			
-			<animation>ant</animation>
+			<animation>ex000020</animation>
+			<widgetPosition>right</widgetPosition>>
 			
 		</item>
 		

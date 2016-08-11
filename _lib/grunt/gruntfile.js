@@ -300,9 +300,14 @@ module.exports = function(grunt) {
 				}
 				*/
 				
+				var pos = '';
+				if (items[i].widgetPosition){
+					pos = ' ' + items[i].widgetPosition;
+				}
+				
 				var icon = "<img class='widget_categoryIcon' src='assets/images/category/category_" + category + "_min.png'>";
 		
-				list += "<section class='widget " + category + "' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
+				list += "<section class='widget " + category + pos + "' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
 				"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
 				"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 				"\t\t\t\t\t\t" + icon + "\n" +
@@ -542,6 +547,11 @@ module.exports = function(grunt) {
 				files: {
 					'../../_processing/assets/css/layout_main_normal.css':['../../_processing/assets/css/layout_main_normal.less']
 				}
+			},
+			css_landscape: {
+				files: {
+					'../../_processing/assets/css/layout_landscape.css':['../../_dev/assets/less/layout_landscape.less']
+				}
 			}
 		},
 		
@@ -559,6 +569,10 @@ module.exports = function(grunt) {
 			css_normal:{
 				src: '../../_processing/assets/css/layout_main_normal.css',
 				dest: '../../_processing/assets/css/layout_main_normal-vender-fixed.css'
+			},
+			css_landscape:{
+				src: '../../_processing/assets/css/layout_landscape.css',
+				dest: '../../_processing/assets/css/layout_landscape-vender-fixed.css'
 			}
 		},
 		
@@ -592,6 +606,14 @@ module.exports = function(grunt) {
 					{
 						src:'../../_processing/assets/css/layout_main_normal-vender-fixed.css',
 						dest:'../../public/assets/css/layout_main_normal-min.css'
+					}
+				]
+			},
+			css_landscape: {
+				files: [
+					{
+						src:'../../_processing/assets/css/layout_landscape-vender-fixed.css',
+						dest:'../../public/assets/css/layout_landscape-min.css'
 					}
 				]
 			}
@@ -824,7 +846,7 @@ module.exports = function(grunt) {
 	var baseTasks = ['convert'];
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
-	var cssTasks = ['concat:less_mobile', 'concat:less_normal', 'less:css_main', 'less:css_mobile', 'less:css_normal', 'autoprefixer:css_main', 'autoprefixer:css_mobile', 'autoprefixer:css_normal', 'cssmin:css_main', 'cssmin:css_mobile', 'cssmin:css_normal'];
+	var cssTasks = ['concat:less_mobile', 'concat:less_normal', 'less:css_main', 'less:css_mobile', 'less:css_normal','less:css_landscape', 'autoprefixer:css_main', 'autoprefixer:css_mobile', 'autoprefixer:css_normal', 'autoprefixer:css_landscape', 'cssmin:css_main', 'cssmin:css_mobile', 'cssmin:css_normal', 'cssmin:css_landscape'];
 	var htmlTasks = ['replace:main', 'replace:news', 'replace:menu', 'htmlmin:main', 'copy:main', 'copy:favicon', 'copy:rss'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	

@@ -422,12 +422,28 @@ var AntSim;
 (function(){	
 	
 	var NEST_SIZE = 10;
-	var MAX_FOOD = 10;
+	if(DisplayUtil.getSize() === 'small'){
+		var MAX_FOOD = 6;
+	} else {
+		var MAX_FOOD = 8;
+	}
 	var DIST_FOOOD = 10;
+	if(DisplayUtil.getSize() === 'small'){
+		var RATE_ANT = 0.97;
+	} else {
+		var RATE_ANT = 0.9;
+	}
+	
+	if(DisplayUtil.getSize() === 'small'){
+		RATE_PHEROMONE = 0.95;
+	} else {
+		RATE_PHEROMONE = 0.9;
+	}
 	
 	AntSim = function(ch){
 		
 		this._ch = ch;
+		this._ch.clear();
 		
 		this._width = ch.getCanvasWidth();
 		this._height = ch.getCanvasHeight();
@@ -501,8 +517,8 @@ var AntSim;
 		
 		'drawNest':function(){
 			
-			this._ch.setStrokeStyle(200, 5, 10, 1);
-			this._ch.setFillStyle(200, 200, 50, 1);
+			this._ch.setStrokeStyle(220, 200, 180, 0.8);
+			this._ch.setFillStyle(200, 200, 50, 0.6);
 			this._ch.drawShape(_.bind(function(ctx){
 				ctx.arc(this._width * 0.5, this._height * 0.5, NEST_SIZE, 0, Math.PI * 2);
 			}, this), true, true);
@@ -554,7 +570,7 @@ var AntSim;
 					
 				} else {
 					
-					if(Math.random() > 0.85 &&
+					if(Math.random() > RATE_PHEROMONE &&
 						ant.getPheromoneStrength() > 0
 					){
 						that.generatePheromone(ant.getPosition(), ant.getPheromoneStrength());
@@ -581,7 +597,11 @@ var Ant;
 		
 		this._ch = ch;
 		if(_.isUndefined(dist)){
-			dist = ch.dist;
+			if(DisplayUtil.getSize() === 'small'){
+				dist = ch.mdist;
+			} else {
+				dist = ch.dist;
+			}
 			mdist = ch.mdist;
 			distX = ch.distX;
 			distY = ch.distY;
@@ -662,8 +682,8 @@ var Ant;
 				b = 255 * this._pheromone;
 			} else {
 				r = 255 * this._temptated;
-				g = 0;
-				b = 255 * (1 - this._temptated);
+				g = 200 * (1 - this._temptated);
+				b = 0;
 			}
 			
 			ch.setStrokeStyle(r, g, b, 1);
@@ -772,6 +792,7 @@ var Food;
 			'x': pos.x,
 			'y': pos.y
 		};
+		this._spawning = 0;
 	}
 	
 	Food.prototype = {
@@ -787,9 +808,17 @@ var Food;
 			if(!this.isDead()){
 				ch.setFillStyle(100, 255, 100, 0.6);
 				ch.setStrokeStyle(0, 255, 0, 1);
-				ch.drawShape(function(ctx){
-					ctx.arc(pos.x, pos.y, amount / 10, 0, Math.PI * 2);
-				}, true, true);
+				ch.drawShape(_.bind(function(ctx){
+					ctx.arc(pos.x, pos.y, amount * 0.1 * this._spawning, 0, Math.PI * 2);
+				}, this), true, true);
+			}
+			
+			if(this._spawning < 1){
+				ch.drawShape(_.bind(function(ctx){
+					ch.setFillStyle(200, 255, 200, 0.3 * (1 - this._spawning));
+					ctx.arc(pos.x, pos.y, amount * this._spawning, 0, Math.PI * 2);
+				}, this), false, true);
+				this._spawning += 0.1
 			}
 			
 		},
@@ -833,6 +862,10 @@ var Pheromone;
 		
 		'draw':function(ch, pos, amount){
 			
+			if(DisplayUtil.getSize() === 'small'){
+				return;
+			}
+			
 			if(!this.isDead()){
 				ch.setFillStyle(100, 100, 200, 0.01);
 				ch.setStrokeStyle(0, 0, 70, 0.02);
@@ -861,8 +894,8 @@ var Pheromone;
 var E000020 = {};
 
 E000020.resetAntSim = function(){
-	var ch = new CanvasHandler($('#contMainCanvas').get(0));
-	var antSim = new AntSim(ch);
+	this.ch = new CanvasHandler($('#contMainCanvas').get(0));
+	var antSim = new AntSim(this.ch);
 	
 	var lastTime;
 	
@@ -870,5 +903,8 @@ E000020.resetAntSim = function(){
 }
 
 E000020.removeAntSim = function(){
-	clearInterval(this.timer);
+	if(this.ch && this.timer){
+		this.ch.clear();
+		clearInterval(this.timer);
+	}
 }

@@ -11,6 +11,9 @@ var FPS = 24;
 var BASE_TITLE = 'とんかつ騎士団の公式ホームページ';
 var BASE_URL = 'ton-katsu.net/';
 
+var cjsEvents = {};
+var cjsOptions = {};
+
 Tonkatsu.init = function(){
 	
 	$('#splashScreen').remove();

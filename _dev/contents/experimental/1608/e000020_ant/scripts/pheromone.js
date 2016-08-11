@@ -18,6 +18,10 @@ var Pheromone;
 		
 		'draw':function(ch, pos, amount){
 			
+			if(DisplayUtil.getSize() === 'small'){
+				return;
+			}
+			
 			if(!this.isDead()){
 				ch.setFillStyle(100, 100, 200, 0.01);
 				ch.setStrokeStyle(0, 0, 70, 0.02);

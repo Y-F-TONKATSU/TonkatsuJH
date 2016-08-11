@@ -3,12 +3,28 @@ var AntSim;
 (function(){	
 	
 	var NEST_SIZE = 10;
-	var MAX_FOOD = 10;
+	if(DisplayUtil.getSize() === 'small'){
+		var MAX_FOOD = 6;
+	} else {
+		var MAX_FOOD = 8;
+	}
 	var DIST_FOOOD = 10;
+	if(DisplayUtil.getSize() === 'small'){
+		var RATE_ANT = 0.97;
+	} else {
+		var RATE_ANT = 0.9;
+	}
+	
+	if(DisplayUtil.getSize() === 'small'){
+		RATE_PHEROMONE = 0.95;
+	} else {
+		RATE_PHEROMONE = 0.9;
+	}
 	
 	AntSim = function(ch){
 		
 		this._ch = ch;
+		this._ch.clear();
 		
 		this._width = ch.getCanvasWidth();
 		this._height = ch.getCanvasHeight();
@@ -82,8 +98,8 @@ var AntSim;
 		
 		'drawNest':function(){
 			
-			this._ch.setStrokeStyle(200, 5, 10, 1);
-			this._ch.setFillStyle(200, 200, 50, 1);
+			this._ch.setStrokeStyle(220, 200, 180, 0.8);
+			this._ch.setFillStyle(200, 200, 50, 0.6);
 			this._ch.drawShape(_.bind(function(ctx){
 				ctx.arc(this._width * 0.5, this._height * 0.5, NEST_SIZE, 0, Math.PI * 2);
 			}, this), true, true);
@@ -135,7 +151,7 @@ var AntSim;
 					
 				} else {
 					
-					if(Math.random() > 0.85 &&
+					if(Math.random() > RATE_PHEROMONE &&
 						ant.getPheromoneStrength() > 0
 					){
 						that.generatePheromone(ant.getPosition(), ant.getPheromoneStrength());

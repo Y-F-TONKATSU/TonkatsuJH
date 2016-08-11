@@ -41,6 +41,7 @@ var DocProcessor = {
 		$(doc).find('section').css({
 			fontSize: '80%'
 		});
+		$(doc).find('.noMobile').remove();
 		
 	},
 	
@@ -184,23 +185,21 @@ var DocProcessor = {
 		var canvas = $('#contMainCanvas');
 		$(canvas).css({
 			'position': 'fixed',
-			'left': (100 * 121 / 768) + '%',
-			'top': (100 * 18 / 480) + '%',
-			'width': (100 * 444 / 768) + '%',
-			'height': (100 * 439 / 480) + '%',
 			'pointerEvents':'none'
 		});
 		
+		DisplayUtil.setRect($('#contMainCanvas'), 125/768, 20/480, 439/768, 439/480);
+		
 		$('.book').css({
 			'position': 'fixed',
-			'left': (100 * 462 / 768) + '%',
+			'left': (100 * 464 / 768) + '%',
 			'top': (100 * 20 / 480) + '%',
-			'width': (100 * 220 / 768) + '%',
-			//'height': (100 * 420 / 480) + '%',
+			'width': (100 * 217 / 768) + '%',
+			'maxHeight': (100 * 420 / 480) + '%',
 			'backgroundColor':'#339933',
 			'padding':'20px',
+			'overflowY':'auto',
 		});
-		
 		
 	},
 	

@@ -8,7 +8,11 @@ var Ant;
 		
 		this._ch = ch;
 		if(_.isUndefined(dist)){
-			dist = ch.dist;
+			if(DisplayUtil.getSize() === 'small'){
+				dist = ch.mdist;
+			} else {
+				dist = ch.dist;
+			}
 			mdist = ch.mdist;
 			distX = ch.distX;
 			distY = ch.distY;
@@ -89,8 +93,8 @@ var Ant;
 				b = 255 * this._pheromone;
 			} else {
 				r = 255 * this._temptated;
-				g = 0;
-				b = 255 * (1 - this._temptated);
+				g = 200 * (1 - this._temptated);
+				b = 0;
 			}
 			
 			ch.setStrokeStyle(r, g, b, 1);
