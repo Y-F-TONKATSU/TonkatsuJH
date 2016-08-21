@@ -6,7 +6,7 @@ var cjsOptions = {
 				'root': 'root'
 			},
 		],
-		'docId':'experimental000020',
+		'docId':'writing000001',
 		'root':'AntSim',
 	},
 	'loaderOptions':{
@@ -21,11 +21,14 @@ var cjsEvents = {
 		'Main_load':function(){
 			$('#contMainCanvas').show();
 			E000020.resetAntSim();
+			$('#contBook').hide();
 		},
 		'Main_start':function(){
+			$('#contBook').hide();
 		},
 		'Ex001':function(){
 			$('#contMainCanvas').hide();
+			$('#contBook').show();
 			
 			animationHandler.addTask({
 				'id':'e000020_ant_bg',
@@ -55,6 +58,7 @@ var cjsEvents = {
 			E000020.removeAntSim();
 		},
 		'Ex001':function(){
+			$('#contBook').hide();
 			animationHandler.removeTask('e000020_ant_bg');
 		},
 	},
@@ -65,5 +69,6 @@ var cjsEvents = {
 		}
 		animationHandler.removeTask('e000020_ant_bg');
 		$('#contMainCanvas').hide();
+		$('#contBook').hide();
 	}
 };

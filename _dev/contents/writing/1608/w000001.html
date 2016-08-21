@@ -1,0 +1,283 @@
+<!doctype html>
+
+<html lang='ja'>
+
+	<head>
+		
+		<meta charset="utf-8">
+		<!--meta--writing000001-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing000001-->
+		
+		<article class='w000001' data-doc-type='plain' data-doc-bg='javascript'>
+								
+			<!--cjs--writing000001-->
+            
+			<section data-cjs-scene='Main' class='left'>
+				
+				<h1>課題:シングルページアプリケーションをブラウザの履歴に対応させる</h1>
+				
+				<p>
+					Web ページの内容を<br>
+					AJAX 等で書き換えると、<br>
+					ページ遷移せずに<br>
+					コンテンツを切り替えることができる。<br>
+					ページ遷移のない<br>
+					ブラウザ上のアプリを<br>
+					シングルページアプリケーション<br>
+					(SPA) と呼ぶ。
+				</p>
+				
+				<p>
+					SPA にはページ遷移がないので、<br>
+					各コンテンツが固有の URI を持たない。<br>
+					そのため、特定のコンテンツの<br>
+					ブックマークができなかったり、<br>
+					「戻る」「進む」ボタンで<br>
+					前のコンテンツに戻ったりできない、<br>
+					という問題がある。
+				</p>
+				
+				<p>
+					このサイトも SPA の一種で、<br>
+					この問題にぶつかった。<br>
+					作っていた当時、情報が<br>
+					あまり見つからなかったので<br>
+					筆者のとった解決手段を<br>
+					記録しておく。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+				
+				<h1>アンカーデザインパターンとは</h1>
+				
+				<p>
+					筆者はこの問題を、<br>
+					ページの状態の変化を<br>
+					URI のハッシュと<br>
+					連動させる方法で解決した。
+				</p>
+				
+				<p>
+					『シングルページWebアプリケーション<br>
+					―Node.js、MongoDBを活用したJavaScript SPA』<br>
+					によると、<br>
+					(この本はもっと早く読んでおくべきだった)<br>
+					この手法を<br>
+					「アンカーデザインパターン」<br>
+					(英語では<br>
+					Anchoring Design Pattern)<br>
+					と呼ぶらしい。
+				</p>
+				
+				<p class='adBookAi'>
+                	<!--ad--book_js_spa-->
+				</p>
+				
+				<p>
+					アンカーとは<br>
+					俗に「ページ内リンク」<br>
+					とか呼ばれる<br>
+					こういうやつのことだ。	
+				</p>
+				
+<pre>
+&lt;!--このリンクを踏むと…--&gt;
+&lt;a href=<em>'#menu_tonkatsu'</em>&gt;とんかつメニューはこちら&lt;/a&gt;
+
+...略...
+
+&lt;!--ここまでスクロールするよ！--&gt;
+&lt;ul id=<em>'menu_tonkatsu'</em>&gt;
+	&lt;li&gt;ロースかつ&lt;li&gt;
+	&lt;li&gt;ヒレかつ&lt;li&gt;
+	&lt;li&gt;バラかつ&lt;li&gt;
+&lt;/ul&gt;
+</pre>
+				
+				<p>
+					ポイントは、<br>
+					# がついたリンクを踏むと、<br>
+					ページ遷移が<br>
+					発生しないにも関わらず、<br>
+					URI が<br class='m'>
+					<br class='m'>
+					index.html<br class='m'>
+					→index.html#menu_tonkatsu<br class='m'>
+					<br class='m'>
+					のように変わり、<br>
+					ブラウザの履歴にも<br>
+					記録されるところだ。<br>
+					これにより、ブラウザの<br>
+					「戻る」「進む」ボタンを押しても<br>
+					ページ遷移が発生せず、<br>
+					URI が変化するだけになる。<br>
+					この URI の変化を<br>
+					ページの状態変化に<br>
+					連動させればよい。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+				
+				<h1>具体例</h1>
+				
+				<p>
+					簡単なブラウザアプリを考える。<br>
+					記事名のリストがあり、<br>
+					各項目に設定された<br>
+					リンクを踏むと、<br>
+					対応した記事が<br>
+					AJAX でロードされる。
+				</p>
+				
+				<p>
+					まず、# がついた<br>
+					リンクの設定。
+				</p>
+				
+<pre>
+&lt;a href='<em>#!writing000001</em>'&gt;アンカーデザインパターン&lt;/a&gt;
+&lt;a href='<em>#!writing000002</em>'&gt;スコラ哲学とドリンクバーの回し飲み&lt;/a&gt;
+...略...
+</pre>
+				<p>
+					# の後に ! が付いている理由は後述。
+				</p>
+				
+				<p>
+					リンクが踏まれると<br>
+					hashchange イベントが発生するので、<br>
+					JavaScript で<br>
+					リスナーを設定して、<br>
+					リスナー関数には<br>
+					対応する記事をロードする<br>
+					処理を書く。
+				</p>
+				
+				<p>
+					例えば、<br>
+					myApp.loadContent(url) <br>
+					メソッドを呼ぶと、<br>
+					引数に応じて<br>
+					AJAX でコンテンツが<br>
+					非同期にロードされるとすると<br>
+					こんな感じになる。
+				</p>
+									
+<pre>
+var URL_LIST = {
+	'#!writing000001':'contents/writing000001/main.html',
+	'#!writing000002':'contents/writing000002/main.html',
+	...略...
+};
+
+window.addEventListener(<em>'hashchange'</em>, function(){
+
+	//ハッシュ文字列を取得
+	var hash = String(location.hash);
+	
+	//文字列に対応したコンテンツを AJAX で読み込む
+	myApp.loadContent(URL_LIST[hash]);
+	
+});
+</pre>
+
+				<p>
+					これで「ページの状態の変化」が<br>
+					「URI の変化」に関連付けられた。
+				</p>
+									
+				<p>
+					リンクが踏まれるのとは<br>
+					別の文脈で<br>
+					myApp.loadContent(url) を<br>
+					呼びたい時は、<br>
+					URI を書き換えて<br>
+					hashchange イベントが<br>
+					間接的に呼ばれるようにする。<br>
+					(直接メソッドを呼んでしまうと<br>
+					ブラウザ履歴に残らないので。)
+				</p>
+									
+<pre>
+function changeTo(hash){
+	window.location.href = hash;
+}
+
+changeTo('#!writing000001');
+</pre>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>SEO 対策</h1>
+			
+				<p>
+					隣接する問題に<br>
+					SEO 対策がある。
+				</p>
+				
+				<p>
+					アンカーデザインパターンで<br>
+					コンテンツを動的に<br>
+					書き換えると、<br>
+					最初の状態のコンテンツしか<br>
+					検索エンジンに<br>
+					クロールされなかったり、<br>
+					特定のコンテンツが<br>
+					検索に引っかかったのに、<br>
+					最初の状態のページに<br>
+					誘導されたりしてしまう。
+				</p>
+				
+				<p>
+					幸い Google が<br>
+ 					<a href='https://webmasters.googleblog.com/2009/10/proposal-for-making-ajax-crawlable.html'>公式ブログ記事</a>で<br>
+					対策を公開している。					
+				</p>
+				
+				<p>
+					記事の要点だけを書くと、<br class='m'>
+					<br class='m'>
+					index.html#tonkatsu<br class='m'>
+					→index.html#!tonkatsu<br class='m'>
+					<br class='m'>
+					のように、<br>
+					! をハッシュの先頭に<br>
+					入れてやると、<br>
+					クローラーは、<br>
+					そのアンカーがついて<br>
+					レンダリングされた状態を、<br>
+					独立したページとして<br>
+					クロールしてくれる。
+				</p>
+				
+				<p>
+					当然ながら、<br>
+					全部のハッシュに<br>
+					! を付ければいい、<br>
+					というものではなく、<br>
+					独立したコンテンツを持った<br>
+					状態のみが<br>
+					クロールされるように<br>
+					するべきである。
+				</p>
+				
+			</section>
+            
+		</article>
+		
+		<!--footer--writing000001-->
+		
+	</body>
+	
+</html>

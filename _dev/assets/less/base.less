@@ -12,6 +12,9 @@
 @tonkatsuBlack:#030303;
 @tonkatsuGray:#666666;
 @tonkatsuWhite:#fbfbfb;
+@tonkatsuCodeBg:#2D3639;
+@tonkatsuCodeText:#FF7070;
+@tonkatsuCodeTextEm:#00E000;
 
 body{
 	font-family: "tbcinergothic-std", "Hiragino Kaku Gothic ProN","メイリオ", sans-serif;
@@ -70,6 +73,17 @@ section{
 	font-size:120%;
 }
 
+pre{
+	font-family: "a-otf-ud-reimin-pr6n", "HiraKakuProN-W3", "MS P明朝";
+	background-color:@tonkatsuCodeBg;
+	color:@tonkatsuCodeText;
+	padding:20px;
+	overflow-x:auto;
+	em {
+		color:@tonkatsuCodeTextEm;
+	}
+}
+
 
 .disabled{
 	pointer-events:none;
@@ -98,6 +112,12 @@ section{
 	a:hover { color: #ffff00; }
 	a:active { color: #ff8000; }
 
+}
+
+.textStream{
+	word-break: break-all;
+	white-space: pre-line;
+	color:@tonkatsuGray;
 }
 
 .list_nobuteru{

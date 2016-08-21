@@ -1,0 +1,300 @@
+<!doctype html>
+
+<html lang='ja'>
+
+	<head>
+		
+		<meta charset="utf-8">
+		<!--meta--writing000001-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing000001-->
+		
+		<article class='w000001' data-doc-type='plain'>
+								
+			<!--cjs--writing000001-->
+            
+			<section data-cjs-scene='Main' class='right'>
+				
+				<p>
+					拙者、とんかつ騎士団の一員にして、<br>
+					JavaScript 忍術を<br>
+					極めんとする<br>
+					名も無き一介の忍びで御座る。
+				</p>
+				
+				<p>
+					道半ばなれど、<br>
+					Web サイト実勢作の折に得られし<br>
+					JavaScript 忍術の知見を<br>
+					シェア仕りたく存ず。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+				
+				<h1>課題:シングルページアプリケーションを<br>ブラウザの履歴に対応させ申す</h1>
+				
+				<p>
+					拙者、当 Web サイトを作りし折、<br>
+					ブラウザの<br>
+					「戻る」「進む」ボタンへの<br>
+					対応を如何にせんと悩み申し候。<br>
+					備忘録を兼ねて、<br>
+					拙者のとりし<br>
+					解決手段を記録し申す。
+				</p>
+				
+				<p>
+					より一般的に<br>
+					課題を定義せるに、<br>
+					「ブラウザ上で動く<br>
+					シングルページアプリケーション(SPA)<br>
+					において、<br>
+					AJAX 等によるページの状態変化を<br>
+					ブラウザの履歴に対応させることで、<br>
+					「戻る」「進む」ボタンが<br>
+					適切に機能するようにする」<br>
+					…の如きで御座る。
+				</p>
+				
+				<p>
+					詮ずる所、<br>
+					Web ページのコンテンツを<br>
+					AJAX 等にて書き換えし折、<br>
+					「戻る」ボタンに<br>
+					期待さるる動作は、<br>
+					「AJAX で書き換える<br>
+					前の状態に戻る」<br>
+					なれども、<br>
+					実際には<br>
+					「前の URL に戻る」<br>
+					になるが如きは<br>
+					直感に反する故、<br>
+					どうにか致したく候。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+				
+				<h1>アンカーデザインパターンの儀</h1>
+				
+				<p>
+					拙者はこの問題を、<br>
+					ページの状態によって<br>
+					URI のハッシュを<br>
+					書き換える手段にて<br>
+					解決せり。
+				</p>
+				
+				<p>
+					『シングルページWebアプリケーション<br>
+					―Node.js、MongoDBを活用したJavaScript SPA』<br>
+					によると、<br>
+					かくの如き手法を<br>
+					「アンカーデザインパターン」<br>
+					(英語にては<br>
+					Anchoring Design Pattern)<br>
+					と申し候。
+				</p>
+				
+				<p class='adBookAi'>
+                	<!--ad--book_js_spa-->
+				</p>
+				
+				<p>
+					アンカーと申すは<br>
+					HTML をかじりたる者なれば<br>
+					誰しも心得し、<br>
+					俗に「ページ内リンク」<br>
+					などと称さるる<br>
+					下記の如き代物なり。	
+				</p>
+				
+<pre>
+&lt;a href=<em>'#menu_tonkatsu'</em>&gt;とんかつメニューはこちら&lt;/a&gt;
+
+...略...
+
+&lt;ul id=<em>'menu_tonkatsu'</em>&gt;
+	&lt;li&gt;ロースかつ&lt;li&gt;
+	&lt;li&gt;ヒレかつ&lt;li&gt;
+	&lt;li&gt;バラかつ&lt;li&gt;
+&lt;/ul&gt;
+</pre>
+				
+				<p>
+					# の付属せしリンクを踏むと<br>
+					ページ遷移が<br>
+					発生しないにも関わらず、<br>
+					URI が<br>
+					<br>
+					index.html<br>
+					→index.html#menu_tonkatsu<br>
+					<br>
+					の如く変わり申す。<br>
+					のみならず、<br>
+					ブラウザの履歴にも<br>
+					記録され候。<br>
+					この URI の変化を<br>
+					ページの状態変化に<br>
+					連動させるべし。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+				
+				<h1>具体例つかまつる</h1>
+				
+				<p>
+					# がついた<br>
+					リンクを設置する。<br>
+					対応する id は<br>
+					なくても構わない。
+				</p>
+				
+<pre>
+&lt;a href='<em>#!writing000001</em>'&gt;アンカーデザインパターン&lt;/a&gt;
+&lt;a href='<em>#!writing000002</em>'&gt;スコラ哲学とドリンクバーの回し飲み&lt;/a&gt;
+</pre>
+				<p>
+					# の後に<br>
+					! が付いている<br>
+					理由は後述。<br>
+					リンクが踏まれると<br>
+					hashchange イベントが発生するので、<br>
+					JavaScript で<br>
+					リスナーを設定してやる。<br>
+					例えば、<br>
+					myApp.loadContent(url) <br>
+					メソッドを呼ぶと、<br>
+					引数に応じて<br>
+					AJAX でコンテンツが<br>
+					非同期にロードされる<br>
+					アプリを書いているとすると<br>
+					かくの如きなり。
+				</p>
+									
+<pre>
+var URL_LIST = {
+	'#!writing000001':'contents/writing000001/main.html',
+	'#!writing000002':'contents/writing000002/main.html',
+	...
+};
+
+window.addEventListener(<em>'hashchange'</em>, function(){
+
+	//ハッシュ文字列を取得
+	var hash = String(location.hash);
+	
+	//文字列に対応したコンテンツを AJAX で読み込む
+	myApp.loadContent(URL_LIST[hash]);
+	
+});
+</pre>
+
+				<p>
+					これで
+					「ページの状態の変化」が
+					「URI の変化」に
+					関連付けられる。
+				</p>
+									
+				<p>
+					リンクが踏まれるのとは<br>
+					別の文脈で<br>
+					myApp.loadContent(url) を<br>
+					呼びたき折、<br>
+					直接メソッドを呼ぶは<br>
+					履歴に残らぬ故、<br>
+					URI を書き換えて<br>
+					hashchange イベントが<br>
+					呼ばるるようにすべし。
+				</p>
+									
+<pre>
+window.location.href = '#!writing000001';
+</pre>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>SEO 対策の儀</h1>
+			
+				<p>
+					隣接する問題に<br>
+					SEO 対策が御座る。
+				</p>
+				
+				<p>
+					アンカーデザインパターンで<br>
+					コンテンツを動的に<br>
+					書き換えし折、<br>
+					最初の状態のコンテンツを除き<br>
+					検索エンジンに<br>
+					クロールされざるは<br>
+					口惜しく御座る。<br>
+					のみならず、<br>
+					特定のコンテンツが<br>
+					検索に引っかかりし折、<br>
+					最初の状態のページに<br>
+					誘導さるるが如きは、<br>
+					UX の観点にて<br>
+					正視に耐えず。
+				</p>
+				
+				<p>
+					単に検索順位が下がりし以上に<br>
+					深刻に御座る故、<br>
+					Google が
+ 					<a href='https://webmasters.googleblog.com/2009/10/proposal-for-making-ajax-crawlable.html'>公式ブログ記事</a>にて<br>
+					対策を公開せしは<br>
+					幸甚というべきなり。					
+				</p>
+				
+				<p>
+					要点のみ記すに、<br>
+					<br>
+					index.html#tonkatsu<br>
+					→index.html#!tonkatsu<br>
+					<br>
+					の如く、<br>
+					! をハッシュの先頭に<br>
+					挿入すべし。<br>
+					クローラーは、<br>
+					そのアンカーの付属せし状態にて<br>
+					レンダリングされたページを、<br>
+					独立したページの如く<br>
+					クロールし申す由にて候。
+				</p>
+				
+				<p>
+					当然なれど、<br>
+					無思慮に全部のハッシュに<br>
+					! を付けるべからざるなり。<br>
+					独立したコンテンツというべき<br>
+					状態のみが<br>
+					クロールさるるよう<br>
+					良きに計らうべし。
+				</p>
+				
+				<p>
+					これにて御免。
+				</p>
+				
+			</section>
+            
+		</article>
+		
+		<!--footer--writing000001-->
+		
+	</body>
+	
+</html>

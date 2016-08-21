@@ -303,4 +303,18 @@ Animators.basic = {
 			
 	},
 	
+	'scriptStream':function(){
+		
+		var progress = this.progress;
+			
+		var ch = this.ch;
+		var ctx = ch.getContext();
+		
+		ctx.save();
+		
+		
+		ctx.restore();
+		
+	},
+	
 }

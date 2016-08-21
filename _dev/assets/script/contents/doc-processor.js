@@ -37,7 +37,7 @@ var DocProcessor = {
 	
 	'mobileAdaption':function(doc){
 		
-		$(doc).find('br').remove();
+		$(doc).find('br').not('.m').remove();
 		$(doc).find('section').css({
 			fontSize: '80%'
 		});
@@ -202,6 +202,46 @@ var DocProcessor = {
 		});
 		
 	},
+	
+	'plain':function(doc){
+		
+		var h = DisplayUtil.getHeight();
+		
+		$(doc).find('section').css({
+			'position':'relative',
+			'marginTop': h * 0.1,
+			'marginBottom': h * 0.1,
+			'marginLeft':'20%',
+			'backgroundColor':'#F7F4E8',
+			'width':'50%',
+			'box-shadow': '2px 2px 12px 4px #888888',
+			'padding':'2%',
+		}).end().find('.ad').find('table').css({
+			'width':'100%',
+			'maxWidth':'300px'
+		}).end().end().find('.right').css({
+			'marginLeft':'40%'
+		}).end().find('pre').css({
+			'paddingLeft':'10%',
+		}).end().find('.canvasExp').css({
+			'marginLeft':'76%',
+			'width':'19%',
+			'transform': 'rotate(0deg)'
+		}).end().find('.short').css({
+			'marginBottom':h * 0.2
+		}).end().find('section').first()
+		.css({
+			'marginTop': h * 0.2
+		}).end().last()
+		.css({
+			'marginBottom': h * 0.4,
+		});
+		
+		$('#mainDoc').empty()
+			.html($(doc).find('article').html());
+			
+	},
+	
 	
 	'initMenu':function(doc){
 		

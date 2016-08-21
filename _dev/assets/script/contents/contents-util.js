@@ -9,7 +9,7 @@ var ContentsUtil = {
 		var el;
 
 		if(Hash.HASH_REGEXP.test(hash)){
-			el = $('.widget_link[href="#' + hash + '"]').parent();
+			el = $('.widget_link[href="#!' + hash + '"]').parent();
 		}
 		
 		return el;

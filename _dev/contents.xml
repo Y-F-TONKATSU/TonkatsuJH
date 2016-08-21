@@ -9,11 +9,34 @@
 
 		<item>
 		
+			<title>アンカーデザインパターン:とんかつ騎士団の技術メモ #001</title>
+			<link>http://ton-katsu.net/index.html#!writing000001</link>
+			<description>AJAX などで動的に書き換えられた DOM の状態を、ブラウザの「進む」「戻る」やブックマークに対応させるテクニックを解説。</description>
+			<pubDate>Sun, 21 Aug 2016 00:00:00 +0900</pubDate>
+			
+			<file>contents/writing/1608/w000001.html</file>
+			<category>writing</category>
+			<id>000001</id>
+			<subCategory>JavsScript</subCategory>
+			<series>とんかつ騎士団の技術メモ</series>
+			<mainThumb>assets/images/thumb/tech.png</mainThumb>
+			<minThumb>assets/images/thumb/tech_min.png</minThumb>
+			<tags>JavaScript アンカーデザインパターン ブックマーク シングルページアプリケーション</tags>
+			<type>article</type>			
+			
+			<animation>w000001</animation>
+			<widgetPosition>left</widgetPosition>>
+			
+		</item>
+		
+		<item>
+		
 			<title>JavaScript と Canvas で作る、アリの行動シミュレータ</title>
-			<link>contents/experimental/1608/e000020_ant/main.html</link>
+			<link>http://ton-katsu.net/index.html#!experimental000020</link>
 			<description>フェロモンで仲間にエサの位置を知らせるアリの集団行動モデル(フェロモン・トレイルモデル) を、 JavaScript と HTML5 の新要素 Canvas でシミュレートします。</description>
 			<pubDate>Wed, 10 Aug 2016 22:00:00 +0900</pubDate>
 			
+			<file>contents/experimental/1608/e000020_ant/main.html</file>
 			<category>experimental</category>
 			<id>000020</id>
 			<subCategory>Canvas</subCategory>
@@ -35,10 +58,11 @@
 		<item>
 		
 			<title>クルトンの作り方</title>
-			<link>contents/experimental/1604/e000019_crouton/main.html</link>
+			<link>http://ton-katsu.net/index.html#!experimental000019</link>
 			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>
 			<pubDate>Sat, 30 Jul 2016 10:00:00 +0900</pubDate>
 			
+			<file>contents/experimental/1604/e000019_crouton/main.html</file>
 			<category>experimental</category>
 			<id>000019</id>
 			<subCategory>アニメーション</subCategory>
@@ -54,10 +78,6 @@
 			
 			<animation>nobuteru</animation>
 			
-		</item>
-		
-		<item>
-			<type>dummy</type>
 		</item>
 		
 	</channel>

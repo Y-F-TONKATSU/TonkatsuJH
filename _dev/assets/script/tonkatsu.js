@@ -14,6 +14,19 @@ var BASE_URL = 'ton-katsu.net/';
 var cjsEvents = {};
 var cjsOptions = {};
 
+var BUTTON_COLORS = {
+	'writing':{
+		'r': 255,
+		'g': 255,
+		'b': 38,
+	},
+	'experimental':{
+		'r': 0,
+		'g': 189,
+		'b': 16,
+	},
+}
+
 Tonkatsu.init = function(){
 	
 	$('#splashScreen').remove();
@@ -94,7 +107,7 @@ Tonkatsu.init = function(){
 			animationHandler.cancelLoadingCjs();
 		} else {
 			animationHandler.exitIndexMode();
-			animationHandler.loadCjs(options);
+			animationHandler.loadCjs(options, BUTTON_COLORS[urlHandler.getCurrentCategory()]);
 			Tonkatsu.onHashChanged();
 		}
 	});
@@ -109,9 +122,12 @@ Tonkatsu.init = function(){
 
 Tonkatsu.onHashChanged = function(e){
 	
-	console.log('Hash Change Event Triggerrd');
-	
 	var hash = String(location.hash).substring(1);
+	if(hash.indexOf('!') === 0){
+		hash = hash.substring(1);
+	}
+	console.log('Hash Change Event Triggerrd:' + hash);
+	
 	urlHandler.changeTo(hash);
 
 };

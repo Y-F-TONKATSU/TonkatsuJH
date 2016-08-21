@@ -38,6 +38,7 @@ var DomHandler;
 			
 			if($('#mainDoc').data('state') === 'visible'){
 				DocProcessor.frameOut.fromLeft($('#mainDoc'), 1000, function(){
+					$('#mainDoc').empty();
 				});
 			}
 			
@@ -65,6 +66,16 @@ var DomHandler;
 				console.log('type: ' + type);
 				
 				DocProcessor[type](newDoc);
+				if(type === 'plain'){
+					var bg = $(newDoc).find('article').attr('data-doc-bg');
+					cjsOptions = {
+						'movieOptions':{
+							'bg':bg,
+						},
+						'loaderOptions':{}
+					}
+				}
+				
 				cjsOptions.movieOptions.type = type;
 				
 				this._loadCompleteListener(cjsOptions);

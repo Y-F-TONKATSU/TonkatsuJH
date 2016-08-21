@@ -301,12 +301,12 @@ var AnimationHandler;
 			this._isCjsCanceled = true;
 		},
 		
-		loadCjs:function(options){
+		loadCjs:function(options, buttonColor){
 			
 			this._isCjsCanceled = false;
 					
 			if(this.navigationHandler){
-				this.navigationHandler.setButtonColors(options.movieOptions.buttonColor);
+				this.navigationHandler.setButtonColors(buttonColor);
 			}
 			
 			var loaderOptions = options.loaderOptions;
@@ -314,35 +314,74 @@ var AnimationHandler;
 		
 			console.log('Start Loading a Cjs Doc');
 			
-			CjsUtil.load({
-				'images':cjsImages,
-				'manifest':	cjsLib.properties.manifest,
-				'completeListener':_.bind(function(){
-					console.log('Loading Cjs Complete');
-					this.removeTask('loadingCjs');
-					if(!this._isCjsCanceled){
-						this._setCjsTask(movieOptions);
-					}
-				}, this),
-				'progressListener':_.bind(function(e){
-					this.setTaskProgress('loadingCjs', e.progress);
-				}, this)
-			});
-			
-			this.addTask({
-				'id':'loadingCjs',
-				'docId': movieOptions.docId,
-				'containerId': loaderOptions.containerId,
-				'progress':0,
-				'currentTime':0,
-				'duration': 0,
-				'waitTime': 500,
-				'tIndex':10,
-				'tweener':loaderOptions.tweener,
-				'onTicked': loaderOptions.animator,
-				'onComplete':function(){
+			if(movieOptions.type === 'plain'){
+				
+				if(movieOptions.bg = 'streamScript'){
+				
+					$('#backgroundText').empty().show();
+					
+					this.addTask({
+						'id':'streamScript',
+						'docId': 'plainDoc',
+						'containerId': 'back',
+						'progress':0,
+						'currentTime':0,
+						'duration': 0,
+						'waitTime': 0,
+						'ender':function(){return false},
+						'tweener':function(){return 0},
+						'currentScene': '',
+						'currentLabel': '',
+						'vars':{
+							'scroll':0,
+						},
+						'onInit': function(){
+							_.bind(Animators.plain.scriptStream_init, this)();
+						},
+						'onTicked': function(e){
+							this.vars.scroll = $('#mainDoc').scrollTop();
+							_.bind(Animators.plain.scriptStream, this)(e, $('#backgroundText'));
+							
+						},
+						'onComplete':function(){
+						}
+					});
+					
 				}
-			});
+				
+			} else {
+				
+				CjsUtil.load({
+					'images':cjsImages,
+					'manifest':	cjsLib.properties.manifest,
+					'completeListener':_.bind(function(){
+						console.log('Loading Cjs Complete');
+						this.removeTask('loadingCjs');
+						if(!this._isCjsCanceled){
+							this._setCjsTask(movieOptions);
+						}
+					}, this),
+					'progressListener':_.bind(function(e){
+						this.setTaskProgress('loadingCjs', e.progress);
+					}, this)
+				});
+				
+				this.addTask({
+					'id':'loadingCjs',
+					'docId': movieOptions.docId,
+					'containerId': loaderOptions.containerId,
+					'progress':0,
+					'currentTime':0,
+					'duration': 0,
+					'waitTime': 500,
+					'tIndex':10,
+					'tweener':loaderOptions.tweener,
+					'onTicked': loaderOptions.animator,
+					'onComplete':function(){
+					}
+				});
+			
+			}
 			
 		},
 		
@@ -355,6 +394,8 @@ var AnimationHandler;
 			cjsEvents = {};
 			
 			$('.eventHitArea').remove();
+			
+			$('#backgroundText').empty().hide();
 			
 			this.removeCjsTasks();
 			

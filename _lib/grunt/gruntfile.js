@@ -51,6 +51,7 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/ui/display/cjs/widget.js',
 		'../../_dev/assets/script/ui/animators/animator_basic.js',
 		'../../_dev/assets/script/ui/animators/animator_index.js',
+		'../../_dev/assets/script/ui/animators/animator_plain.js',
 		'../../_dev/assets/script/ui/animators/tweener_basic.js',
 	];
 	
@@ -93,33 +94,33 @@ module.exports = function(grunt) {
 		
 		var contents = getContents();
 		
-		var i;
+		var i = -1;
 		var items = contents.rss.channel.item;
 		for (var j in items){
 			if(items[j].category == category && items[j].id == id){
 				i = j;
 			}
 		}
+		if(i === -1){return '';}
 	
 		
 		var description = escapeText(items[i].description);
 		var title = escapeText(items[i].title);
 		var keywords = escapeText(items[i].tags);
 		var type = escapeText(items[i].type);
-		var url = items[i].link;
+		var url = items[i].file;
 		if (!items[i].mainThumb){
 			var thumb = 'assets/images/common/og.jpg';
 		} else {
 			var thumb = items[i].mainThumb;
 		}
 		var siteName = 'とんかつ騎士団の公式ホームページ';
-		var index = "http://ton-katsu.net/#" + category + "000000";
-		var current = "http://ton-katsu.net/#" + category + id;
-		var prev = "http://ton-katsu.net/#" + category + fillDigits(parseInt(id) - 1);
-		var next = "http://ton-katsu.net/#" + category + fillDigits(parseInt(id) + 1);
+		var index = "http://ton-katsu.net/#!" + category + "000000";
+		var current = "http://ton-katsu.net/index.html#!" + category + id;
+		var prev = "http://ton-katsu.net/index.html#!" + category + fillDigits(parseInt(id) - 1);
+		var next = "http://ton-katsu.net/index.html#!" + category + fillDigits(parseInt(id) + 1);
 		
-		var tags = "<meta charset='utf-8'>\n" +
-		"\t\t<meta name='keywords' content='" + keywords + "' />\n" + 
+		var tags = "<meta name='keywords' content='" + keywords + "' />\n" + 
 		"\t\t<meta name='description' content='" + description + "' />\n" +
 		"\t\t<meta property='og:title' content='" + title + "' />\n" + 
 		"\t\t<meta property='og:type' content='" + type + "' />\n" +
@@ -148,6 +149,8 @@ module.exports = function(grunt) {
 	};
 	
 	var getFooter = function(hash){
+		
+		return '';
 		
 		var match = FOOTER_REGEXP.exec(hash);
 		var category = match[1];
@@ -201,22 +204,24 @@ module.exports = function(grunt) {
 		
 		var contents = getContents();
 		
-		var i;
+		var i = -1;
 		var items = contents.rss.channel.item;
 		for (var j in items){
 			if(items[j].category == category && items[j].id == id){
 				i = j;
 			}
 		}
+		if(i === -1){return '';}
 		
 		var path = items[i].cjs;
 		var cjsOptionsPath = items[i].cjsOptions;
 		var imagePath = items[i].cjsImages;
+		if(!path){return '';}
 		
 		var script = grunt.file.read('../../_processing/' + path);
 		var cjsOptions = grunt.file.read('../../_processing/' + cjsOptionsPath);
-		
-		//Fix Image Path
+				
+		//Fix Image Path;
 		var r = script.replace(/{src:"/g, '{src:"' + imagePath);
 		var tag = '<script>' + r + cjsOptions + '</script>';
 		
@@ -247,7 +252,7 @@ module.exports = function(grunt) {
 				
 				var category = items[i].category;
 				var id = items[i].id;
-				var url = items[i].link;
+				var url = items[i].file;
 				
 				var subCategory;
 				if (!items[i].subCategory){
@@ -264,7 +269,7 @@ module.exports = function(grunt) {
 				}
 				
 				var animation = items[i].animation;
-				var hash = '#' + category + id;
+				var hash = '#!' + category + id;
 				var title = escapeText(items[i].title);
 				var description = escapeText(items[i].description);
 				
@@ -342,7 +347,7 @@ module.exports = function(grunt) {
 				
 				var category = items[i].category;
 				var id = items[i].id;
-				var url = items[i].link;
+				var url = items[i].file;
 				
 				var subCategory;
 				if (!items[i].subCategory){
@@ -359,7 +364,7 @@ module.exports = function(grunt) {
 				}
 				
 				var animation = items[i].animation;
-				var hash = '#' + category + id;
+				var hash = '#!' + category + id;
 				var title = escapeText(items[i].title);
 				var description = escapeText(items[i].description);
 				
@@ -416,7 +421,7 @@ module.exports = function(grunt) {
 				
 				var category = items[i].category;
 				var id = items[i].id;
-				var url = items[i].link;
+				var url = items[i].file;
 				
 				var subCategory;
 				if (!items[i].subCategory){
@@ -433,7 +438,7 @@ module.exports = function(grunt) {
 				}
 				
 				var animation = items[i].animation;
-				var hash = '#' + category + id;
+				var hash = '#!' + category + id;
 				var title = escapeText(items[i].title);
 				var description = escapeText(items[i].description);
 				
@@ -688,6 +693,12 @@ module.exports = function(grunt) {
 				src: ['**'],
 				dest: '../../public/contents'
 			},
+			textAssets: {
+				expand:true,
+				cwd: '../../_dev/assets/text',
+				src: ['**'],
+				dest: '../../public/assets/text'
+			},
 			rss: {
 				expand:true,
 				cwd: '../../_dev/',
@@ -850,7 +861,7 @@ module.exports = function(grunt) {
 	var htmlTasks = ['replace:main', 'replace:news', 'replace:menu', 'htmlmin:main', 'copy:main', 'copy:favicon', 'copy:rss'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
-	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
+	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'copy:textAssets', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
 	
 	var imageTasks = ['clean:image', 'copy:image_s', 'responsive_images', 'copy:image_m'];
 	

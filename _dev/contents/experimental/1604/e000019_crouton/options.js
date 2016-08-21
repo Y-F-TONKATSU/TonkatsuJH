@@ -9,11 +9,6 @@ var cjsOptions = {
 				'root': 'background'
 			},
 		],
-		'buttonColor':{
-			'r': 0,
-			'g': 189,
-			'b': 16,
-		},
 		'docId':'experimental000019',
 		'root':'crouton_v006',
 	},
