@@ -7,8 +7,6 @@ var AnimationHandler;
 		this._hitAreaHandler = new HitAreaHandler(navigationContainer);
 		this._hitAreaHandler_popup = new HitAreaHandler(navigationPopupContainer);
 		
-		this._forgetRate = 0;
-		
 		this._containerList = containers;
 		this._chList = {};
 		
@@ -142,11 +140,6 @@ var AnimationHandler;
 			
 		},
 		
-		setForgetRate:function(v){
-			this._forgetRate = v;
-			this.navigationHandler.setForgetRate(v);
-		},
-		
 		setOnCjsInitListener:function(f){
 			this._onCjsInitListener = f;
 		},
@@ -165,9 +158,7 @@ var AnimationHandler;
 			
 			createjs.Ticker.addEventListener('tick', _.bind(function(e){
 				
-				if(Math.random() > this._forgetRate){
-					this._clearAllCanvas();
-				}
+				this._clearAllCanvas();
 				
 				var delta = e.delta;
 				
@@ -207,17 +198,46 @@ var AnimationHandler;
 			
 		},
 			
+		/*
+			'id':'streamScript',
+			'docId': 'plainDoc',
+			'containerId': 'back',
+			'progress':0,
+			'currentTime':0,
+			'duration': 0,
+			'waitTime': 0,
+			'ender':function(){return false},
+			'tweener':function(){return 0},
+			'currentScene': '',
+			'currentLabel': '',
+			'vars':{
+				'scroll':0,
+			},
+			'onInit': function(){
+				_.bind(Animators.plain.scriptStream_init, this)();
+			},
+			'onTicked': function(e){
+				this.vars.scroll = $('#mainDoc').scrollTop();
+				_.bind(Animators.plain.scriptStream, this)(e, $('#backgroundText'));
+				
+			},
+			'onComplete':function(){
+			}
+		*/		
 		addTask:function(task){
 			
 			task.ch = this._chList[task.containerId];
 			task.ctx = task.ch.getContext();
 			
-			if(task.currentTime === undefined){
-				task.currentTime = 0;
-			}
+			_.defaults(task, {
+				'progress': 0,
+				'currentTime': 0,
+				'waitTime': 0,
+				'onInit':function(){},
+			});
 			
-			if(task.ender === undefined){
-				if(task.waitTime){
+			if(_.isUndefined(task.ender)){
+				if(task.waitTime > 0){
 					task.ender = function(){
 						return this.progress >= 1 && this.waitTime <= 0;
 					};
@@ -236,9 +256,7 @@ var AnimationHandler;
 				this._taskList.push(task);
 			}
 			
-			if(task.onInit){
-				task.onInit();
-			}
+			task.onInit();
 			
 			this._taskList = _.sortBy(this._taskList, function(task){return task.tIndex || 0});
 			

@@ -78,7 +78,6 @@ Tonkatsu.init = function(){
 			
 		},
 	});
-	animationHandler.setForgetRate(0);
 	
 	scrollHandler = new ScrollHandler($('#mainDoc'));
 	indexScrollHandler = new ScrollHandler($('#indexContainer'));

@@ -109,7 +109,6 @@ var NavigationHandler;
 	NavigationHandler = function(events, hitAreaHandler){
 		
 		this._ch = null;
-		this._forgetRate = 0;
 		
 		this.inactivate();
 		
@@ -150,10 +149,6 @@ var NavigationHandler;
 			this.isAactive = false;
 		},
 		
-		setForgetRate:function(v){
-			this._forgetRate = v;
-		},
-		
 		setButtonColors:function(color){
 			
 			_.each(this._buttons, _.bind(function(button){
@@ -172,10 +167,8 @@ var NavigationHandler;
 			
 			this.inactivate();
 			
-			if(Math.random() > this._forgetRate){
-				this._ch.clear();
-			}
-			
+			this._ch.clear();
+
 			_.each(this._buttons, _.bind(function(button){
 				
 				var complete = buttonAnimator(this._ch, button, e.delta);

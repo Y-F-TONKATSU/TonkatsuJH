@@ -24,7 +24,7 @@ var DocProcessor = {
 			
 			var left = DisplayUtil.getElemRect(elem).left;
 			
-			$(elem).show().scrollTop(0).css({
+			$(elem).show().css({
 				'left':left,
 			}).animate({
 				'left': -DisplayUtil.getWidth()
