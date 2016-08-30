@@ -4,7 +4,7 @@ var HitAreaHandler;
 	
 	HitAreaHandler = function(div){
 		if(!div){div = $('#navigation')}
-		this.div = div;
+		this._div = div;
 	};
 	
 	HitAreaHandler.prototype = {
@@ -52,13 +52,19 @@ var HitAreaHandler;
 				$(hitArea).click(callBack);
 			}
 			
-			$(this.div).append(hitArea);
+			$(this._div).append(hitArea);
 			
 		},
 		
 		removeHitArea:function(class){
 			
 			$('.hitArea_' + class).remove();
+			
+		},
+		
+		removeAllHitAreas:function(){
+			
+			$(this._div).empty();
 			
 		},
 		

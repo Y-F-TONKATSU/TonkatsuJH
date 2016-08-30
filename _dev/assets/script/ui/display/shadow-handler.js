@@ -49,12 +49,21 @@ var ShadowHandler;
 	};
 	
 	ShadowHandler = function(){
-		
+		this._ch = null;
 	};
 	
 	ShadowHandler.prototype = {
 		
+		destroy:function(){
+			if(this._ch){
+				this._ch.clear();
+			}
+		},
+		
 		putShadow:function(ch){
+			
+			this._ch = ch;
+			this._ch.clear();
 			
 			$(ch.getCanvas()).css({
 				'zIndex':ZI_SHADOW,

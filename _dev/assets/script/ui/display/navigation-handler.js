@@ -137,9 +137,29 @@ var NavigationHandler;
 		
 		this._buttons.push(this._homeButton, this._shareButton, this._menuButton);		
 		
+		this._stage = null;
+		
 	};
 	
 	NavigationHandler.prototype = {
+		
+		destroy:function(){
+			
+			this._homeButton = null;
+			this._menuButton = null;
+			this._shareButton = null;
+			
+			if(this._stage === null){
+				return;
+			}
+			
+			this._stage.removeAllChildren();
+			
+			this._ch.clear();
+			
+			this.draw = function(){};
+			
+		},
 		
 		activate:function(){
 			this.isAactive = true;
@@ -184,7 +204,7 @@ var NavigationHandler;
 				}
 			}, this));
 					
- 			this.stage.update(e);
+ 			this._stage.update(e);
 			
 		},
 		
@@ -193,11 +213,12 @@ var NavigationHandler;
 			this._ch = ch
 			var canvas = ch.getCanvas();
 			
-			this.stage = new createjs.Stage(canvas);
-			this.stage.autoClear = false;
+			this._stage = new createjs.Stage(canvas);
+			this._stage.clear();
+			this._stage.autoClear = false;
 			
 			_.each(this._buttons, _.bind(function(button){
-				this.stage.addChild(button.mc);
+				this._stage.addChild(button.mc);
 			}, this));
 			
 			this.showHomeButton();

@@ -140,6 +140,14 @@ var AnimationHandler;
 			
 		},
 		
+		destroy:function(){
+			this._navigationHandler.destroy();
+			this._shadowHandler.destroy();
+			this.removeAllTasks();
+			this._hitAreaHandler_popup.removeAllHitAreas();
+			this._hitAreaHandler.removeAllHitAreas();
+		},
+		
 		setOnCjsInitListener:function(f){
 			this._onCjsInitListener = f;
 		},
@@ -188,7 +196,7 @@ var AnimationHandler;
 					
 				});
 				
-				this.navigationHandler.draw(e);			
+				this._navigationHandler.draw(e);			
 				
 			}, this));
 		
@@ -323,8 +331,8 @@ var AnimationHandler;
 			
 			this._isCjsCanceled = false;
 					
-			if(this.navigationHandler){
-				this.navigationHandler.setButtonColors(buttonColor);
+			if(this._navigationHandler){
+				this._navigationHandler.setButtonColors(buttonColor);
 			}
 			
 			var loaderOptions = options.loaderOptions;
@@ -575,8 +583,8 @@ var AnimationHandler;
 		
 		indexMode:function(lowerBackContainerId, backContainerId, foreContainerId, animator){
 			
-			if(this.navigationHandler){
-				this.navigationHandler.setButtonColors({
+			if(this._navigationHandler){
+				this._navigationHandler.setButtonColors({
 					'r':255,
 					'g':255,
 					'b':255
@@ -788,8 +796,8 @@ var AnimationHandler;
 		putNavigationButtons:function(div, events){
 			
 			var ch = _getNewCanvasHandler(div, 'navigationButtons');
-			this.navigationHandler = new NavigationHandler(events, this._hitAreaHandler);
-			this.navigationHandler.putButtons(ch);
+			this._navigationHandler = new NavigationHandler(events, this._hitAreaHandler);
+			this._navigationHandler.putButtons(ch);
 
 		},
 		

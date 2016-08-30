@@ -36,6 +36,10 @@ Tonkatsu.init = function(){
 	domHandler = new DomHandler();
 	domHandler.initElems($('.autoInit'));
 	
+	if(animationHandler){
+		animationHandler.destroy();
+	}
+	
 	animationHandler = new AnimationHandler({
 		'menu':$('#menuCanvas'),
 		'fore':$('#foreground'),
@@ -135,9 +139,16 @@ var windowWidth;
 var windowHeight;
 
 Tonkatsu.onResize = function(e){
+	console.log(windowWidth);
+	console.log(window.innerWidth);
 	if(Math.abs(windowWidth - window.innerWidth) > 10 ||
 		Math.abs(windowHeight - window.innerHeight) > 10){
-		location.reload();
+		windowWidth = window.innerWidth;
+		windowHeight = window.innerHeight;
+		domHandler.hideMenu();
+		domHandler.hideShare();
+		Tonkatsu.init();
+		Tonkatsu.onHashChanged();
 	}
 };
 
