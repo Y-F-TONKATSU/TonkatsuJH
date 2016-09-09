@@ -45,18 +45,6 @@ var AnimationHandler;
 	
 	AnimationHandler.prototype = {
 			
-		_processTask:{
-			'frameAnim':function(){
-			
-			},
-			'cjs_labeled':function(){
-			
-			},
-			'cjs':function(){
-			
-			},
-		},
-		
 		_clearAllCanvas:function(task){
 			
 			_.each(this._chList, function(v, k){
@@ -272,37 +260,26 @@ var AnimationHandler;
 		
 		removeTask:function(id){
 			
-			var i = this._findTaskIndex(id);
-			
-			if(i > -1){
-				this._taskList.splice(i, 1);
-			}
+			this._taskList = _.reject(this._taskList, function(task){
+				return task.id === id;
+			});
 			
 		},
 		
 		removeCjsTasks:function(){
 			
-			var i = this._findCjsTaskIndex();
-			
-			while(i > -1){
-				
-				this._taskList.splice(i, 1);
-				i = this._findCjsTaskIndex();
-				
-			}
+			this._taskList = _.reject(this._taskList, function(task){
+				return 	task.id.indexOf('mainCjs_') > -1;
+
+			});
 			
 		},
 		
 		removeDocTasks:function(docId){
 			
-			var i = this._findDocIndex(docId);
-			
-			while(i > -1){
-				
-				this._taskList.splice(i, 1);
-				i = this._findDocIndex(docId);
-				
-			}
+			this._taskList = _.reject(this._taskList, function(task){
+				return task.docId === docId;
+			});
 			
 		},
 		
