@@ -5,8 +5,34 @@
 		<title>とんかつ騎士団の公式ホームページ</title>
 		<link>http://ton-katsu.net/</link>
 		<description>とんかつとは何か？ それは力が高まり何も阻むものが無いという感覚だ。 - フリードリヒ・ニーチェ</description>
-		<lastBuildDate>Thu, 11 Aug 2016 10:00:00 +0900</lastBuildDate>
+		<lastBuildDate>Thu, 9 Sep 2016 14:30:00 +0900</lastBuildDate>
 
+		<item>
+		
+			<title>パーリンノイズで遊ぶ - Nature of Code ひとり読書会 #000</title>
+			<link>http://ton-katsu.net/index.html#!experimental000021</link>
+			<description>ダニエル・シフマン『Nature of Code -Processingではじめる自然現象のシミュレーション』のひとり読書会です。今回はパーリンノイズを使っていろいろ描きます。</description>
+			<pubDate>Wed, 8 Sep 2016 18:00:00 +0900</pubDate>
+			
+			<file>contents/experimental/1609/e000021_noc_000/main.html</file>
+			<category>experimental</category>
+			<id>000021</id>
+			<subCategory>Canvas</subCategory>
+			<series>Nature of Code ひとり読書会</series>
+			<mainThumb>assets/images/thumb/ex000021.png</mainThumb>
+			<minThumb>assets/images/thumb/ex000021_min.png</minThumb>
+			<tags>Nature of Code ダニエル・シフマン パーリンノイズ JavaScript Canvas CreateJS</tags>
+			<type>article</type>			
+			
+			<cjs>contents/experimental/1609/e000021_noc_000/script.js</cjs>
+			<cjsOptions>contents/experimental/1609/e000021_noc_000/options.js</cjsOptions>
+			<cjsImages>contents/experimental/1609/e000021_noc_000/</cjsImages>
+			
+			<animation>ex000021</animation>
+			<widgetPosition>right</widgetPosition>
+			
+		</item>
+		
 		<item>
 		
 			<title>アンカーデザインパターン:とんかつ騎士団の技術メモ #001</title>
@@ -25,7 +51,7 @@
 			<type>article</type>			
 			
 			<animation>w000001</animation>
-			<widgetPosition>left</widgetPosition>>
+			<widgetPosition>left</widgetPosition>
 			
 		</item>
 		
@@ -48,10 +74,10 @@
 			
 			<cjs>contents/experimental/1608/e000020_ant/script.js</cjs>
 			<cjsOptions>contents/experimental/1608/e000020_ant/options.js</cjsOptions>
-			<cjsImages>contents/experimental/1608/e000020_ant/</cjsImages>
+			<cjsImages>contents/experimental/1608/e000020_ant/scripts</cjsImages>
 			
 			<animation>ex000020</animation>
-			<widgetPosition>right</widgetPosition>>
+			<widgetPosition>right</widgetPosition>
 			
 		</item>
 		

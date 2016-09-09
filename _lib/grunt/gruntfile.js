@@ -37,6 +37,7 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/contents/contents-util.js',
 		'../../_dev/assets/script/contents/doc-processor.js',
 		'../../_dev/assets/script/lib/canvas-handler.js',
+		'../../_dev/assets/script/lib/tnoise.js',
 		'../../_dev/assets/script/lib/cjs-util.js',
 		'../../_dev/assets/script/lib/url-handler.js',
 		'../../_dev/assets/script/lib/dom-handler.js',        
@@ -515,6 +516,14 @@ module.exports = function(grunt) {
 					'../../_dev/contents/experimental/1608/e000020_ant/scripts/script.js',
 				],
 				dest: '../../_dev/contents/experimental/1608/e000020_ant/script.js'
+			},
+			cont_e000021:{
+				src: [
+					'../../_dev/contents/experimental/1609/e000021_noc_000/scripts/cjs_noc_001.js',
+					'../../_dev/contents/experimental/1609/e000021_noc_000/scripts/script.js',
+					'../../_dev/contents/experimental/1609/e000021_noc_000/scripts/graph-util.js'
+				],
+				dest: '../../_dev/contents/experimental/1609/e000021_noc_000/script.js'
 			}
 		},
 		
@@ -854,6 +863,7 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);	
 	
 	//Organize Tasks
+	var exContTask = ['concat:cont_e000020', 'concat:cont_e000021'];	
 	var baseTasks = ['convert'];
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
@@ -861,15 +871,13 @@ module.exports = function(grunt) {
 	var htmlTasks = ['replace:main', 'replace:news', 'replace:menu', 'htmlmin:main', 'copy:main', 'copy:favicon', 'copy:rss'];
 	var mainTasks = cleanTasks.concat(jsTasks.concat(cssTasks.concat(htmlTasks)));
 	
-	var contTasks = baseTasks.concat(['clean:contents', 'convert', 'copy:contents', 'copy:textAssets', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
+	var contTasks = baseTasks.concat(exContTask).concat(['clean:contents', 'convert', 'copy:contents', 'copy:textAssets', 'uglify:js_cont', 'replace:contents', 'replace:contents_header', 'replace:contents_footer', 'replace:contents_ad','replace:contents_cjs',  'copy:contents_2', 'htmlmin:contents']);
 	
 	var imageTasks = ['clean:image', 'copy:image_s', 'responsive_images', 'copy:image_m'];
 	
 	var allTasks = mainTasks.concat(contTasks.concat(imageTasks));
 	
 	var testTasks = ['concat:test', 'uglify:test', 'cssmin:test'];
-	
-	var exContTask = ['concat:cont_e000020'];
 	
 	grunt.registerTask('default', mainTasks);
 	grunt.registerTask('cont', contTasks);	
@@ -880,9 +888,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('html', baseTasks.concat(htmlTasks));
 	
 	grunt.registerTask('test', testTasks);
-	
-	grunt.registerTask('e000020', exContTask);
-	
+		
 	//grunt.registerTask('watch', ['watch']);
 	
 };

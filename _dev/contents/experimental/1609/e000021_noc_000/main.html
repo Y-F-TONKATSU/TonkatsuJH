@@ -1,0 +1,496 @@
+<!doctype html>
+
+<html lang='ja'>
+
+	<head>
+		
+		<meta charset="utf-8">
+		<!--meta--experimental000021-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000021-->
+		
+		<article class='e000021' data-doc-type='cjsClips'>
+								
+			<!--cjs--experimental000021-->
+            		
+			<canvas id='contMainCanvas' width='480' height='480'></canvas>
+			            			
+			<section class='left' data-cjs-scene='Ex001'>
+				
+				<h1>当読書会について</h1>
+				
+				<p>
+					ダニエル・シフマン<br>
+					『Nature of Code<br>
+					-Processingではじめる<br>
+					自然現象のシミュレーション』<br>
+					(以下 NoC) で読書会をしたい、<br>
+					と長らく思ってました。
+				</p>
+				
+				<p>
+                	<!--ad--book_noc-->
+				</p>
+				
+				<p>
+					本の課題を自分なりにアレンジした<br>
+					コードを見せ合ったりして、<br>
+					「おー、いいですねえ。」<br>
+					とか言いながら、<br>
+					慣れ合う感じのヌルい会にしたら<br>
+					楽しそうじゃないですか。
+				</p>
+					
+				<p>
+					でも、人を集めるのとか<br>
+					面倒になってきたんで、<br>
+					Web 上で一人でやることにします。
+				</p>
+					
+				<p>
+					NoC は邦訳の副題が示すように、<br>
+					<a target='_blank' href='https://processing.org/'>Processing</a> の本ですが、<br>
+					敢えて、Canvas + JavaScript で書いていきます。<br>
+					(ライブラリは jQuery, UnderScore,<br>
+					 <a target='_blank' href='http://createjs.com/'>CreateJS</a> を使います。)
+				</p>
+					
+				<p>
+					ソースコードは<br>
+					<a target='_blank' target='_blank' href='https://github.com/y-f-tonkatsu/noc_001_noise'>git-hub</a>で公開しています。
+				</p>
+					
+			</section>
+						            			
+			<section class='right' data-cjs-scene='Ex001'>
+					
+				<h1>パーリンノイズで遊ぶ</h1>
+				
+				<p>
+					ということで NoC を<br>
+					読んでいきます。<br>
+					今回はイントロダクションまで。
+				</p>
+				
+				<p>
+					イントロダクションは、<br>
+					だいたいランダムネスの話題で、<br>
+					ランダムウォークとかの<br>
+					ウォーミングアップ的な例が<br>
+					いくつか載ってます。
+				</p>
+				
+				<p>
+					以前読んだ、こっちの本
+				</p>
+				
+				<p>
+                	<!--ad--book_generative-->
+				</p>
+				
+				<p>
+					と、内容がわりと被るので、<br>
+					前半は飛ばしちゃうことにします。
+				</p>
+				
+				<p>
+					後半ではパーリンノイズを<br>
+					紹介しています。<br>
+					多少は視覚的に面白いところなので、<br>
+					ここで少し遊びながら、<br>
+					このアルゴリズムが<br>
+					どういう力を持っているのか、<br>
+					軽く確認していきます。
+				</p>
+				
+				<p>
+					JavaScript には noise 関数はないので、<br>
+					主に<a target='_blank' href='http://postd.cc/understanding-perlin-noise/'>ここ</a>のコードと解説とか<br>
+					色々と参考にしながら<br>
+					(非常に怪しい理解ながら)<br>
+					適当に自分で実装したのを<br>
+					使っていきます。
+				</p>
+				
+			</section>
+			
+			<section class='left wide' data-cjs-scene='Ex001'>
+					
+				<h1>パーリンノイズをグラフにプロットする</h1>
+				
+				<p>
+					まず単純に、<br>
+					適当な入力に対する出力を<br>
+					折れ線グラフにプロットしてみます。
+				</p>
+
+				<p>
+					「入力値を与えると<br>
+					0-1 の間の値を返す関数」を<br>
+					引数として与えると、<br>
+					Canvas にグラフを<br>
+					描いてくれるクラスを<br>
+					作ってみました。
+				</p>
+				
+				<p>
+					描画メソッドの要点だけを<br>
+					以下に示します。<br>
+					(コード全体は <a target='_blank' href='https://github.com/y-f-tonkatsu/noc_001_noise'>git-hub</a> で公開しています。)
+				</p>
+				
+<pre>
+drawGraph:function(out, progress){
+	
+	this.init();
+	
+	var s = 0;
+	var progress = progress || this.DEFAULT_PROGRESS;
+	
+	var pv;
+	
+	this.play(_.bind(function(){
+		
+		this._graphics.setStrokeStyle(this._option.lineWidth);
+		this._graphics.beginStroke(this._option.color);
+		
+		var v = out(s) * this._width;
+		
+		if(_.isUndefined(pv)){pv = v;}
+		
+		var progressRate = Math.pow(progress, -1);
+		
+		this._graphics.moveTo(s * progressRate, pv)
+		.lineTo((s + progress) * progressRate, v);
+		
+		pv = v;
+		
+		s += progress;
+						
+		this._stage.update();
+		
+		if(s * progressRate >= this._height){this.stop();}
+		
+	}, this));
+	
+},
+</pre>
+				
+				<p>
+					これにいくつかの関数を与えて、<br>
+					違いを見てみます。
+				</p>
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Line1'>
+					
+				<h1>まっすぐな線</h1>
+				
+				<p>
+					まずは<br>
+					まっすぐな線を<br>
+					引かせます。<br>
+					入力値として<br>
+					「常に 0.5 を返す関数」<br>
+					を与えます。
+				</p>
+				
+				<p>
+					↓こんな感じ。
+				</p>
+				
+<pre>
+var graphUtil = new GraphUtil('#contMainCanvas');
+
+graphUtil.drawGraph(<em>function(input){
+	return 0.5;
+}</em>);
+</pre>
+
+				<p>
+					線が引けました!<br>
+					…面白くも<br>
+					なんともないですね。<br>
+					(でもここまで来るのも<br>
+					けっこう大変だった。<br>
+					Processing の話の早さの<br>
+					有り難みがよく分かる。)
+				</p>
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Line2'>
+					
+				<h1>ランダムな折れ線</h1>
+				
+				<p>
+					次に入力値として<br>
+					JavaScript の<br>
+					ビルトイン関数の
+					Math.random を<br>
+					与えてみます。
+				</p>
+				
+<pre>
+graphUtil.drawGraph(<em>Math.random</em>);
+</pre>
+				
+				<p>
+					ギザギザの激しい線になります。
+				</p>
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Line3'>
+					
+				<h1>パーリンノイズ</h1>
+				
+				<p>
+					ではいよいよ、<br>
+					パーリンノイズを<br>
+					使ってみます。
+				</p>
+				
+<pre>
+graphUtil.drawGraph(<em>noise</em>);
+</pre>
+
+				<p>
+					有機的な線が引けます。<br>
+					これを別の描画系の関数と<br>
+					混ぜてみます。
+				</p>
+				
+			</section>
+						            			
+			<section class='left wide' data-cjs-scene='Ex002'>
+					
+				<h1>円を描く</h1>
+				
+				<p>
+					GraphUtil に<br>
+					円を描くメソッドを追加してみます。
+				</p>
+
+				<p>
+					「入力値を与えると<br>
+					0-1 の間の値を返す関数」を<br>
+					引数として与えると、<br>
+					出力値に応じて、<br>
+					円が歪みます。
+				</p>
+
+				<p>
+					これにいくつかの関数を与えて、<br>
+					違いを見てみます。
+				</p>
+				
+			</section>
+
+			<section class='canvasExp' data-cjs-scene='Circle1'>
+					
+				<h1>きれいな円</h1>
+				
+				<p>
+					まずは<br>
+					常に0.5 を返す<br>
+					関数から。
+				</p>
+				
+<pre>
+graphUtil.drawCircle(<em>function(inpput){
+	return 0.5;
+}</em>);
+</pre>
+
+				<p>
+					機械かテヅカ先生か、<br>
+					って感じの円が<br>
+					描けます。
+				</p>
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Circle2'>
+					
+				<h1>ランダムに歪む円</h1>
+				
+				<p>
+					次に Math.random を<br>
+					試します。
+				</p>
+				
+<pre>
+graphUtil.drawCircle(<em>Math.random</em>);
+</pre>
+
+				<p>
+					無茶苦茶ですが、<br>
+					これはこれで面白い。
+				</p>
+				
+			</section>
+						            			            			
+			<section class='canvasExp' data-cjs-scene='Circle3'>
+					
+				<h1>歪んだ円</h1>
+				
+				<p>
+					そしてパーリンノイズ。
+				</p>
+				
+<pre>
+graphUtil.drawCircle(<em>noise</em>);
+</pre>
+
+				<p>
+					いい感じに<br>
+					下手くそになりました。<br>
+					放置して何周かさせると、<br>
+					線と線が重なって<br>
+					少し美しいです。
+				</p>
+				
+				<p>
+					こういう有機的な変化を<br>
+					作り出すのに、<br>
+					パーリンノイズは有効。<br>
+					…ということで、<br>
+					NoC でも使われるようです。
+				</p>
+				
+			</section>
+						            			
+			<section class='left wide' data-cjs-scene='Ex002'>
+					
+				<h1>モーションデザインとパーリンノイズ</h1>
+				
+				<p>
+					今度はモーションと<br>
+					組み合わせてみます
+				</p>
+
+			</section>
+
+
+			<section class='canvasExp' data-cjs-scene='Motion1'>
+					
+				<h1>規則正しいモーション</h1>
+				
+				<p>
+					まずは<br>
+					常に0.5 を返す<br>
+					関数から。
+				</p>
+				
+				<p>
+					等速で回転します。
+				</p>
+				
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Motion2'>
+					
+				<h1>ランダムなモーション</h1>
+				
+				<p>
+					次に Math.random です。
+				</p>
+				
+				<p>
+					かなりガタガタした動きです。
+				</p>
+				
+			</section>
+						            			            			
+			<section class='canvasExp' data-cjs-scene='Motion3'>
+					
+				<h1>自然なゆらぎのあるモーション</h1>
+				
+				<p>
+					そしてパーリンノイズ。
+				</p>
+				
+				<p>
+					少しわかりにくいですが、<br>
+					完全に不規則ではなくなり、<br>
+					手で動かしている感じに<br>
+					近づきます。
+				</p>
+				
+			</section>
+						            			
+			<section class='left wide' data-cjs-scene='Ex002'>
+					
+				<h1>ノイズの次元</h1>
+				
+				<p>
+					ノイズには次元の概念があります。<br>
+					NoC でもジェネラティブアートでも<br>
+					グレースケールでの表現の例が載っていて、<br>
+					分かりやすいので、<br>
+					再現してみます。
+				</p>
+
+			</section>
+						            			            			
+			<section class='canvasExp' data-cjs-scene='Noise1D'>
+					
+				<h1>1D ノイズのグレースケール表現</h1>
+				
+				<p>
+					一次元の場合は<br>
+					こうなります。<br>
+					微妙な陰影がついています。<br>
+					折れ線グラフの例が<br>
+					上の方にありますが、<br>
+					あちらでの高さが<br>
+					こちらでは線の明るさで<br>
+					表現されているわけですね。
+				</p>
+				
+			</section>
+						            			            			
+			<section class='canvasExp' data-cjs-scene='Noise2D'>
+					
+				<h1>2D ノイズのグレースケール表現</h1>
+				
+				<p>
+					二次元の場合。<br>
+					横だけでなく、<br>
+					縦方向にも<br>
+					微妙な変化が現れます。
+					
+				</p>
+				
+			</section>
+						            			
+			<section class='left wide' data-cjs-scene='Ex002'>
+					
+				<p>
+					今回はパーリンノイズを応用した<br>
+					描画プログラムを<br>
+					いくつか書いてみました。
+				</p>
+				
+				<p>
+					次回以降もこんな感じで、<br>
+					NoC を読み進めながら、<br>
+					作ったものを載せていきます。
+				</p>
+				
+			</section>
+						            			
+		</article>
+		
+		<!--footer--experimental000021-->
+		
+	</body>
+	
+</html>

@@ -157,6 +157,29 @@ if(!Animators){var Animators = {};}
 		
 	};
 	
+	var IndexDot = function(ch, pos){
+		
+		this._ch = ch;
+		this._pos = pos;
+		
+	}
+	
+	IndexDot.prototype = {
+		
+		'update':function(){
+			
+			this._pos.x += Math.random() * 2 - 1;
+			this._pos.y += Math.random() * 2 - 1;
+			
+			this._ch.setFillStyle(255, 255, 0, 1);
+			this._ch.drawShape(_.bind(function(ctx){
+				ctx.arc(this._pos.x, this._pos.y, 3, 0, Math.PI * 2);
+			}, this), false, true);
+			
+		},
+		
+	};
+	
 	Animators.index = {
 		
 		'default':function(){
@@ -283,6 +306,17 @@ if(!Animators){var Animators = {};}
 			
 		},
 		
+		'w000001_fore':function(e){
+			
+			if(this.vars.root){
+				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+					this.vars.root.stop();
+				}
+				this.vars.stage.update(e);
+			}
+			
+		},
+		
 		'w000001_fore_init':function(e){
 			
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
@@ -302,7 +336,28 @@ if(!Animators){var Animators = {};}
 			
 		},
 		
-		'w000001_fore':function(e){
+		'ex000021_init':function(e){
+			
+			this.vars.dots = [];
+			
+			_.times(20, _.bind(function(){
+				this.vars.dots.push(new IndexDot(this.ch, {
+					'x':this.ch.getCanvasWidth() * Math.random(), 
+					'y':this.ch.getCanvasHeight() * Math.random()
+				}));
+			}, this));
+			
+		},
+		
+		'ex000021':function(e){
+			
+			_.each(this.vars.dots, function(dot){
+				dot.update();
+			});
+			
+		},
+			
+		'ex000021_fore':function(e){
 			
 			if(this.vars.root){
 				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
@@ -310,6 +365,25 @@ if(!Animators){var Animators = {};}
 				}
 				this.vars.stage.update(e);
 			}
+			
+		},
+		
+		'ex000021_fore_init':function(e){
+			
+			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+			
+			CjsUtil.load({
+				'images':cjsWidgetImages,
+				'manifest':	[
+					{src:"assets/images/thumb/ex000021.png", id:"ex000021"},
+				],
+				'completeListener':_.bind(function(){
+					this.vars.root = new cjsWidgetLib.Ex000021();	
+					this.vars.stage.addChild(this.vars.root);
+					this.vars.stage.autoClear = false;
+					this.vars.stage.update();
+				}, this)
+			});
 			
 		},
 		

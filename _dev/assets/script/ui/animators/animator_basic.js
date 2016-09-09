@@ -54,6 +54,12 @@ Animators.basic = {
 			var scene = $(activeElem).attr('data-cjs-scene');
 			
 			if(scene !== this.currentScene){
+				if(cjsEvents.sceneOut && cjsEvents.sceneOut[this.currentScene]){
+					cjsEvents.sceneOut[this.currentScene].call(this);
+				}
+				if(cjsEvents.scene && cjsEvents.scene[scene]){
+					cjsEvents.scene[scene].call(this);
+				}
 				cjsStage.stage.removeAllChildren();
 				cjsStage.currentClip = new cjsLib[scene]();
 				cjsStage.stage.addChild(cjsStage.currentClip);

@@ -165,6 +165,8 @@ var DocProcessor = {
 			'maxWidth':'300px'
 		}).end().end().find('.right').css({
 			'marginLeft':'60%'
+		}).end().find('.wide').css({
+			'width':'50%',
 		}).end().find('.canvasExp').css({
 			'marginLeft':'76%',
 			'width':'19%',

@@ -139,8 +139,6 @@ var windowWidth;
 var windowHeight;
 
 Tonkatsu.onResize = function(e){
-	console.log(windowWidth);
-	console.log(window.innerWidth);
 	if(Math.abs(windowWidth - window.innerWidth) > 10 ||
 		Math.abs(windowHeight - window.innerHeight) > 10){
 		windowWidth = window.innerWidth;
