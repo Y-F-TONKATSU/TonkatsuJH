@@ -168,6 +168,7 @@ var cjsEvents = {
 			E000021.clear();
 			E000021 = null;
 		}
+		animationHandler.removeTask('e000021_bg');
 		$('#contMainCanvas').hide();
 	}
 };
