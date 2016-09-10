@@ -226,12 +226,12 @@ if(!Animators){var Animators = {};}
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
 			CjsUtil.load({
-				'images':cjsWidgetImages,
+				'images':gCjsWidgetImages,
 				'manifest':	[
 					{src:"assets/images/thumb/ex000019.png", id:"widget_crouton"},
 				],
 				'completeListener':_.bind(function(){
-					this.vars.root = new cjsWidgetLib.Nobuteru();	
+					this.vars.root = new gCjsWidgetLib.Nobuteru();	
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();
@@ -281,12 +281,12 @@ if(!Animators){var Animators = {};}
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
 			CjsUtil.load({
-				'images':cjsWidgetImages,
+				'images':gCjsWidgetImages,
 				'manifest':	[
 					{src:"assets/images/thumb/ex000020.png", id:"ex000020"},
 				],
 				'completeListener':_.bind(function(){
-					this.vars.root = new cjsWidgetLib.Ex000020();	
+					this.vars.root = new gCjsWidgetLib.Ex000020();	
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();
@@ -322,12 +322,12 @@ if(!Animators){var Animators = {};}
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
 			CjsUtil.load({
-				'images':cjsWidgetImages,
+				'images':gCjsWidgetImages,
 				'manifest':	[
 					{src:"assets/images/thumb/tech.png", id:"tech"},
 				],
 				'completeListener':_.bind(function(){
-					this.vars.root = new cjsWidgetLib.w000001();	
+					this.vars.root = new gCjsWidgetLib.w000001();	
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();
@@ -373,12 +373,12 @@ if(!Animators){var Animators = {};}
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
 			CjsUtil.load({
-				'images':cjsWidgetImages,
+				'images':gCjsWidgetImages,
 				'manifest':	[
 					{src:"assets/images/thumb/ex000021.png", id:"ex000021"},
 				],
 				'completeListener':_.bind(function(){
-					this.vars.root = new cjsWidgetLib.Ex000021();	
+					this.vars.root = new gCjsWidgetLib.Ex000021();	
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();

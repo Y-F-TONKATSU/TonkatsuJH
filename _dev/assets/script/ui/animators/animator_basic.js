@@ -4,7 +4,7 @@ Animators.basic = {
 	
 	'cjsLabeled_init':function(cjsStage, movieOptions, mc){
 		console.log('init');
-		cjsStage.root = new cjsLib[movieOptions.root]()[mc.root];	
+		cjsStage.root = new gCjsLib[movieOptions.root]()[mc.root];	
 		cjsStage.stage.addChild(cjsStage.root);
 
 	},
@@ -61,7 +61,7 @@ Animators.basic = {
 					gCjsEvents.scene[scene].call(this);
 				}
 				cjsStage.stage.removeAllChildren();
-				cjsStage.currentClip = new cjsLib[scene]();
+				cjsStage.currentClip = new gCjsLib[scene]();
 				cjsStage.stage.addChild(cjsStage.currentClip);
 				this.currentScene = scene;
 			}

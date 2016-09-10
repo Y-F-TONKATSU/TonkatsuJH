@@ -247,5 +247,5 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(295.9,600,2768.3,1800);
 
-})(cjsLib = cjsLib||{}, cjsImages = cjsImages||{}, createjs = createjs||{}, ss = ss||{});
-var cjsLib, cjsImages, createjs, ss;
+})(gCjsLib = gCjsLib||{}, gCjsImages = gCjsImages||{}, createjs = createjs||{}, ss = ss||{});
+var gCjsLib, gCjsImages, createjs, ss;

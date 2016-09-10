@@ -1448,5 +1448,5 @@ p.nominalBounds = new cjs.Rectangle(-267,-92,1807,304);
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-25,148,1949,304);
 
-})(cjsWidgetLib = cjsWidgetLib||{}, cjsWidgetImages = cjsWidgetImages||{}, createjs = createjs||{}, ss = ss||{});
-var cjsWidgetLib, cjsWidgetImages, createjs, ss;
+})(gCjsWidgetLib = gCjsWidgetLib||{}, gCjsWidgetImages = gCjsWidgetImages||{}, createjs = createjs||{}, ss = ss||{});
+var gCjsWidgetLib, gCjsWidgetImages, createjs, ss;

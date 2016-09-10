@@ -798,8 +798,8 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(384,240,768,480);
 
-})(cjsLib = cjsLib||{}, cjsImages = cjsImages||{}, createjs = createjs||{}, ss = ss||{});
-var cjsLib, cjsImages, createjs, ss;
+})(gCjsLib = gCjsLib||{}, gCjsImages = gCjsImages||{}, createjs = createjs||{}, ss = ss||{});
+var gCjsLib, gCjsImages, createjs, ss;
 var E000021 = {};
 
 E000021.init = function(){

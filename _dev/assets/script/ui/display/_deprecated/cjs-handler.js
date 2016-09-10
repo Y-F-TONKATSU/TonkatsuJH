@@ -14,7 +14,7 @@ var CjsHandler;
 				
 				if (e.item.type == "image") { 
 					//console.log('A Cjs Image Loaded:' + e.item.id);
-					cjsImages[e.item.id] = e.result;
+					gCjsImages[e.item.id] = e.result;
 				}
 				
 			});
@@ -31,8 +31,8 @@ var CjsHandler;
 				var bCanvas = this.backCanvas.getCanvas();
 				var fCanvas = this.foreCanvas.getCanvas();
 				
-				this.foreMc = new cjsLib[root]().foreground;
-				this.backMc = new cjsLib[root]().background;				
+				this.foreMc = new gCjsLib[root]().foreground;
+				this.backMc = new gCjsLib[root]().background;				
 				
 				this.bStage = new createjs.Stage(bCanvas);
 				this.bStage.addChild(this.backMc);
@@ -65,7 +65,7 @@ var CjsHandler;
 				this.fStage.autoClear = false;
 				this.bStage.autoClear = false;
 				
-				createjs.Ticker.setFPS(cjsLib.properties.fps);
+				createjs.Ticker.setFPS(gCjsLib.properties.fps);
 				createjs.Ticker.addEventListener("tick", _.bind(function(){
 					this.fStage.clear();
 					this.fStage.update();
@@ -89,7 +89,7 @@ var CjsHandler;
 			
 						
 			//loader.loadFile({src:"contents/experimental/1604/e000019_crouton/images/script_atlas_.json?1464411112955", type:"spritesheet", id:"script_atlas_"}, true);
-			loader.loadManifest(cjsLib.properties.manifest);
+			loader.loadManifest(gCjsLib.properties.manifest);
 			
 			
 		}

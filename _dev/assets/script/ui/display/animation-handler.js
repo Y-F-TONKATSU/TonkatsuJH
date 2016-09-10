@@ -355,8 +355,8 @@ var AnimationHandler;
 			} else {
 				
 				CjsUtil.load({
-					'images':cjsImages,
-					'manifest':	cjsLib.properties.manifest,
+					'images':gCjsImages,
+					'manifest':	gCjsLib.properties.manifest,
 					'completeListener':_.bind(function(){
 						console.log('Loading Cjs Complete');
 						this.removeTask('loadingCjs');

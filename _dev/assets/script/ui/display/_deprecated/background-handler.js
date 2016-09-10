@@ -136,7 +136,7 @@ var BackgroundHandler;
 			
 		},
 	
-		setCjs:function(cjsLib, cjsImages, loaderType, root){
+		setCjs:function(gCjsLib, gCjsImages, loaderType, root){
 			
 			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv, 'mainFore');
 			this.mainBack = _getNewFittedCanvasHandler(this.backDiv, 'mainBack');
@@ -152,7 +152,7 @@ var BackgroundHandler;
 			
 		},
 		
-		setBackground:function(cjsLib, cjsImages, loaderType, root){
+		setBackground:function(cjsLib, gCjsImages, loaderType, root){
 			
 			this.mainFore = _getNewFittedCanvasHandler(this.foreDiv, 'mainFore');
 			this.mainBack = _getNewFittedCanvasHandler(this.backDiv, 'mainBack');

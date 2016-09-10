@@ -1,7 +1,11 @@
 (function (lib, img, cjs, ss) {
 
 var p; // shortcut to reference prototypes
-lib.webFontTxtFilters = {}; 
+lib.webFontTxtInst = {}; 
+var loadedTypekitCount = 0;
+var loadedGoogleCount = 0;
+var gFontsUpdateCacheList = [];
+var tFontsUpdateCacheList = [];
 
 // library properties:
 lib.properties = {
@@ -23,12 +27,61 @@ lib.properties = {
 lib.ssMetadata = [];
 
 
-lib.webfontAvailable = function(family) { 
-	lib.properties.webfonts[family] = true;
-	var txtFilters = lib.webFontTxtFilters && lib.webFontTxtFilters[family] || [];
-	for(var f = 0; f < txtFilters.length; ++f) {
-		txtFilters[f].updateCache();
-	}
+
+lib.updateListCache = function (cacheList) {		
+	for(var i = 0; i < cacheList.length; i++) {		
+		if(cacheList[i].cacheCanvas)		
+			cacheList[i].updateCache();		
+	}		
+};		
+
+lib.addElementsToCache = function (textInst, cacheList) {		
+	var cur = textInst;		
+	while(cur != exportRoot) {		
+		if(cacheList.indexOf(cur) != -1)		
+			break;		
+		cur = cur.parent;		
+	}		
+	if(cur != exportRoot) {	//we have found an element in the list		
+		var cur2 = textInst;		
+		var index = cacheList.indexOf(cur);		
+		while(cur2 != cur) { //insert all it's children just before it		
+			cacheList.splice(index, 0, cur2);		
+			cur2 = cur2.parent;		
+			index++;		
+		}		
+	}		
+	else {	//append element and it's parents in the array		
+		cur = textInst;		
+		while(cur != exportRoot) {		
+			cacheList.push(cur);		
+			cur = cur.parent;		
+		}		
+	}		
+};		
+
+lib.gfontAvailable = function(family, totalGoogleCount) {		
+	lib.properties.webfonts[family] = true;		
+	var txtInst = lib.webFontTxtInst && lib.webFontTxtInst[family] || [];		
+	for(var f = 0; f < txtInst.length; ++f)		
+		lib.addElementsToCache(txtInst[f], gFontsUpdateCacheList);		
+
+	loadedGoogleCount++;		
+	if(loadedGoogleCount == totalGoogleCount) {		
+		lib.updateListCache(gFontsUpdateCacheList);		
+	}		
+};		
+
+lib.tfontAvailable = function(family, totalTypekitCount) {		
+	lib.properties.webfonts[family] = true;		
+	var txtInst = lib.webFontTxtInst && lib.webFontTxtInst[family] || [];		
+	for(var f = 0; f < txtInst.length; ++f)		
+		lib.addElementsToCache(txtInst[f], tFontsUpdateCacheList);		
+
+	loadedTypekitCount++;		
+	if(loadedTypekitCount == totalTypekitCount) {		
+		lib.updateListCache(tFontsUpdateCacheList);		
+	}		
 };
 // symbols:
 
@@ -89,6 +142,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-1,450.1,449.1);
 
 	// レイヤー 1
 	this.instance = new lib.bg_frame_dark2();
+	this.instance.parent = this;
 	this.instance.setTransform(-384,0,2,2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -102,6 +156,7 @@ p.nominalBounds = new cjs.Rectangle(-384,0,768,480);
 
 	// レイヤー 1
 	this.instance = new lib.Line("synched",0);
+	this.instance.parent = this;
 	this.instance.setTransform(-219.9,0,0.02,1);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).to({scaleX:1},29).wait(1));
@@ -115,6 +170,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance = new lib.Line_in("synched",0,false);
+	this.instance.parent = this;
 	this.instance.setTransform(220,440);
 	this.instance._off = true;
 
@@ -122,6 +178,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_1 = new lib.Line_in("synched",0,false);
+	this.instance_1.parent = this;
 	this.instance_1.setTransform(220,420);
 	this.instance_1._off = true;
 
@@ -129,6 +186,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_2 = new lib.Line_in("synched",0,false);
+	this.instance_2.parent = this;
 	this.instance_2.setTransform(220,400);
 	this.instance_2._off = true;
 
@@ -136,6 +194,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_3 = new lib.Line_in("synched",0,false);
+	this.instance_3.parent = this;
 	this.instance_3.setTransform(220,380);
 	this.instance_3._off = true;
 
@@ -143,6 +202,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_4 = new lib.Line_in("synched",0,false);
+	this.instance_4.parent = this;
 	this.instance_4.setTransform(220,360);
 	this.instance_4._off = true;
 
@@ -150,6 +210,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_5 = new lib.Line_in("synched",0,false);
+	this.instance_5.parent = this;
 	this.instance_5.setTransform(220,340);
 	this.instance_5._off = true;
 
@@ -157,6 +218,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_6 = new lib.Line_in("synched",0,false);
+	this.instance_6.parent = this;
 	this.instance_6.setTransform(220,320);
 	this.instance_6._off = true;
 
@@ -164,6 +226,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_7 = new lib.Line_in("synched",0,false);
+	this.instance_7.parent = this;
 	this.instance_7.setTransform(220,300);
 	this.instance_7._off = true;
 
@@ -171,6 +234,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_8 = new lib.Line_in("synched",0,false);
+	this.instance_8.parent = this;
 	this.instance_8.setTransform(220,280);
 	this.instance_8._off = true;
 
@@ -178,6 +242,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_9 = new lib.Line_in("synched",0,false);
+	this.instance_9.parent = this;
 	this.instance_9.setTransform(220,260);
 	this.instance_9._off = true;
 
@@ -185,6 +250,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_10 = new lib.Line_in("synched",0,false);
+	this.instance_10.parent = this;
 	this.instance_10.setTransform(220,240);
 	this.instance_10._off = true;
 
@@ -192,6 +258,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_11 = new lib.Line_in("synched",0,false);
+	this.instance_11.parent = this;
 	this.instance_11.setTransform(220,220);
 	this.instance_11._off = true;
 
@@ -199,6 +266,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_12 = new lib.Line_in("synched",0,false);
+	this.instance_12.parent = this;
 	this.instance_12.setTransform(220,200);
 	this.instance_12._off = true;
 
@@ -206,6 +274,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_13 = new lib.Line_in("synched",0,false);
+	this.instance_13.parent = this;
 	this.instance_13.setTransform(220,180);
 	this.instance_13._off = true;
 
@@ -213,6 +282,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_14 = new lib.Line_in("synched",0,false);
+	this.instance_14.parent = this;
 	this.instance_14.setTransform(220,160);
 	this.instance_14._off = true;
 
@@ -220,6 +290,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_15 = new lib.Line_in("synched",0,false);
+	this.instance_15.parent = this;
 	this.instance_15.setTransform(220,140);
 	this.instance_15._off = true;
 
@@ -227,6 +298,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_16 = new lib.Line_in("synched",0,false);
+	this.instance_16.parent = this;
 	this.instance_16.setTransform(220,120);
 	this.instance_16._off = true;
 
@@ -234,6 +306,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_17 = new lib.Line_in("synched",0,false);
+	this.instance_17.parent = this;
 	this.instance_17.setTransform(220,100);
 	this.instance_17._off = true;
 
@@ -241,6 +314,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_18 = new lib.Line_in("synched",0,false);
+	this.instance_18.parent = this;
 	this.instance_18.setTransform(220,80);
 	this.instance_18._off = true;
 
@@ -248,6 +322,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_19 = new lib.Line_in("synched",0,false);
+	this.instance_19.parent = this;
 	this.instance_19.setTransform(220,60);
 	this.instance_19._off = true;
 
@@ -255,6 +330,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_20 = new lib.Line_in("synched",0,false);
+	this.instance_20.parent = this;
 	this.instance_20.setTransform(220,40);
 	this.instance_20._off = true;
 
@@ -262,6 +338,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_21 = new lib.Line_in("synched",0,false);
+	this.instance_21.parent = this;
 	this.instance_21.setTransform(220,20);
 	this.instance_21._off = true;
 
@@ -269,6 +346,7 @@ p.nominalBounds = new cjs.Rectangle(-220.9,-1,10.6,2);
 
 	// レイヤー 1
 	this.instance_22 = new lib.Line_in("synched",0,false);
+	this.instance_22.parent = this;
 	this.instance_22.setTransform(220,0);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_22).wait(50));
@@ -282,6 +360,7 @@ p.nominalBounds = new cjs.Rectangle(-1,-1,10.7,2);
 
 	// レイヤー 1
 	this.instance = new lib.Frame("synched",0);
+	this.instance.parent = this;
 	this.instance.setTransform(0,218.6,0.058,0.058,0,0,0,0,223.2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).to({regY:223.6,scaleX:1,scaleY:1,y:223.6},11,cjs.Ease.get(1)).wait(1));
@@ -295,18 +374,21 @@ p.nominalBounds = new cjs.Rectangle(-14,204.6,28,28);
 
 	// レイヤー 5
 	this.instance = new lib.BgFrame("synched",0);
+	this.instance.parent = this;
 	this.instance.setTransform(384,240,1,1,0,0,0,0,240);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).to({alpha:0},45).to({_off:true},1).wait(1));
 
 	// レイヤー 4
 	this.instance_1 = new lib.bg_2();
+	this.instance_1.parent = this;
 	this.instance_1.setTransform(0,0,2,2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(47));
 
 	// レイヤー 6
 	this.instance_2 = new lib.bg_dark();
+	this.instance_2.parent = this;
 	this.instance_2.setTransform(0,0,2,2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(47));
@@ -320,6 +402,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 12
 	this.instance = new lib.Frame_in("synched",0,false);
+	this.instance.parent = this;
 	this.instance.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
 	this.instance._off = true;
 
@@ -327,6 +410,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 11
 	this.instance_1 = new lib.Frame_in("synched",0,false);
+	this.instance_1.parent = this;
 	this.instance_1.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
 	this.instance_1._off = true;
 
@@ -334,6 +418,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 8
 	this.instance_2 = new lib.Frame_in("synched",0,false);
+	this.instance_2.parent = this;
 	this.instance_2.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
 	this.instance_2._off = true;
 
@@ -341,6 +426,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 16
 	this.instance_3 = new lib.Grind_in("synched",0,false);
+	this.instance_3.parent = this;
 	this.instance_3.setTransform(566.7,20.4,1,1,90);
 	this.instance_3._off = true;
 
@@ -348,6 +434,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 14
 	this.instance_4 = new lib.Grind_in("synched",0,false);
+	this.instance_4.parent = this;
 	this.instance_4.setTransform(564.8,18.5,1,1,90);
 	this.instance_4._off = true;
 
@@ -355,6 +442,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 15
 	this.instance_5 = new lib.Grind_in("synched",0,false);
+	this.instance_5.parent = this;
 	this.instance_5.setTransform(126.7,20.4);
 	this.instance_5._off = true;
 
@@ -362,6 +450,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 13
 	this.instance_6 = new lib.Grind_in("synched",0,false);
+	this.instance_6.parent = this;
 	this.instance_6.setTransform(124.8,18.5);
 	this.instance_6._off = true;
 
@@ -369,6 +458,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 5
 	this.instance_7 = new lib.BgFrame("synched",0);
+	this.instance_7.parent = this;
 	this.instance_7.setTransform(384,240,1,1,0,0,0,0,240);
 	this.instance_7.alpha = 0.199;
 	this.instance_7._off = true;
@@ -377,6 +467,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// レイヤー 6
 	this.instance_8 = new lib.bg_dark();
+	this.instance_8.parent = this;
 	this.instance_8.setTransform(0,0,2,2);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_8).wait(90));
@@ -390,11 +481,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// ex001
 	this.ex001 = new lib.Ex001();
+	this.ex001.parent = this;
 
 	this.timeline.addTween(cjs.Tween.get(this.ex001).wait(1));
 
 	// Main
 	this.main = new lib.Main();
+	this.main.parent = this;
 
 	this.timeline.addTween(cjs.Tween.get(this.main).wait(1));
 
@@ -408,6 +501,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	// root
 	this.root = new lib.Root();
+	this.root.parent = this;
 	this.root.setTransform(384,240,1,1,0,0,0,384,240);
 
 	this.timeline.addTween(cjs.Tween.get(this.root).wait(1));
@@ -415,8 +509,8 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(384,240,768,480);
 
-})(cjsLib = cjsLib||{}, cjsImages = cjsImages||{}, createjs = createjs||{}, ss = ss||{});
-var cjsLib, cjsImages, createjs, ss;
+})(gCjsLib = gCjsLib||{}, gCjsImages = gCjsImages||{}, createjs = createjs||{}, ss = ss||{});
+var gCjsLib, gCjsImages, createjs, ss;
 var AntSim;
 
 (function(){	
