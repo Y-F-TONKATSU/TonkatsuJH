@@ -25,11 +25,11 @@ Animators.basic = {
 							
 		var label = cjsStage.root.currentLabel;
 		if(this.currentLabel !== label){
-			if(cjsEvents.labelOut[this.currentLabel]){
-				cjsEvents.labelOut[this.currentLabel].call(this);
+			if(gCjsEvents.labelOut[this.currentLabel]){
+				gCjsEvents.labelOut[this.currentLabel].call(this);
 			}
-			if(cjsEvents.label[label]){
-				cjsEvents.label[label].call(this);
+			if(gCjsEvents.label[label]){
+				gCjsEvents.label[label].call(this);
 			}
 		}
 		this.currentLabel = label;
@@ -54,11 +54,11 @@ Animators.basic = {
 			var scene = $(activeElem).attr('data-cjs-scene');
 			
 			if(scene !== this.currentScene){
-				if(cjsEvents.sceneOut && cjsEvents.sceneOut[this.currentScene]){
-					cjsEvents.sceneOut[this.currentScene].call(this);
+				if(gCjsEvents.sceneOut && gCjsEvents.sceneOut[this.currentScene]){
+					gCjsEvents.sceneOut[this.currentScene].call(this);
 				}
-				if(cjsEvents.scene && cjsEvents.scene[scene]){
-					cjsEvents.scene[scene].call(this);
+				if(gCjsEvents.scene && gCjsEvents.scene[scene]){
+					gCjsEvents.scene[scene].call(this);
 				}
 				cjsStage.stage.removeAllChildren();
 				cjsStage.currentClip = new cjsLib[scene]();
@@ -75,11 +75,11 @@ Animators.basic = {
 			
 			var label = cjsStage.currentClip.currentLabel;
 			if(this.currentLabel !== label){
-				if(cjsEvents.labelOut[this.currentLabel]){
-					cjsEvents.labelOut[this.currentLabel].call(this);
+				if(gCjsEvents.labelOut[this.currentLabel]){
+					gCjsEvents.labelOut[this.currentLabel].call(this);
 				}
-				if(cjsEvents.label[label]){
-					cjsEvents.label[label].call(this);
+				if(gCjsEvents.label[label]){
+					gCjsEvents.label[label].call(this);
 				}
 			}
 			this.currentLabel = label;

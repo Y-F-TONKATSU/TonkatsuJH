@@ -5,7 +5,7 @@
 		<title>とんかつ騎士団の公式ホームページ</title>
 		<link>http://ton-katsu.net/</link>
 		<description>とんかつとは何か？ それは力が高まり何も阻むものが無いという感覚だ。 - フリードリヒ・ニーチェ</description>
-		<lastBuildDate>Thu, 9 Sep 2016 14:30:00 +0900</lastBuildDate>
+		<lastBuildDate>Fri, 10 Sep 2016 24:00:00 +0900</lastBuildDate>
 
 		<item>
 		
@@ -74,7 +74,7 @@
 			
 			<cjs>contents/experimental/1608/e000020_ant/script.js</cjs>
 			<cjsOptions>contents/experimental/1608/e000020_ant/options.js</cjsOptions>
-			<cjsImages>contents/experimental/1608/e000020_ant/scripts</cjsImages>
+			<cjsImages>contents/experimental/1608/e000020_ant/</cjsImages>
 			
 			<animation>ex000020</animation>
 			<widgetPosition>right</widgetPosition>

@@ -16,7 +16,7 @@ var cjsOptions = {
 	}
 };
 
-var cjsEvents = {
+var gCjsEvents = {
 	'label':{
 		'Main_load':function(){
 			$('#contMainCanvas').show();

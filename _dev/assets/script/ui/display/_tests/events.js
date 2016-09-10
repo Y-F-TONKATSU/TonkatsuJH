@@ -1,4 +1,4 @@
-var cjsEvents = {
+var gCjsEvents = {
 	'label':{
 		'Scene002_stop':function(){
 			

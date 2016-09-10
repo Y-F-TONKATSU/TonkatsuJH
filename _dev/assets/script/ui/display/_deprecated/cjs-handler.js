@@ -45,11 +45,11 @@ var CjsHandler;
 				this.mainTickListener = _.bind(function(e){
 					var label = this.foreMc.currentLabel;
 					if(currentLabel !== label){
-						if(cjsEvents.labelOut[currentLabel]){
-							cjsEvents.labelOut[currentLabel].call(this);
+						if(gCjsEvents.labelOut[currentLabel]){
+							gCjsEvents.labelOut[currentLabel].call(this);
 						}
-						if(cjsEvents.label[label]){
-							cjsEvents.label[label].call(this);
+						if(gCjsEvents.label[label]){
+							gCjsEvents.label[label].call(this);
 						}
 					}
 					currentLabel = label;

@@ -94,7 +94,7 @@ var AnimationHandler;
 				cjsStage.stage.autoClear = false;
 				
 				var animator = Animators.basic[movieOptions.type];
-				var init = Animators.basic[movieOptions.type + '_init'];
+				var initFunc = Animators.basic[movieOptions.type + '_init'];
 				
 				this.addTask({
 					'id':'mainCjs_' + mc.root,
@@ -110,8 +110,8 @@ var AnimationHandler;
 					'currentLabel': '',
 					'onInit':function(){
 						that._onCjsInitListener();
-						if(init){
-							_.bind(init, this)(cjsStage, movieOptions, mc);
+						if(!_.isUndefined(initFunc)){
+							_.bind(initFunc, this)(cjsStage, movieOptions, mc);
 						}
 					},
 					'onTicked': function(e){
@@ -390,11 +390,11 @@ var AnimationHandler;
 		
 		stopCjs:function(){
 			
-			if(_.isFunction(cjsEvents.end)){
-				cjsEvents.end();
+			if(_.isFunction(gCjsEvents.end)){
+				gCjsEvents.end();
 			};
 			cjsOptions = {};
-			cjsEvents = {};
+			gCjsEvents = {};
 			
 			$('.eventHitArea').remove();
 			
