@@ -68,7 +68,7 @@ var DomHandler;
 				DocProcessor[type](newDoc);
 				if(type === 'plain'){
 					var bg = $(newDoc).find('article').attr('data-doc-bg');
-					cjsOptions = {
+					gCjsOptions = {
 						'movieOptions':{
 							'bg':bg,
 						},
@@ -76,9 +76,9 @@ var DomHandler;
 					}
 				}
 				
-				cjsOptions.movieOptions.type = type;
+				gCjsOptions.movieOptions.type = type;
 				
-				this._loadCompleteListener(cjsOptions);
+				this._loadCompleteListener(gCjsOptions);
 				
 			}, this));
 			

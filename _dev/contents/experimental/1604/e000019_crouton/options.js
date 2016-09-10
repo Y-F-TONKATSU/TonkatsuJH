@@ -1,4 +1,4 @@
-var cjsOptions = {
+var gCjsOptions = {
 	'movieOptions':{
 		'mcList':[
 			{
@@ -18,7 +18,7 @@ var cjsOptions = {
 		'tweener':Tweeners.basic.progress,
 	}
 };
-console.log(cjsOptions);
+console.log(gCjsOptions);
 var gCjsEvents = {
 	'label':{
 		'Scene004_stop':function(){

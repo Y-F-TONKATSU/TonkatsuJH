@@ -1,4 +1,4 @@
-var cjsOptions = {
+var gCjsOptions = {
 	'movieOptions':{
 		'mcList':[
 			{

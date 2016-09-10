@@ -12,7 +12,7 @@ var BASE_TITLE = 'とんかつ騎士団の公式ホームページ';
 var BASE_URL = 'ton-katsu.net/';
 
 var gCjsEvents = {};
-var cjsOptions = {};
+var gCjsOptions = {};
 
 var BUTTON_COLORS = {
 	'writing':{

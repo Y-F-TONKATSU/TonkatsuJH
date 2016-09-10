@@ -393,7 +393,7 @@ var AnimationHandler;
 			if(_.isFunction(gCjsEvents.end)){
 				gCjsEvents.end();
 			};
-			cjsOptions = {};
+			gCjsOptions = {};
 			gCjsEvents = {};
 			
 			$('.eventHitArea').remove();
