@@ -9,7 +9,7 @@ var ContentsUtil = {
 		var el;
 
 		if(Hash.HASH_REGEXP.test(hash)){
-			el = $('.widget_link[href="#!' + hash + '"]').parent();
+			el = $('.widget[data-hash="#!' + hash + '"]');
 		}
 		
 		return el;
@@ -24,7 +24,7 @@ var ContentsUtil = {
 
 	getUrl:function(hash){
 		
-		return $(ContentsUtil.getWidget(hash)).attr('data-url');
+		return $(ContentsUtil.getWidget(hash)).find('.widget_link').attr('href');
 			
 	},
 	

@@ -33,6 +33,24 @@ var DomHandler;
 				DocProcessor.mobileAdaption($('#indexContainer'));				
 			}
 			
+			$('.widget_link').click(function(e){
+				
+				var hash = $(this).parent().attr('data-hash');
+				window.location.href = hash;
+				
+				e.preventDefault();
+			
+			});
+			
+			$('.news, .menuItem').click(function(e){
+				
+				var hash = $(this).attr('data-hash');
+				window.location.href = hash;
+				
+				e.preventDefault();
+			
+			});
+			
 			DocProcessor.frameIn.fromLeft($('#indexContainer'), 1000, function(){
 			});
 			
@@ -47,6 +65,8 @@ var DomHandler;
 		},
 	
 		_loadDoc:function(url){
+			
+			console.log('Start Loading Doc by Ajax: ' + url);
 			
 			$.ajax({
 				'url': url,

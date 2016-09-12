@@ -10,7 +10,7 @@
 		<item>
 		
 			<title>パーリンノイズで遊ぶ - Nature of Code ひとり読書会 #000</title>
-			<link>http://ton-katsu.net/index.html#!experimental000021</link>
+			<link>http://ton-katsu.net/index.html/contents/experimental/1609/e000021_noc_000/main.html</link>
 			<description>ダニエル・シフマン『Nature of Code -Processingではじめる自然現象のシミュレーション』のひとり読書会です。今回はパーリンノイズを使っていろいろ描きます。</description>
 			<pubDate>Wed, 8 Sep 2016 18:00:00 +0900</pubDate>
 			
@@ -36,7 +36,7 @@
 		<item>
 		
 			<title>アンカーデザインパターン:とんかつ騎士団の技術メモ #001</title>
-			<link>http://ton-katsu.net/index.html#!writing000001</link>
+			<link>http://ton-katsu.net/index.html/contents/writing/1608/w000001.html</link>
 			<description>AJAX などで動的に書き換えられた DOM の状態を、ブラウザの「進む」「戻る」やブックマークに対応させるテクニックを解説。</description>
 			<pubDate>Sun, 21 Aug 2016 00:00:00 +0900</pubDate>
 			
@@ -58,7 +58,7 @@
 		<item>
 		
 			<title>JavaScript と Canvas で作る、アリの行動シミュレータ</title>
-			<link>http://ton-katsu.net/index.html#!experimental000020</link>
+			<link>http://ton-katsu.net/index.html/contents/experimental/1608/e000020_ant/main.html</link>
 			<description>フェロモンで仲間にエサの位置を知らせるアリの集団行動モデル(フェロモン・トレイルモデル) を、 JavaScript と HTML5 の新要素 Canvas でシミュレートします。</description>
 			<pubDate>Wed, 10 Aug 2016 22:00:00 +0900</pubDate>
 			
@@ -84,7 +84,7 @@
 		<item>
 		
 			<title>クルトンの作り方</title>
-			<link>http://ton-katsu.net/index.html#!experimental000019</link>
+			<link>http://ton-katsu.net/index.html/contents/experimental/1604/e000019_crouton/main.html</link>
 			<description>クルトンの作り方の紹介です。フランスパンと大臣(経済再生担当大臣などでもOK)だけで簡単に作れます。</description>
 			<pubDate>Sat, 30 Jul 2016 10:00:00 +0900</pubDate>
 			

@@ -130,9 +130,9 @@ module.exports = function(grunt) {
 		"\t\t<meta property='og:site_name' content='" + siteName + "' />\n" +
 		"\t\t<meta property='og:description' content='" + description + "' />\n" +
 		"\t\t<meta property='fb:admins' content='100001501165698' />\n\n" +
-		"\t\t<link rel='index' href='" + index + "' />\n" +
-		"\t\t<link rel='prev' href='" + prev + "' />\n" +
-		"\t\t<link rel='next' href='" + next + "' />\n\n" +
+		//"\t\t<link rel='index' href='" + index + "' />\n" +
+		//"\t\t<link rel='prev' href='" + prev + "' />\n" +
+		//"\t\t<link rel='next' href='" + next + "' />\n\n" +
 		"\t\t<link rel='shortcut icon' href='/favicon.ico' />\n\n" +
 		"\t\t<title>" + title + "</title>\n\n" +
 		"\t\t<script type='text/javascript'>\n" +
@@ -313,8 +313,8 @@ module.exports = function(grunt) {
 				
 				var icon = "<img class='widget_categoryIcon' src='assets/images/category/category_" + category + "_min.png'>";
 		
-				list += "<section class='widget " + category + pos + "' data-url='" + url + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
-				"\t\t\t\t\t<a class='widget_link' href='" + hash + "'>\n\n" +
+				list += "<section class='widget " + category + pos + "' data-hash='" + hash + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
+				"\t\t\t\t\t<a class='widget_link' href='" + url + "'>\n\n" +
 				"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 				"\t\t\t\t\t\t" + icon + "\n" +
 				"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
@@ -393,7 +393,7 @@ module.exports = function(grunt) {
 				var month = d.getUTCMonth() + 1;
 				var date = year + '年 ' + month + '月';
 		
-				list += "<a class='news' href='" + hash + "' data-news-category='" + category + "' data-news-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
+				list += "<a class='news' href='" + url + "' data-hash='" + hash + "' data-news-category='" + category + "' data-news-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
 				"\t\t\t\t\t\t<div class='news_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 				"\t\t\t\t\t\t<h3 class='news_title'>" + title + "</h3>\n" + 
 				"\t\t\t\t\t\t<img class='news_mainThumb' src='" + mainThumb + "'>\n" + 
@@ -467,7 +467,7 @@ module.exports = function(grunt) {
 				var month = d.getUTCMonth() + 1;
 				var date = year + '年 ' + month + '月';
 		
-				list += "<a class='menuItem' href='" + hash + "' data-menu-category='" + category + "' data-menu-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
+				list += "<a class='menuItem' href='" + url + "' data-hash='" + hash + "' data-menu-category='" + category + "' data-menu-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
 				"\t\t\t\t\t\t<img class='menu_thumb' data-src='" + mainThumb + "'>\n" + 
 				"\t\t\t\t\t\t<div class='menu_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 				"\t\t\t\t\t\t<h3 class='menu_title'>" + title + "</h3>\n" + 
