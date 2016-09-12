@@ -153,7 +153,7 @@ Tonkatsu.onResize = function(e){
 
 $(window).load(function(){
 	console.log('Doc Load Complete');
-	$('#splashScreen').css('visibility', 'visible');
+	
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
 	setTimeout(function(){

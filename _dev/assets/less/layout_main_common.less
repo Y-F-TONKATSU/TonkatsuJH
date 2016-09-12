@@ -10,7 +10,7 @@
 @ZI_MENU:9;
 @ZI_MENU_HITAREA:10;
 @ZI_SHADOW:11;
-@ZI_SPLASH:-1;
+@ZI_SPLASH:12;
 
 .full{
 }
@@ -49,8 +49,13 @@
 #splashScreen{
 	background-color:black;
 	z-index:@ZI_SPLASH;
-	visibility:hidden;
 	pointer-events:none;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+	position:fixed;
+	visibility:hidden;
 }
 
 #splashScreenText{
