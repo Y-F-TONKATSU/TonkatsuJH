@@ -422,7 +422,7 @@ var AnimationHandler;
 			
 			cjsStage.ch = this._chList[containerId];
 			cjsStage.canvas = cjsStage.ch.getCanvas();
-			cjsStage.root =  new cjsNavigationLib.MenuPanel;	
+			cjsStage.root =  new gCjsNavigationLib.MenuPanel;	
 			cjsStage.stage = new createjs.Stage(cjsStage.canvas);
 			cjsStage.stage.addChild(cjsStage.root);
 			cjsStage.stage.autoClear = false;
@@ -503,13 +503,13 @@ var AnimationHandler;
 					this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 					
 					CjsUtil.load({
-						'images':cjsNavigationImages,
+						'images':gCjsNavigationImages,
 						'manifest':	[
 							{src:"contents/experimental/1604/e000019_crouton/images/face.png", id:"face"},
 							{src:"assets/images/share/nobuteru_clip.png", id:"nobuteru_clip"}
 						],
 						'completeListener':_.bind(function(){
-							this.vars.root = new cjsNavigationLib.SharePanel;	
+							this.vars.root = new gCjsNavigationLib.SharePanel;	
 							this.vars.root.shareClips.visible = false;
 							this.vars.stage.addChild(this.vars.root);
 							this.vars.stage.autoClear = false;
@@ -588,13 +588,13 @@ var AnimationHandler;
 					this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 					
 					CjsUtil.load({
-						'images':cjsNavigationImages,
+						'images':gCjsNavigationImages,
 						'manifest':	[
 							{src:"assets/images/index_bg/door_way.png", id:"door_way"},
 							{src:"assets/images/index_bg/tunnel.png", id:"tunnel"},
 						],
 						'completeListener':_.bind(function(e){
-							this.vars.root = new cjsNavigationLib.Tunnel();	
+							this.vars.root = new gCjsNavigationLib.Tunnel();	
 							this.vars.stage.addChild(this.vars.root);
 							this.vars.stage.autoClear = false;
 							this.vars.stage.update(e);

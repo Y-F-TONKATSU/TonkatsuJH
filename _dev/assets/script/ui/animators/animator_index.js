@@ -396,15 +396,15 @@ if(!Animators){var Animators = {};}
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
 			
 			CjsUtil.load({
-				'images':cjsNavigationImages,
+				'images':gCjsNavigationImages,
 				'manifest':	[
 					{src:"assets/images/index_bg/lw.png", id:"lw"}
 				],
 				'completeListener':_.bind(function(){
 					if($('#indexMainTitle').data('complete') === 'true'){
-						this.vars.root = new cjsNavigationLib.Tunnel_fore_complete();	
+						this.vars.root = new gCjsNavigationLib.Tunnel_fore_complete();	
 					} else {
-						this.vars.root = new cjsNavigationLib.Tunnel_fore();	
+						this.vars.root = new gCjsNavigationLib.Tunnel_fore();	
 					}
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;

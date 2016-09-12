@@ -115,9 +115,9 @@ var NavigationHandler;
 		this._buttons = [];
 		this._hitAreaHandler = hitAreaHandler;
 		
-		this._homeButton = new NavigationButton(events.onHomeClicked, new cjsNavigationLib.navigation().homeButton);
-		this._menuButton = new NavigationButton(events.onMenuClicked, new cjsNavigationLib.navigation().menuButton);
-		this._shareButton = new NavigationButton(events.onShareClicked, new cjsNavigationLib.navigation().shareButton);
+		this._homeButton = new NavigationButton(events.onHomeClicked, new gCjsNavigationLib.navigation().homeButton);
+		this._menuButton = new NavigationButton(events.onMenuClicked, new gCjsNavigationLib.navigation().menuButton);
+		this._shareButton = new NavigationButton(events.onShareClicked, new gCjsNavigationLib.navigation().shareButton);
 		
 		this._homeButton.x = PADDING;
 		this._menuButton.x = PADDING;

@@ -14,11 +14,15 @@ $(function(){
 	stage.addChild(s);
 	stage.update();	
 	
-	var t = 0;
+	var t = 100;
 	
-	createjs.Ticker.addEventListener('tick', function(){
-		t++;
-		g.drawCircle(Math.random() * 20,t % 10 * 30 + Math.random() * 5,30);
+	createjs.Ticker.addEventListener('tick', function(e){
+		g.clear();
+		g.setStrokeStyle(1);
+		g.beginStroke(createjs.Graphics.getRGB(255,255,0));
+		g.beginFill(createjs.Graphics.getRGB(255,0,0));
+		t += e.delta * 0.01;
+		g.drawCircle(t, 100, 50);
 		stage.update();	
 	})
 	
