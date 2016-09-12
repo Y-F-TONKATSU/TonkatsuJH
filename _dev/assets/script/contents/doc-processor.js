@@ -109,6 +109,24 @@ var DocProcessor = {
 			
 		}
 		
+		$('.widget_link').click(function(e){
+			
+			var hash = $(this).parent().attr('data-hash');
+			window.location.href = hash;
+			
+			e.preventDefault();
+		
+		});
+		
+		$('.news, .menuItem').click(function(e){
+			
+			var hash = $(this).attr('data-hash');
+			window.location.href = hash;
+			
+			e.preventDefault();
+		
+		});
+		
 		//$(doc).find('#indexAphorism').html(ContentsUtil.getRandomAphorism());
 		
 	},

@@ -32,25 +32,7 @@ var DomHandler;
 			if(DisplayUtil.getSize() !== 'large'){
 				DocProcessor.mobileAdaption($('#indexContainer'));				
 			}
-			
-			$('.widget_link').click(function(e){
-				
-				var hash = $(this).parent().attr('data-hash');
-				window.location.href = hash;
-				
-				e.preventDefault();
-			
-			});
-			
-			$('.news, .menuItem').click(function(e){
-				
-				var hash = $(this).attr('data-hash');
-				window.location.href = hash;
-				
-				e.preventDefault();
-			
-			});
-			
+						
 			DocProcessor.frameIn.fromLeft($('#indexContainer'), 1000, function(){
 			});
 			
@@ -127,10 +109,23 @@ var DomHandler;
 				}
 				
 				DisplayUtil.rectToCss(rect, elem);
-			})
+				
+			});
 			
-		},		
+		},
 		
+		initFullScreenElems:function(elems){
+			
+			$(elems).css({
+				'position':'fixed',
+				'left':'0%',
+				'top':'0%',
+				'width':'100%',
+				'height':'100%'
+			});
+						
+		},		
+
 		showMenu:function(onHideListener){
 			
 			this._onHideListener = onHideListener;
