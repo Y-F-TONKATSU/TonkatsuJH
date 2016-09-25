@@ -42,6 +42,8 @@ var DomHandler;
 				});
 			}
 			
+			$('title').text(BASE_TITLE);
+			
 			this._loadCompleteListener('index');
 			
 		},
@@ -66,6 +68,10 @@ var DomHandler;
 				
 				console.log('New Doc Loaded by Ajax');
 				console.log('type: ' + type);
+				console.log('title: ' + title);
+				
+				var title = $(newDoc).find('title').text();
+				$('title').text(title + ' - ' + BASE_TITLE);
 				
 				DocProcessor[type](newDoc);
 				if(type === 'plain'){
