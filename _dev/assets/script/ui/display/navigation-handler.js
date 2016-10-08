@@ -236,7 +236,7 @@ var NavigationHandler;
 				height:BUTTON_SIZE,
 				left:PADDING,
 				top:MARGIN_TOP
-			}, '#', this._homeButton.onClick);
+			}, '#index', this._homeButton.onClick);
 							
 			this.activate();
 			

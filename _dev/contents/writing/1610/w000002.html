@@ -1,0 +1,556 @@
+<!doctype html>
+
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--writing000002-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--writing000002-->
+		
+		<article class='w000001' data-doc-type='plain' data-doc-bg='javascript'>
+								
+			<!--cjs--writing000002-->
+            
+			<section data-cjs-scene='Main' class='left'>
+				
+				<h1>Adobe Animate と CreateJS を実際のサイト制作に使う</h1>
+				
+				<p>
+					遅ればせながら、<br>
+					Adobe Animate と CreateJS を<br>
+					実際のサイト制作で<br>
+					使ってみているので、<br>
+					扱う上でのポイントを<br>
+					メモしていく。
+				</p>
+				
+				<p>
+					初回は Ticker と<br>
+					アニメーションループについて書く。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>タイマの集中管理</h1>
+				
+				<p>
+					JavaScript で<br>
+					アニメーションを扱う際の<br>
+					定石の一つに、<br>
+					タイマの集中管理がある。
+				</p>
+								            
+				<p>
+                	<!--ad--book_js_ninja-->
+					『JavaScript Ninja の極意』に<br>
+					「8.4 タイマの集中管理」<br>
+					という節があり、<br>
+					詳しい説明がある。<br>
+					一つのページに一つのタイマ、<br>
+					という原則を<br>
+					パフォーマンスと柔軟性の面から<br>
+					説いている。
+				</p>
+								            
+				<p>
+					CreateJS もこの原則に従い、<br>
+					Ticker というオブジェクトで<br>
+					タイマを集中管理する。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+			
+				<h1>Ticker の基本的な使い方</h1>
+
+				<p>
+					まずは、Adobe Animate のことは<br>
+					しばらく忘れて、<br>
+					素の JavaScript に<br>
+					タイマの集中管理のためだけに<br>
+					CreateJS を導入することを<br>
+					考えてみる。<br>
+					(実際そういう使い方も<br>
+					できることはできる)
+				</p>
+				
+				<p>
+					Ticker は createjs 名前空間内に<br>
+					Singleton 風味に定義されていて、<br>
+					new せずに使う。<br>
+					↓こんな感じ。
+				</p>
+
+<pre>
+var numTick = 0;
+
+//tick イベントのインターバルを 24回 / 秒 に設定
+createjs.Ticker.framerate = 24;
+
+createjs.Ticker.addEventListener('tick', function(){
+
+	//tick イベントが何回実行されたかをログ出力
+	console.log(numTick + ' 回目の tick');
+	
+	numTick++;
+	
+});
+</pre>
+
+				<p>
+					framerate プロパティで<br>
+					フレームレートを設定できる。
+				</p>
+
+				<p>
+					addEventListener メソッドで<br>
+					tick イベントに<br>
+					リスナー関数を登録すると、<br>
+					指定したフレームレートで<br>
+					リスナー関数がループ実行される。
+				</p>
+
+				<p>
+					なお、addEventListener で<br>
+					tick イベントのリスナーを<br>
+					初めて追加すると、<br>
+					createjs.Tikcker.init() が<br>
+					内部で勝手に呼び出されて、<br>
+					ループが回り始める。<br>
+					なので、明示的に<br>
+					ループを開始する必要はない。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>timingMode</h1>
+				
+				<p>
+					tick イベントは、<br>
+					内部では setTimeout または<br>
+					requestAnimationFrame によって、<br>
+					送出される。<br>
+					どちらを使うかは<br>
+					timingMode プロパティによって<br>
+					決まる。
+				</p>
+
+				<p>
+					timingMode プロパティは<br>
+					以下の3つの定数値を取る。<br>
+					<ul>
+						<li>TIMEOUT (デフォルト)</li>
+						<li>RAF_SYNCHED</li>
+						<li>RAF</li>
+					</ul>
+					<br>
+					TIMEOUT の場合は<br>
+					setTimeout が、<br>
+					RAF_SYNCHED と RAF の場合は<br>
+					requestAnimationFrame が<br>
+					使われる。
+				</p>
+
+				<p>
+					以下、違いを理解するために、<br>
+					JavaScript での<br>
+					アニメーションプログラミングの<br>
+					基本を確認する。
+				</p>
+
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+			
+				<h1>setTimeout</h1>
+				
+				<p>
+					JavaScript で<br>
+					アニメーションループを回すには<br>
+					setTimeout/setInterval と<br>
+					requestAnimationFrame の<br>
+					2つの選択肢がある。
+				</p>
+				
+				<p>
+					まずは setTimeout の例。
+				</p>
+				
+<pre>
+var n = 0;
+
+var animate = function(){
+
+	//animate 関数が何回実行されたかをログ出力
+	n++;
+	console.log(n + ' 回目の実行');
+	
+	//インターバルを 24回 / 秒 に設定
+	setTimeout(animate,  1000 / 24);
+	
+};
+</pre>
+				
+				<p>
+					setTimeout は<br>
+					タイミングが重要な<br>
+					アニメーションなどを<br>
+					想定した API ではないので、<br>
+					アニメーションプログラムでは<br>
+					推奨されない。<br>
+					(実際使ってみると、<br>
+					実用の範囲内だったりはするのだが)
+				</p>
+				
+				<p>
+					上記の例では<br>
+					animate 関数が実行された<br>
+					回数を表示している。<br>
+					FPS が 24 なので、<br>
+					Ticker は 1 秒に 24 回<br>
+					tick イベントを送出する<br>
+					…のであれば話は早いのだが、<br>
+					実際は CPU 負荷等の状況によって、<br>
+					ブラウザは関数の実行を<br>
+					遅らせることができる。
+				</p>
+								            
+				<p>
+					なので、<br>
+					「関数が実行された回数」<br>
+					を基準にアニメーションを<br>
+					再生すると、<br>
+					アニメーションのタイミングは<br>
+					保証されない。<br>
+					この辺も<br>
+					『JavaScript Ninja の極意』の<br>
+					8 章の説明が詳しくて<br>
+					参考になる。<br>
+                	<!--ad--book_js_ninja-->
+				</p>
+				
+				<p>
+					例えば、<br>
+					下記のようなコードを書くと、<br>
+					表示される経過時間と<br>
+					実際の経過時間は<br>
+					どんどんずれていく。
+				</p>
+				
+<pre>
+var currentFrame = 0;
+var FRAME_RATE = 24;
+
+var animate = function(){
+
+	//animate 関数の実行回数をフレームレートで割って経過時間を算出
+	var currentSec = Math.floor(currentFrame / FRAME_RATE);
+	console.log(currentSec + ' 秒経過!');
+	
+	currentFrame++;
+	
+	setTimeout(animate,  1000 / FRAME_RATE);
+	
+};
+</pre>
+
+				<p>
+					1 秒後に<br>
+					'1 秒経過!',<br>
+					2 秒後に<br>
+					'2 秒経過!',<br>
+					..<br>
+					と表示されそうだが、<br>
+					実際は、<br>
+					ブラウザが関数の実行を<br>
+					遅らせるたびに、<br>
+					表示される経過時間と<br>
+					実際の経過時間は<br>
+					どんどんずれていく。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>requestAnimationFrame</h1>
+				
+				<p>
+					そこで、推奨されるのが<br>
+					requestAnimationFrame である。<br>
+					(requestAnimationFrame の仕様は<br>
+					<a target='_blank' href='https://www.w3.org/TR/animation-timing/'>
+					Timing control for script-based animations<br>
+					</a> を参照)
+				</p>
+				
+				<p>
+					requestAnimationFrame では、<br>
+					フレームレートの指定は行わず、<br>
+					実行するタイミングについては<br>
+					完全にブラウザ任せになる。<br>
+					最適なフレームレートは<br>
+					実行環境で変わるんだから、<br>
+					実行時に決めるしかないだろう、<br>
+					といったところだろうか。
+				</p>
+				
+				<p>
+					なので、<br>
+					アニメーションを再生する関数は<br>
+					タイミングがわからない前提で<br>
+					書く必要がある。<br>
+					具体的には、<br>
+					現在の関数の実行までに<br>
+					経過した時間を<br>
+					自分で取得する。<br>
+					↓こんな感じ。
+				</p>
+				
+<pre>
+var startTime = window.performance.now();
+
+var animate = function(){
+	
+	//経過時間を算出
+	var currentTime = window.performance.now() - startTime;
+	
+	//経過時間を秒単位で算出してログ出力
+	var currentSec = Math.floor(currentTime / 1000);
+	console.log(currentSec + ' 秒経過!');
+	
+	requestAnimationFrame(animate);
+	
+};
+
+requestAnimationFrame(animate);
+</pre>
+
+				<p>
+					これで、ある程度正確に<br>
+					時間の経過を表示できる。
+				</p>
+				
+				<p>
+					実は setTimeout でも、<br>
+					上記の例のように<br>
+					自分で経過時間を計算すれば、<br>
+					アニメーション再生のタイミングは<br>
+					大きくずれなかったりもする。
+				</p>
+				
+				<p>
+					requestAnimationFrame の利点は、<br>
+					環境によって変化する<br>
+					関数を実行する最適なタイミングを<br>
+					ブラウザが実行時に決めてくれる、<br>
+					という点と、<br>
+					関数の実行方法の効率が良い、<br>
+					という点あたりになる。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+			
+				<h1>RAF_SYNCHED</h1>
+				
+				<p>
+					timingMode の話に戻る。<br>
+					timingMode プロパティに<br>
+					指定できる TIMEOUT と RAF は<br>
+					それぞれ<br>
+					setTimeout と<br>
+					requestAnimationFrame に<br>
+					対応している。
+				</p>
+
+				<p>
+					なので、RAF を指定した場合は<br>
+					自分で経過時間を計算する必要がある。<br>
+					(framerate プロパティの<br>
+					設定は無視される。)<br>
+					ただし、<br>
+					前回の tick イベントから<br>
+					今回の tick イベントまでに<br>
+					経過した時間(デルタ時間)が<br>
+					tick イベントの<br>
+					イベントオブジェクトの<br>
+					delta プロパティに<br>
+					ミリ秒単位で格納されているので、<br>
+					多少楽に書ける。<br>
+					↓こんな感じ。
+				</p>
+
+<pre>
+var currentFrame = 0;
+
+//タイミングモードを RAF に変更
+createjs.Ticker.timingMode = createjs.Ticker.RAF;
+
+createjs.Ticker.addEventListener('tick', function(e){
+
+	//経過時間を計算
+	currentFrame += e.delta;
+	
+	//経過時間を秒単位でログ出力
+	var sec = Math.floor(currentFrame * 0.001);
+	console.log(sec + ' 秒経過!');
+	
+});
+</pre>
+
+				<p>
+					では RAF_SYNCHED は<br>
+					何なのかというと、<br>
+					requestAnimationFrame を使いつつ、<br>
+					できるだけ framerate プロパティの<br>
+					設定も尊重してくれる。<br>
+					RAF の利点<br>
+					(実行効率の良さ)と<br>
+					TIMEOUT の利点<br>
+					(デルタ時間を気にせずにかける楽さ)<br>
+					のいいとこ取りといえる。
+				</p>
+
+				<p>
+					なら、これがデフォルトでいいんじゃ…<br>
+					と思うのだが、<br>
+					<a target='_blank' href='http://www.createjs.com/docs/easeljs/classes/Ticker.html#property_RAF_SYNCHED'>
+					マニュアル</a>によると<br>
+					TIMEOUT よりも、<br>
+					フレームレートとのズレが<br>
+					大きくなる傾向があるようで、<br>
+					デフォルトは TIMEOUT になっている。
+				</p>
+
+				<p>
+					筆者が試してみた感じ、<br>
+					ほとんど差はなさそうではあった。
+				</p>
+
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>requestAnimationFrame のポリフィル</h1>
+				
+				<p>
+					requestAnimationFrame は<br>
+					比較的新しい機能で、<br>
+					全てのブラウザで<br>
+					サポートされている保証がない。<br>
+					サポートされていない場合、<br>
+					setTimeout や setInterval に<br>
+					フォールバックする必要がある。<br>
+                	<!--ad--book_canvas-->
+					『プログラミング HTML5 Canvas』の<br>
+					5章の解説が詳しい。
+				</p>
+								            								            
+				<p>
+					これも CreateJS では<br>
+					Ticker がやってくれる。<br>
+					<a target='_blank' href='http://www.createjs.com/docs/easeljs/files/createjs_utils_Ticker.js.html#l575'>このへん</a>
+					のコードを参照。
+				</p>
+				
+			</section>
+			
+			<section data-cjs-scene='Main' class='left'>
+			
+				<h1>removeEventListener</h1>
+				
+				<p>
+					リスナーを削除するには<br>
+					removeEventListener に<br>
+					add したときと<br>
+					同じ関数への参照を渡せばよい。
+				</p>
+								
+				<p>
+					例として、<br>
+					コンストラクタに関数と<br>
+					PLAY ボタンと<br>
+					STOP ボタンを渡すと、<br>
+					簡易なプレイヤーを作ってくれる<br>
+					関数を考えてみる。
+				</p>
+								
+<pre>
+var makePlayer = function(action, playButton, stopButton){
+	
+	$(playButton).click(function(){
+		createjs.Ticker.addEventListener('tick', action);
+	});
+	
+	$(stopButton).click(function(){
+		createjs.Ticker.removeEventListener('tick', action);
+	});
+	
+};
+
+makePlayer(function(){
+	console.log('playing');
+}, $('#playButton'), $('#stopButton'));
+</pre>
+
+			</section>
+			
+			<section data-cjs-scene='Main' class='right'>
+			
+				<h1>handleEvent</h1>
+				
+				<p>
+					実は tick イベントの<br>
+					イベントリスナーには<br>
+					関数だけではなく、<br>
+					オブジェクトも指定できる。<br>
+					その場合、そのオブジェクトの<br>
+					handleEvent メソッドが、<br>
+					tick イベントが送出されるたびに<br>
+					実行される。<br>
+					↓こんな感じ。
+				</p>
+				
+<pre>				
+var o = {
+	'handleEvent': function(e){
+		console.log('tick されてる！');
+	}
+};
+
+createjs.Ticker.addEventListener('tick', o);
+</pre>
+
+				<p>
+					Stage 等のクラスも<br>
+					handleEvent メソッドを持っており、<br>
+					Adobe Animate が出力するコードは<br>
+					この仕組みを使って、<br>
+					ムービーを再生する。
+				</p>
+				
+				<p>
+					次回はそのあたりの話を書いていく。
+				</p>
+				
+			</section>
+			
+		</article>
+		
+		<!--footer--writing000002-->
+		
+	</body>
+	
+</html>

@@ -5,19 +5,54 @@
 	<head>
 	
 		<meta charset='utf-8'>
-		<title>とんかつ騎士団の公式ホームページ</title>
-		<meta name='description' content='とんかつとは何か？ それは力が高まり何も阻むものが無いという感覚だ。 - フリードリヒ・ニーチェ' />
+
+		<?php 
+			$parameter = $_GET['id'];
+			
+			$cont = simplexml_load_file('contents.xml');
+			$mainTitle = $cont->channel->title;
+			$url = $cont->channel->link;
+			$thumb = $cont->channel->mainThumb;
+			$description = $cont->channel->description;
+			
+			$target = '';
+			$file = '';
+			foreach ($cont->channel->item as $item) {
+				$id = $item->category . $item->id;
+				
+				if($parameter == $id){
+					
+					$target = $id;
+					
+					$title = $item->title;
+					$file = $item->file;
+					$url = $item->link;
+					$thumb = $item->mainThumb;
+					$description = $item->description;
+					
+					$dom = new DOMDocument();
+					$dom->loadHTMLFile($file);
+				}
+			}
+			
+			$isIndex = ($target == '');
+			if($isIndex){
+				$title = $mainTitle;
+			}
+		?>
+		
+		<title><?php echo $title ?></title>
+		<meta name='description' content='<?php echo $description ?>' />
 		
 		<link rel="shortcut icon" href="favicon.ico" />
-
 		
 		<!--OG TAGS-->
-		<meta property='og:title' content='とんかつ騎士団の公式ホームページ' />
+		<meta property='og:title' content='<?php echo $title ?>' />
 		<meta property='og:type' content='website' />
-		<meta property='og:url' content='http://ton-katsu.net/' />
-		<meta property='og:image' content='http://ton-katsu.net/assets/images/common/og.jpg' />
-		<meta property='og:site_name' content='とんかつ騎士団の公式ホームページ' />
-		<meta property='og:description' content='とんかつとは何か？ それは力が高まり何も阻むものが無いという感覚だ。 - フリードリヒ・ニーチェ' />
+		<meta property='og:url' content='<?php echo $url ?>' />
+		<meta property='og:image' content='<?php echo $thumb ?>' />
+		<meta property='og:site_name' content='<?php echo $mainTitle ?>' />
+		<meta property='og:description' content='<?php echo $description ?>' />
 		
 		<meta property='fb:admins' content='100001501165698' />
 		
@@ -106,6 +141,18 @@
                 data-layout-height='1'
                 data-layout-left='0'
                 data-layout-top='0'>
+			
+				<?php 
+					if(!$isIndex){
+						$item = $dom->getElementsByTagName('article')->item(0);
+						$article =  new DOMDocument('1.0', 'utf-8');
+						$article->createElement('test');
+						$i = $article->importNode($item, true);
+						$article->appendChild($i);
+						echo mb_convert_encoding($article->saveHTML(), 'HTML-ENTITIES', 'UTF-8');
+					}
+				?>
+					
             </article>
 			
 			

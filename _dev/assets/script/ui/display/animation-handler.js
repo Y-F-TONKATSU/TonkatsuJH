@@ -151,6 +151,7 @@ var AnimationHandler;
 		init:function(frameRate){
 			
 			createjs.Ticker.setFPS(frameRate);
+			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
 			
 			createjs.Ticker.addEventListener('tick', _.bind(function(e){
 				

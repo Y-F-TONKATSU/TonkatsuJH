@@ -317,6 +317,17 @@ if(!Animators){var Animators = {};}
 			
 		},
 		
+		'w000002_fore':function(e){
+			
+			if(this.vars.root){
+				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+					this.vars.root.stop();
+				}
+				this.vars.stage.update(e);
+			}
+			
+		},
+		
 		'w000001_fore_init':function(e){
 			
 			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
@@ -328,6 +339,25 @@ if(!Animators){var Animators = {};}
 				],
 				'completeListener':_.bind(function(){
 					this.vars.root = new gCjsWidgetLib.w000001();	
+					this.vars.stage.addChild(this.vars.root);
+					this.vars.stage.autoClear = false;
+					this.vars.stage.update();
+				}, this)
+			});
+			
+		},
+		
+		'w000002_fore_init':function(e){
+			
+			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+			
+			CjsUtil.load({
+				'images':gCjsWidgetImages,
+				'manifest':	[
+					{src:"assets/images/thumb/w000002.png", id:"thumb_w000002"},
+				],
+				'completeListener':_.bind(function(){
+					this.vars.root = new gCjsWidgetLib.w000002();	
 					this.vars.stage.addChild(this.vars.root);
 					this.vars.stage.autoClear = false;
 					this.vars.stage.update();

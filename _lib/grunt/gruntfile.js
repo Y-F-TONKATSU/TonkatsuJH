@@ -116,12 +116,13 @@ module.exports = function(grunt) {
 			var thumb = items[i].mainThumb;
 		}
 		var siteName = 'とんかつ騎士団の公式ホームページ';
-		var index = "http://ton-katsu.net/#!" + category + "000000";
+		var index = "http://ton-katsu.net/#id=" + category + "000000";
 		var current = "http://ton-katsu.net/index.html#!" + category + id;
 		var prev = "http://ton-katsu.net/index.html#!" + category + fillDigits(parseInt(id) - 1);
 		var next = "http://ton-katsu.net/index.html#!" + category + fillDigits(parseInt(id) + 1);
 		
-		var tags = "<meta name='keywords' content='" + keywords + "' />\n" + 
+		var tags = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\n" + 
+		"<meta name='keywords' content='" + keywords + "' />\n" + 
 		"\t\t<meta name='description' content='" + description + "' />\n" +
 		"\t\t<meta property='og:title' content='" + title + "' />\n" + 
 		"\t\t<meta property='og:type' content='" + type + "' />\n" +
@@ -254,6 +255,7 @@ module.exports = function(grunt) {
 				var category = items[i].category;
 				var id = items[i].id;
 				var url = items[i].file;
+				var link = items[i].link;
 				
 				var subCategory;
 				if (!items[i].subCategory){
@@ -270,7 +272,7 @@ module.exports = function(grunt) {
 				}
 				
 				var animation = items[i].animation;
-				var hash = '#!' + category + id;
+				var hash = '#id=' + category + id;
 				var title = escapeText(items[i].title);
 				var description = escapeText(items[i].description);
 				
@@ -314,7 +316,7 @@ module.exports = function(grunt) {
 				var icon = "<img class='widget_categoryIcon' src='assets/images/category/category_" + category + "_min.png'>";
 		
 				list += "<section class='widget " + category + pos + "' data-hash='" + hash + "' data-widget-category='" + category + "' data-widget-sub-category='" + subCategory + "' data-widget-series='" + series + "' data-animation='" + animation + "'>\n\n" + 
-				"\t\t\t\t\t<a class='widget_link' href='" + url + "'>\n\n" +
+				"\t\t\t\t\t<a class='widget_link' href='" + hash + "'  data-src='" + url + "' data-link='" + link + "'>\n\n" +
 				"\t\t\t\t\t\t<div class='widget_title'>" + title + "</div>\n" + 
 				"\t\t\t\t\t\t" + icon + "\n" +
 				"\t\t\t\t\t\t<div class='widget_description'>" + description + "</div>\n" +
@@ -365,7 +367,7 @@ module.exports = function(grunt) {
 				}
 				
 				var animation = items[i].animation;
-				var hash = '#!' + category + id;
+				var hash = '#id=' + category + id;
 				var title = escapeText(items[i].title);
 				var description = escapeText(items[i].description);
 				
@@ -393,7 +395,7 @@ module.exports = function(grunt) {
 				var month = d.getUTCMonth() + 1;
 				var date = year + '年 ' + month + '月';
 		
-				list += "<a class='news' href='" + url + "' data-hash='" + hash + "' data-news-category='" + category + "' data-news-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
+				list += "<a class='news' href='" + hash + "'  data-src='" + url + "' data-hash='" + hash + "' data-news-category='" + category + "' data-news-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
 				"\t\t\t\t\t\t<div class='news_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 				"\t\t\t\t\t\t<h3 class='news_title'>" + title + "</h3>\n" + 
 				"\t\t\t\t\t\t<img class='news_mainThumb' src='" + mainThumb + "'>\n" + 
@@ -439,7 +441,7 @@ module.exports = function(grunt) {
 				}
 				
 				var animation = items[i].animation;
-				var hash = '#!' + category + id;
+				var hash = '#id=' + category + id;
 				var title = escapeText(items[i].title);
 				var description = escapeText(items[i].description);
 				
@@ -467,7 +469,7 @@ module.exports = function(grunt) {
 				var month = d.getUTCMonth() + 1;
 				var date = year + '年 ' + month + '月';
 		
-				list += "<a class='menuItem' href='" + url + "' data-hash='" + hash + "' data-menu-category='" + category + "' data-menu-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
+				list += "<a class='menuItem' href='" + hash + "'  data-src='" + url + "' data-hash='" + hash + "' data-menu-category='" + category + "' data-menu-sub-category='" + subCategory + "' data-news-series='" + series + "'>\n\n" + 
 				"\t\t\t\t\t\t<img class='menu_thumb' data-src='" + mainThumb + "'>\n" + 
 				"\t\t\t\t\t\t<div class='menu_date' data-year='" + year + "' data-month='" + month + "'>" + date + "</div>\n" +
 				"\t\t\t\t\t\t<h3 class='menu_title'>" + title + "</h3>\n" + 

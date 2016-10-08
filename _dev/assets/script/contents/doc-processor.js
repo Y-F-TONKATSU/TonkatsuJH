@@ -77,10 +77,11 @@ var DocProcessor = {
 			'marginBottom': h * 0.6,
 		}).end().find('.widget_mainThumb, .widget_title').hide();
 		
-		$('#mainDoc').empty()
+		/*$('#mainDoc').empty()
 			.html($(doc).find('article').html())
 			.scrollTop(0)
 			.scrollLeft(0);
+		*/
 		
 		$('#indexMainTitle').css({
 			'transform': 'rotate(0deg)',
@@ -108,24 +109,6 @@ var DocProcessor = {
 			
 			
 		}
-		
-		$('.widget_link').click(function(e){
-			
-			var hash = $(this).parent().attr('data-hash');
-			window.location.href = hash;
-			
-			e.preventDefault();
-		
-		});
-		
-		$('.news, .menuItem').click(function(e){
-			
-			var hash = $(this).attr('data-hash');
-			window.location.href = hash;
-			
-			e.preventDefault();
-		
-		});
 		
 		//$(doc).find('#indexAphorism').html(ContentsUtil.getRandomAphorism());
 		

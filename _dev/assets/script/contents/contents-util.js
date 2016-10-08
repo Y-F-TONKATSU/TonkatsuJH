@@ -9,7 +9,7 @@ var ContentsUtil = {
 		var el;
 
 		if(Hash.HASH_REGEXP.test(hash)){
-			el = $('.widget[data-hash="#!' + hash + '"]');
+			el = $('.widget[data-hash="#id=' + hash + '"]');
 		}
 		
 		return el;
@@ -24,7 +24,13 @@ var ContentsUtil = {
 
 	getUrl:function(hash){
 		
-		return $(ContentsUtil.getWidget(hash)).find('.widget_link').attr('href');
+		return $(ContentsUtil.getWidget(hash)).find('.widget_link').attr('data-src');
+			
+	},
+	
+	getLink:function(hash){
+		
+		return $(ContentsUtil.getWidget(hash)).find('.widget_link').attr('data-link');
 			
 	},
 	

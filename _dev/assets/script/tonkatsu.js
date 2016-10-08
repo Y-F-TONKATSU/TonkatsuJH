@@ -9,7 +9,7 @@ var animationHandler;
 
 var FPS = 24;
 var BASE_TITLE = 'とんかつ騎士団の公式ホームページ';
-var BASE_URL = 'ton-katsu.net/';
+var BASE_URL = 'http://ton-katsu.net/';
 
 var gCjsEvents = {};
 var gCjsOptions = {};
@@ -62,13 +62,12 @@ Tonkatsu.init = function(){
 		},
 		'onShareClicked':function(){
 			
-			var url = ContentsUtil.getUrl(urlHandler.getCurrentHashString());
-			if(!url){
+			var url = ContentsUtil.getLink(urlHandler.getCurrentHashString());
+			console.log(url);
+			if(_.isEmpty(url)){
 				url = BASE_URL;
-			} else {
-				url = BASE_URL + url;
 			}
-			
+			console.log(url + "!!!");
 			var title = ContentsUtil.getTitle(urlHandler.getCurrentHashString());
 			if(!title){
 				title = BASE_TITLE;
@@ -126,10 +125,26 @@ Tonkatsu.init = function(){
 
 Tonkatsu.onHashChanged = function(e){
 	
-	var hash = String(location.hash).substring(1);
-	if(hash.indexOf('!') === 0){
-		hash = hash.substring(1);
+	var hash = location.hash;
+	
+	if(hash.indexOf('#') === 0){
+		
+		var hash = String(location.hash).substring(1);//remove '#'
+		
+		if(hash.indexOf('!') === 0){
+			hash = hash.substring(1);//remove '!'
+		}
+		hash = hash.substring(3);//remove 'id='
+		
+	} else {
+		
+		var param = window.location.search;
+		if(param.length > 0){
+			hash = param.substring(4);
+		}
+		
 	}
+	
 	console.log('Hash Change Event Triggerrd:' + hash);
 	
 	urlHandler.changeTo(hash);
@@ -151,18 +166,60 @@ Tonkatsu.onResize = function(e){
 	}
 };
 
-$(window).load(function(){
-	console.log('Doc Load Complete');
+Tonkatsu.start = function(){
 	
 	windowWidth = window.innerWidth;
 	windowHeight = window.innerHeight;
-	setTimeout(function(){
-		windowWidth = window.innerWidth;
-		windowHeight = window.innerHeight;
-		Tonkatsu.init();
-		Tonkatsu.onHashChanged();
-		$(window).resize(Tonkatsu.onResize);
-		$(window).on('hashchange', Tonkatsu.onHashChanged);
-	}, 10);
+	Tonkatsu.init();
+	Tonkatsu.onHashChanged();
+	$(window).resize(Tonkatsu.onResize);
+	$(window).on('hashchange', Tonkatsu.onHashChanged);
+
+};
+
+$(window).load(function(){
+	
+	console.log('Doc Load Complete');
+		
+	windowWidth = window.innerWidth;
+	windowHeight = window.innerHeight;
+	
+	setTimeout(Tonkatsu.start, 10);
+	
+	/*var URL_LIST = {
+		'#!id=writing000001':'contents/writing/1608/w000001.html',
+		'#!id=experimental000019':'contents/experimental/1604/e000019_crouton/main.html',
+		'#!id=experimental000020':'contents/experimental/1608/e000020_ant/main.html',
+		'#!id=experimental000021':'contents/experimental/1609/e000021_noc_000/main.html',
+	}
+	
+	if(URL_LIST[location.hash]){
+		
+		$.ajax({
+			'url': URL_LIST[location.hash],
+			'dataType':'html',
+		}).done(_.bind(function(result) {
+			
+			var newDoc = $('<div></div>');
+			newDoc.html(result);
+			
+			var title = $(newDoc).find('title').text();
+			$('title').text(title + ' - ' + BASE_TITLE);
+			
+			$('article').html($(newDoc).find('article').html());
+			console.log($(newDoc).find('article').html());
+			
+			Tonkatsu.start();
+			
+		}, this));
+		
+	} else {
+		
+		setTimeout(Tonkatsu.start, 10);
+			
+	}
+	*/
+	
+
 });
 

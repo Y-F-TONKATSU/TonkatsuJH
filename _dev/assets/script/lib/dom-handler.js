@@ -38,7 +38,7 @@ var DomHandler;
 			
 			if($('#mainDoc').data('state') === 'visible'){
 				DocProcessor.frameOut.fromLeft($('#mainDoc'), 1000, function(){
-					$('#mainDoc').empty();
+					//$('#mainDoc').empty();
 				});
 			}
 			
