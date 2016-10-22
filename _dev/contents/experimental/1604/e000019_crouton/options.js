@@ -60,7 +60,7 @@ var gCjsEvents = {
 				top:275 * 0.4,
 				width:320 * 0.4,
 				height:255 * 0.4
-			}, ShareUtil.getTwitterLink(URL, 'クルトンの作り方 - とんかつひろば'));
+			}, ShareUtil.getTwitterLink(URL, 'クルトンの作り方 - とんかつ騎士団の公式ホームページ'));
 			
 			gCjsEvents.hitAreaHandler.setEventHitArea('crouton_gp', {
 				left:390 * 0.4,

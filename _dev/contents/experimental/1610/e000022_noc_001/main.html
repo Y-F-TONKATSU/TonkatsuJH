@@ -1,0 +1,736 @@
+<!doctype html>
+
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000022-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000022-->
+		
+		<article class='e000022' data-doc-type='cjsClips'>
+								
+			<!--cjs--experimental000022-->
+            		
+			<canvas id='contMainCanvas' width='480' height='480'></canvas>
+			            			
+			<section class='left' data-cjs-scene='Ex001'>
+				
+				<p>
+					ダニエル・シフマン<br>
+					『Nature of Code<br>
+					-Processingではじめる<br>
+					自然現象のシミュレーション』<br>
+					を敢えて<br>
+					JavaScript と Canvas で攻略する<br>
+					ひとり読書会の続きです。
+				</p>
+				
+				<p>
+                	<!--ad--book_noc-->
+				</p>
+				
+				<p>
+					<a href='#id=experimental000021'>前回</a>はパーリンノイズを<br>
+					JavaScript で実装して、<br>
+					色々描いてみました。
+				</p>
+				
+				<p>
+					今回は NoC 1章を読みます。<br>
+					テーマはベクトルです。
+				</p>
+				
+			</section>
+						            			
+			<section class='right wide' data-cjs-scene='Ex001'>
+					
+				<h1>ベクトルを JavaScript で定義する</h1>
+				
+				<p>
+					1章では、加算/減算、<br>
+					実数との乗算/除算等、<br>
+					ベクトルクラスの<br>
+					基本的な演算を定義しています。
+				</p>
+								
+				<p>
+					そして、定義した<br>
+					Vector クラスで<br>
+					序章で作ったプログラムを<br>
+					書き直しつつ、<br>
+					加速度の概念を導入する、<br>
+					という感じで、<br>
+					まだまだウォーミングアップ的な<br>
+					内容ですね。
+				</p>
+								
+				<p>
+					ということで、<br>
+					JavaScript で Vector クラスを<br>
+					定義してみます。
+				</p>
+				
+<pre>
+var Vector;
+
+(function(){
+	
+	Vector = function(x, y){
+			
+		this.x = x;
+		this.y = y;
+		
+	};
+	
+	//static funcs
+	_.each(['add', 'sub', 'nomalize'], function(method){
+		Vector[method] = function(v1, v2){
+			var v3 = v1.clone();
+			v3[method](v2);
+			return v3;
+		};
+	});
+	
+	var getVectorFromArgs = function(args){
+		if(args.length > 1){
+			return new Vector(args[0], args[1])
+		} else {
+			return args[0];
+		}
+	};
+	
+	Vector.prototype = {
+		
+		'clone':function(){
+			return new Vector(this.x, this.y);
+		},
+		
+		'add':function(){
+			var v = getVectorFromArgs(arguments);
+			this.x += v.x;
+			this.y += v.y;
+			return this;
+		},
+			
+		'sub':function(v){
+			var v = getVectorFromArgs(arguments);
+			this.x -= v.x;
+			this.y -= v.y;
+			return this;
+		},
+			
+		'mult':function(v){
+			this.x *= v;
+			this.y *= v;
+			return this;
+		},
+			
+		'div':function(v){
+			this.x /= v;
+			this.y /= v;
+			return this;
+		},
+			
+		'mag':function(){
+			return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+		},
+		
+		'nomalize':function(v){
+			if(this.mag() === 0){
+				return this;
+			}
+			this.div(this.mag());
+			return this;
+		},
+		
+		'dist':function(v){
+			return Vector.sub(this, v).mag();
+		},
+			
+		'dir':function(v){
+			var v2 = Vector.sub(v, this);
+			v2.nomalize();
+			return v2;
+		}
+			
+	};
+	
+})();
+</pre>
+								
+				<p>
+					内積とかは、<br>
+					後の章のお楽しみのようで<br>
+					まだ出てきません。
+				</p>
+				
+				<p>
+					テストも書きます。<br>
+					<a target="_blank" href='https://mochajs.org/'>Mocha</a> と
+					<a target="_blank" href='http://chaijs.com/'>Chai</a> を使用。
+				</p>
+				
+<pre>
+var testVector = function(){
+	
+	mochaSetup();
+	
+	suite('Vector', function() {
+		
+		setup(function(){
+		});
+		
+		
+		test("Vector()", function() {
+			var v = new Vector(10, 20);
+			assert.strictEqual(10, v.x, 'コンストラクタで x の値を初期化できた');
+			assert.strictEqual(20, v.y, 'コンストラクタで y の値を初期化できた');
+		});
+				
+		test("add()", function() {
+			var v = new Vector(10, 20);
+			v.add(new Vector(5, 15));
+			assert.strictEqual(15, v.x, 'Vector と Vector を加算した');
+			assert.strictEqual(35, v.y, 'Vector と Vector を加算した');
+			v.add(100, 200);
+			assert.strictEqual(115, v.x, 'Vector と数値を加算した');
+			assert.strictEqual(235, v.y, 'Vector と数値を加算した');
+		});
+				
+		test("sub()", function() {
+			var v = new Vector(10, 20);
+			v.sub(new Vector(5, 8));
+			assert.strictEqual(5, v.x, 'Vector と Vector を減算した');
+			assert.strictEqual(12, v.y, 'Vector と Vector を減算した');
+			v.sub(1, 3);
+			assert.strictEqual(4, v.x, 'Vector と数値を加算した');
+			assert.strictEqual(9, v.y, 'Vector と数値を加算した');
+		});
+				
+		test("mult()", function() {
+			var v = new Vector(10, 20);
+			v.mult(5);
+			assert.strictEqual(50, v.x, 'Vector と数値を乗算した');
+			assert.strictEqual(100, v.y, 'Vector と数値を乗算した');
+		});
+				
+		test("div()", function() {
+			var v = new Vector(10, 20);
+			v.div(5);
+			assert.strictEqual(2, v.x, 'Vector と数値を乗算した');
+			assert.strictEqual(4, v.y, 'Vector と数値を乗算した');
+		});
+				
+		test("mag()", function() {
+			var v = new Vector(3, 4);
+			assert.strictEqual(5, v.mag(), 'ベクトル(3, 4) の大きさは 5');
+		});
+				
+		test("nomalize()", function() {
+			var v = new Vector(3, 4);
+			v.nomalize();
+			assert.strictEqual(0.6, v.x, 'ベクトル(3, 4) を正規化すると(0.6, 0.8)');
+			assert.strictEqual(0.8, v.y, 'ベクトル(3, 4) を正規化すると(0.6, 0.8)');
+			var v = new Vector(0, 0);
+			v.nomalize();
+			assert.strictEqual(0, v.x, '零ベクトルには何もしない');
+			assert.strictEqual(0, v.y, '零ベクトルには何もしない');
+		});
+				
+		test("clone()", function() {
+			var v = new Vector(3, 4);
+			var v2 = v.clone();
+			assert.strictEqual(3, v2.x, 'Vector を複製した');
+			assert.strictEqual(4, v2.y, 'Vector を複製した');
+			v2.add(1, 1);
+			assert.strictEqual(4, v2.x, '複製を操作しても元のオブジェクトに影響なし');
+			assert.strictEqual(5, v2.y, '複製を操作しても元のオブジェクトに影響なし');
+			assert.strictEqual(3, v.x, '複製を操作しても元のオブジェクトに影響なし');
+			assert.strictEqual(4, v.y, '複製を操作しても元のオブジェクトに影響なし');
+		});
+				
+		test("Vector.add()", function() {
+			var v1 = new Vector(10, 20);
+			var v2 = new Vector(30, 50);
+			var v3 = Vector.add(v1, v2);
+			assert.strictEqual(40, v3.x, 'static なメソッドでVector を加算した');
+			assert.strictEqual(70, v3.y, 'static なメソッドでVector を加算した');
+			assert.strictEqual(10, v1.x, 'static で加算した場合、もとのオブジェクトに影響なし');
+			assert.strictEqual(20, v1.y, 'static で加算した場合、もとのオブジェクトに影響なし');
+			assert.strictEqual(30, v2.x, 'static で加算した場合、もとのオブジェクトに影響なし');
+			assert.strictEqual(50, v2.y, 'static で加算した場合、もとのオブジェクトに影響なし');
+		});
+				
+		test("Vector.sub()", function() {
+			var v1 = new Vector(10, 20);
+			var v2 = new Vector(30, 50);
+			var v3 = Vector.sub(v1, v2);
+			assert.strictEqual(-20, v3.x, 'static なメソッドでVector を減算した');
+			assert.strictEqual(-30, v3.y, 'static なメソッドでVector を減算した');
+		});
+				
+		test("Vector.nomalize()", function() {
+			var v = new Vector(3, 4);
+			var v2 = Vector.nomalize(v);
+			assert.strictEqual(0.6, v2.x, 'static なメソッドでVector を正規化した');
+			assert.strictEqual(0.8, v2.y, 'static なメソッドでVector を正規化した');
+			assert.strictEqual(3, v.x, 'static なメソッドでVector を正規化した場合、もとのオブジェクトに影響なし');
+			assert.strictEqual(4, v.y, 'static なメソッドでVector を正規化した場合、もとのオブジェクトに影響なし');
+		});
+				
+		test("dist()", function() {
+			var v = new Vector(1, 2);
+			var v2 = new Vector(4, 6);
+			assert.strictEqual(5, v.dist(v2), 'ベクトル(1, 2) と (4, 6) の距離は 5');
+			assert.strictEqual(5, v2.dist(v), 'ベクトル(1, 2) と (4, 6) の距離は 5');
+		});
+				
+		test("dir()", function() {
+			var v = new Vector(1, 2);
+			var v2 = new Vector(4, 6);
+			assert.strictEqual(0.6, v.dir(v2).x, 'ベクトル(1, 2) から (4, 6) へは(0.6, 0.8)の方向');
+			assert.strictEqual(0.8, v.dir(v2).y, 'ベクトル(1, 2) から (4, 6) へは(0.6, 0.8)の方向');
+			assert.strictEqual(-0.6, v2.dir(v).x, 'ベクトル(4, 6) から (1, 2) へは(-0.6, -0.8)の方向');
+			assert.strictEqual(-0.8, v2.dir(v).y, 'ベクトル(4, 6) から (1, 2) へは(-0.6, -0.8)の方向');
+			var v3 = v2.dir(v);
+			v3.mult(5);
+			assert.strictEqual(-3, v3.x, 'ベクトル(4, 6) から (1, 2) へは(-3, -4)の方向');
+			assert.strictEqual(-4, v3.y, 'ベクトル(4, 6) から (1, 2) へは(-3, -4)の方向');
+		});
+				
+	});
+	
+	$(function(){
+
+		mocha.run();
+		
+	});
+	
+}();
+</pre>
+			
+				<p>
+					わかりにくいところを<br>
+					少し解説します。
+				</p>
+								
+<pre>
+_.each(['add', 'sub', 'nomalize'], function(method){
+	Vector[method] = function(v1, v2){
+		var v3 = v1.clone();
+		v3[method](v2);
+		return v3;
+	};
+});
+</pre>
+
+				<p>
+					上記のコードは<br>
+					<a target="_blank" href='http://underscorejs.org/'>UnderScore</a> で
+					Vector クラスの<br>
+					static なメソッドを定義しています。
+				</p>
+				
+				<p>
+					通常 Vector クラスのインスタンスの<br>
+					add(), sub() といったメソッドを<br>
+					呼び出した場合、<br>
+					そのインスタンスに<br>
+					直接変更を加えますが…
+				</p>
+				
+<pre>
+var v = new Vector(10, 20);
+v.add(new Vector(5, 15));
+assert.strictEqual(15, v.x, 'Vector と Vector を加算した');
+assert.strictEqual(35, v.y, 'Vector と Vector を加算した');
+</pre>
+
+				<p>
+					例えば、Vector.add(v1, v2) のように<br>
+					static に呼び出した場合、<br>
+					もとのベクトルには<br>
+					変更を加えずに<br>
+					2 つのベクトルを<br>
+					加算したもの返します。
+				</p>
+								
+<pre>
+var v1 = new Vector(10, 20);
+var v2 = new Vector(30, 50);
+var v3 = Vector.add(v1, v2);
+assert.strictEqual(40, v3.x, 'static なメソッドでVector を加算した');
+assert.strictEqual(70, v3.y, 'static なメソッドでVector を加算した');
+assert.strictEqual(10, v1.x, 'static で加算した場合、もとのオブジェクトに影響なし');
+assert.strictEqual(20, v1.y, 'static で加算した場合、もとのオブジェクトに影響なし');
+assert.strictEqual(30, v2.x, 'static で加算した場合、もとのオブジェクトに影響なし');
+assert.strictEqual(50, v2.y, 'static で加算した場合、もとのオブジェクトに影響なし');
+</pre>
+
+			</section>
+			
+			<section class='left wide' data-cjs-scene='Ex001'>
+					
+				<h1>速度と加速度</h1>
+				
+				<p>
+					では、Vector クラスを使って、<br>
+					速度と加速度を内部に持つ<br>
+					オブジェクトを作っていきます。
+				</p>
+
+				<p>
+					↓こんな感じ。
+				</p>
+				
+<pre>
+var Mover;
+
+(function(){
+	
+	Mover = function(stage, loaction, velocity, acceleration){
+		
+		this._location = loaction || new Vector(0, 0);
+		this._velocity = velocity || new Vector(1, 1);
+		this._acceleration = acceleration || new Vector(0, 0);
+		this._radius = 30;
+		
+		//init cjs objects
+		this._graphics = new createjs.Graphics();
+		this._shape = new createjs.Shape(this._graphics);
+		this._stage = stage;
+		this._stage.addChild(this._shape);
+		
+		this._stageSize = new Vector(this._stage.canvas.width, this._stage.canvas.height);
+			
+	};
+	
+	Mover.prototype = {
+		
+		'update':function(){
+			
+			this._velocity.add(this._acceleration);
+			this._location.add(this._velocity);
+			
+			//画面外に出た場合、反対側から出てくる
+			this._location.sub(new Vector(
+				Math.floor(this._location.x / this._stageSize.x) * this._stageSize.x,
+				Math.floor(this._location.y / this._stageSize.y) * this._stageSize.y
+			));
+			
+			this.draw();
+			
+		},
+		
+		'draw':function(){
+			
+			this._graphics.clear();
+			this._graphics.beginFill(createjs.Graphics.getRGB(255, 0, 0)).
+			dc(this._location.x, this._location.y, this._radius)
+			.endFill();
+						
+		}
+			
+	}
+	
+})();
+</pre>
+
+				<p>
+					コンストラクタで引数で、
+					初期位置、速度、加速度を与え、
+					update() メソッドで
+					自身の状態を更新して
+					描画します。
+				</p>				
+
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='UniformVelocity001'>
+					
+				<h1>等速運動</h1>
+				
+				<p>
+					まずは等速運動を表現します。<br>
+					適当な速度を与え、<br>
+					加速度は 0 にします。
+				</p>
+				
+<pre>
+$(function(){
+	
+	var stage = new createjs.Stage($('#canvas').get(0));
+	var mover = new Mover(stage,
+		new Vector(100, 100), //初期位置
+		new Vector(5, 10), //速度
+		new Vector(0, 0) //加速度
+	);
+	
+	createjs.Ticker.framerate = 30;
+	
+	createjs.Ticker.addEventListener('tick', function(e){
+		
+		mover.update();
+		stage.update(e);
+		
+	});
+	
+});
+</pre>
+
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='UniformAcceleration001'>
+					
+				<h1>等加速度運動</h1>
+				
+				<p>
+					次に等加速度運動です。<br>
+					さっきとほとんど同じですが、<br>
+					加速度を 0.1 に設定します。
+				</p>
+				
+<pre>
+$(function(){
+	
+	var stage = new createjs.Stage($('#canvas').get(0));
+	var mover = new Mover(stage,
+		new Vector(100, 100), //初期位置
+		new Vector(5, 10), //速度
+		<em>new Vector(0, 0.1) //加速度</em>
+	);
+	
+	createjs.Ticker.framerate = 30;
+	
+	createjs.Ticker.addEventListener('tick', function(e){
+		
+		mover.update();
+		stage.update(e);
+		
+	});
+	
+});
+</pre>
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Mouse001'>
+					
+				<h1>マウスカーソルを追いかける</h1>
+				
+				<p>
+					続いて、<br>
+					マウスカーソル<br>
+					（タッチスクリーンの<br>
+					場合は<br>
+					タッチした位置）<br>
+					に向かって<br>
+					移動する動きを<br>
+					作ります。
+				</p>
+				
+				<p>
+					Mover クラスに<br>
+					setVelocityTo()<br>
+					メソッドを<br>
+					追加して、<br>
+					update() する前に<br>
+					呼び出します。<br>
+					setVelocityTo() <br>
+					メソッドは<br>
+					dir() メソッドを<br>
+					使って、<br>
+					mover の<br>
+					現在位置からみた<br>
+					カーソル位置の<br>
+					方向を求め、<br>
+					その方向に<br>
+					動くように<br>
+					速度を定めます。
+				</p>
+				
+				<p>
+					また、求めたベクトルに、<br>
+					dist() メソッドで求めた<br>
+					カーソルとの距離の<br>
+					10分の1を掛けて、<br>
+					カーソルが離れているほど<br>
+					動きが早くなるようにしてみます。<br>
+					こうするとカーソル位置で<br>
+					ぴったり止まるので<br>
+					いい感じです。
+				</p>
+				
+<pre>
+Mover.prototype.setVelocityTo = function(v){
+			
+	this._velocity = this._location.dir(v).mult(this._location.dist(v) * 0.1);
+	
+};
+</pre>
+
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Mouse002'>
+					
+				<h1>加速度を使って自然な動きを作る</h1>
+				
+				<p>
+					カーソル位置で<br>
+					ぴったり止まるのも<br>
+					良いのですが、<br>
+					勢い余って<br>
+					通り過ぎて、<br>
+					微調整する動きも<br>
+					ある種の自然さが<br>
+					あります。
+				</p>
+				
+				<p>
+					今度は<br>
+					Mover クラスに<br>
+					setAcceralationTo()<br>
+					メソッドを<br>
+					追加します。<br>
+					setAcceralationTo()<br>
+					メソッドは<br>
+					setVelocityTo と<br>
+					似ていますが、<br>
+					velocity ではなく、<br>
+					acceleration<br>
+					プロパティを<br>
+					変更します。
+				</p>
+				
+<pre>
+Mover.prototype.setAccelerationTo = function(v){
+			
+	this._acceleration = this._location.dir(v).mult(this._location.dist(v) * 0.01);
+	this._velocity.mult(0.95);	
+	
+};
+</pre>
+				
+				<p>
+					単純に<br>
+					_velocity を<br>
+					_acceleration に<br>
+					書き換えただけだと、<br>
+					全然カーソルに<br>
+					辿り着けなかったので、<br>
+					setAccelerationTo には、<br>
+					velocity を<br>
+					5% 減少させる処理を<br>
+					追加しています。<br>
+					これによって、<br>
+					いい感じに<br>
+					行き過ぎるように<br>
+					なりました。
+				</p>
+
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='Mouse003'>
+					
+				<h1>モーションブラー</h1>
+				
+				<p>
+					少し本の内容から<br>
+					離れてみます。<br>
+					速い動きが<br>
+					それっぽく見えるように<br>
+					モーションブラーを<br>
+					追加します。
+				</p>
+				
+				<p>
+					Mover クラスに<br>
+					setBlurs() メソッドを<br>
+					追加して、<br>
+					update() メソッド内で<br>
+					_velocity を<br>
+					更新する直前に<br>
+					呼び出すようにします。
+				</p>
+				
+<pre>
+Mover.prototype.setBlurs = function(){
+			
+	var numBlurs = Math.floor(this._velocity.mag() * 0.5);
+	this._blurs = _.map(_.range(numBlurs), _.bind(function(current){
+		var position = Math.pow((current) / numBlurs, 2);
+		var alpha = position * 0.4;
+		return {
+			'location': new Vector(
+				this._location.x + this._velocity.x * position,
+				this._location.y + this._velocity.y * position
+			),
+			'alpha': alpha
+		};
+	}, this));
+	
+};
+</pre>
+				
+				<p>
+					さらに 
+					drawBlurs() メソッドを<br>
+					追加して、<br>
+					draw() 中に<br>
+					呼び出します。
+				</p>
+
+<pre>
+Mover.prototype.drawBlurs = function(){
+	
+	_.each(this._blurs, _.bind(function(blur){
+		this._graphics.beginFill(createjs.Graphics.getRGB(255, 0, 0, blur.alpha)).
+		dc(blur.location.x, blur.location.y, this._radius)
+		.endFill();
+	}, this));
+	
+};
+</pre>
+				
+				<p>
+					効果が<br>
+					分かりやすいように<br>
+					強めに描画していますが、<br>
+					もう少し弱くしたほうが<br>
+					自然でしょうか。
+				</p>
+
+			</section>
+						            			
+			<section class='left wide' data-cjs-scene='Ex002'>
+					
+				<p>
+					今回はベクトルを<br>
+					JavaScript 上で定義し、<br>
+					ベクトルを使って<br>
+					速度と加速度を表現する<br>
+					プログラムを書いてみました。
+				</p>
+				
+				<p>
+					衝突判定を加えれば、<br>
+					ゲームっぽいものも作れて<br>
+					面白そうですが、<br>
+					多分後の章に出てくるので、<br>
+					今回はここまでにします。
+				</p>
+				
+			</section>
+						            			
+		</article>
+		
+		<!--footer--experimental000022-->
+		
+	</body>
+	
+</html>

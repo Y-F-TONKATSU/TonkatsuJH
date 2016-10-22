@@ -431,12 +431,30 @@ createjs.Ticker.addEventListener('tick', function(e){
 					TIMEOUT よりも、<br>
 					フレームレートとのズレが<br>
 					大きくなる傾向があるようで、<br>
-					デフォルトは TIMEOUT になっている。
+					デフォルトは TIMEOUT になっている。<br>
+					(筆者が試してみた感じ、<br>
+					ほとんど差はなさそうではあった。)
 				</p>
 
 				<p>
-					筆者が試してみた感じ、<br>
-					ほとんど差はなさそうではあった。
+					結局どれがいいかというと、<br>
+					そもそもフレームレートを<br>
+					指定している時点で<br>
+					requestAnimationFrame の<br>
+					コンセプトに反するので、<br>
+					RAF_SYNCHED も<br>
+					完全ないいとこ取りとはいえず、<br>
+					TIMEOUT と RAF_SYNCHED は<br>
+					一長一短。<br>
+					フレームレートを守ること重視なら<br>
+					TIMEOUT,<br>
+					パフォーマンス重視なら、<br>
+					RAF_SYNCHED だろうか。<br>
+					パフォーマンス最重視なら<br>
+					RAF にして、<br>
+					デルタ時間を使って<br>
+					プログラミングするのが<br>
+					一番よさそう。
 				</p>
 
 			</section>

@@ -526,6 +526,15 @@ module.exports = function(grunt) {
 					'../../_dev/contents/experimental/1609/e000021_noc_000/scripts/graph-util.js'
 				],
 				dest: '../../_dev/contents/experimental/1609/e000021_noc_000/script.js'
+			},
+			cont_e000022:{
+				src: [
+					'../../_dev/contents/experimental/1610/e000022_noc_001/scripts/cjs_noc_001.js',
+					'../../_dev/contents/experimental/1610/e000022_noc_001/scripts/vector.js',
+					'../../_dev/contents/experimental/1610/e000022_noc_001/scripts/mover.js',
+					'../../_dev/contents/experimental/1610/e000022_noc_001/scripts/script.js',
+				],
+				dest: '../../_dev/contents/experimental/1610/e000022_noc_001/script.js'
 			}
 		},
 		
@@ -865,7 +874,7 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);	
 	
 	//Organize Tasks
-	var exContTask = ['concat:cont_e000020', 'concat:cont_e000021'];	
+	var exContTask = ['concat:cont_e000020', 'concat:cont_e000021', 'concat:cont_e000022'];	
 	var baseTasks = ['convert'];
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];
