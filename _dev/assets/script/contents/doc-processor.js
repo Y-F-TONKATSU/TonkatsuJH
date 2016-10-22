@@ -167,7 +167,8 @@ var DocProcessor = {
 		}).end().end().find('.right').css({
 			'marginLeft':'60%'
 		}).end().find('.wide').css({
-			'width':'50%',
+			'marginLeft':'15%',
+			'width':'80%',
 		}).end().find('.canvasExp').css({
 			'marginLeft':'76%',
 			'width':'19%',
@@ -193,6 +194,37 @@ var DocProcessor = {
 		
 		DisplayUtil.setRect($('#contMainCanvas'), 125/768, 20/480, 439/768, 439/480);
 		
+		$('.ext').each(function(){
+			
+			var btn = $('<div class="extButton">コードを読む</div>');
+			
+			$(this).hide()
+			.before(btn);
+			
+			var that = this;
+			
+			$(btn).css({
+				'cursor':'pointer',
+				'backgroundColor':'#00BD10',
+				'fontSize':'125%'
+			}).data({
+				'visible':'false'
+			}).click(function(){
+				var visible = ($(this).data('visible') === 'true');
+				console.log(this);
+				if(visible){
+					$(that).hide();
+					$(this).text('コードを読む')
+						.data({'visible':'false'});
+				} else {
+					$(that).show();
+					$(this).text('コードを隠す')
+						.data({'visible':'true'});
+				}
+			});
+			
+		});
+		
 		$('.book').css({
 			'position': 'fixed',
 			'left': (100 * 464 / 768) + '%',
@@ -203,7 +235,7 @@ var DocProcessor = {
 			'padding':'20px',
 			'overflowY':'auto',
 		});
-		
+			
 	},
 	
 	'plain':function(doc){

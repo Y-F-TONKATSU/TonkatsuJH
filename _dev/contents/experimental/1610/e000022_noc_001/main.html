@@ -45,9 +45,14 @@
 					テーマはベクトルです。
 				</p>
 				
+				<p>
+					今回もソースコードは<br>
+					<a target='_blank' href='https://github.com/y-f-tonkatsu/noc_001_velocity'>GitHub</a> で公開しています。
+				</p>
+				
 			</section>
 						            			
-			<section class='right wide' data-cjs-scene='Ex001'>
+			<section class='wide' data-cjs-scene='Ex001'>
 					
 				<h1>ベクトルを JavaScript で定義する</h1>
 				
@@ -66,7 +71,7 @@
 					加速度の概念を導入する、<br>
 					という感じで、<br>
 					まだまだウォーミングアップ的な<br>
-					内容ですね。
+					内容です。
 				</p>
 								
 				<p>
@@ -74,6 +79,8 @@
 					JavaScript で Vector クラスを<br>
 					定義してみます。
 				</p>
+				
+				<div class='ext'>
 				
 <pre>
 var Vector;
@@ -372,9 +379,11 @@ assert.strictEqual(30, v2.x, 'static で加算した場合、もとのオブジ�
 assert.strictEqual(50, v2.y, 'static で加算した場合、もとのオブジェクトに影響なし');
 </pre>
 
+				</div>
+
 			</section>
 			
-			<section class='left wide' data-cjs-scene='Ex001'>
+			<section class='wide' data-cjs-scene='Ex001'>
 					
 				<h1>速度と加速度</h1>
 				
@@ -387,6 +396,8 @@ assert.strictEqual(50, v2.y, 'static で加算した場合、もとのオブジ�
 				<p>
 					↓こんな感じ。
 				</p>
+				
+				<div class='ext'>
 				
 <pre>
 var Mover;
@@ -442,13 +453,15 @@ var Mover;
 </pre>
 
 				<p>
-					コンストラクタで引数で、
-					初期位置、速度、加速度を与え、
-					update() メソッドで
-					自身の状態を更新して
+					コンストラクタで引数で、<br>
+					初期位置、速度、加速度を与え、<br>
+					update() メソッドで<br>
+					自身の状態を更新して<br>
 					描画します。
-				</p>				
-
+				</p>
+				
+				</div>
+				
 			</section>
 						            			
 			<section class='canvasExp' data-cjs-scene='UniformVelocity001'>
