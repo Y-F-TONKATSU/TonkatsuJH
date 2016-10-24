@@ -17,6 +17,16 @@
 			<pubDate>Sat, 22 Oct 2016 23:00:00 +0900</pubDate>
 			
 			<file>contents/experimental/1610/e000022_noc_001/main.html</file>
+			<category>experimental</category>
+			<id>000022</id>
+			<subCategory>Canvas</subCategory>
+			<series>Nature of Code ひとり読書会</series>
+			<mainThumb>http://ton-katsu.net/assets/images/thumb/ex000022.png</mainThumb>
+			<minThumb>http://ton-katsu.net/assets/images/thumb/ex000022_min.png</minThumb>
+			<tags>Nature of Code ダニエル・シフマン パーリンノイズ JavaScript Canvas CreateJS ベクトル 速度 加速度 等速運動 等加速度運動</tags>
+			<type>article</type>			
+			
+			<cjs>contents/experimental/1610/e000022_noc_001/script.js</cjs>
 			<cjsOptions>contents/experimental/1610/e000022_noc_001/options.js</cjsOptions>
 			<cjsImages>contents/experimental/1610/e000022_noc_001/</cjsImages>
 			

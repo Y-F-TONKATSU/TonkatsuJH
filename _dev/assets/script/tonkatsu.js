@@ -1,31 +1,31 @@
 console.log('Start Script');
 
-var Tonkatsu = {};
+var Tonkatsu = {
+	
+	'FPS':24,
+	'BASE_TITLE':'とんかつ騎士団の公式ホームページ',
+	'BASE_URL':'http://ton-katsu.net/',
+	'BUTTON_COLORS':{
+		'writing':{
+			'r': 255,
+			'g': 255,
+			'b': 38,
+		},
+		'experimental':{
+			'r': 0,
+			'g': 189,
+			'b': 16,
+		},
+	},
+};
 
 var urlHandler;
 var domHandler;
 var scrollHandler;
 var animationHandler;
 
-var FPS = 24;
-var BASE_TITLE = 'とんかつ騎士団の公式ホームページ';
-var BASE_URL = 'http://ton-katsu.net/';
-
 var gCjsEvents = {};
 var gCjsOptions = {};
-
-var BUTTON_COLORS = {
-	'writing':{
-		'r': 255,
-		'g': 255,
-		'b': 38,
-	},
-	'experimental':{
-		'r': 0,
-		'g': 189,
-		'b': 16,
-	},
-}
 
 Tonkatsu.init = function(){
 	
@@ -33,7 +33,7 @@ Tonkatsu.init = function(){
 	
 	urlHandler = new UrlHandler();
 	
-	domHandler = new DomHandler();
+	domHandler = new DomHandler(Tonkatsu.BASE_TITLE);
 	domHandler.initElems($('.autoInit'));
 	domHandler.initFullScreenElems($('.full'));
 	
@@ -47,7 +47,7 @@ Tonkatsu.init = function(){
 		'back':$('#background'),
 		'lower':$('#lowerBackground'),
 	}, $('#navigation_hitarea'), $('#menu_hitarea'));
-	animationHandler.init(FPS);
+	animationHandler.init(Tonkatsu.FPS);
 	animationHandler.putShadow($('#shadow'));
 	animationHandler.putNavigationButtons($('#navigationCanvas'), {
 		'onHomeClicked':function(){
@@ -65,12 +65,12 @@ Tonkatsu.init = function(){
 			var url = ContentsUtil.getLink(urlHandler.getCurrentHashString());
 			console.log(url);
 			if(_.isEmpty(url)){
-				url = BASE_URL;
+				url = Tonkatsu.BASE_URL;
 			}
 			console.log(url + "!!!");
 			var title = ContentsUtil.getTitle(urlHandler.getCurrentHashString());
 			if(!title){
-				title = BASE_TITLE;
+				title = Tonkatsu.BASE_TITLE;
 			}
 			
 			domHandler.showShare(url, title, function(){
@@ -110,7 +110,7 @@ Tonkatsu.init = function(){
 			animationHandler.cancelLoadingCjs();
 		} else {
 			animationHandler.exitIndexMode();
-			animationHandler.loadCjs(options, BUTTON_COLORS[urlHandler.getCurrentCategory()]);
+			animationHandler.loadCjs(options, Tonkatsu.BUTTON_COLORS[urlHandler.getCurrentCategory()]);
 			Tonkatsu.onHashChanged();
 		}
 	});
@@ -186,40 +186,5 @@ $(window).load(function(){
 	
 	setTimeout(Tonkatsu.start, 10);
 	
-	/*var URL_LIST = {
-		'#!id=writing000001':'contents/writing/1608/w000001.html',
-		'#!id=experimental000019':'contents/experimental/1604/e000019_crouton/main.html',
-		'#!id=experimental000020':'contents/experimental/1608/e000020_ant/main.html',
-		'#!id=experimental000021':'contents/experimental/1609/e000021_noc_000/main.html',
-	}
-	
-	if(URL_LIST[location.hash]){
-		
-		$.ajax({
-			'url': URL_LIST[location.hash],
-			'dataType':'html',
-		}).done(_.bind(function(result) {
-			
-			var newDoc = $('<div></div>');
-			newDoc.html(result);
-			
-			var title = $(newDoc).find('title').text();
-			$('title').text(title + ' - ' + BASE_TITLE);
-			
-			$('article').html($(newDoc).find('article').html());
-			console.log($(newDoc).find('article').html());
-			
-			Tonkatsu.start();
-			
-		}, this));
-		
-	} else {
-		
-		setTimeout(Tonkatsu.start, 10);
-			
-	}
-	*/
-	
-
 });
 

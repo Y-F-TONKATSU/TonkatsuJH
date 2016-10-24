@@ -2,10 +2,11 @@ var DomHandler;
 
 (function(){
 	
-	DomHandler = function(){
+	DomHandler = function(title){
 		
 		this._loadCompleteListener = null;
 		this._onHideListener = function(){};
+		this._title = title;
 		
 	};
 	
@@ -42,7 +43,7 @@ var DomHandler;
 				});
 			}
 			
-			$('title').text(BASE_TITLE);
+			$('title').text(this._title);
 			
 			this._loadCompleteListener('index');
 			
@@ -71,7 +72,7 @@ var DomHandler;
 				console.log('title: ' + title);
 				
 				var title = $(newDoc).find('title').text();
-				$('title').text(title + ' - ' + BASE_TITLE);
+				$('title').text(title + ' - ' + this._title);
 				
 				DocProcessor[type](newDoc);
 				if(type === 'plain'){
