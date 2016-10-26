@@ -67,7 +67,6 @@ var UrlHandler;
 		},
 	
 		validateHash:function(hash){
-			
 			if(_.isEmpty(hash)){
 				return false;
 			}

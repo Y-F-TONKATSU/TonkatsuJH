@@ -32,7 +32,7 @@ var gCjsEvents = {
 				top:500 * 0.4,
 				width:180 * 0.4,
 				height:100 * 0.4
-			}, '#experimental000019_Scene005',
+			}, '#id=experimental000019_Scene005',
 			function(){
 				Tonkatsu.onHashChanged();
 			});
