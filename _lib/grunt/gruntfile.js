@@ -53,7 +53,8 @@ module.exports = function(grunt) {
 		'../../_dev/assets/script/ui/animators/animator_basic.js',
 		'../../_dev/assets/script/ui/animators/animator_index.js',
 		'../../_dev/assets/script/ui/animators/animator_plain.js',
-		'../../_dev/assets/script/ui/animators/tweener_basic.js',
+		'../../_dev/assets/script/ui/animators/tweeners.js',
+		'../../_dev/assets/script/ui/animators/enders.js'
 	];
 	
 	/* Util Funcs */

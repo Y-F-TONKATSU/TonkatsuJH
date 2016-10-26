@@ -1,6 +1,10 @@
-if(!Tweeners){var Tweeners = {};}
+var Tweeners = Tweeners || {};
 
-Tweeners.basic = {
+Tweeners = {
+	
+	'endless':function(){
+		return 0;
+	},
 	
 	'progress':function(){
 		return this.progress;

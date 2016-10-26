@@ -160,7 +160,7 @@ var testAnimationHandler = function(){
 				'loaderOptions':{
 					'containerId':'fore',
 					'animator':Animators.basic.loader_circle,
-					'tweener':Tweeners.basic.progress,
+					'tweener':Tweeners.progress,
 				}
 			});
 			

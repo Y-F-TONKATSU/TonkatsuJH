@@ -229,8 +229,12 @@ var AnimationHandler;
 			_.defaults(task, {
 				'progress': 0,
 				'currentTime': 0,
+				'duration': 0,
 				'waitTime': 0,
+				'vars':{},
+				'scene':'',
 				'onInit':function(){},
+				'onComplete':function(){},
 			});
 			
 			if(_.isUndefined(task.ender)){
@@ -328,12 +332,8 @@ var AnimationHandler;
 						'id':'streamScript',
 						'docId': 'plainDoc',
 						'containerId': 'back',
-						'progress':0,
-						'currentTime':0,
-						'duration': 0,
-						'waitTime': 0,
-						'ender':function(){return false},
-						'tweener':function(){return 0},
+						'tweener':Tweeners.endless,
+						'ender':Enders.endless,
 						'currentScene': '',
 						'currentLabel': '',
 						'vars':{
@@ -347,8 +347,6 @@ var AnimationHandler;
 							_.bind(Animators.plain.scriptStream, this)(e, $('#backgroundText'));
 							
 						},
-						'onComplete':function(){
-						}
 					});
 					
 				}
@@ -374,15 +372,9 @@ var AnimationHandler;
 					'id':'loadingCjs',
 					'docId': movieOptions.docId,
 					'containerId': loaderOptions.containerId,
-					'progress':0,
-					'currentTime':0,
-					'duration': 0,
 					'waitTime': 500,
-					'tIndex':10,
 					'tweener':loaderOptions.tweener,
 					'onTicked': loaderOptions.animator,
-					'onComplete':function(){
-					}
 				});
 			
 			}
@@ -435,22 +427,10 @@ var AnimationHandler;
 				'id':'menu',
 				'docId': 'menu',
 				'containerId': containerId,
-				'progress':0,
-				'currentTime':0,
-				'duration': 0,
-				'waitTime': 0,
-				'tIndex':10,
-				'vars':{},
-				'scene':'',
-				'tweener':function(){return 0;},
-				'ender':function(){return false;},
-				'onInit':function(){
-						
-				},
+				'tweener':Tweeners.endless,
+				'ender':Enders.endless,
 				'onTicked': function(e){
 					cjsStage.stage.update(e);
-				},
-				'onComplete':function(){
 				}
 			});
 			
@@ -490,15 +470,8 @@ var AnimationHandler;
 				'id':'share',
 				'docId': 'share',
 				'containerId': containerId,
-				'progress':0,
-				'currentTime':0,
-				'duration': 0,
-				'waitTime': 0,
-				'tIndex':10,
-				'vars':{},
-				'scene':'',
-				'tweener':function(){return 0;},
-				'ender':function(){return false;},
+				'tweener':Tweeners.endless,
+				'ender':Enders.endless,
 				'onInit':function(){
 					
 					this.vars.stage = new createjs.Stage(this.ch.getCanvas());
@@ -549,8 +522,6 @@ var AnimationHandler;
 					}
 					
 				},
-				'onComplete':function(){
-				}
 			});
 			
 		},
@@ -575,15 +546,8 @@ var AnimationHandler;
 				'id':'indexBack',
 				'docId': 'index',
 				'containerId': backContainerId,
-				'progress':0,
-				'currentTime':0,
-				'duration': 0,
-				'waitTime': 0,
-				'tIndex':10,
-				'vars':{},
-				'scene':'',
-				'tweener':function(){return 0;},
-				'ender':function(){return false;},
+				'tweener': Tweeners.endless,
+				'ender': Enders.endless,
 				'onInit':function(){
 					
 					this.vars.stage = new createjs.Stage(this.ch.getCanvas());
@@ -621,18 +585,8 @@ var AnimationHandler;
 				'id':'index',
 				'docId': 'index',
 				'containerId': backContainerId,
-				'progress':0,
-				'currentTime':0,
-				'duration': 0,
-				'waitTime': 0,
-				'tIndex':10,
-				'vars':{},
-				'scene':'',
-				'tweener':function(){return 0;},
-				'ender':function(){return false;},
-				'onInit':function(){
-						
-				},
+				'tweener': Tweeners.endless,
+				'ender': Enders.endless,
 				'onTicked': function(e){
 					var currentScene = 'default';
 					if(that._activeElem){
@@ -670,26 +624,14 @@ var AnimationHandler;
 					}
 					
 				},
-				'onComplete':function(){
-				}
 			});
 			
 			this.addTask({
 				'id':'indexFore',
 				'docId': 'index',
 				'containerId': foreContainerId,
-				'progress':0,
-				'currentTime':0,
-				'duration': 0,
-				'waitTime': 0,
-				'tIndex':10,
-				'vars':{},
-				'scene':'',
-				'tweener':function(){return 0;},
-				'ender':function(){return false;},
-				'onInit':function(){
-						
-				},
+				'tweener':Tweeners.endless,
+				'ender':Enders.endless,
 				'onTicked': function(e){
 					var currentScene = 'default';
 					if(that._activeElem){
@@ -710,8 +652,6 @@ var AnimationHandler;
 						
 					}
 					
-				},
-				'onComplete':function(){
 				}
 			});
 			
@@ -719,22 +659,15 @@ var AnimationHandler;
 				'id':'indexLines',
 				'docId': 'index',
 				'containerId': backContainerId,
-				'progress':0,
-				'currentTime':0,
 				'duration': 100000,
 				'waitTime': 0,
-				'tIndex':10,
 				'vars':{
 					numLines:24,
 					x:676,
 					y:57,
 					start:30
 				},
-				'scene':'',
-				'tweener':Tweeners.basic.normal,
-				'onInit':function(){
-						
-				},
+				'tweener':Tweeners.normal,
 				'onTicked': Animators.basic.lines,
 				'onComplete':function(){
 					that.removeTask('indexLines');

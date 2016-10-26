@@ -34,7 +34,7 @@ var BackgroundHandler;
 			'options': {
 				'color':ch.getColorHexString(247, 244, 232),
 			},
-			'tweener':Tweeners.basic.progress,
+			'tweener':Tweeners.progress,
 			'progress':0,
 			'currentTime':0,
 			'duration': 2000,
@@ -111,7 +111,7 @@ var BackgroundHandler;
 					'ch': this.loadingCh,
 					'color': ch.getColorHexString(247, 244, 232),
 					'update':Animators.basic.loader_circle,
-					'tweener':Tweeners.basic.progress,
+					'tweener':Tweeners.progress,
 					'progress':0,
 					'duration': 2000,
 					'onComplete':function(){
@@ -185,7 +185,7 @@ var BackgroundHandler;
 					'id':'endingFore' + i,
 					'ch': endingFore,
 					'update':Animators.basic.wipe_circle,
-					'tweener':Tweeners.basic.easeIn,
+					'tweener':Tweeners.easeIn,
 					'duration': 1200,
 					'onComplete':function(){
 						console.log('Anim Comp');
@@ -202,7 +202,7 @@ var BackgroundHandler;
 					'id':'endingBack' + i,
 					'ch': endingBack,
 					'update':Animators.basic.wipe_circle,
-					'tweener':Tweeners.basic.easeIn,
+					'tweener':Tweeners.easeIn,
 					'duration': 1200,
 					'onComplete':function(){
 						endingBack.destruct();
