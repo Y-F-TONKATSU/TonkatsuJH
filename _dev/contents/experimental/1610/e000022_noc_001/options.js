@@ -67,7 +67,7 @@ var gCjsEvents = {
 	},
 	'sceneOut':{
 		'Ex001':function(){
-			animationHandler.removeTask('e000021_bg');
+			animationHandler.removeTask('e000022_bg');
 		},
 		'UniformVelocity001':function(){
 			$('#contMainCanvas').hide();

@@ -75,12 +75,6 @@ lib.tfontAvailable = function(family, totalTypekitCount) {
 p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 
 
-(lib.bg_noframe = function() {
-	this.initialize(img.bg_noframe);
-}).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,384,240);
-
-
 (lib.bg_vivid = function() {
 	this.initialize(img.bg_vivid);
 }).prototype = p = new cjs.Bitmap();
@@ -164,7 +158,7 @@ p.nominalBounds = new cjs.Rectangle(-13.9,204.6,28,28);
 p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 
-(lib.UniformVelocity001 = function(mode,startPosition,loop) {
+(lib.CanvasPlay = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{Main_start:0,Main_load:18});
 
 	// レイヤー 12
@@ -211,194 +205,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 
-(lib.UniformAcceleration001 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{"Main_start":0,"Main_load":18});
-
-	// レイヤー 12
-	this.instance = new lib.Frame_in("synched",0,false);
-	this.instance.parent = this;
-	this.instance.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(5).to({_off:false},0).wait(64));
-
-	// レイヤー 11
-	this.instance_1 = new lib.Frame_in("synched",0,false);
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_1._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(3).to({_off:false},0).wait(66));
-
-	// レイヤー 8
-	this.instance_2 = new lib.Frame_in("synched",0,false);
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_2._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({_off:false},0).wait(68));
-
-	// レイヤー 5
-	this.instance_3 = new lib.BgFrame("synched",0);
-	this.instance_3.parent = this;
-	this.instance_3.setTransform(384,240,1,1,0,0,0,0,240);
-	this.instance_3.alpha = 0.199;
-	this.instance_3._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(10).to({_off:false},0).to({alpha:1},8,cjs.Ease.get(1)).wait(51));
-
-	// レイヤー 6
-	this.instance_4 = new lib.bg_noframe();
-	this.instance_4.parent = this;
-	this.instance_4.setTransform(0,0,2,2);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(69));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,768,480);
-
-
-(lib.Mouse003 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{"Main_start":0,"Main_load":18});
-
-	// レイヤー 12
-	this.instance = new lib.Frame_in("synched",0,false);
-	this.instance.parent = this;
-	this.instance.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(5).to({_off:false},0).wait(64));
-
-	// レイヤー 11
-	this.instance_1 = new lib.Frame_in("synched",0,false);
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_1._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(3).to({_off:false},0).wait(66));
-
-	// レイヤー 8
-	this.instance_2 = new lib.Frame_in("synched",0,false);
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_2._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({_off:false},0).wait(68));
-
-	// レイヤー 5
-	this.instance_3 = new lib.BgFrame("synched",0);
-	this.instance_3.parent = this;
-	this.instance_3.setTransform(384,240,1,1,0,0,0,0,240);
-	this.instance_3.alpha = 0.199;
-	this.instance_3._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(10).to({_off:false},0).to({alpha:1},8,cjs.Ease.get(1)).wait(51));
-
-	// レイヤー 6
-	this.instance_4 = new lib.bg_noframe();
-	this.instance_4.parent = this;
-	this.instance_4.setTransform(0,0,2,2);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(69));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,768,480);
-
-
-(lib.Mouse002 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{"Main_start":0,"Main_load":18});
-
-	// レイヤー 12
-	this.instance = new lib.Frame_in("synched",0,false);
-	this.instance.parent = this;
-	this.instance.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(5).to({_off:false},0).wait(64));
-
-	// レイヤー 11
-	this.instance_1 = new lib.Frame_in("synched",0,false);
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_1._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(3).to({_off:false},0).wait(66));
-
-	// レイヤー 8
-	this.instance_2 = new lib.Frame_in("synched",0,false);
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_2._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({_off:false},0).wait(68));
-
-	// レイヤー 5
-	this.instance_3 = new lib.BgFrame("synched",0);
-	this.instance_3.parent = this;
-	this.instance_3.setTransform(384,240,1,1,0,0,0,0,240);
-	this.instance_3.alpha = 0.199;
-	this.instance_3._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(10).to({_off:false},0).to({alpha:1},8,cjs.Ease.get(1)).wait(51));
-
-	// レイヤー 6
-	this.instance_4 = new lib.bg_noframe();
-	this.instance_4.parent = this;
-	this.instance_4.setTransform(0,0,2,2);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(69));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,768,480);
-
-
-(lib.Mouse001 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{"Main_start":0,"Main_load":18});
-
-	// レイヤー 12
-	this.instance = new lib.Frame_in("synched",0,false);
-	this.instance.parent = this;
-	this.instance.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(5).to({_off:false},0).wait(64));
-
-	// レイヤー 11
-	this.instance_1 = new lib.Frame_in("synched",0,false);
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_1._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(3).to({_off:false},0).wait(66));
-
-	// レイヤー 8
-	this.instance_2 = new lib.Frame_in("synched",0,false);
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(343.1,239.6,1,1,0,0,0,0,223.6);
-	this.instance_2._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({_off:false},0).wait(68));
-
-	// レイヤー 5
-	this.instance_3 = new lib.BgFrame("synched",0);
-	this.instance_3.parent = this;
-	this.instance_3.setTransform(384,240,1,1,0,0,0,0,240);
-	this.instance_3.alpha = 0.199;
-	this.instance_3._off = true;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(10).to({_off:false},0).to({alpha:1},8,cjs.Ease.get(1)).wait(51));
-
-	// レイヤー 6
-	this.instance_4 = new lib.bg_noframe();
-	this.instance_4.parent = this;
-	this.instance_4.setTransform(0,0,2,2);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(69));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,768,480);
-
-
 (lib.Root = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -414,42 +220,18 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 	this.timeline.addTween(cjs.Tween.get(this.ex001).wait(1));
 
-	// mouse003
-	this.mouse003 = new lib.Mouse003();
-	this.mouse003.parent = this;
+	// canvasPlay
+	this.canvasPlay = new lib.CanvasPlay();
+	this.canvasPlay.parent = this;
 
-	this.timeline.addTween(cjs.Tween.get(this.mouse003).wait(1));
-
-	// mouse002
-	this.mouse002 = new lib.Mouse002();
-	this.mouse002.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.mouse002).wait(1));
-
-	// mouse001
-	this.mouse001 = new lib.Mouse001();
-	this.mouse001.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.mouse001).wait(1));
-
-	// uniformAcceleration001
-	this.uniformAcceleration001 = new lib.UniformAcceleration001();
-	this.uniformAcceleration001.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.uniformAcceleration001).wait(1));
-
-	// uniformVelocity001
-	this.uniformVelocity001 = new lib.UniformVelocity001();
-	this.uniformVelocity001.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.uniformVelocity001).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.canvasPlay).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 
 // stage content:
-(lib.noc001 = function(mode,startPosition,loop) {
+(lib.noc002 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// root
@@ -471,7 +253,6 @@ lib.properties = {
 	webfonts: {},
 	manifest: [
 		{src:"images/bg.jpg", id:"bg"},
-		{src:"images/bg_noframe.jpg", id:"bg_noframe"},
 		{src:"images/bg_vivid.jpg", id:"bg_vivid"}
 	],
 	preloads: []
@@ -571,12 +352,13 @@ var Mover;
 
 (function(){
 	
-	Mover = function(stage, loaction, velocity, acceleration){
+	Mover = function(stage, mass, density, loaction, velocity, acceleration, bounce){
 		
 		this._location = loaction || new Vector(0, 0);
 		this._velocity = velocity || new Vector(1, 1);
 		this._acceleration = acceleration || new Vector(0, 0);
-		this._radius = 30;
+		this._mass = mass || 10;
+		this._density = density || 10;
 		
 		this._blur = false;
 		this._blurs = [];
@@ -588,16 +370,51 @@ var Mover;
 		this._stage.addChild(this._shape);
 		
 		this._stageSize = new Vector(this._stage.canvas.width, this._stage.canvas.height);
-			
+		
+		this._bounce = bounce || false;
+		
 	};
 	
 	Mover.prototype = {
+		
+		'setBounce':function(v){
+			
+			this._bounce = v;
+			
+		},
 		
 		'clear':function(){
 			
 			this._graphics.clear();
 			this._stage.removeAllChildren();
 			this._stage.update();
+			
+		},
+		
+		'isUnder':function(axis){
+			return this._location[axis] - this.getRadius() < 0;
+		},
+		
+		'isOver':function(axis){
+			return this._location[axis] + this.getRadius() > this._stageSize[axis];
+		},
+		
+		'isInside':function(location, size){
+			return (this._location.x >= location.x &&
+				   this._location.x <= location.x + size.x) &&
+				(this._location.y >= location.y &&
+				 this._location.y <= location.y + size.y);
+		},
+		
+		'getMass':function(){
+			
+			return this._mass;
+			
+		},
+		
+		'getRadius':function(){
+			
+			return this._mass / this._density;
 			
 		},
 		
@@ -616,11 +433,27 @@ var Mover;
 		
 		'update':function(){
 			
+			this._acceleration.div(this._mass);
+			
 			this._velocity.add(this._acceleration);
 			if(this._blur){this.setBlurs();}
 			this._location.add(this._velocity);
 						
+			if(this._bounce){
+				_.each(['x', 'y'], _.bind(function(axis){
+					if(this.isOver(axis)){
+						this._velocity[axis] *= -1;
+					}
+					if(this.isUnder(axis)){
+						this._velocity[axis] *= -1;
+
+					}
+				}, this));
+			}
+			
 			this.draw();
+			
+			this.clearForce();
 			
 		},
 		
@@ -645,7 +478,7 @@ var Mover;
 			
 			_.each(this._blurs, _.bind(function(blur){
 				this._graphics.beginFill(createjs.Graphics.getRGB(255, 0, 0, blur.alpha)).
-				dc(blur.location.x, blur.location.y, this._radius)
+				dc(blur.location.x, blur.location.y, this.getRadius())
 				.endFill();
 			}, this));
 			
@@ -655,50 +488,178 @@ var Mover;
 			this._blur = true;
 		},
 		
-		'draw':function(){
-				
-			//画面外に出た場合、反対側から出てくる
-			var location = Vector.sub(this._location, new Vector(
+		'getResidueLocation':function(){
+			return Vector.sub(this._location, new Vector(
 				Math.floor(this._location.x / this._stageSize.x) * this._stageSize.x,
 				Math.floor(this._location.y / this._stageSize.y) * this._stageSize.y
 			));
+		},
 		
+		'getBounceLocation':function(){
+			
+			var location = this._location.clone();
+			
+			_.each(['x', 'y'], _.bind(function(axis){
+				if(this.isOver(axis)){
+					location[axis] = this._stageSize[axis] - this.getRadius();
+
+				}
+				if(this.isUnder(axis)){
+					location[axis] = this.getRadius();
+				}
+			}, this));
+			
+			return location;
+			
+		},
+		
+		'draw':function(){
+			
+			var location;
+			
+			if(this._bounce){
+				location = this.getBounceLocation();
+			} else {
+				//画面外に出た場合、反対側から出てくる
+				location = this.getResidueLocation();
+			}
+			
 			this._graphics.clear();
 			
 			if(this._blurs && this._blurs.length > 1){this.drawBlurs()}
 			
 			this._graphics.beginFill(createjs.Graphics.getRGB(255, 0, 0)).
-			dc(location.x, location.y, this._radius)
+			dc(location.x, location.y, this.getRadius())
 			.endFill();
+		},
+		
+		'applyForce':function(force){
+			this._acceleration.add(force);
+		},
+			
+		'drag':function(coefficient){
+			var speed = this._velocity.mag();
+			var dragMag = (Math.pow(speed, 2)) * coefficient;
+			var dir = this._velocity.clone().normalize();
+			var force = dir.mult(-1).mult(dragMag);
+			this.applyForce(force);
+		},
+			
+		'clearForce':function(force){
+			this._acceleration.mult(0);
 		}
 			
 	};
 	
 })();
-var E000022 = {};
+var Resistance;
 
-E000022.init = function(){
+(function(){
+	
+	Resistance = function(stage, x, y, w, h, coefficient, color){
+		
+		//init cjs objects
+		this._stage = stage;
+		this._graphics = new createjs.Graphics();
+		this._shape = new createjs.Shape(this._graphics);
+		this._stage = stage;
+		this._stage.addChildAt(this._shape, 0);
+		
+		this._location = new Vector(x, y);
+		this._size = new Vector(w, h);
+		this._coefficient = coefficient;
+		this._color = color;
+		
+	};
+	
+	Resistance.prototype = {
+		
+		'getLocation':function(){
+			return this._location;	
+		},
+		
+		'getSize':function(){
+			return this._size;	
+		},
+		
+		'getCoefficient':function(){
+			return this._coefficient;	
+		},
+		
+		'draw':function(){
+			
+			this._graphics.beginFill(createjs.Graphics.getRGB(this._color.r, this._color.g, this._color.b)).
+			dr(this._location.x, this._location.y, this._size.x, this._size.y)
+			.endFill();
+			
+		},
+		
+	};
+	
+})();
+var E000023 = {};
+
+E000023.init = function(){
 	
 	createjs.Ticker.removeEventListener('tick', this._animator);
 	this._stage = new createjs.Stage($('#contMainCanvas').get(0));
 	
 };
 
-E000022.uniformVelocity001 = function(){
+E000023.initMovers = function(doesBounce){
+
+	this._movers = [
+		//アルミ
+		new Mover(this._stage, 
+			27, //質量
+			2.7, //密度
+			new Vector(40,50), //初期位置
+			new Vector(0, 0), //速度
+			new Vector(0, 0) //加速度
+		),
+		//鉄
+		new Mover(this._stage, 
+			78.7, //質量
+			7.87, //密度
+			new Vector(190,50), //初期位置
+			new Vector(0, 0), //速度
+			new Vector(0, 0) //加速度
+		),
+		//金
+		new Mover(this._stage, 
+			193, //質量
+			19.3, //密度
+			new Vector(340,50), //初期位置
+			new Vector(0, 0), //速度
+			new Vector(0, 0) //加速度
+		),
+	];
+	
+	if(doesBounce){
+		_.each(this._movers, function(mover){
+			mover.setBounce(true);	
+		});
+	}
+	
+}
+
+E000023.applyForce = function(){
 	
 	if(!this._stage){
 		this.init();
 	}
 	
-	this._mover = new Mover(this._stage,
-		new Vector(100, 100), //初期位置
-		new Vector(5, 10), //速度
-		new Vector(0, 0) //加速度
-	);
+	this.initMovers();
+	
+	_.each(this._movers, function(mover){
+		mover.applyForce(new Vector(5, 20));	
+	});
 	
 	this._animator = _.bind(function(e){
 		
-		this._mover.update();
+		_.each(this._movers, function(mover){
+			mover.update();	
+		});
 		this._stage.update(e);
 		
 	}, this);
@@ -707,21 +668,24 @@ E000022.uniformVelocity001 = function(){
 	
 };
 
-E000022.uniformAcceleration001 = function(){
+E000023.gravitate = function(){
 	
 	if(!this._stage){
 		this.init();
 	}
 	
-	this._mover = new Mover(this._stage,
-		new Vector(100, 100), //初期位置
-		new Vector(5, 10), //速度
-		new Vector(0, 0.1) //加速度
-	);
+	this.initMovers();
 	
 	this._animator = _.bind(function(e){
 		
-		this._mover.update();
+		var g = 9.8 * e.delta * 0.001;
+		
+		_.each(this._movers, function(mover){
+			var m = mover.getMass();
+			mover.applyForce(new Vector(0, m * g));
+			mover.update();	
+		});
+		
 		this._stage.update(e);
 		
 	}, this);
@@ -730,22 +694,29 @@ E000022.uniformAcceleration001 = function(){
 	
 };
 
-E000022.mouse001 = function(){
+E000023.bounce = function(){
 	
 	if(!this._stage){
 		this.init();
 	}
 	
-	this._mover = new Mover(this._stage,
-		new Vector(0, 0), //初期位置
-		new Vector(0, 0), //速度
-		new Vector(0, 0) //加速度
-	);
+	this.initMovers(true);
+	
+	var noiseSeed = 0;
 	
 	this._animator = _.bind(function(e){
 		
-		this._mover.setVelocityTo(new Vector(this._stage.mouseX, this._stage.mouseY));
-		this._mover.update();
+		noiseSeed += 0.01;
+		var wind = 100 * (0.5 - noise(noiseSeed));
+		
+		var g = 9.8 * e.delta * 0.001;
+		
+		_.each(this._movers, function(mover){
+			var m = mover.getMass();
+			mover.applyForce(new Vector(wind, m * g));
+			mover.update();	
+		});
+		
 		this._stage.update(e);
 		
 	}, this);
@@ -754,22 +725,48 @@ E000022.mouse001 = function(){
 	
 };
 
-E000022.mouse002 = function(){
+E000023.resistance = function(){
 	
 	if(!this._stage){
 		this.init();
 	}
 	
-	this._mover = new Mover(this._stage,
-		new Vector(0, 0), //初期位置
-		new Vector(0, 0), //速度
-		new Vector(0, 0) //加速度
-	);
+	this.initMovers(true);
+	
+	this._sky = new Resistance(this._stage, 0, 0, this._stage.canvas.width, this._stage.canvas.height * 0.85, 0.01, {r:200, g:200, b:230});
+	this._sea = new Resistance(this._stage, 0, this._stage.canvas.height * 0.85, this._stage.canvas.width, this._stage.canvas.height * 0.15, 0.44, {r:180, g:180, b:250});
+	
+	this._resistances = [this._sky, this._sea];
+	
+	var noiseSeed = 0;
 	
 	this._animator = _.bind(function(e){
 		
-		this._mover.setAccelerationTo(new Vector(this._stage.mouseX, this._stage.mouseY));
-		this._mover.update();
+		this._stage.clear();
+		
+		_.each(this._resistances, function(resistance){
+			resistance.draw();
+		});
+		
+		noiseSeed += 0.01;
+		var wind = 100 * (0.5 - noise(noiseSeed));
+		
+		var g = 9.8 * e.delta * 0.001;
+		
+		_.each(this._movers, _.bind(function(mover){
+			
+			_.each(this._resistances, function(resistance){
+				if(mover.isInside(resistance.getLocation(), resistance.getSize())){
+					mover.drag(resistance.getCoefficient());
+				}
+			});
+			
+			var m = mover.getMass();
+			mover.applyForce(new Vector(wind, m * g));
+			mover.update();
+			
+		}, this));
+		
 		this._stage.update(e);
 		
 	}, this);
@@ -778,47 +775,21 @@ E000022.mouse002 = function(){
 	
 };
 
-E000022.mouse003 = function(){
-	
-	if(!this._stage){
-		this.init();
-	}
-	
-	this._mover = new Mover(this._stage,
-		new Vector(0, 0), //初期位置
-		new Vector(0, 0), //速度
-		new Vector(0, 0) //加速度
-	);
-	
-	this._animator = _.bind(function(e){
-		
-		this._mover.setAccelerationTo(new Vector(this._stage.mouseX, this._stage.mouseY));
-		this._mover.update();
-		this._stage.update(e);
-		
-	}, this);
-	
-	this._mover.setBlurOn();
-	
-	createjs.Ticker.addEventListener('tick', this._animator);
-	
-};
-
-E000022.stop = function(){
+E000023.stop = function(){
 	
 	createjs.Ticker.removeEventListener('tick', this._animator);
 	
 };
 
-E000022.clear = function(){
-	if(this._mover){
-		this._mover.clear();
+E000023.clear = function(){
+	if(this._movers){
+		_.each(this._movers, function(mover){
+			mover.clear();	
+		});
 	}
 };
 
-E000022.remove = function(){
-	if(this._mover){
-		this._mover.clear();
-	}
-	this._mover = null;
+E000023.remove = function(){
+	this.clear();
+	this._movers = null;
 };

@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 	}
 	
 	var escapeText = function(str){
-		var res = str.replace(/\'/g, "&#39;");
+		var res = str.replace(/\'/g, "'");
 		return res;
 	};
 	
@@ -536,6 +536,16 @@ module.exports = function(grunt) {
 					'../../_dev/contents/experimental/1610/e000022_noc_001/scripts/script.js',
 				],
 				dest: '../../_dev/contents/experimental/1610/e000022_noc_001/script.js'
+			},
+			cont_e000023:{
+				src: [
+					'../../_dev/contents/experimental/1611/e000023_noc_002/scripts/cjs_noc_002.js',
+					'../../_dev/contents/experimental/1611/e000023_noc_002/scripts/vector.js',
+					'../../_dev/contents/experimental/1611/e000023_noc_002/scripts/mover.js',
+					'../../_dev/contents/experimental/1611/e000023_noc_002/scripts/resistance.js',
+					'../../_dev/contents/experimental/1611/e000023_noc_002/scripts/script.js',
+				],
+				dest: '../../_dev/contents/experimental/1611/e000023_noc_002/script.js'
 			}
 		},
 		
@@ -875,7 +885,7 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);	
 	
 	//Organize Tasks
-	var exContTask = ['concat:cont_e000020', 'concat:cont_e000021', 'concat:cont_e000022'];	
+	var exContTask = ['concat:cont_e000020', 'concat:cont_e000021', 'concat:cont_e000022', 'concat:cont_e000023'];	
 	var baseTasks = ['convert'];
 	var cleanTasks = ['clean:main'].concat(baseTasks);
 	var jsTasks = ['concat:js_main', 'uglify:js_main'];

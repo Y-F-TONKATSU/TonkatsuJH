@@ -95,7 +95,7 @@ var Vector;
 	};
 	
 	//static funcs
-	_.each(['add', 'sub', 'nomalize'], function(method){
+	_.each(['add', 'sub', 'normalize'], function(method){
 		Vector[method] = function(v1, v2){
 			var v3 = v1.clone();
 			v3[method](v2);
@@ -147,7 +147,7 @@ var Vector;
 			return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
 		},
 		
-		'nomalize':function(v){
+		'normalize':function(v){
 			if(this.mag() === 0){
 				return this;
 			}
@@ -161,7 +161,7 @@ var Vector;
 			
 		'dir':function(v){
 			var v2 = Vector.sub(v, this);
-			v2.nomalize();
+			v2.normalize();
 			return v2;
 		}
 			
@@ -238,13 +238,13 @@ var testVector = function(){
 			assert.strictEqual(5, v.mag(), 'ベクトル(3, 4) の大きさは 5');
 		});
 				
-		test("nomalize()", function() {
+		test("normalize()", function() {
 			var v = new Vector(3, 4);
-			v.nomalize();
+			v.normalize();
 			assert.strictEqual(0.6, v.x, 'ベクトル(3, 4) を正規化すると(0.6, 0.8)');
 			assert.strictEqual(0.8, v.y, 'ベクトル(3, 4) を正規化すると(0.6, 0.8)');
 			var v = new Vector(0, 0);
-			v.nomalize();
+			v.normalize();
 			assert.strictEqual(0, v.x, '零ベクトルには何もしない');
 			assert.strictEqual(0, v.y, '零ベクトルには何もしない');
 		});
@@ -281,9 +281,9 @@ var testVector = function(){
 			assert.strictEqual(-30, v3.y, 'static なメソッドでVector を減算した');
 		});
 				
-		test("Vector.nomalize()", function() {
+		test("Vector.normalize()", function() {
 			var v = new Vector(3, 4);
-			var v2 = Vector.nomalize(v);
+			var v2 = Vector.normalize(v);
 			assert.strictEqual(0.6, v2.x, 'static なメソッドでVector を正規化した');
 			assert.strictEqual(0.8, v2.y, 'static なメソッドでVector を正規化した');
 			assert.strictEqual(3, v.x, 'static なメソッドでVector を正規化した場合、もとのオブジェクトに影響なし');
@@ -327,7 +327,7 @@ var testVector = function(){
 				</p>
 								
 <pre>
-_.each(['add', 'sub', 'nomalize'], function(method){
+_.each(['add', 'sub', 'normalize'], function(method){
 	Vector[method] = function(v1, v2){
 		var v3 = v1.clone();
 		v3[method](v2);

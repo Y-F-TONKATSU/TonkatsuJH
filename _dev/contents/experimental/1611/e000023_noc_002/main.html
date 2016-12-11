@@ -1,0 +1,665 @@
+<!doctype html>
+
+<html lang='ja'>
+
+	<head>
+		
+		<!--meta--experimental000023-->
+		
+	</head>
+	
+	<body>
+		
+		<!--header--experimental000023-->
+		
+		<article class='e000022' data-doc-type='cjsClips2'>
+								
+			<!--cjs--experimental000023-->
+            		
+			<canvas id='contMainCanvas' width='480' height='480'></canvas>
+			            			
+			<section class='left' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+				
+				<p>
+					ダニエル・シフマン<br>
+					『Nature of Code<br>
+					-Processingではじめる<br>
+					自然現象のシミュレーション』<br>
+					を無理やり<br>
+					JavaScript と Canvas で攻略する<br>
+					ひとり読書会の続きです。
+				</p>
+				
+				<p>
+                	<!--ad--book_noc-->
+				</p>
+				
+				<p>
+					<a href='#id=experimental000021'>前回</a>はベクトルを<br>
+					JavaScript で実装して、<br>
+					色々動かしてみました。
+				</p>
+				
+				<p>
+					今回は NoC 2章を読みます。<br>
+					テーマは力(force)です。
+				</p>
+				
+				<p>
+					今回もソースコードは<br>
+					<a target='_blank' href='https://github.com/y-f-tonkatsu/noc_002_force'>GitHub</a> で公開しています。
+				</p>
+				
+			</section>
+						            			
+			<section class='wide' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+					
+				<h1>ニュートンの運動法則</h1>
+				
+				<p>
+					2章からは物理の要素が入ってきまして、<br>
+					ニュートンの運動法則の説明から始まります。<br>
+					とりあえず、この段階で大事なのは第２法則です。
+				</p>
+								
+				<p>
+					第２法則:力は質量と加速度の積と等しい<br>
+					…ということは、<br>
+					同じ力を加えても速度の変化の仕方が<br>
+					質量によって違ってくる、<br>
+					ということで、<br>
+					これは視覚的に表現しやすいです。<br>
+					本にもその例が載ってるので、<br>
+					例によってこれを<br>
+					JavaScript + CreateJS でやってみます。
+				</p>
+								
+			</section>
+			
+			<section class='wide' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+					
+				<h1>第２法則を実装する</h1>
+							
+				<div class='ext'>
+				
+				<p>
+					まずは Mover オブジェクトの<br>
+					prototype を拡張して<br>
+					力を加えられるようにします。
+				</p>
+								
+<pre>
+Move.prototype.applyForce = function(force){
+	this._acceleration.add(force);
+};
+</pre>
+
+				<p>
+					これだけだと、<br>
+					update() するたびに<br>
+					速度が増え続けてしまいます。<br>
+					加速度をリセットする<br>
+					clearForce() メソッドを<br>
+					追加して、<br>
+					update() のたびに<br>
+					呼び出すようにします。
+				</p>
+								
+<pre>
+Move.prototype.clearForce = function(force){
+	this._acceleration.mult(0);
+};
+</pre>
+
+				<p>
+					また、質量と密度の概念を導入します。<br>
+					update() メソッドの中で<br>
+					加速度を速度に加える箇所を<br>
+					加速度を質量で割ってから<br>
+					速度に加えるように書き換えます。
+				</p>
+								
+<pre>
+//update メソッドの一部を書き換え
+this._velocity.add(this._acceleration.div(this._mass));
+</pre>
+
+				<p>
+					密度については<br>
+					単位の問題があります<br>
+					(Canvas の座標系はピクセル単位)。<br>
+					ここは深く考えず、<br>
+					「質量 1 密度 0.5 だと<br>
+					半径 2 ピクセルの円を描画する、<br>
+					質量 1 密度 2 だと<br>
+					半径 0.5 ピクセルの円を描画する」<br>
+					という感じの実装にしておきます。
+				</p>
+								
+				<p>
+					質量と密度から<br>
+					描画するべき円の半径を<br>
+					計算して返す<br>
+					getRadius() メソッドを作り、<br>
+					draw() 時に参照させます。
+				</p>
+								
+<pre>
+'getRadius':function(){
+
+	return this._mass / this._density;
+
+},
+</pre>
+
+				<p>
+					実行してみます。<br>
+					まず、初期速度と初期加速度を<br>
+					0 に設定した<br>
+					Mover インスタンスを 3つ作ります。<br>
+					３つの mover は<br>
+					それぞれ密度を変えて、<br>
+					アルミ(2.7)、<br>
+					鉄(7.87)、<br>
+					金(19.3)、<br>
+					を表現してみます。<br>
+					質量は、<br>
+					大きさが同じになるように調整します。
+				</p>
+								
+<pre>
+this._movers = [
+	//アルミ
+	new Mover(this._stage, 
+		27, //質量
+		2.7, //密度
+		new Vector(20,20), //初期位置
+		new Vector(0, 0), //速度
+		new Vector(0, 0) //加速度
+	),
+	//鉄
+	new Mover(this._stage, 
+		78.7, //質量
+		7.87, //密度
+		new Vector(170,20), //初期位置
+		new Vector(0, 0), //速度
+		new Vector(0, 0) //加速度
+	),
+	//金
+	new Mover(this._stage, 
+		193, //質量
+		19.3, //密度
+		new Vector(320,20), //初期位置
+		new Vector(0, 0), //速度
+		new Vector(0, 0) //加速度
+	),
+];	
+</pre>
+
+				<p>
+					そして、<br>
+					applyForce() メソッドで<br>
+					力を加えます。
+				</p>
+								
+<pre>
+_.each(this._movers, function(mover){
+	mover.applyForce(new Vector(5, 20));	
+});
+
+createjs.Ticker.addEventListener('tick', function(e){
+
+	_.each(this._movers, function(mover){
+		mover.update();	
+	});
+	this._stage.update(e);
+
+});
+</pre>
+				</div>
+			
+			</section>
+						            			
+			<section class='canvasExp'  data-cjs-scene='CanvasPlay' data-cjs-event='applyForce'>
+					
+				<p>
+					実行するとこうなります。
+				</p>
+								
+				<p>
+					applyForce() されることで、
+					初期速度と初期加速度が 0なのに
+					等速運動します。
+				</p>
+				
+				<p>
+					また、加えられる力が同じでも
+					密度の高い物質ほど
+					速度は遅くなります。
+				</p>
+				
+			</section>
+			
+			<section class='wide' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+			
+				<p>
+					ところで、上記のコードで<br>
+					applyForce() に与えた引数<br>
+					new Vector(5, 20) は<br>
+					何かの自然現象を<br>
+					表現しているわけではない<br>
+					抽象的なベクトルです。
+				</p>
+								
+				<p>
+					NoC の目的は一応<br>
+					自然現象のシミュレーションなので<br>
+					(やりたければ逸脱も全然アリ、<br>
+					というスタンスではありますが)、<br>
+					ここからは、<br>
+					重力や摩擦といった<br>
+					現実に観察できる現象を<br>
+					モデルにした力を<br>
+					applyForce() していきます。
+				</p>
+								
+			</section>
+						            			
+			<section class='wide' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+				
+				<h1>地球の重力をシミュレート</h1>
+				
+				<p>
+					ということでまずは<br>
+					(万有引力ではない)地球の重力です。
+				</p>
+								
+				<p>
+					重力の公式は<br>
+					W = mg<br>
+					(重力 = 質量 × 重力加速度)<br>
+					で、重力加速度は 9.8m/s&sup2; です。<br>
+					ここでも単位の問題にぶつかります。<br>
+					ここも深く考えず、<br>
+					この世界の重力加速度は<br>
+					9.8 px/s&sup2;<br>
+					ということにしておきます。
+				</p>
+				
+				<div class='ext'>
+				
+				<p>
+					tick イベントのリスナー関数を
+					以下のように書き換えます。
+				</p>
+				
+<pre>
+createjs.Ticker.addEventListener('tick', _.bind(function(e){
+	
+	//このフレームでかかる重力加速度を算出
+	var g = 9.8 * e.delta * 0.001;
+
+	_.each(this._movers, function(mover){
+	
+		//質量を取得
+		var m = mover.getMass();
+		
+		//重力を表すベクトルを作る
+		var gravity = new Vector(0, m * g);
+		
+		//重力を適用
+		mover.applyForce(gravity);
+		
+		mover.update();	
+		
+	});
+
+	this._stage.update(e);
+	
+}, this));
+</pre>						
+				
+				<p>
+					ブラウザアニメーションでは<br>
+					リアルタイム再生が保証されないので、<br>
+					フレームごとに正確に動かすためには<br>
+					デルタ時間<br>
+					(前のフレームの tick から経過した秒数)<br>
+					を取得する必要があります。<br>
+					この場合は重力加速度を<br>
+					9.8 px/s&sup2;<br>
+					にするので、<br>
+					そのフレームでの加速度は<br>
+					デルタ時間(秒) * 9.8 になります。<br>
+					イベントオブジェクトから取得できる<br>
+					デルタ時間はミリ秒単位なので<br>
+					0.001 を掛けています。
+				</p>
+				
+				</div>
+				
+			</section>
+					 			
+			<section class='canvasExp' data-cjs-scene='CanvasPlay' data-cjs-event='gravitate'>
+					
+				<p>
+					実行するとこうなります。
+				</p>
+								
+				<p>
+					加速度は質量に比例しますが、
+					増える速度は質量に反比例するので、
+					ガリレオ・ガリレイの実験よろしく、
+					どの物質も
+					同じ速度で落ちていきます。
+				</p>
+								
+			</section>
+			
+			<section class='wide' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+				
+				<h1>バウンドと風</h1>
+				
+				<p>
+					テキストでは<br>
+					地面に達した Mover を<br>
+					バウンドさせているので、<br>
+					同じようにしてみます。
+				</p>
+				
+				<div class='ext'>
+				
+				<p>
+					まず Mover の prototype に、<br>
+					Canvas の境界との<br>
+					接触判定メソッドを加えます。
+				</p>
+				
+<pre>
+Mover.prototype.isUnder = function(axis){
+	return this._location[axis] - this.getRadius() &lt; 0;
+};
+
+Mover.prototype.isOver = function(axis){
+	return this._location[axis] + this.getRadius() &gt; this._stageSize[axis];
+};
+</pre>				
+																
+				<p>
+					そして、境界と接触した場合<br>
+					速度を反転させます。<br>
+					update メソッドの draw() の直前で<br>
+					以下の処理を行います。
+				</p>
+				
+<pre>
+_.each(['x', 'y'], _.bind(function(axis){
+	if(this.isOver(axis)){
+		this._velocity[axis] *= -1;
+	}
+	if(this.isUnder(axis)){
+		this._velocity[axis] *= -1; 
+	}
+}, this));
+</pre>				
+			
+				</div>
+				
+				<p>
+					せっかく、横にも跳ね返るようにしたので、<br>
+					横移動の動きを加えてみます。<br>
+					読書会の初回に作った noise 関数を使って、<br>
+					風を作ります。<br>
+					tick イベントリスナーは<br>
+					以下のようになります。
+				</p>
+				
+				<div class='ext'>				
+				
+<pre>
+<em>var noiseSeed = 0;</em>
+	
+createjs.Ticker.addEventListener('tick', _.bind(function(e){
+	
+	<em>noiseSeed += 0.01;
+	var wind = 100 * (0.5 - noise(noiseSeed));</em>
+	
+	//このフレームでかかる重力加速度を算出
+	var g = 9.8 * e.delta * 0.001;
+
+	_.each(this._movers, function(mover){
+	
+		//質量を取得
+		var m = mover.getMass();
+		
+		//重力を表すベクトルを作る
+		var gravity = new Vector(<em>wind</em>, m * g);
+		
+		//重力を適用
+		mover.applyForce(gravity);
+		
+		mover.update();	
+		
+	});
+
+	this._stage.update(e);
+	
+}, this));
+</pre>				
+					
+				</div>				
+				
+			</section>
+						            			
+			<section class='canvasExp' data-cjs-scene='CanvasPlay' data-cjs-event='bounce'>
+					
+				<p>
+					空気抵抗、床との摩擦、mover や床の変形等を
+					一切考慮に入れず、
+					床の抗力が重力によって生じた運動エネルギーを
+					100% 跳ね返すようにしていますが、
+					上昇時にも重力がかかり続けるので、
+					バウンドは減衰していきます。
+					(…という理屈でいいのだろうか?)
+				</p>
+								
+				<p>
+					また重力と違って、
+					風によって生じる運動は、
+					質量の影響で、
+					物質によって違った動きになります。
+				</p>
+								
+			</section>
+			
+			<section class='wide' data-cjs-scene='Ex001' data-cjs-event='Ex001'>
+				
+				<h1>空気抵抗</h1>
+				
+				<p>
+					空気抵抗を追加してみます。<br>
+					これはちゃんとシミュレートするのは<br>
+					かなり難しいはずですが、<br>
+					(レイノルズ数がどうとか)<br>
+					テキストでは簡略化されています。
+				</p>
+				
+				<p>
+					テキストでは、式は<br>
+					抵抗 = -1/2 * 液体(気体)の密度 * 速度 ^ 2 * 物質前方の液体(気体)の領域 * 係数 * 力の方向<br>
+					となっています。<br>
+					が、<br>
+					・液体(気体)の密度<br>
+					・物質前方の液体(気体)の領域<br>
+					は気にせず、<br>
+					・係数<br>
+					も適当に調整するような扱いです。<br>
+					係数がてきとうなので、<br>
+					1/2 もあまり意味がありません。<br>
+					なので、実際は<br>
+					抵抗 = 速度 ^ 2 * 係数(てきとう) * 力の方向 * -1<br>
+					という感じで組んでいます。
+				</p>
+				
+				<div class='ext'>
+				
+				<p>
+					Resistance クラスを作ります。<br>
+					抵抗の有効範囲と係数と色を<br>					
+					コンストラクタ引数で受け取ります。
+				</p>
+				
+<pre>
+var Resistance;
+
+(function(){
+	
+	Resistance = function(stage, x, y, w, h, coefficient, color){
+		
+		//init cjs objects
+		this._stage = stage;
+		this._graphics = new createjs.Graphics();
+		this._shape = new createjs.Shape(this._graphics);
+		this._stage = stage;
+		this._stage.addChildAt(this._shape, 0);
+		
+		this._location = new Vector(x, y);
+		this._size = new Vector(w, h);
+		this._coefficient = coefficient;
+		this._color = color;
+		
+	};
+	
+	Resistance.prototype = {
+		
+		'getLocation':function(){
+			return this._location;	
+		},
+		
+		'getSize':function(){
+			return this._size;	
+		},
+		
+		'getCoefficient':function(){
+			return this._coefficient;	
+		},
+		
+		'draw':function(){
+			
+			this._graphics.beginFill(createjs.Graphics.getRGB(this._color.r, this._color.g, this._color.b)).
+			dr(this._location.x, this._location.y, this._size.x, this._size.y)
+			.endFill();
+			
+		},
+		
+	};
+	
+})();
+</pre>															
+
+				<p>
+					Mover クラスに<br>
+					範囲内にいるかどうかを<br>
+					判定するメソッドを追加します。
+				</p>
+				
+<pre>
+Mover.prototype.isInside = function(location, size){
+	return (this._location.x &gt;= location.x &&
+		   this._location.x &lt;= location.x + size.x) &&
+		(this._location.y &gt;= location.y &&
+		 this._location.y &lt;= location.y + size.y);
+};
+</pre>
+		
+				<p>
+					Mover クラスに<br>
+					抵抗を加えるメソッドを追加します。
+				</p>
+				
+<pre>
+Mover.prototype.drag = function(coefficient){
+	var speed = this._velocity.mag();
+	var dragMag = speed ^ 2 * coefficient;
+	var dir = this._velocity.clone().normalize();
+	var force = dir.mult(-1).mult(dragMag);
+	this.applyForce(force);
+};
+</pre>
+		
+				<p>
+					実行部分です。<br>
+					Canvas の上 85% を空、<br>
+					残り 15% を水に設定します。<br>
+					水中では空気中の<br>
+					44倍の抵抗が<br>
+					かかるようにしてみます。
+				</p>
+				
+<pre>
+this._sky = new Resistance(this._stage, 0, 0, this._stage.canvas.width, this._stage.canvas.height * 0.85, 0.01, {r:200, g:200, b:230});
+this._sea = new Resistance(this._stage, 0, this._stage.canvas.height * 0.85, this._stage.canvas.width, this._stage.canvas.height * 0.15, 0.44, {r:180, g:180, b:250});
+
+this._resistances = [this._sky, this._sea];
+</pre>
+
+				<p>
+					そして、各 mover インスタンスを
+					update() する前に、
+					抵抗を適用します。
+				</p>
+				
+<pre>
+_.each(this._movers, _.bind(function(mover){
+
+	<em>_.each(this._resistances, function(resistance){
+		if(mover.isInside(resistance.getLocation(), resistance.getSize())){
+			mover.drag(resistance.getCoefficient());
+		}
+	});</em>
+
+	var m = mover.getMass();
+	mover.applyForce(new Vector(wind, m * g));
+	mover.update();
+
+}, this));
+</pre>
+			
+				</div>	
+				
+			</section>
+			
+			<section class='canvasExp' data-cjs-scene='CanvasPlay' data-cjs-event='resistance'>
+					
+				<p>
+					超リアルな動きとは言えませんが、
+					多少粘っこい動きの感じは出ているでしょうか。
+				</p>
+								
+				<p>
+					また、質量が重いほど
+					早く落下するようになります。
+				</p>
+								
+			</section>
+			
+			<section class='wide' data-cjs-scene='Ex002' data-cjs-event='Ex001'>
+				
+				<p>
+					今回はここまでにします。<br>
+					テキストの内容を再現するだけでも、<br>
+					予想外の動きになったりして、<br>
+					意外と大変でした。<br>
+					弾性とか、テキストから外れたことも<br>
+					やりたかったんですが。
+				</p>
+				
+			</section>
+			
+		</article>
+		
+		<!--footer--experimental000023-->
+		
+	</body>
+	
+</html>

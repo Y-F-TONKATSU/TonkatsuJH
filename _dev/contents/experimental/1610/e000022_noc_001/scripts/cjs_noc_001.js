@@ -1,4 +1,4 @@
-(function (lib, img, cjs, ss) {
+(function (lib, img, cjs, ss, an) {
 
 var p; // shortcut to reference prototypes
 lib.webFontTxtInst = {}; 
@@ -6,24 +6,6 @@ var loadedTypekitCount = 0;
 var loadedGoogleCount = 0;
 var gFontsUpdateCacheList = [];
 var tFontsUpdateCacheList = [];
-
-// library properties:
-lib.properties = {
-	width: 768,
-	height: 480,
-	fps: 24,
-	color: "#000000",
-	opacity: 1.00,
-	webfonts: {},
-	manifest: [
-		{src:"images/bg.jpg", id:"bg"},
-		{src:"images/bg_noframe.jpg", id:"bg_noframe"},
-		{src:"images/bg_vivid.jpg", id:"bg_vivid"}
-	]
-};
-
-
-
 lib.ssMetadata = [];
 
 
@@ -42,16 +24,16 @@ lib.addElementsToCache = function (textInst, cacheList) {
 			break;		
 		cur = cur.parent;		
 	}		
-	if(cur != exportRoot) {	//we have found an element in the list		
+	if(cur != exportRoot) {		
 		var cur2 = textInst;		
 		var index = cacheList.indexOf(cur);		
-		while(cur2 != cur) { //insert all it's children just before it		
+		while(cur2 != cur) {		
 			cacheList.splice(index, 0, cur2);		
 			cur2 = cur2.parent;		
 			index++;		
 		}		
 	}		
-	else {	//append element and it's parents in the array		
+	else {		
 		cur = textInst;		
 		while(cur != exportRoot) {		
 			cacheList.push(cur);		
@@ -110,7 +92,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 
 	// レイヤー 1
 	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("#3399FF").ss(2,1,1).p("Eghbgi6MBC3AAAQBkAAAABkMAAABCtQAABkhkAAMhC3AAAQhkAAAAhkMAAAhCtQAAhkBkAAg");
+	this.shape.graphics.f().s("#3399FF").ss(2,1,1).p("Eghcgi7MBC5AAAQBkAAAABkMAAABCvQAABkhkAAMhC5AAAQhkAAAAhkMAAAhCvQAAhkBkAAg");
 	this.shape.setTransform(0,223.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
@@ -479,6 +461,24 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(384,240,768,480);
+// library properties:
+lib.properties = {
+	width: 768,
+	height: 480,
+	fps: 24,
+	color: "#000000",
+	opacity: 1.00,
+	webfonts: {},
+	manifest: [
+		{src:"images/bg.jpg", id:"bg"},
+		{src:"images/bg_noframe.jpg", id:"bg_noframe"},
+		{src:"images/bg_vivid.jpg", id:"bg_vivid"}
+	],
+	preloads: []
+};
 
-})(gCjsLib = gCjsLib||{}, gCjsImages = gCjsImages||{}, createjs = createjs||{}, ss = ss||{});
-var gCjsLib, gCjsImages, createjs, ss;
+
+
+
+})(gCjsLib = gCjsLib||{}, gCjsImages = gCjsImages||{}, createjs = createjs||{}, ss = ss||{}, AdobeAn = AdobeAn||{});
+var gCjsLib, gCjsImages, createjs, ss, AdobeAn;

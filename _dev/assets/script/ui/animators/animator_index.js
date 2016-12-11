@@ -468,6 +468,57 @@ if(!Animators){var Animators = {};}
 			
 		},
 		
+		'ex000023_init':function(e){
+			
+			this.vars.dots = [];
+			
+			_.times(20, _.bind(function(){
+				this.vars.dots.push(new IndexDot(this.ch, {
+					'x':this.ch.getCanvasWidth() * Math.random(), 
+					'y':this.ch.getCanvasHeight() * Math.random()
+				}));
+			}, this));
+			
+		},
+		
+		'ex000023':function(e){
+			
+			_.each(this.vars.dots, function(dot){
+				dot.update();
+			});
+			
+		},
+			
+		'ex000023_fore':function(e){
+			
+			if(this.vars.root){
+				if(this.vars.root.currentFrame === this.vars.root.totalFrames - 1){
+					this.vars.root.stop();
+				}
+				this.vars.stage.update(e);
+			}
+			
+		},
+		
+		'ex000023_fore_init':function(e){
+			
+			this.vars.stage = new createjs.Stage(this.ch.getCanvas());
+			
+			CjsUtil.load({
+				'images':gCjsWidgetImages,
+				'manifest':	[
+					{src:"assets/images/thumb/ex000023.png", id:"ex000023"},
+				],
+				'completeListener':_.bind(function(){
+					this.vars.root = new gCjsWidgetLib.Ex000023();	
+					this.vars.stage.addChild(this.vars.root);
+					this.vars.stage.autoClear = false;
+					this.vars.stage.update();
+				}, this)
+			});
+			
+		},
+		
 		'main':function(){
 						
 		},

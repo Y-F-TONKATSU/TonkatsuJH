@@ -11,6 +11,32 @@
 		
 		<item>
 		
+			<title>力 - Nature of Code ひとり読書会 #002</title>
+			<link>http://ton-katsu.net/?id=experimental000023</link>
+			<description>ダニエル・シフマン『Nature of Code -Processingではじめる自然現象のシミュレーション』のひとり読書会の第3回です。今回は重力、摩擦、空気抵抗等、ニュートンの物理法則で説明される力を表現します。</description>
+			<pubDate>Sun, 11 Dec 2016 22:30:00 +0900</pubDate>
+			
+			<file>contents/experimental/1611/e000023_noc_002/main.html</file>
+			<category>experimental</category>
+			<id>000023</id>
+			<subCategory>Canvas</subCategory>
+			<series>Nature of Code ひとり読書会</series>
+			<mainThumb>http://ton-katsu.net/assets/images/thumb/ex000023.png</mainThumb>
+			<minThumb>http://ton-katsu.net/assets/images/thumb/ex000023_min.png</minThumb>
+			<tags>Nature of Code ダニエル・シフマン JavaScript Canvas CreateJS ニュートンの物理法則 重力 バウンド 流体抵抗</tags>
+			<type>article</type>			
+			
+			<cjs>contents/experimental/1611/e000023_noc_002/script.js</cjs>
+			<cjsOptions>contents/experimental/1611/e000023_noc_002/options.js</cjsOptions>
+			<cjsImages>contents/experimental/1611/e000023_noc_002/</cjsImages>
+			
+			<animation>ex000023</animation>
+			<widgetPosition>left</widgetPosition>
+			
+		</item>
+		
+		<item>
+		
 			<title>ベクトル、速度、加速度 - Nature of Code ひとり読書会 #001</title>
 			<link>http://ton-katsu.net/?id=experimental000022</link>
 			<description>ダニエル・シフマン『Nature of Code -Processingではじめる自然現象のシミュレーション』のひとり読書会の第2回です。今回は JavaScript でベクトルを定義し、等速運動や等加速度運動といった動きを表現します。</description>

@@ -91,6 +91,54 @@ Animators.basic = {
 		
 	},
 	
+	'cjsClips2':function(e, cjsStage, activeElem){
+		
+		cjsStage.stage.update(e);
+		
+		if(activeElem){
+			
+			var scene = $(activeElem).attr('data-cjs-scene');
+			var eve = $(activeElem).attr('data-cjs-event');
+			
+			if(scene !== this.currentScene){
+				if(gCjsEvents.sceneOut && gCjsEvents.sceneOut[this.currentEvent]){
+					gCjsEvents.sceneOut[this.currentEvent].call(this);
+				}
+				if(gCjsEvents.scene && gCjsEvents.scene[eve]){
+					gCjsEvents.scene[eve].call(this);
+				}
+				cjsStage.stage.removeAllChildren();
+				cjsStage.currentClip = new gCjsLib[scene]();
+				cjsStage.stage.addChild(cjsStage.currentClip);
+				this.currentScene = scene;
+				this.currentEvent = eve;
+			}
+		}
+		
+		if(cjsStage.currentClip){
+			
+			if(cjsStage.currentClip.currentFrame === cjsStage.currentClip.totalFrames - 1){
+				cjsStage.currentClip.stop();
+			}
+			
+			var label = cjsStage.currentClip.currentLabel;
+			if(this.currentLabel !== label){
+				if(gCjsEvents.labelOut[this.currentLabel]){
+					gCjsEvents.labelOut[this.currentLabel].call(this);
+				}
+				if(gCjsEvents.label[label]){
+					gCjsEvents.label[label].call(this);
+				}
+			}
+			this.currentLabel = label;
+			if(label && label.indexOf('_stop') >= 0){
+				cjsStage.root.stop();
+			}
+		}
+
+		
+	},
+	
 	'lines':function(){
 		
 		var progress = this.progress;

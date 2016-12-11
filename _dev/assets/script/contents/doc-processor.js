@@ -238,6 +238,10 @@ var DocProcessor = {
 			
 	},
 	
+	'cjsClips2':function(doc){
+		this.cjsClips(doc);
+	},
+	
 	'plain':function(doc){
 		
 		var h = DisplayUtil.getHeight();
