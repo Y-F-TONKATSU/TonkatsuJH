@@ -356,13 +356,8 @@ if(!Animators){var Animators = {};}
 				'manifest':	[
 					{src:"assets/images/thumb/w000002.png", id:"thumb_w000002"},
 				],
-				'completeListener':_.bind(function(){
-					this.vars.root = new gCjsWidgetLib.w000002();	
-					this.vars.stage.addChild(this.vars.root);
-					this.vars.stage.autoClear = false;
-					this.vars.stage.update();
-				}, this)
-			});
+				'widgetId':'w000002'
+			}, this);
 			
 		},
 		

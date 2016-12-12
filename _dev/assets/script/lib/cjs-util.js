@@ -9,7 +9,7 @@ var CjsUtil;
 		//	manifest
 		//	completeListener
 		//	progressListener
-		'load':function(options){
+		'load':function(options, that){
 			
 			var loader = new createjs.LoadQueue(false);
 			
@@ -17,8 +17,17 @@ var CjsUtil;
 				if (evt.item.type == "image") { options.images[evt.item.id] = evt.result; }
 				if(options.fileloadListener){options.fileloadListener()}
 			});
-			
-			loader.addEventListener("complete", options.completeListener);
+			console.log(options);
+			if(options.widgetId){
+				loader.addEventListener("complete", function(){
+					that.vars.root = new gCjsWidgetLib[options.widgetId]();	
+					that.vars.stage.addChild(that.vars.root);
+					that.vars.stage.autoClear = false;
+					that.vars.stage.update();
+				});
+			} else {
+				loader.addEventListener("complete", options.completeListener);
+			}
 			
 			if(options.progressListener){
 				loader.addEventListener('progress', options.progressListener);

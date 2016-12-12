@@ -100,12 +100,8 @@ var AnimationHandler;
 					'id':'mainCjs_' + mc.root,
 					'docId':movieOptions.docId,
 					'containerId': mc.containerId,
-					'progress':0,
-					'currentTime':0,
-					'duration': 0,
-					'waitTime': 0,
-					'ender':function(){return false},
-					'tweener':function(){return 0},
+					'tweener':Tweeners.endless,
+					'ender':Enders.endless,
 					'currentScene': '',
 					'currentLabel': '',
 					'onInit':function(){
@@ -195,32 +191,6 @@ var AnimationHandler;
 			
 		},
 			
-		/*
-			'id':'streamScript',
-			'docId': 'plainDoc',
-			'containerId': 'back',
-			'progress':0,
-			'currentTime':0,
-			'duration': 0,
-			'waitTime': 0,
-			'ender':function(){return false},
-			'tweener':function(){return 0},
-			'currentScene': '',
-			'currentLabel': '',
-			'vars':{
-				'scroll':0,
-			},
-			'onInit': function(){
-				_.bind(Animators.plain.scriptStream_init, this)();
-			},
-			'onTicked': function(e){
-				this.vars.scroll = $('#mainDoc').scrollTop();
-				_.bind(Animators.plain.scriptStream, this)(e, $('#backgroundText'));
-				
-			},
-			'onComplete':function(){
-			}
-		*/		
 		addTask:function(task){
 			
 			task.ch = this._chList[task.containerId];
