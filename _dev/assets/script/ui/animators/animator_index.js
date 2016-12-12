@@ -337,13 +337,8 @@ if(!Animators){var Animators = {};}
 				'manifest':	[
 					{src:"assets/images/thumb/tech.png", id:"tech"},
 				],
-				'completeListener':_.bind(function(){
-					this.vars.root = new gCjsWidgetLib.w000001();	
-					this.vars.stage.addChild(this.vars.root);
-					this.vars.stage.autoClear = false;
-					this.vars.stage.update();
-				}, this)
-			});
+				'widgetId':'w000001'
+			}, this);
 			
 		},
 		
@@ -402,13 +397,8 @@ if(!Animators){var Animators = {};}
 				'manifest':	[
 					{src:"assets/images/thumb/ex000021.png", id:"ex000021"},
 				],
-				'completeListener':_.bind(function(){
-					this.vars.root = new gCjsWidgetLib.Ex000021();	
-					this.vars.stage.addChild(this.vars.root);
-					this.vars.stage.autoClear = false;
-					this.vars.stage.update();
-				}, this)
-			});
+				'widgetId':'Ex000021'
+			}, this);
 			
 		},
 		
@@ -453,13 +443,8 @@ if(!Animators){var Animators = {};}
 				'manifest':	[
 					{src:"assets/images/thumb/ex000022.png", id:"ex000022"},
 				],
-				'completeListener':_.bind(function(){
-					this.vars.root = new gCjsWidgetLib.Ex000022();	
-					this.vars.stage.addChild(this.vars.root);
-					this.vars.stage.autoClear = false;
-					this.vars.stage.update();
-				}, this)
-			});
+				'widgetId':'Ex000022'
+			}, this);
 			
 		},
 		
@@ -504,13 +489,8 @@ if(!Animators){var Animators = {};}
 				'manifest':	[
 					{src:"assets/images/thumb/ex000023.png", id:"ex000023"},
 				],
-				'completeListener':_.bind(function(){
-					this.vars.root = new gCjsWidgetLib.Ex000023();	
-					this.vars.stage.addChild(this.vars.root);
-					this.vars.stage.autoClear = false;
-					this.vars.stage.update();
-				}, this)
-			});
+				'widgetId':'Ex000023'
+			}, this);
 			
 		},
 		

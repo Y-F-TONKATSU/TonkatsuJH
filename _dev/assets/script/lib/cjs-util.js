@@ -19,12 +19,12 @@ var CjsUtil;
 			});
 			console.log(options);
 			if(options.widgetId){
-				loader.addEventListener("complete", function(){
+				loader.addEventListener("complete", _.bind(function(){
 					that.vars.root = new gCjsWidgetLib[options.widgetId]();	
 					that.vars.stage.addChild(that.vars.root);
 					that.vars.stage.autoClear = false;
 					that.vars.stage.update();
-				});
+				}, that));
 			} else {
 				loader.addEventListener("complete", options.completeListener);
 			}
