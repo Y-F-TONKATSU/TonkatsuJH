@@ -81,6 +81,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 
 
+(lib.ex000023 = function() {
+	this.initialize(img.ex000023);
+}).prototype = p = new cjs.Bitmap();
+p.nominalBounds = new cjs.Rectangle(0,0,300,300);
+
+
 (lib.Frame = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -93,6 +99,19 @@ p.nominalBounds = new cjs.Rectangle(0,0,384,240);
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-225,-1,450.1,449.1);
+
+
+(lib.WidgetImageEx000023 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// レイヤー 1
+	this.instance = new lib.ex000023();
+	this.instance.parent = this;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,300,300);
 
 
 (lib.Ex001 = function(mode,startPosition,loop) {
@@ -135,6 +154,27 @@ p.nominalBounds = new cjs.Rectangle(-384,0,768,480);
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-13.9,204.6,28,28);
+
+
+(lib.Ex003 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{"Ex001":0});
+
+	// レイヤー 2
+	this.instance = new lib.WidgetImageEx000023("single",0);
+	this.instance.parent = this;
+	this.instance.setTransform(577,284.5,0.093,0.093,90,0,0,150,150);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({scaleX:1,scaleY:1,rotation:0,x:550},46,cjs.Ease.get(1)).wait(1));
+
+	// レイヤー 4
+	this.instance_1 = new lib.bg_vivid();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(0,0,2,2);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(47));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 
 
 (lib.Ex002 = function(mode,startPosition,loop) {
@@ -208,6 +248,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,768,480);
 (lib.Root = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
+	// ex003
+	this.ex003 = new lib.Ex003();
+	this.ex003.parent = this;
+
+	this.timeline.addTween(cjs.Tween.get(this.ex003).wait(1));
+
 	// ex002
 	this.ex002 = new lib.Ex002();
 	this.ex002.parent = this;
@@ -253,7 +299,8 @@ lib.properties = {
 	webfonts: {},
 	manifest: [
 		{src:"images/bg.jpg", id:"bg"},
-		{src:"images/bg_vivid.jpg", id:"bg_vivid"}
+		{src:"images/bg_vivid.jpg", id:"bg_vivid"},
+		{src:"images/ex000023.jpg", id:"ex000023"}
 	],
 	preloads: []
 };
